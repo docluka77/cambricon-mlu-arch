@@ -14,7 +14,7 @@ for s in suites:
     cov_dat = os.path.join(s, "coverage.dat")
     summary_line = ""
     if os.path.exists(run_log):
-        with open(run_log) as f:
+        with open(run_log, encoding="utf-8") as f:
             for line in f:
                 if "PASS" in line or "SUMMARY" in line or "Summary" in line:
                     if "UVM_INFO" in line:
@@ -34,7 +34,7 @@ for s in suites:
 print("\n=== 2. PER-MODULE RTL & UVM PKG COVERAGE FROM MERGED_UVM_COVERAGE.DAT ===")
 # Parse merged_uvm_coverage.dat directly for exact line, toggle, and covergroup counts per file
 file_stats = {}
-with open("results/merged_uvm_coverage.dat") as f:
+with open("results/merged_uvm_coverage.dat", encoding="utf-8") as f:
     for line in f:
         if not line.startswith("C '"):
             continue

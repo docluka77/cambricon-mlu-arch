@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="/nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 DIR="${ROOT}/uvm_tb/uvm_cambricon_llm_kv"
 RTL="${ROOT}/rtl"
 TC="/nfs/share/home/chenpei/verisegue_agent_v0/agent_v26/runs/uvm_gate0_20261104_221700/toolchain"

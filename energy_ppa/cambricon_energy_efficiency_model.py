@@ -8,7 +8,7 @@ import os
 import re
 import json
 
-BASE_DIR = "/nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SYNTH_DIR = os.path.join(BASE_DIR, "synth")
 ENERGY_DIR = os.path.join(BASE_DIR, "energy_ppa")
 RESULTS_DIR = os.path.join(BASE_DIR, "results")
@@ -39,7 +39,7 @@ def parse_yosys_log(log_path):
     """Extract cell count, chip area, and sequential area from a Yosys stat log."""
     if not os.path.exists(log_path):
         return None
-    with open(log_path, "r") as f:
+    with open(log_path, "r", encoding="utf-8") as f:
         text = f.read()
 
     blocks = text.split("Printing statistics.")
@@ -296,10 +296,12 @@ def generate_reports():
         "stage16_energy_parity_roofline": energy_model,
     }
 
-    with open(os.path.join(SYNTH_DIR, "ppa_metrics.json"), "w") as f:
+    with open(os.path.join(SYNTH_DIR, "ppa_metrics.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(ppa_rows, f, indent=2)
-    with open(os.path.join(ENERGY_DIR, "energy_parity_metrics.json"), "w") as f:
+        f.write("\n")
+    with open(os.path.join(ENERGY_DIR, "energy_parity_metrics.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(full_json, f, indent=2)
+        f.write("\n")
 
     ecc_m = ppa_map["mlu_sram_secded_ecc"]
     sp_m = ppa_map["mlu_sram_sp_macro"]
@@ -344,7 +346,7 @@ def generate_reports():
         "- **Compute & Nonlinear Pipelines**: `mlu_tfu_fractal_mac` (multi-precision INT4/INT8/FP8/BF16/FP16 + Cambricon-S 2:4 sparse muxing) and `mlu_vfu_sfu_pipe` (8-lane LayerNorm/RMSNorm/RoPE/Online-Softmax/GELU) achieve 1.32–1.34 GHz timing closure in 7nm RVt FF.",
         "- **Full-Chip Hierarchy Closure**: Complete `mlu_ipu_core` (integrating ICU + PMU + NRAM + WRAM + TFU + VFU + MFU + LLM_KV), `mlu_mpu_core`, 4-IPU `mlu_mtp_cluster`, and `mlu_chip_top` (integrating MTP Cluster + 5-port MLU-Link NoC Router + 512 GB/s C2C SerDes PCS) synthesize to verified gate-level netlists in `synth/*_asap7_netlist.v`.",
     ])
-    with open(os.path.join(SYNTH_DIR, "PPA_SUMMARY.md"), "w") as f:
+    with open(os.path.join(SYNTH_DIR, "PPA_SUMMARY.md"), "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(lines) + "\n")
 
     em = energy_model
@@ -395,7 +397,7 @@ def generate_reports():
         f"- **Full-Chip TDP & Efficiency Parity**: Siyuan 590 modeled power is **{td['Total_Chip_TDP_W']:.1f} W** vs. **350.0 W** reported (**{td['TDP_Parity_Error_Pct']:.2f}% error**, **{ef['INT8_Dense_TOPS_per_W']:.3f} TOPS/W** vs. **1.463 TOPS/W** reported). Siyuan 690 modeled power is **{td['MLU690_Modeled_TDP_W']:.1f} W** vs. **400.0 W** reported (**{td['MLU690_TDP_Parity_Error_Pct']:.2f}% error**, **{ef['MLU690_FP8_TFLOPS_per_W']:.3f} TFLOPS/W FP8** vs. **1.720 TFLOPS/W** reported).",
         f"- **Roofline Ridge Points**: Off-chip HBM2e ridge point is **{rf['MLU590_HBM2e_2TBps_INT8_Dense']:.1f} OP/B** (MLU690 HBM3e FP8: **{rf['MLU690_HBM3e_4TBps_FP8']:.2f} FLOP/B**), while the on-chip `NRAM`+`WRAM` scratchpad ridge point drops to **{rf['MLU590_NRAM_WRAM_OnChip_INT8_Dense']:.2f} OP/B**, enabling compute-bound execution even for low-batch LLM decoding (*Cambricon-LLM* FlashDecoding).",
     ]
-    with open(os.path.join(ENERGY_DIR, "ENERGY_PARITY_REPORT.md"), "w") as f:
+    with open(os.path.join(ENERGY_DIR, "ENERGY_PARITY_REPORT.md"), "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(rep) + "\n")
     print("STAGE14_16_REPORTS_GENERATED_SUCCESSFULLY")
 

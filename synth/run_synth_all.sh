@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-cd /nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon
+cd "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 YOSYS=/usr/local/bin/yosys
 LIB_ASAP7=/nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib

@@ -10,7 +10,7 @@ import json
 import os
 import re
 
-BASE_DIR = "/nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SYNTH_DIR = os.path.join(BASE_DIR, "synth")
 ENERGY_DIR = os.path.join(BASE_DIR, "energy_ppa")
 RESULTS_DIR = os.path.join(BASE_DIR, "results")
@@ -233,9 +233,9 @@ def build_commercial_generations_table(em):
 
 def check_cross_document_consistency(ppa_map):
     discrepancies = []
-    ppa_md = open(os.path.join(SYNTH_DIR, "PPA_SUMMARY.md")).read()
-    stage15_md = open(os.path.join(FORMAL_DIR, "STAGE15_GATE_EQUIV_SUMMARY.md")).read()
-    energy_md = open(os.path.join(ENERGY_DIR, "ENERGY_PARITY_REPORT.md")).read()
+    ppa_md = open(os.path.join(SYNTH_DIR, "PPA_SUMMARY.md"), encoding="utf-8").read()
+    stage15_md = open(os.path.join(FORMAL_DIR, "STAGE15_GATE_EQUIV_SUMMARY.md"), encoding="utf-8").read()
+    energy_md = open(os.path.join(ENERGY_DIR, "ENERGY_PARITY_REPORT.md"), encoding="utf-8").read()
 
     # 1. Check PPA_SUMMARY.md Section 2 vs Section 1 ppa_map
     sec2_checks = [
@@ -290,10 +290,10 @@ def main():
     os.makedirs(RESULTS_DIR, exist_ok=True)
     os.makedirs(DOCS_DIR, exist_ok=True)
 
-    ppa_rows = json.load(open(os.path.join(SYNTH_DIR, "ppa_metrics.json")))
-    energy_full = json.load(open(os.path.join(ENERGY_DIR, "energy_parity_metrics.json")))
-    master_audit = json.load(open(os.path.join(RESULTS_DIR, "master_audit_summary.json")))
-    mut_res = json.load(open(os.path.join(FORMAL_DIR, "mutation_testing", "mutation_results.json")))
+    ppa_rows = json.load(open(os.path.join(SYNTH_DIR, "ppa_metrics.json"), encoding="utf-8"))
+    energy_full = json.load(open(os.path.join(ENERGY_DIR, "energy_parity_metrics.json"), encoding="utf-8"))
+    master_audit = json.load(open(os.path.join(RESULTS_DIR, "master_audit_summary.json"), encoding="utf-8"))
+    mut_res = json.load(open(os.path.join(FORMAL_DIR, "mutation_testing", "mutation_results.json"), encoding="utf-8"))
 
     ppa_map = {r["module"]: r["asap7_7nm"] for r in ppa_rows}
     em = energy_full["stage16_energy_parity_roofline"]
@@ -322,8 +322,9 @@ def main():
         "overall_pass": all_pass,
     }
 
-    with open(os.path.join(RESULTS_DIR, "literature_patent_parity_audit.json"), "w") as f:
+    with open(os.path.join(RESULTS_DIR, "literature_patent_parity_audit.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(audit_json, f, indent=2)
+        f.write("\n")
 
     md = [
         "# Cambricon Siyuan 590 / 690 (`MLUarch05`/`MLUarch06` & `Cambricon-LLM/Q/S`) Literature, Patent & Commercial Benchmark Cross-Audit",
@@ -374,7 +375,7 @@ def main():
         f"- **Cross-Document Number Discrepancies Found**: **`{doc_check['discrepancy_count']}`** (`PASS = {doc_check['pass']}`).",
     ])
 
-    with open(os.path.join(DOCS_DIR, "LITERATURE_PATENT_BENCHMARK_AUDIT.md"), "w") as f:
+    with open(os.path.join(DOCS_DIR, "LITERATURE_PATENT_BENCHMARK_AUDIT.md"), "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(md) + "\n")
 
     print(f"LITERATURE_PATENT_PARITY_AUDIT_COMPLETE: overall_pass={all_pass}, discrepancies={doc_check['discrepancy_count']}")

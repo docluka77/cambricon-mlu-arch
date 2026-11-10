@@ -6,7 +6,7 @@
 # =============================================================================
 set -euo pipefail
 
-ROOT="/nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 DIR="${ROOT}/uvm_tb/uvm_soak_500k"
 RTL="${ROOT}/rtl"
 SRAM_IP="${ROOT}/sram_ip"

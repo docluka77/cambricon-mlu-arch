@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DIR="/nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon/uvm_tb/uvm_4chip_allreduce"
-RTL="/nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon/rtl"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)/uvm_tb/uvm_4chip_allreduce"
+RTL="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)/rtl"
 TC="/nfs/share/home/chenpei/verisegue_agent_v0/agent_v26/runs/uvm_gate0_20261104_221700/toolchain"
 export VERILATOR_ROOT="${TC}/verilator-5.054"
 VERILATOR="${VERILATOR_ROOT}/bin/verilator"

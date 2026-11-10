@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-cd /nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon
+cd "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 YOSYS=/usr/local/bin/yosys
 
