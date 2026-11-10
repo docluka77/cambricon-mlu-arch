@@ -1,0 +1,11 @@
+# =============================================================================
+# File: formal/prove_bang_icu_pmu.ys
+# Description: Yosys 0.60 Sequential SAT Proof Script for BANG ICU & PMU
+# =============================================================================
+read_verilog -sv -formal -Irtl rtl/mlu_pkg.sv rtl/mlu_bang_icu.sv rtl/mlu_pmu_clock_gate.sv formal/mlu_bang_icu_pmu_formal.sv
+prep -top mlu_bang_icu_pmu_formal
+flatten
+async2sync
+chformal -lower
+opt -full
+sat -verify -seq 10 -set-init-zero -prove-asserts -set-assumes -show-ports

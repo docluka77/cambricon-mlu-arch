@@ -1,0 +1,247 @@
+//      // verilator_coverage annotation
+        // =============================================================================
+        // File: rtl/mlu_mpu_core.sv
+        // Project: Cambricon Siyuan 590 / 690 (MLUarch05 / MLUarch06 & Cambricon-LLM/Q/S)
+        // Description: Stage 7B — Cambricon MPU (Memory Processing Unit) Core:
+        //              - Instantiates mlu_mpu_shared_sram (8-Bank 64b Cluster Shared SRAM
+        //                with (72,64) Hsiao SECDED ECC)
+        //              - Executes OP_MPU_BCAST_SRAM (Single-Cycle 256-bit 1-to-4 Multi-Cast
+        //                Broadcast from Shared SRAM to all 4 IPU Cores)
+        //              - Executes OP_MPU_ALLREDUCE (In-SRAM Atomic Accumulation across
+        //                IPU Cores + Outgoing/Incoming MLU-Link Coherent NoC Flit Engine)
+        // =============================================================================
+        `include "mlu_pkg.sv"
+        
+        module mlu_mpu_core #(
+          parameter logic [3:0]  CLUSTER_ID = 4'd0,
+          parameter int unsigned NUM_IPUS   = 4
+        ) (
+ 000603   input  logic                         clk_i,
+%000001   input  logic                         rst_ni,
+        
+          // MPU Command Dispatch & Completion Interface
+%000004   input  logic                         mpu_cmd_valid_i,
+%000005   output logic                         mpu_cmd_ready_o,
+%000007   input  logic [127:0]                 mpu_cmd_inst_i,
+%000004   output logic                         mpu_busy_o,
+%000004   output logic                         mpu_done_valid_o,
+%000002   output logic [7:0]                   mpu_done_tag_o,
+        
+          // 4 IPU Core Shared SRAM Access Ports
+%000000   input  logic [NUM_IPUS-1:0]          ipu_req_valid_i,
+%000000   input  logic [NUM_IPUS-1:0]          ipu_req_we_i,
+%000004   input  logic [NUM_IPUS-1:0][10:0]    ipu_req_addr_i,
+%000004   input  logic [NUM_IPUS-1:0][63:0]    ipu_req_wdata_i,
+%000000   output logic [NUM_IPUS-1:0]          ipu_req_grant_o,
+~000012   output logic [NUM_IPUS-1:0][63:0]    ipu_resp_rdata_o,
+%000000   output logic [NUM_IPUS-1:0]          ipu_resp_valid_o,
+        
+          // External / Global DMA Shared SRAM Access Port
+%000002   input  logic                         ext_dma_valid_i,
+%000001   input  logic                         ext_dma_we_i,
+~000012   input  logic [10:0]                  ext_dma_addr_i,
+%000009   input  logic [63:0]                  ext_dma_wdata_i,
+%000002   output logic                         ext_dma_grant_o,
+~000012   output logic [63:0]                  ext_dma_rdata_o,
+%000003   output logic                         ext_dma_rvalid_o,
+        
+          // 1-to-4 Multi-Cast Broadcast Outputs to IPU Cores
+%000002   output logic [NUM_IPUS-1:0]          bcast_valid_o,
+%000006   output logic [10:0]                  bcast_dst_addr_o,
+~000012   output logic [255:0]                 bcast_data_o,
+        
+          // MLU-Link Cluster NoC Flit TX / RX Interface
+%000002   output logic                         noc_tx_valid_o,
+%000001   input  logic                         noc_tx_ready_i,
+~000015   output logic [127:0]                 noc_tx_flit_o,
+%000002   input  logic                         noc_rx_valid_i,
+%000001   output logic                         noc_rx_ready_o,
+~000014   input  logic [127:0]                 noc_rx_flit_i,
+        
+          // ECC Fault Injection & Telemetry
+%000000   input  logic [2:0]                   err_inject_bank_i,
+%000000   input  logic [71:0]                  err_inject_mask_i,
+%000000   output logic                         mpu_sec_err_o,
+%000000   output logic                         mpu_ded_err_o,
+%000006   output logic [31:0]                  bcast_beats_cnt_o,
+%000003   output logic [31:0]                  allreduce_flit_cnt_o
+        );
+        
+          typedef enum logic [1:0] {
+            MPU_IDLE      = 2'b00,
+            MPU_BCAST     = 2'b01,
+            MPU_ALLREDUCE = 2'b10,
+            MPU_DONE      = 2'b11
+          } mpu_state_e;
+        
+%000004   mpu_state_e state_q;
+%000002   logic [7:0] tag_q;
+~000010   logic [10:0] src_addr_q;
+%000009   logic [10:0] dst_addr_q;
+%000008   logic [15:0] beats_rem_q;
+%000001   logic [3:0]  target_node_q;
+%000003   logic [4:0]  pkt_seq_q;
+        
+          // Shared SRAM DMA & Broadcast Wires
+%000006   logic        sram_dma_valid;
+%000003   logic        sram_dma_we;
+~000017   logic [10:0] sram_dma_addr;
+~000012   logic [63:0] sram_dma_wdata;
+%000006   logic        sram_dma_grant;
+~000012   logic [63:0] sram_dma_rdata;
+%000003   logic        sram_dma_rvalid;
+%000002   logic        sram_bcast_en;
+~000010   logic [10:0] sram_bcast_addr;
+%000004   logic        sram_atomic_add_en;
+          // ---------------------------------------------------------------------------
+          // 1. Cluster Shared 8-Bank SECDED ECC SRAM Instance
+          // ---------------------------------------------------------------------------
+          mlu_mpu_shared_sram #(
+            .NUM_IPUS   (NUM_IPUS),
+            .NUM_BANKS  (8),
+            .BANK_DEPTH (256),
+            .DATA_W     (64),
+            .ECC_W      (72)
+          ) u_mpu_shared_sram (
+            .clk               (clk_i),
+            .rst_n             (rst_ni),
+            .ipu_req_valid_i   (ipu_req_valid_i),
+            .ipu_req_we_i      (ipu_req_we_i),
+            .ipu_req_addr_i    (ipu_req_addr_i),
+            .ipu_req_wdata_i   (ipu_req_wdata_i),
+            .ipu_req_grant_o   (ipu_req_grant_o),
+            .ipu_resp_rdata_o  (ipu_resp_rdata_o),
+            .ipu_resp_valid_o  (ipu_resp_valid_o),
+            .dma_req_valid_i   (sram_dma_valid),
+            .dma_req_we_i      (sram_dma_we),
+            .dma_req_addr_i    (sram_dma_addr),
+            .dma_req_wdata_i   (sram_dma_wdata),
+            .dma_req_grant_o   (sram_dma_grant),
+            .dma_resp_rdata_o  (sram_dma_rdata),
+            .dma_resp_valid_o  (sram_dma_rvalid),
+            .bcast_en_i        (sram_bcast_en),
+            .bcast_addr_i      (sram_bcast_addr),
+            .bcast_data_o      (bcast_data_o),
+            .bcast_valid_o     (bcast_valid_o),
+            .atomic_add_en_i   (sram_atomic_add_en),
+            .err_inject_bank_i (err_inject_bank_i),
+            .err_inject_mask_i (err_inject_mask_i),
+            .sec_err_o         (mpu_sec_err_o),
+            .ded_err_o         (mpu_ded_err_o)
+          );
+        
+          // ---------------------------------------------------------------------------
+          // 2. Shared SRAM DMA Multiplexer (NoC RX / AllReduce Read / External DMA)
+          // ---------------------------------------------------------------------------
+          assign noc_rx_ready_o = 1'b1;
+          assign sram_dma_valid = noc_rx_valid_i |
+                                  (state_q == MPU_ALLREDUCE) |
+                                  ext_dma_valid_i;
+          assign sram_dma_we    = noc_rx_valid_i ? 1'b1 :
+                                  ((state_q == MPU_ALLREDUCE) ? 1'b0 : ext_dma_we_i);
+          assign sram_dma_addr  = noc_rx_valid_i ? noc_rx_flit_i[74:64] :
+                                  ((state_q == MPU_ALLREDUCE) ? src_addr_q : ext_dma_addr_i);
+          assign sram_dma_wdata = noc_rx_valid_i ? noc_rx_flit_i[63:0] : ext_dma_wdata_i;
+        
+          assign ext_dma_grant_o  = sram_dma_grant & ~noc_rx_valid_i & (state_q != MPU_ALLREDUCE);
+          assign ext_dma_rdata_o  = sram_dma_rdata;
+          assign ext_dma_rvalid_o = sram_dma_rvalid & (state_q != MPU_ALLREDUCE);
+        
+          assign sram_bcast_en      = (state_q == MPU_BCAST);
+          assign sram_bcast_addr    = src_addr_q;
+          assign sram_atomic_add_en = (state_q == MPU_ALLREDUCE) ||
+                                      (noc_rx_valid_i && noc_rx_flit_i[125]);
+        
+          // ---------------------------------------------------------------------------
+          // 3. MPU Collective Command FSM & Outgoing MLU-Link NoC Flit Generator
+          // ---------------------------------------------------------------------------
+%000004   mlu_pkg::mlu_inst_t cmd_dec;
+          assign cmd_dec          = mpu_cmd_inst_i;
+          assign mpu_cmd_ready_o  = (state_q == MPU_IDLE);
+          assign mpu_busy_o       = (state_q != MPU_IDLE);
+          assign mpu_done_valid_o = (state_q == MPU_DONE);
+          assign mpu_done_tag_o   = tag_q;
+        
+~000012   mlu_pkg::mlu_noc_flit_t tx_flit_s;
+%000001   always_comb begin
+%000001     tx_flit_s.flit_type    = mlu_pkg::FLIT_HEAD_TAIL;
+%000001     tx_flit_s.vc_id        = 1'b1; // VC1 AllReduce Priority Channel
+%000001     tx_flit_s.src_id       = CLUSTER_ID;
+%000001     tx_flit_s.dst_id       = target_node_q;
+%000001     tx_flit_s.pkt_seq      = pkt_seq_q;
+%000001     tx_flit_s.crc16_or_cmd = {10'd0, mlu_pkg::OP_MPU_ALLREDUCE};
+%000001     tx_flit_s.addr         = {21'd0, dst_addr_q};
+%000001     tx_flit_s.payload      = sram_dma_rdata;
+          end
+        
+          assign noc_tx_valid_o = (state_q == MPU_ALLREDUCE) && sram_dma_rvalid;
+          assign noc_tx_flit_o  = tx_flit_s;
+        
+ 000603   always_ff @(posedge clk_i or negedge rst_ni) begin
+~000600     if (!rst_ni) begin
+%000003       state_q              <= MPU_IDLE;
+%000003       tag_q                <= 8'd0;
+%000003       src_addr_q           <= 11'd0;
+%000003       dst_addr_q           <= 11'd0;
+%000003       bcast_dst_addr_o     <= 11'd0;
+%000003       beats_rem_q          <= 16'd0;
+%000003       target_node_q        <= 4'd0;
+%000003       pkt_seq_q            <= 5'd0;
+%000003       bcast_beats_cnt_o    <= 32'd0;
+%000003       allreduce_flit_cnt_o <= 32'd0;
+ 000600     end else begin
+ 000600       case (state_q)
+ 000580         MPU_IDLE: begin
+~000577           if (mpu_cmd_valid_i) begin
+%000004             tag_q         <= cmd_dec.tag_id;
+%000004             src_addr_q    <= cmd_dec.src0_addr[13:3];
+%000004             dst_addr_q    <= cmd_dec.dst_addr[13:3];
+%000004             bcast_dst_addr_o <= cmd_dec.dst_addr[13:3];
+%000004             beats_rem_q   <= (cmd_dec.len_or_dims == 16'd0) ? 16'd1 : cmd_dec.len_or_dims;
+%000004             target_node_q <= (cmd_dec.src1_or_strd[3:0] == CLUSTER_ID) ?
+                                     (CLUSTER_ID ^ 4'b1100) : cmd_dec.src1_or_strd[3:0];
+%000002             if (cmd_dec.opcode == mlu_pkg::OP_MPU_BCAST_SRAM) begin
+%000002               state_q <= MPU_BCAST;
+%000002             end else begin
+%000002               state_q <= MPU_ALLREDUCE;
+                    end
+                  end
+                end
+ 000012         MPU_BCAST: begin
+ 000012           bcast_beats_cnt_o <= bcast_beats_cnt_o + 32'd1;
+ 000012           bcast_dst_addr_o  <= dst_addr_q;
+ 000012           src_addr_q        <= src_addr_q + 11'd1;
+ 000012           dst_addr_q        <= dst_addr_q + 11'd1;
+~000010           if (beats_rem_q <= 16'd1) begin
+%000002             state_q <= MPU_DONE;
+ 000010           end else begin
+ 000010             beats_rem_q <= beats_rem_q - 16'd1;
+                  end
+                end
+%000007         MPU_ALLREDUCE: begin
+%000007           if (sram_dma_grant && !noc_rx_valid_i && noc_tx_ready_i) begin
+%000007             src_addr_q           <= src_addr_q + 11'd1;
+                  end
+%000005           if (sram_dma_rvalid && noc_tx_ready_i) begin
+%000005             allreduce_flit_cnt_o <= allreduce_flit_cnt_o + 32'd1;
+%000005             pkt_seq_q            <= pkt_seq_q + 5'd1;
+%000005             dst_addr_q           <= dst_addr_q + 11'd1;
+%000003             if (beats_rem_q <= 16'd1) begin
+%000002               state_q <= MPU_DONE;
+%000003             end else begin
+%000003               beats_rem_q <= beats_rem_q - 16'd1;
+                    end
+                  end
+                end
+%000004         MPU_DONE: begin
+%000004           state_q <= MPU_IDLE;
+                end
+%000000         default: state_q <= MPU_IDLE;
+              endcase
+            end
+          end
+        
+          wire _unused_ok = &{1'b0, cmd_dec, noc_rx_flit_i};
+        
+        endmodule : mlu_mpu_core
+        

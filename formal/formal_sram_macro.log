@@ -1,0 +1,1621 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+
+-- Executing script file `formal/prove_sram_macro.ys' --
+
+1. Executing Verilog-2005 frontend: rtl/mlu_pkg.sv
+Parsing formal SystemVerilog input from `rtl/mlu_pkg.sv' to AST representation.
+verilog frontend filename rtl/mlu_pkg.sv
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: sram_ip/mlu_sram_secded_ecc.sv
+Parsing formal SystemVerilog input from `sram_ip/mlu_sram_secded_ecc.sv' to AST representation.
+verilog frontend filename sram_ip/mlu_sram_secded_ecc.sv
+Generating RTLIL representation for module `\mlu_sram_secded_ecc'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: sram_ip/mlu_sram_sp_macro.sv
+Parsing formal SystemVerilog input from `sram_ip/mlu_sram_sp_macro.sv' to AST representation.
+verilog frontend filename sram_ip/mlu_sram_sp_macro.sv
+Generating RTLIL representation for module `\mlu_sram_sp_macro'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: formal/mlu_sram_sp_macro_formal.sv
+Parsing formal SystemVerilog input from `formal/mlu_sram_sp_macro_formal.sv' to AST representation.
+verilog frontend filename formal/mlu_sram_sp_macro_formal.sv
+Generating RTLIL representation for module `\mlu_sram_sp_macro_formal'.
+Successfully finished Verilog frontend.
+
+5. Executing PREP pass.
+
+5.1. Executing HIERARCHY pass (managing design hierarchy).
+
+5.1.1. Analyzing design hierarchy..
+Top module:  \mlu_sram_sp_macro_formal
+Used module:     \mlu_sram_sp_macro
+Used module:         \mlu_sram_secded_ecc
+Parameter \DEPTH = 8
+Parameter \DATA_W = 64
+Parameter \ECC_W = 72
+Parameter \ADDR_W = 3
+Parameter \BIST_DEPTH = 4
+
+5.1.2. Executing AST frontend in derive mode using pre-parsed AST for module `\mlu_sram_sp_macro'.
+Parameter \DEPTH = 8
+Parameter \DATA_W = 64
+Parameter \ECC_W = 72
+Parameter \ADDR_W = 3
+Parameter \BIST_DEPTH = 4
+Generating RTLIL representation for module `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro'.
+
+5.1.3. Analyzing design hierarchy..
+Top module:  \mlu_sram_sp_macro_formal
+Used module:     $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro
+Used module:         \mlu_sram_secded_ecc
+
+5.1.4. Analyzing design hierarchy..
+Top module:  \mlu_sram_sp_macro_formal
+Used module:     $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro
+Used module:         \mlu_sram_secded_ecc
+Removing unused module `\mlu_sram_sp_macro'.
+Removed 1 unused modules.
+Module mlu_sram_sp_macro_formal directly or indirectly contains formal properties -> setting "keep" attribute.
+
+5.2. Executing PROC pass (convert processes to netlists).
+
+5.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+5.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 3 switch rules as full_case in process $proc$formal/mlu_sram_sp_macro_formal.sv:82$630 in module mlu_sram_sp_macro_formal.
+Marked 1 switch rules as full_case in process $proc$sram_ip/mlu_sram_sp_macro.sv:324$748 in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Marked 2 switch rules as full_case in process $proc$sram_ip/mlu_sram_sp_macro.sv:315$735 in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Marked 8 switch rules as full_case in process $proc$sram_ip/mlu_sram_sp_macro.sv:291$732 in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Marked 5 switch rules as full_case in process $proc$sram_ip/mlu_sram_sp_macro.sv:228$725 in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Marked 3 switch rules as full_case in process $proc$sram_ip/mlu_sram_sp_macro.sv:201$716 in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Removed 1 dead cases from process $proc$sram_ip/mlu_sram_sp_macro.sv:116$691 in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Marked 10 switch rules as full_case in process $proc$sram_ip/mlu_sram_sp_macro.sv:116$691 in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Marked 1 switch rules as full_case in process $proc$sram_ip/mlu_sram_sp_macro.sv:90$682 in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Marked 4 switch rules as full_case in process $proc$sram_ip/mlu_sram_sp_macro.sv:73$681 in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Marked 65 switch rules as full_case in process $proc$sram_ip/mlu_sram_secded_ecc.sv:94$20 in module mlu_sram_secded_ecc.
+Removed a total of 1 dead cases.
+
+5.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 11 redundant assignments.
+Promoted 36 assignments to connections.
+
+5.2.4. Executing PROC_INIT pass (extract init attributes).
+
+5.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_n in `\mlu_sram_sp_macro_formal.$proc$formal/mlu_sram_sp_macro_formal.sv:82$630'.
+Found async reset \rst_n in `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:324$748'.
+Found async reset \rst_n in `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:201$716'.
+Found async reset \rst_n in `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:116$691'.
+Found async reset \rst_n in `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:90$682'.
+
+5.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~114 debug messages>
+
+5.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\mlu_sram_sp_macro_formal.$proc$formal/mlu_sram_sp_macro_formal.sv:111$639'.
+     1/11: $assert$formal/mlu_sram_sp_macro_formal.sv:146$674_EN
+     2/11: $assert$formal/mlu_sram_sp_macro_formal.sv:143$669_EN
+     3/11: $assert$formal/mlu_sram_sp_macro_formal.sv:140$667_EN
+     4/11: $assert$formal/mlu_sram_sp_macro_formal.sv:135$663_EN
+     5/11: $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN
+     6/11: $assert$formal/mlu_sram_sp_macro_formal.sv:130$656_EN
+     7/11: $assert$formal/mlu_sram_sp_macro_formal.sv:129$654_EN
+     8/11: $assert$formal/mlu_sram_sp_macro_formal.sv:128$653_EN
+     9/11: $assert$formal/mlu_sram_sp_macro_formal.sv:125$651_EN
+    10/11: $assume$formal/mlu_sram_sp_macro_formal.sv:120$649_EN
+    11/11: $assume$formal/mlu_sram_sp_macro_formal.sv:117$647_EN
+Creating decoders for process `\mlu_sram_sp_macro_formal.$proc$formal/mlu_sram_sp_macro_formal.sv:82$630'.
+     1/6: $0\was_active_q[0:0]
+     2/6: $0\pwr_gated_d1_q[0:0]
+     3/6: $0\rd_normal_pending_q[0:0]
+     4/6: $0\rd_spare_pending_q[0:0]
+     5/6: $0\expected_spare_q[63:0]
+     6/6: $0\spare_written_q[0:0]
+Creating decoders for process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:324$748'.
+     1/3: $0\rvalid_o[0:0]
+     2/3: $0\hit_spare_row_q[0:0]
+     3/3: $0\spare_row_q[71:0]
+Creating decoders for process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:315$735'.
+     1/7: $2$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$746
+     2/7: $2$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_DATA[71:0]$745
+     3/7: $2$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_ADDR[2:0]$744
+     4/7: $1$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$741
+     5/7: $1$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_DATA[71:0]$740
+     6/7: $1$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_ADDR[2:0]$739
+     7/7: $0\sram_rd_word_q[71:0]
+Creating decoders for process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:291$732'.
+     1/8: $8\enc_din[63:56]
+     2/8: $7\enc_din[55:48]
+     3/8: $6\enc_din[47:40]
+     4/8: $5\enc_din[39:32]
+     5/8: $4\enc_din[31:24]
+     6/8: $3\enc_din[23:16]
+     7/8: $2\enc_din[15:8]
+     8/8: $1\enc_din[7:0]
+Creating decoders for process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:228$725'.
+     1/23: $4\eff_wmask[7:0]
+     2/23: $5\eff_wdata[63:0]
+     3/23: $4\eff_addr[2:0]
+     4/23: $5\eff_we[0:0]
+     5/23: $5\eff_en[0:0]
+     6/23: $3\eff_wmask[7:0]
+     7/23: $4\eff_wdata[63:0]
+     8/23: $3\eff_addr[2:0]
+     9/23: $4\eff_we[0:0]
+    10/23: $4\eff_en[0:0]
+    11/23: $3\eff_wdata[63:0]
+    12/23: $3\eff_we[0:0]
+    13/23: $3\eff_en[0:0]
+    14/23: $2\eff_wdata[63:0]
+    15/23: $2\eff_we[0:0]
+    16/23: $2\eff_en[0:0]
+    17/23: $2\eff_wmask[7:0]
+    18/23: $2\eff_addr[2:0]
+    19/23: $1\eff_wmask[7:0]
+    20/23: $1\eff_wdata[63:0]
+    21/23: $1\eff_addr[2:0]
+    22/23: $1\eff_we[0:0]
+    23/23: $1\eff_en[0:0]
+Creating decoders for process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:201$716'.
+     1/2: $0\scrub_wb_phase_q[0:0]
+     2/2: $0\scrub_ptr_q[2:0]
+Creating decoders for process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:116$691'.
+     1/6: $0\bist_sub_q[0:0]
+     2/6: $0\bist_addr_q[2:0]
+     3/6: $0\bist_state_q[2:0]
+     4/6: $0\bist_fail_addr_o[2:0]
+     5/6: $0\bist_fail_o[0:0]
+     6/6: $0\bist_done_o[0:0]
+Creating decoders for process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:90$682'.
+     1/1: $0\pwr_state_q[2:0]
+Creating decoders for process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:73$681'.
+     1/4: $4\pwr_state_d[2:0]
+     2/4: $3\pwr_state_d[2:0]
+     3/4: $2\pwr_state_d[2:0]
+     4/4: $1\pwr_state_d[2:0]
+Creating decoders for process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$418'.
+Creating decoders for process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$285'.
+Creating decoders for process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$152'.
+Creating decoders for process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:94$20'.
+     1/129: $1\data_o[63:0] [63]
+     2/129: $64\data_o[62:62]
+     3/129: $63\data_o[61:61]
+     4/129: $62\data_o[60:60]
+     5/129: $61\data_o[59:59]
+     6/129: $60\data_o[58:58]
+     7/129: $59\data_o[57:57]
+     8/129: $58\data_o[56:56]
+     9/129: $57\data_o[55:55]
+    10/129: $56\data_o[54:54]
+    11/129: $55\data_o[53:53]
+    12/129: $54\data_o[52:52]
+    13/129: $53\data_o[51:51]
+    14/129: $52\data_o[50:50]
+    15/129: $51\data_o[49:49]
+    16/129: $50\data_o[48:48]
+    17/129: $49\data_o[47:47]
+    18/129: $48\data_o[46:46]
+    19/129: $47\data_o[45:45]
+    20/129: $46\data_o[44:44]
+    21/129: $45\data_o[43:43]
+    22/129: $44\data_o[42:42]
+    23/129: $43\data_o[41:41]
+    24/129: $42\data_o[40:40]
+    25/129: $41\data_o[39:39]
+    26/129: $40\data_o[38:38]
+    27/129: $39\data_o[37:37]
+    28/129: $38\data_o[36:36]
+    29/129: $37\data_o[35:35]
+    30/129: $36\data_o[34:34]
+    31/129: $35\data_o[33:33]
+    32/129: $34\data_o[32:32]
+    33/129: $33\data_o[31:31]
+    34/129: $32\data_o[30:30]
+    35/129: $31\data_o[29:29]
+    36/129: $30\data_o[28:28]
+    37/129: $29\data_o[27:27]
+    38/129: $28\data_o[26:26]
+    39/129: $27\data_o[25:25]
+    40/129: $26\data_o[24:24]
+    41/129: $25\data_o[23:23]
+    42/129: $24\data_o[22:22]
+    43/129: $23\data_o[21:21]
+    44/129: $22\data_o[20:20]
+    45/129: $21\data_o[19:19]
+    46/129: $20\data_o[18:18]
+    47/129: $19\data_o[17:17]
+    48/129: $18\data_o[16:16]
+    49/129: $17\data_o[15:15]
+    50/129: $16\data_o[14:14]
+    51/129: $15\data_o[13:13]
+    52/129: $14\data_o[12:12]
+    53/129: $13\data_o[11:11]
+    54/129: $12\data_o[10:10]
+    55/129: $11\data_o[9:9]
+    56/129: $10\data_o[8:8]
+    57/129: $9\data_o[7:7]
+    58/129: $8\data_o[6:6]
+    59/129: $7\data_o[5:5]
+    60/129: $6\data_o[4:4]
+    61/129: $5\data_o[3:3]
+    62/129: $4\data_o[2:2]
+    63/129: $3\data_o[1:1]
+    64/129: $2\data_o[0:0]
+    65/129: $1$fordecl_block$3.b[31:0]$22
+    66/129: $1\data_o[63:0] [62]
+    67/129: $1\data_o[63:0] [61]
+    68/129: $1\data_o[63:0] [60]
+    69/129: $1\data_o[63:0] [59]
+    70/129: $1\data_o[63:0] [58]
+    71/129: $1\data_o[63:0] [57]
+    72/129: $1\data_o[63:0] [56]
+    73/129: $1\data_o[63:0] [55]
+    74/129: $1\data_o[63:0] [54]
+    75/129: $1\data_o[63:0] [53]
+    76/129: $1\data_o[63:0] [52]
+    77/129: $1\data_o[63:0] [51]
+    78/129: $1\data_o[63:0] [50]
+    79/129: $1\data_o[63:0] [49]
+    80/129: $1\data_o[63:0] [48]
+    81/129: $1\data_o[63:0] [47]
+    82/129: $1\data_o[63:0] [46]
+    83/129: $1\data_o[63:0] [45]
+    84/129: $1\data_o[63:0] [44]
+    85/129: $1\data_o[63:0] [43]
+    86/129: $1\data_o[63:0] [42]
+    87/129: $1\data_o[63:0] [41]
+    88/129: $1\data_o[63:0] [40]
+    89/129: $1\data_o[63:0] [39]
+    90/129: $1\data_o[63:0] [38]
+    91/129: $1\data_o[63:0] [37]
+    92/129: $1\data_o[63:0] [36]
+    93/129: $1\data_o[63:0] [35]
+    94/129: $1\data_o[63:0] [34]
+    95/129: $1\data_o[63:0] [33]
+    96/129: $1\data_o[63:0] [32]
+    97/129: $1\data_o[63:0] [31]
+    98/129: $1\data_o[63:0] [30]
+    99/129: $1\data_o[63:0] [29]
+   100/129: $1\data_o[63:0] [28]
+   101/129: $1\data_o[63:0] [27]
+   102/129: $1\data_o[63:0] [26]
+   103/129: $1\data_o[63:0] [25]
+   104/129: $1\data_o[63:0] [24]
+   105/129: $1\data_o[63:0] [23]
+   106/129: $1\data_o[63:0] [22]
+   107/129: $1\data_o[63:0] [21]
+   108/129: $1\data_o[63:0] [20]
+   109/129: $1\data_o[63:0] [19]
+   110/129: $1\data_o[63:0] [18]
+   111/129: $1\data_o[63:0] [17]
+   112/129: $1\data_o[63:0] [16]
+   113/129: $1\data_o[63:0] [15]
+   114/129: $1\data_o[63:0] [14]
+   115/129: $1\data_o[63:0] [13]
+   116/129: $1\data_o[63:0] [12]
+   117/129: $1\data_o[63:0] [11]
+   118/129: $1\data_o[63:0] [10]
+   119/129: $1\data_o[63:0] [9]
+   120/129: $1\data_o[63:0] [8]
+   121/129: $1\data_o[63:0] [7]
+   122/129: $1\data_o[63:0] [6]
+   123/129: $1\data_o[63:0] [5]
+   124/129: $1\data_o[63:0] [4]
+   125/129: $1\data_o[63:0] [3]
+   126/129: $1\data_o[63:0] [2]
+   127/129: $1\data_o[63:0] [1]
+   128/129: $1\data_o[63:0] [0]
+   129/129: $65\data_o[63:63]
+
+5.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\enc_din' from process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:291$732'.
+No latch inferred for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$fordecl_block$551.byte_idx' from process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:291$732'.
+No latch inferred for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\eff_en' from process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:228$725'.
+No latch inferred for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\eff_we' from process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:228$725'.
+No latch inferred for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\eff_addr' from process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:228$725'.
+No latch inferred for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\eff_wdata' from process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:228$725'.
+No latch inferred for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\eff_wmask' from process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:228$725'.
+No latch inferred for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\pwr_state_d' from process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:73$681'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:79$7.$result' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$418'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:79$10.$result' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$418'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:79$10.d' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$418'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:79$10.$fordecl_block$1.b' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$418'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:78$6.$result' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$285'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:78$9.$result' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$285'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:78$9.d' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$285'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:78$9.$fordecl_block$1.b' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$285'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:59$5.$result' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$152'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:59$8.$result' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$152'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:59$8.d' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$152'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:59$8.$fordecl_block$1.b' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$152'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\data_o' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:94$20'.
+No latch inferred for signal `\mlu_sram_secded_ecc.$fordecl_block$3.b' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:94$20'.
+
+5.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\mlu_sram_sp_macro_formal.\spare_written_q' using process `\mlu_sram_sp_macro_formal.$proc$formal/mlu_sram_sp_macro_formal.sv:82$630'.
+  created $adff cell `$procdff$1815' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_sram_sp_macro_formal.\expected_spare_q' using process `\mlu_sram_sp_macro_formal.$proc$formal/mlu_sram_sp_macro_formal.sv:82$630'.
+  created $adff cell `$procdff$1820' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_sram_sp_macro_formal.\rd_spare_pending_q' using process `\mlu_sram_sp_macro_formal.$proc$formal/mlu_sram_sp_macro_formal.sv:82$630'.
+  created $adff cell `$procdff$1825' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_sram_sp_macro_formal.\rd_normal_pending_q' using process `\mlu_sram_sp_macro_formal.$proc$formal/mlu_sram_sp_macro_formal.sv:82$630'.
+  created $adff cell `$procdff$1830' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_sram_sp_macro_formal.\pwr_gated_d1_q' using process `\mlu_sram_sp_macro_formal.$proc$formal/mlu_sram_sp_macro_formal.sv:82$630'.
+  created $adff cell `$procdff$1835' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_sram_sp_macro_formal.\was_active_q' using process `\mlu_sram_sp_macro_formal.$proc$formal/mlu_sram_sp_macro_formal.sv:82$630'.
+  created $adff cell `$procdff$1840' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\rvalid_o' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:324$748'.
+  created $adff cell `$procdff$1845' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\spare_row_q' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:324$748'.
+  created $adff cell `$procdff$1850' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\hit_spare_row_q' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:324$748'.
+  created $adff cell `$procdff$1855' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\sram_rd_word_q' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:315$735'.
+  created $dff cell `$procdff$1856' with positive edge clock.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_ADDR' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:315$735'.
+  created $dff cell `$procdff$1857' with positive edge clock.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_DATA' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:315$735'.
+  created $dff cell `$procdff$1858' with positive edge clock.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:315$735'.
+  created $dff cell `$procdff$1859' with positive edge clock.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\scrub_ptr_q' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:201$716'.
+  created $adff cell `$procdff$1864' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\scrub_wb_phase_q' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:201$716'.
+  created $adff cell `$procdff$1869' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\bist_done_o' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:116$691'.
+  created $adff cell `$procdff$1874' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\bist_fail_o' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:116$691'.
+  created $adff cell `$procdff$1879' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\bist_fail_addr_o' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:116$691'.
+  created $adff cell `$procdff$1884' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\bist_state_q' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:116$691'.
+  created $adff cell `$procdff$1889' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\bist_addr_q' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:116$691'.
+  created $adff cell `$procdff$1894' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\bist_sub_q' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:116$691'.
+  created $adff cell `$procdff$1899' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.\pwr_state_q' using process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:90$682'.
+  created $adff cell `$procdff$1904' with positive edge clock and positive level reset.
+
+5.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+5.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 8 empty switches in `\mlu_sram_sp_macro_formal.$proc$formal/mlu_sram_sp_macro_formal.sv:111$639'.
+Removing empty process `mlu_sram_sp_macro_formal.$proc$formal/mlu_sram_sp_macro_formal.sv:111$639'.
+Found and cleaned up 5 empty switches in `\mlu_sram_sp_macro_formal.$proc$formal/mlu_sram_sp_macro_formal.sv:82$630'.
+Removing empty process `mlu_sram_sp_macro_formal.$proc$formal/mlu_sram_sp_macro_formal.sv:82$630'.
+Found and cleaned up 3 empty switches in `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:324$748'.
+Removing empty process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:324$748'.
+Found and cleaned up 2 empty switches in `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:315$735'.
+Removing empty process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:315$735'.
+Found and cleaned up 8 empty switches in `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:291$732'.
+Removing empty process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:291$732'.
+Found and cleaned up 5 empty switches in `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:228$725'.
+Removing empty process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:228$725'.
+Found and cleaned up 2 empty switches in `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:201$716'.
+Removing empty process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:201$716'.
+Found and cleaned up 12 empty switches in `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:116$691'.
+Removing empty process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:116$691'.
+Removing empty process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:90$682'.
+Found and cleaned up 4 empty switches in `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:73$681'.
+Removing empty process `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$proc$sram_ip/mlu_sram_sp_macro.sv:73$681'.
+Removing empty process `mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$418'.
+Removing empty process `mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$285'.
+Removing empty process `mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$152'.
+Found and cleaned up 65 empty switches in `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:94$20'.
+Removing empty process `mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:94$20'.
+Cleaned up 114 empty switches.
+
+5.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_sp_macro_formal.
+<suppressed ~17 debug messages>
+Optimizing module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+<suppressed ~48 debug messages>
+Optimizing module mlu_sram_secded_ecc.
+<suppressed ~196 debug messages>
+
+5.3. Executing FUTURE pass.
+
+5.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_sp_macro_formal.
+Optimizing module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Optimizing module mlu_sram_secded_ecc.
+
+5.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_sp_macro_formal..
+Finding unused cells or wires in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro..
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+Removed 33 unused cells and 860 unused wires.
+<suppressed ~36 debug messages>
+
+5.6. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro...
+Checking module mlu_sram_secded_ecc...
+Checking module mlu_sram_sp_macro_formal...
+Found and reported 0 problems.
+
+5.7. Executing OPT pass (performing simple optimizations).
+
+5.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Optimizing module mlu_sram_secded_ecc.
+Optimizing module mlu_sram_sp_macro_formal.
+
+5.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro'.
+<suppressed ~183 debug messages>
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+Finding identical cells in module `\mlu_sram_sp_macro_formal'.
+<suppressed ~6 debug messages>
+Removed a total of 63 cells.
+
+5.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$1011.
+    dead port 2/2 on $mux $procmux$1013.
+    dead port 2/2 on $mux $procmux$1019.
+    dead port 2/2 on $mux $procmux$1025.
+    dead port 2/2 on $mux $procmux$1031.
+    dead port 2/2 on $mux $procmux$1037.
+    dead port 2/2 on $mux $procmux$1043.
+    dead port 1/2 on $mux $procmux$1206.
+    dead port 1/2 on $mux $procmux$1209.
+    dead port 1/2 on $mux $procmux$1212.
+    dead port 1/2 on $mux $procmux$1218.
+    dead port 1/2 on $mux $procmux$1221.
+    dead port 1/2 on $mux $procmux$1227.
+    dead port 2/2 on $mux $procmux$824.
+    dead port 2/2 on $mux $procmux$830.
+    dead port 2/2 on $mux $procmux$836.
+    dead port 1/2 on $mux $procmux$879.
+    dead port 1/2 on $mux $procmux$882.
+    dead port 2/2 on $mux $procmux$884.
+    dead port 1/2 on $mux $procmux$891.
+    dead port 1/2 on $mux $procmux$894.
+    dead port 2/2 on $mux $procmux$896.
+    dead port 1/2 on $mux $procmux$903.
+    dead port 1/2 on $mux $procmux$906.
+    dead port 2/2 on $mux $procmux$908.
+    dead port 1/2 on $mux $procmux$915.
+    dead port 1/2 on $mux $procmux$918.
+    dead port 2/2 on $mux $procmux$920.
+    dead port 1/2 on $mux $procmux$927.
+    dead port 1/2 on $mux $procmux$930.
+    dead port 2/2 on $mux $procmux$932.
+    dead port 1/2 on $mux $procmux$939.
+    dead port 2/2 on $mux $procmux$941.
+    dead port 1/2 on $mux $procmux$948.
+    dead port 2/2 on $mux $procmux$950.
+    dead port 1/2 on $mux $procmux$957.
+    dead port 2/2 on $mux $procmux$959.
+    dead port 1/2 on $mux $procmux$966.
+    dead port 2/2 on $mux $procmux$968.
+    dead port 1/2 on $mux $procmux$975.
+    dead port 2/2 on $mux $procmux$977.
+    dead port 2/2 on $mux $procmux$1001.
+    dead port 2/2 on $mux $procmux$987.
+    dead port 2/2 on $mux $procmux$989.
+    dead port 2/2 on $mux $procmux$999.
+Running muxtree optimizer on module \mlu_sram_secded_ecc..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$1239.
+    dead port 2/2 on $mux $procmux$1245.
+    dead port 2/2 on $mux $procmux$1251.
+    dead port 2/2 on $mux $procmux$1257.
+    dead port 2/2 on $mux $procmux$1263.
+    dead port 2/2 on $mux $procmux$1269.
+    dead port 2/2 on $mux $procmux$1275.
+    dead port 2/2 on $mux $procmux$1281.
+    dead port 2/2 on $mux $procmux$1287.
+    dead port 2/2 on $mux $procmux$1293.
+    dead port 2/2 on $mux $procmux$1299.
+    dead port 2/2 on $mux $procmux$1305.
+    dead port 2/2 on $mux $procmux$1311.
+    dead port 2/2 on $mux $procmux$1317.
+    dead port 2/2 on $mux $procmux$1323.
+    dead port 2/2 on $mux $procmux$1329.
+    dead port 2/2 on $mux $procmux$1335.
+    dead port 2/2 on $mux $procmux$1341.
+    dead port 2/2 on $mux $procmux$1347.
+    dead port 2/2 on $mux $procmux$1353.
+    dead port 2/2 on $mux $procmux$1359.
+    dead port 2/2 on $mux $procmux$1365.
+    dead port 2/2 on $mux $procmux$1371.
+    dead port 2/2 on $mux $procmux$1377.
+    dead port 2/2 on $mux $procmux$1383.
+    dead port 2/2 on $mux $procmux$1389.
+    dead port 2/2 on $mux $procmux$1395.
+    dead port 2/2 on $mux $procmux$1401.
+    dead port 2/2 on $mux $procmux$1407.
+    dead port 2/2 on $mux $procmux$1413.
+    dead port 2/2 on $mux $procmux$1419.
+    dead port 2/2 on $mux $procmux$1425.
+    dead port 2/2 on $mux $procmux$1431.
+    dead port 2/2 on $mux $procmux$1437.
+    dead port 2/2 on $mux $procmux$1443.
+    dead port 2/2 on $mux $procmux$1449.
+    dead port 2/2 on $mux $procmux$1455.
+    dead port 2/2 on $mux $procmux$1461.
+    dead port 2/2 on $mux $procmux$1467.
+    dead port 2/2 on $mux $procmux$1473.
+    dead port 2/2 on $mux $procmux$1479.
+    dead port 2/2 on $mux $procmux$1485.
+    dead port 2/2 on $mux $procmux$1491.
+    dead port 2/2 on $mux $procmux$1497.
+    dead port 2/2 on $mux $procmux$1503.
+    dead port 2/2 on $mux $procmux$1509.
+    dead port 2/2 on $mux $procmux$1515.
+    dead port 2/2 on $mux $procmux$1521.
+    dead port 2/2 on $mux $procmux$1527.
+    dead port 2/2 on $mux $procmux$1533.
+    dead port 2/2 on $mux $procmux$1539.
+    dead port 2/2 on $mux $procmux$1545.
+    dead port 2/2 on $mux $procmux$1551.
+    dead port 2/2 on $mux $procmux$1557.
+    dead port 2/2 on $mux $procmux$1563.
+    dead port 2/2 on $mux $procmux$1569.
+    dead port 2/2 on $mux $procmux$1575.
+    dead port 2/2 on $mux $procmux$1581.
+    dead port 2/2 on $mux $procmux$1587.
+    dead port 2/2 on $mux $procmux$1593.
+    dead port 2/2 on $mux $procmux$1599.
+    dead port 2/2 on $mux $procmux$1605.
+    dead port 2/2 on $mux $procmux$1611.
+    dead port 2/2 on $mux $procmux$1809.
+Running muxtree optimizer on module \mlu_sram_sp_macro_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 109 multiplexer ports.
+<suppressed ~573 debug messages>
+
+5.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+    Consolidated identical input bits for $mux cell $procmux$822:
+      Old ports: A=72'000000000000000000000000000000000000000000000000000000000000000000000000, B=72'111111111111111111111111111111111111111111111111111111111111111111111111, Y=$procmux$822_Y
+      New ports: A=1'0, B=1'1, Y=$procmux$822_Y [0]
+      New connections: $procmux$822_Y [71:1] = { $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] $procmux$822_Y [0] }
+    New ctrl vector for $pmux cell $procmux$983: { $procmux$1009_CTRL $auto$opt_reduce.cc:137:opt_pmux$1907 }
+    New ctrl vector for $pmux cell $procmux$1006: { $auto$opt_reduce.cc:137:opt_pmux$1909 $procmux$1007_CMP }
+    New ctrl vector for $pmux cell $procmux$995: { $procmux$1010_CMP $auto$opt_reduce.cc:137:opt_pmux$1911 }
+    New input vector for $reduce_or cell $auto$opt_reduce.cc:131:opt_pmux$1906: { $procmux$1010_CMP $eq$sram_ip/mlu_sram_sp_macro.sv:175$706_Y $eq$sram_ip/mlu_sram_sp_macro.sv:151$697_Y }
+    New input vector for $reduce_or cell $auto$opt_reduce.cc:131:opt_pmux$1908: { $procmux$1010_CMP $eq$sram_ip/mlu_sram_sp_macro.sv:181$711_Y $eq$sram_ip/mlu_sram_sp_macro.sv:175$706_Y $eq$sram_ip/mlu_sram_sp_macro.sv:157$702_Y $eq$sram_ip/mlu_sram_sp_macro.sv:151$697_Y }
+    New input vector for $reduce_or cell $auto$opt_reduce.cc:131:opt_pmux$1910: { $eq$sram_ip/mlu_sram_sp_macro.sv:181$711_Y $eq$sram_ip/mlu_sram_sp_macro.sv:175$706_Y $eq$sram_ip/mlu_sram_sp_macro.sv:157$702_Y $eq$sram_ip/mlu_sram_sp_macro.sv:151$697_Y }
+  Optimizing cells in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+    Consolidated identical input bits for $mux cell $procmux$839:
+      Old ports: A=72'000000000000000000000000000000000000000000000000000000000000000000000000, B=$2$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$746, Y=$0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738
+      New ports: A=1'0, B=$procmux$822_Y [0], Y=$0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0]
+      New connections: $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [71:1] = { $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] $0$memwr$\mem_array$sram_ip/mlu_sram_sp_macro.sv:318$680_EN[71:0]$738 [0] }
+  Optimizing cells in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+  Optimizing cells in module \mlu_sram_secded_ecc.
+  Optimizing cells in module \mlu_sram_sp_macro_formal.
+Performed a total of 8 changes.
+
+5.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+Finding identical cells in module `\mlu_sram_sp_macro_formal'.
+<suppressed ~12 debug messages>
+Removed a total of 5 cells.
+
+5.7.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro..
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+Finding unused cells or wires in module \mlu_sram_sp_macro_formal..
+Removed 1 unused cells and 157 unused wires.
+<suppressed ~4 debug messages>
+
+5.7.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Optimizing module mlu_sram_secded_ecc.
+Optimizing module mlu_sram_sp_macro_formal.
+
+5.7.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.7.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \mlu_sram_secded_ecc..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \mlu_sram_sp_macro_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~393 debug messages>
+
+5.7.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+    New ctrl vector for $pmux cell $procmux$1076: { $procmux$1086_CMP $procmux$1010_CMP $auto$opt_reduce.cc:137:opt_pmux$1913 }
+    New input vector for $reduce_or cell $auto$opt_reduce.cc:131:opt_pmux$1912: { $procmux$1007_CMP $eq$sram_ip/mlu_sram_sp_macro.sv:181$711_Y $eq$sram_ip/mlu_sram_sp_macro.sv:175$706_Y $eq$sram_ip/mlu_sram_sp_macro.sv:157$702_Y $eq$sram_ip/mlu_sram_sp_macro.sv:151$697_Y }
+  Optimizing cells in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+  Optimizing cells in module \mlu_sram_secded_ecc.
+  Optimizing cells in module \mlu_sram_sp_macro_formal.
+Performed a total of 2 changes.
+
+5.7.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro'.
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+Finding identical cells in module `\mlu_sram_sp_macro_formal'.
+Removed a total of 0 cells.
+
+5.7.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro..
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+Finding unused cells or wires in module \mlu_sram_sp_macro_formal..
+
+5.7.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Optimizing module mlu_sram_secded_ecc.
+Optimizing module mlu_sram_sp_macro_formal.
+
+5.7.14. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.7.15. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \mlu_sram_secded_ecc..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \mlu_sram_sp_macro_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~392 debug messages>
+
+5.7.16. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+  Optimizing cells in module \mlu_sram_secded_ecc.
+  Optimizing cells in module \mlu_sram_sp_macro_formal.
+Performed a total of 0 changes.
+
+5.7.17. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro'.
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+Finding identical cells in module `\mlu_sram_sp_macro_formal'.
+Removed a total of 0 cells.
+
+5.7.18. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro..
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+Finding unused cells or wires in module \mlu_sram_sp_macro_formal..
+
+5.7.19. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Optimizing module mlu_sram_secded_ecc.
+Optimizing module mlu_sram_sp_macro_formal.
+
+5.7.20. Finished fast OPT passes. (There is nothing left to do.)
+
+5.8. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 3) from port B of cell $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$eq$sram_ip/mlu_sram_sp_macro.sv:139$694 ($eq).
+Removed top 1 bits (of 3) from port B of cell $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$eq$sram_ip/mlu_sram_sp_macro.sv:151$697 ($eq).
+Removed top 1 bits (of 3) from port B of cell $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$eq$sram_ip/mlu_sram_sp_macro.sv:157$702 ($eq).
+Removed top 1 bits (of 3) from mux cell $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$ternary$sram_ip/mlu_sram_sp_macro.sv:181$712 ($mux).
+Removed top 1 bits (of 3) from mux cell $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$ternary$sram_ip/mlu_sram_sp_macro.sv:182$714 ($mux).
+Removed top 2 bits (of 3) from port B of cell $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$procmux$1010_CMP0 ($eq).
+Removed top 1 bits (of 3) from mux cell $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$procmux$1135 ($mux).
+Removed top 1 bits (of 3) from port B of cell $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$procmux$1204_CMP0 ($eq).
+Removed top 1 bits (of 3) from port B of cell $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$procmux$1204_CMP1 ($eq).
+Removed top 1 bits (of 3) from wire $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$procmux$1135_Y.
+Removed top 1 bits (of 3) from wire $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$ternary$sram_ip/mlu_sram_sp_macro.sv:181$712_Y.
+Removed top 1 bits (of 3) from wire $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.$ternary$sram_ip/mlu_sram_sp_macro.sv:182$714_Y.
+Removed top 8 bits (of 72) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:75$11 ($xor).
+Removed top 8 bits (of 72) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:75$11 ($xor).
+Removed top 8 bits (of 72) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:75$11 ($xor).
+Removed top 5 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$23 ($eq).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$25 ($eq).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$27 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$29 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$31 ($eq).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$35 ($eq).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$37 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$39 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$41 ($eq).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$45 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$47 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$49 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$53 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$55 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$59 ($eq).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$65 ($eq).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$67 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$69 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$71 ($eq).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$75 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$77 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$79 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$83 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$85 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$89 ($eq).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$95 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$97 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$99 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$103 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$105 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$109 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$115 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$117 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$121 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$127 ($eq).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$145 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$147 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$149 ($eq).
+Removed top 5 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$160 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$160 ($xor).
+Removed top 4 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$160 ($xor).
+Removed top 4 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$162 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$162 ($xor).
+Removed top 3 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$162 ($xor).
+Removed top 3 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$164 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$164 ($xor).
+Removed top 2 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$164 ($xor).
+Removed top 2 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$166 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$166 ($xor).
+Removed top 1 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$166 ($xor).
+Removed top 1 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$168 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$170 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$172 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$174 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$176 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$180 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$182 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$184 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$188 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$190 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$194 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$200 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$202 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$204 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$206 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$210 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$212 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$214 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$218 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$220 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$224 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$230 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$232 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$234 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$238 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$240 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$244 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$250 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$252 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$256 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$262 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$280 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$282 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$284 ($xor).
+Removed top 5 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$293 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$293 ($xor).
+Removed top 4 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$293 ($xor).
+Removed top 4 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$295 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$295 ($xor).
+Removed top 3 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$295 ($xor).
+Removed top 3 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$297 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$297 ($xor).
+Removed top 2 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$297 ($xor).
+Removed top 2 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$299 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$299 ($xor).
+Removed top 1 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$299 ($xor).
+Removed top 1 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$301 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$303 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$305 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$307 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$309 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$313 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$315 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$317 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$321 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$323 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$327 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$333 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$335 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$337 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$339 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$343 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$345 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$347 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$351 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$353 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$357 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$363 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$365 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$367 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$371 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$373 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$377 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$383 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$385 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$389 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$395 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$413 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$415 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$417 ($xor).
+Removed top 5 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$426 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$426 ($xor).
+Removed top 4 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$426 ($xor).
+Removed top 4 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$428 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$428 ($xor).
+Removed top 3 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$428 ($xor).
+Removed top 3 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$430 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$430 ($xor).
+Removed top 2 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$430 ($xor).
+Removed top 2 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$432 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$432 ($xor).
+Removed top 1 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$432 ($xor).
+Removed top 1 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$434 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$436 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$438 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$440 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$442 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$446 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$448 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$450 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$454 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$456 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$460 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$466 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$468 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$470 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$472 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$476 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$478 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$480 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$484 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$486 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$490 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$496 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$498 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$500 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$504 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$506 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$510 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$516 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$518 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$522 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$528 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$546 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$548 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$550 ($xor).
+Removed top 4 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$160_Y.
+Removed top 3 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$162_Y.
+Removed top 2 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$164_Y.
+Removed top 1 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$166_Y.
+Removed top 4 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$293_Y.
+Removed top 3 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$295_Y.
+Removed top 2 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$297_Y.
+Removed top 1 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$299_Y.
+Removed top 4 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$426_Y.
+Removed top 3 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$428_Y.
+Removed top 2 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$430_Y.
+Removed top 1 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$432_Y.
+Removed top 1 bits (of 3) from port B of cell mlu_sram_sp_macro_formal.$eq$formal/mlu_sram_sp_macro_formal.sv:113$643 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_sram_sp_macro_formal.$eq$formal/mlu_sram_sp_macro_formal.sv:116$645 ($eq).
+Removed top 56 bits (of 64) from wire mlu_sram_sp_macro_formal.sym_wdata.
+
+5.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro..
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+Finding unused cells or wires in module \mlu_sram_sp_macro_formal..
+Removed 0 unused cells and 17 unused wires.
+<suppressed ~4 debug messages>
+
+5.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+5.11. Executing OPT pass (performing simple optimizations).
+
+5.11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Optimizing module mlu_sram_secded_ecc.
+Optimizing module mlu_sram_sp_macro_formal.
+
+5.11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro'.
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+Finding identical cells in module `\mlu_sram_sp_macro_formal'.
+Removed a total of 0 cells.
+
+5.11.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro..
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+Finding unused cells or wires in module \mlu_sram_sp_macro_formal..
+
+5.11.4. Finished fast OPT passes.
+
+5.12. Printing statistics.
+
+=== $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      177 wires
+     1940 wire bits
+       45 public wires
+      756 public wire bits
+       26 ports
+      308 port bits
+      163 cells
+        2   $add
+       12   $adff
+        1   $dff
+       11   $eq
+       13   $logic_and
+       12   $logic_not
+        3   $logic_or
+        1   $mem_v2
+       89   $mux
+        2   $ne
+        8   $pmux
+        8   $reduce_or
+        1   $sub
+        1 submodules
+        1   mlu_sram_secded_ecc
+
+=== mlu_sram_secded_ecc ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      402 wires
+     2422 wire bits
+       23 public wires
+      741 public wire bits
+        8 ports
+      354 port bits
+      454 cells
+        2   $and
+       64   $eq
+      128   $mux
+       65   $not
+        1   $reduce_or
+        1   $reduce_xor
+      193   $xor
+
+=== mlu_sram_sp_macro_formal ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       77 wires
+      540 wire bits
+       30 public wires
+      304 public wire bits
+       17 ports
+      147 port bits
+       68 cells
+        6   $adff
+       15   $check
+        6   $eq
+        7   $logic_and
+        8   $logic_not
+        2   $logic_or
+        1   $lt
+       20   $mux
+        1   $not
+        2   $or
+        1 submodules
+        1   $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+      685 mlu_sram_sp_macro_formal
+      163 $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro
+      454   mlu_sram_secded_ecc
+
+        +----------Count including submodules.
+        | 
+      656 wires
+     4902 wire bits
+       98 public wires
+     1801 public wire bits
+       51 ports
+      809 port bits
+        - memories
+        - memory bits
+        - processes
+      685 cells
+        2   $add
+       18   $adff
+        2   $and
+       15   $check
+        1   $dff
+       81   $eq
+       20   $logic_and
+       20   $logic_not
+        5   $logic_or
+        1   $lt
+        1   $mem_v2
+      237   $mux
+        2   $ne
+       66   $not
+        2   $or
+        8   $pmux
+        9   $reduce_or
+        1   $reduce_xor
+        1   $sub
+      193   $xor
+        1 submodules
+        1   $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro
+
+5.13. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro...
+Checking module mlu_sram_secded_ecc...
+Checking module mlu_sram_sp_macro_formal...
+Found and reported 0 problems.
+
+6. Executing MEMORY pass.
+
+6.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+6.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+6.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+  Analyzing $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.mem_array write port 0.
+
+6.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+6.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+Checking read port `\mem_array'[0] in module `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro': FF found, but with a mux select that doesn't seem to correspond to transparency logic.
+Checking read port address `\mem_array'[0] in module `$paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro': no address FF found.
+
+6.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro..
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+Finding unused cells or wires in module \mlu_sram_sp_macro_formal..
+
+6.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+6.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+6.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro..
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+Finding unused cells or wires in module \mlu_sram_sp_macro_formal..
+
+6.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+7. Executing FLATTEN pass (flatten design).
+Deleting now unused module $paramod$6c30b77cfd7f27eb4814b2859d8403fe94e80f95\mlu_sram_sp_macro.
+Deleting now unused module mlu_sram_secded_ecc.
+<suppressed ~2 debug messages>
+
+8. Executing ASYNC2SYNC pass.
+Replacing mlu_sram_sp_macro_formal.$flatten\u_dut.$procdff$1904 ($adff): ARST=\u_dut.rst_n, D=\u_dut.pwr_state_d, Q=\u_dut.pwr_state_q
+Replacing mlu_sram_sp_macro_formal.$flatten\u_dut.$procdff$1899 ($adff): ARST=\u_dut.rst_n, D=$flatten\u_dut.$0\bist_sub_q[0:0], Q=\u_dut.bist_sub_q
+Replacing mlu_sram_sp_macro_formal.$flatten\u_dut.$procdff$1894 ($adff): ARST=\u_dut.rst_n, D=$flatten\u_dut.$0\bist_addr_q[2:0], Q=\u_dut.bist_addr_q
+Replacing mlu_sram_sp_macro_formal.$flatten\u_dut.$procdff$1889 ($adff): ARST=\u_dut.rst_n, D=$flatten\u_dut.$0\bist_state_q[2:0], Q=\u_dut.bist_state_q
+Replacing mlu_sram_sp_macro_formal.$flatten\u_dut.$procdff$1884 ($adff): ARST=\u_dut.rst_n, D=$flatten\u_dut.$0\bist_fail_addr_o[2:0], Q=\u_dut.bist_fail_addr_o
+Replacing mlu_sram_sp_macro_formal.$flatten\u_dut.$procdff$1879 ($adff): ARST=\u_dut.rst_n, D=$flatten\u_dut.$0\bist_fail_o[0:0], Q=\u_dut.bist_fail_o
+Replacing mlu_sram_sp_macro_formal.$flatten\u_dut.$procdff$1874 ($adff): ARST=\u_dut.rst_n, D=$flatten\u_dut.$0\bist_done_o[0:0], Q=\u_dut.bist_done_o
+Replacing mlu_sram_sp_macro_formal.$flatten\u_dut.$procdff$1869 ($adff): ARST=\u_dut.rst_n, D=$flatten\u_dut.$0\scrub_wb_phase_q[0:0], Q=\u_dut.scrub_wb_phase_q
+Replacing mlu_sram_sp_macro_formal.$flatten\u_dut.$procdff$1864 ($adff): ARST=\u_dut.rst_n, D=$flatten\u_dut.$0\scrub_ptr_q[2:0], Q=\u_dut.scrub_ptr_q
+Replacing mlu_sram_sp_macro_formal.$flatten\u_dut.$procdff$1855 ($adff): ARST=\u_dut.rst_n, D=$flatten\u_dut.$0\hit_spare_row_q[0:0], Q=\u_dut.hit_spare_row_q
+Replacing mlu_sram_sp_macro_formal.$flatten\u_dut.$procdff$1850 ($adff): ARST=\u_dut.rst_n, D=$flatten\u_dut.$0\spare_row_q[71:0], Q=\u_dut.spare_row_q
+Replacing mlu_sram_sp_macro_formal.$flatten\u_dut.$procdff$1845 ($adff): ARST=\u_dut.rst_n, D=$flatten\u_dut.$0\rvalid_o[0:0], Q=\u_dut.rvalid_o
+Replacing mlu_sram_sp_macro_formal.$procdff$1815 ($adff): ARST=\rst_n, D=$0\spare_written_q[0:0], Q=\spare_written_q
+Replacing mlu_sram_sp_macro_formal.$procdff$1820 ($adff): ARST=\rst_n, D=$0\expected_spare_q[63:0], Q=\expected_spare_q
+Replacing mlu_sram_sp_macro_formal.$procdff$1825 ($adff): ARST=\rst_n, D=$0\rd_spare_pending_q[0:0], Q=\rd_spare_pending_q
+Replacing mlu_sram_sp_macro_formal.$procdff$1830 ($adff): ARST=\rst_n, D=$0\rd_normal_pending_q[0:0], Q=\rd_normal_pending_q
+Replacing mlu_sram_sp_macro_formal.$procdff$1835 ($adff): ARST=\rst_n, D=$0\pwr_gated_d1_q[0:0], Q=\pwr_gated_d1_q
+Replacing mlu_sram_sp_macro_formal.$procdff$1840 ($adff): ARST=\rst_n, D=\pwr_ready_o, Q=\was_active_q
+
+9. Executing OPT pass (performing simple optimizations).
+
+9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_sp_macro_formal.
+<suppressed ~817 debug messages>
+
+9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_sp_macro_formal'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_sram_sp_macro_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$1068.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$1068.
+Removed 2 multiplexer ports.
+<suppressed ~295 debug messages>
+
+9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_sram_sp_macro_formal.
+    Consolidated identical input bits for $mux cell $flatten\u_dut.$procmux$1135:
+      Old ports: A=2'11, B=2'00, Y=$flatten\u_dut.$auto$wreduce.cc:514:run$1914 [1:0]
+      New ports: A=1'1, B=1'0, Y=$flatten\u_dut.$auto$wreduce.cc:514:run$1914 [0]
+      New connections: $flatten\u_dut.$auto$wreduce.cc:514:run$1914 [1] = $flatten\u_dut.$auto$wreduce.cc:514:run$1914 [0]
+    Consolidated identical input bits for $mux cell $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:182$714:
+      Old ports: A=2'00, B=2'11, Y=$flatten\u_dut.$auto$wreduce.cc:514:run$1916 [1:0]
+      New ports: A=1'0, B=1'1, Y=$flatten\u_dut.$auto$wreduce.cc:514:run$1916 [0]
+      New connections: $flatten\u_dut.$auto$wreduce.cc:514:run$1916 [1] = $flatten\u_dut.$auto$wreduce.cc:514:run$1916 [0]
+    Consolidated identical input bits for $mux cell $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707:
+      Old ports: A=64'0000000000000000000000000000000000000000000000000000000000000000, B=64'1111111111111111111111111111111111111111111111111111111111111111, Y=$flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y
+      New ports: A=1'0, B=1'1, Y=$flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0]
+      New connections: $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [63:1] = { $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:175$707_Y [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698:
+      Old ports: A=64'0000000000000000000000000000000000000000000000000000000000000000, B=64'1111111111111111111111111111111111111111111111111111111111111111, Y=$flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y
+      New ports: A=1'0, B=1'1, Y=$flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0]
+      New connections: $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [63:1] = { $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] $flatten\u_dut.$ternary$sram_ip/mlu_sram_sp_macro.sv:151$698_Y [0] }
+    Consolidated identical input bits for $pmux cell $flatten\u_dut.$procmux$983:
+      Old ports: A=\u_dut.req_wdata_i, B=128'11111111111111111111111111111111111111111111111111111111111111110000000000000000000000000000000000000000000000000000000000000000, Y=$flatten\u_dut.$3\eff_wdata[63:0]
+      New ports: A={ 1'0 \req_wdata_i [7:0] }, B=18'111111111000000000, Y=$flatten\u_dut.$3\eff_wdata[63:0] [8:0]
+      New connections: $flatten\u_dut.$3\eff_wdata[63:0] [63:9] = { $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] $flatten\u_dut.$3\eff_wdata[63:0] [8] }
+    Consolidated identical input bits for $mux cell $flatten\u_dut.$procmux$1203:
+      Old ports: A=3'000, B=3'100, Y=$flatten\u_dut.$4\pwr_state_d[2:0]
+      New ports: A=1'0, B=1'1, Y=$flatten\u_dut.$4\pwr_state_d[2:0] [2]
+      New connections: $flatten\u_dut.$4\pwr_state_d[2:0] [1:0] = 2'00
+  Optimizing cells in module \mlu_sram_sp_macro_formal.
+    Consolidated identical input bits for $mux cell $flatten\u_dut.$procmux$1138:
+      Old ports: A={ 1'1 $flatten\u_dut.$auto$wreduce.cc:514:run$1914 [1:0] }, B=3'011, Y=$flatten\u_dut.$procmux$1138_Y
+      New ports: A={ 1'1 $flatten\u_dut.$auto$wreduce.cc:514:run$1914 [0] }, B=2'01, Y={ $flatten\u_dut.$procmux$1138_Y [2] $flatten\u_dut.$procmux$1138_Y [0] }
+      New connections: $flatten\u_dut.$procmux$1138_Y [1] = $flatten\u_dut.$procmux$1138_Y [0]
+    Consolidated identical input bits for $mux cell $flatten\u_dut.$procmux$1017:
+      Old ports: A=$flatten\u_dut.$4\eff_wdata[63:0], B=$flatten\u_dut.$3\eff_wdata[63:0], Y=$flatten\u_dut.$2\eff_wdata[63:0]
+      New ports: A={ 1'0 \req_wdata_i [7:0] }, B=$flatten\u_dut.$3\eff_wdata[63:0] [8:0], Y=$flatten\u_dut.$2\eff_wdata[63:0] [8:0]
+      New connections: $flatten\u_dut.$2\eff_wdata[63:0] [63:9] = { $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] $flatten\u_dut.$2\eff_wdata[63:0] [8] }
+    Consolidated identical input bits for $mux cell $flatten\u_dut.$procmux$1215:
+      Old ports: A=$flatten\u_dut.$4\pwr_state_d[2:0], B=3'001, Y=$flatten\u_dut.$3\pwr_state_d[2:0]
+      New ports: A={ $flatten\u_dut.$4\pwr_state_d[2:0] [2] 1'0 }, B=2'01, Y={ $flatten\u_dut.$3\pwr_state_d[2:0] [2] $flatten\u_dut.$3\pwr_state_d[2:0] [0] }
+      New connections: $flatten\u_dut.$3\pwr_state_d[2:0] [1] = 1'0
+  Optimizing cells in module \mlu_sram_sp_macro_formal.
+    Consolidated identical input bits for $mux cell $flatten\u_dut.$procmux$1049:
+      Old ports: A=\u_dut.req_wdata_i, B=$flatten\u_dut.$2\eff_wdata[63:0], Y=\u_dut.eff_wdata
+      New ports: A={ 1'0 \req_wdata_i [7:0] }, B=$flatten\u_dut.$2\eff_wdata[63:0] [8:0], Y=\u_dut.eff_wdata [8:0]
+      New connections: \u_dut.eff_wdata [63:9] = { \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] \u_dut.eff_wdata [8] }
+  Optimizing cells in module \mlu_sram_sp_macro_formal.
+Performed a total of 10 changes.
+
+9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_sp_macro_formal'.
+Removed a total of 0 cells.
+
+9.6. Executing OPT_SHARE pass.
+
+9.7. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $flatten\u_dut.$procdff$1904 ($sdff) from module mlu_sram_sp_macro_formal (D = $flatten\u_dut.$4\pwr_state_d[2:0] [2], Q = $auto$async2sync.cc:234:execute$1934 [2], rval = 1'0).
+Adding SRST signal on $flatten\u_dut.$procdff$1894 ($sdff) from module mlu_sram_sp_macro_formal (D = $flatten\u_dut.$procmux$1119_Y, Q = $auto$async2sync.cc:234:execute$1938, rval = 3'000).
+Adding SRST signal on $flatten\u_dut.$procdff$1889 ($sdff) from module mlu_sram_sp_macro_formal (D = $flatten\u_dut.$procmux$1151_Y, Q = $auto$async2sync.cc:234:execute$1940, rval = 3'000).
+Adding SRST signal on $flatten\u_dut.$procdff$1884 ($sdff) from module mlu_sram_sp_macro_formal (D = $flatten\u_dut.$procmux$1170_Y, Q = $auto$async2sync.cc:234:execute$1942, rval = 3'000).
+Adding EN signal on $flatten\u_dut.$procdff$1856 ($dff) from module mlu_sram_sp_macro_formal (D = $flatten\u_dut.$memrd$\mem_array$sram_ip/mlu_sram_sp_macro.sv:320$747_DATA, Q = \u_dut.sram_rd_word_q).
+Setting constant 0-bit at position 0 on $flatten\u_dut.$procdff$1869 ($sdff) from module mlu_sram_sp_macro_formal.
+
+9.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_sp_macro_formal..
+Removed 32 unused cells and 400 unused wires.
+<suppressed ~34 debug messages>
+
+9.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_sp_macro_formal.
+<suppressed ~9 debug messages>
+
+9.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+9.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_sram_sp_macro_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~280 debug messages>
+
+9.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_sram_sp_macro_formal.
+Performed a total of 0 changes.
+
+9.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_sp_macro_formal'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+9.14. Executing OPT_SHARE pass.
+
+9.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+9.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_sp_macro_formal..
+Removed 0 unused cells and 6 unused wires.
+<suppressed ~1 debug messages>
+
+9.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_sp_macro_formal.
+
+9.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+9.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_sram_sp_macro_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~280 debug messages>
+
+9.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_sram_sp_macro_formal.
+Performed a total of 0 changes.
+
+9.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_sp_macro_formal'.
+Removed a total of 0 cells.
+
+9.22. Executing OPT_SHARE pass.
+
+9.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+9.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_sp_macro_formal..
+
+9.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_sp_macro_formal.
+
+9.26. Finished fast OPT passes. (There is nothing left to do.)
+
+10. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+Mapping memory \u_dut.mem_array in module \mlu_sram_sp_macro_formal:
+  created 8 $dff cells and 0 static cells of width 72.
+  read interface: 0 $dff and 7 $mux cells.
+  write interface: 8 write mux blocks.
+
+11. Executing OPT pass (performing simple optimizations).
+
+11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_sp_macro_formal.
+<suppressed ~6 debug messages>
+
+11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_sp_macro_formal'.
+Removed a total of 0 cells.
+
+11.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_sram_sp_macro_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~304 debug messages>
+
+11.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_sram_sp_macro_formal.
+Performed a total of 0 changes.
+
+11.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_sp_macro_formal'.
+Removed a total of 0 cells.
+
+11.6. Executing OPT_SHARE pass.
+
+11.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_sp_macro_formal..
+Removed 0 unused cells and 19 unused wires.
+<suppressed ~1 debug messages>
+
+11.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_sp_macro_formal.
+
+11.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+11.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_sram_sp_macro_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~304 debug messages>
+
+11.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_sram_sp_macro_formal.
+Performed a total of 0 changes.
+
+11.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_sp_macro_formal'.
+Removed a total of 0 cells.
+
+11.14. Executing OPT_SHARE pass.
+
+11.15. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $memory\u_dut.mem_array[7]$2475 ($dff) from module mlu_sram_sp_macro_formal (D = { \u_dut.enc_codeword [71:64] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [7:0] }, Q = \u_dut.mem_array[7]).
+Adding EN signal on $memory\u_dut.mem_array[6]$2473 ($dff) from module mlu_sram_sp_macro_formal (D = { \u_dut.enc_codeword [71:64] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [7:0] }, Q = \u_dut.mem_array[6]).
+Adding EN signal on $memory\u_dut.mem_array[5]$2471 ($dff) from module mlu_sram_sp_macro_formal (D = { \u_dut.enc_codeword [71:64] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [7:0] }, Q = \u_dut.mem_array[5]).
+Adding EN signal on $memory\u_dut.mem_array[4]$2469 ($dff) from module mlu_sram_sp_macro_formal (D = { \u_dut.enc_codeword [71:64] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [7:0] }, Q = \u_dut.mem_array[4]).
+Adding EN signal on $memory\u_dut.mem_array[3]$2467 ($dff) from module mlu_sram_sp_macro_formal (D = { \u_dut.enc_codeword [71:64] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [7:0] }, Q = \u_dut.mem_array[3]).
+Adding EN signal on $memory\u_dut.mem_array[2]$2465 ($dff) from module mlu_sram_sp_macro_formal (D = { \u_dut.enc_codeword [71:64] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [7:0] }, Q = \u_dut.mem_array[2]).
+Adding EN signal on $memory\u_dut.mem_array[1]$2463 ($dff) from module mlu_sram_sp_macro_formal (D = { \u_dut.enc_codeword [71:64] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [7:0] }, Q = \u_dut.mem_array[1]).
+Adding EN signal on $memory\u_dut.mem_array[0]$2461 ($dff) from module mlu_sram_sp_macro_formal (D = { \u_dut.enc_codeword [71:64] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [63] \u_dut.eff_wdata [7:0] }, Q = \u_dut.mem_array[0]).
+
+11.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_sp_macro_formal..
+Removed 8 unused cells and 8 unused wires.
+<suppressed ~9 debug messages>
+
+11.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_sp_macro_formal.
+
+11.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+11.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_sram_sp_macro_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~288 debug messages>
+
+11.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_sram_sp_macro_formal.
+Performed a total of 0 changes.
+
+11.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_sp_macro_formal'.
+Removed a total of 0 cells.
+
+11.22. Executing OPT_SHARE pass.
+
+11.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_sp_macro_formal..
+
+11.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_sp_macro_formal.
+
+11.26. Finished fast OPT passes. (There is nothing left to do.)
+
+12. Executing SAT pass (solving SAT problems in the circuit).
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Imported 623 cells to SAT database.
+Import constraint from assume cell: \rst_n when 1'1.
+Import constraint from assume cell: $eq$formal/mlu_sram_sp_macro_formal.sv:113$643_Y when 1'1.
+Import constraint from assume cell: \repair_en_i when $assume$formal/mlu_sram_sp_macro_formal.sv:117$647_EN.
+Import constraint from assume cell: $auto$rtlil.cc:3334:Not$2037 when \bist_en_i.
+Final init constraint equation: { $auto$async2sync.cc:234:execute$1968 $auto$async2sync.cc:234:execute$1966 $auto$async2sync.cc:234:execute$1964 $auto$async2sync.cc:234:execute$1962 $auto$async2sync.cc:234:execute$1960 $auto$async2sync.cc:234:execute$1958 $auto$async2sync.cc:234:execute$1936 $auto$async2sync.cc:234:execute$1944 $auto$async2sync.cc:234:execute$1946 $auto$async2sync.cc:234:execute$1952 $auto$async2sync.cc:234:execute$1954 $auto$async2sync.cc:234:execute$1956 \u_dut.mem_array[0] \u_dut.mem_array[1] \u_dut.mem_array[2] \u_dut.mem_array[3] \u_dut.mem_array[4] \u_dut.mem_array[5] \u_dut.mem_array[6] \u_dut.mem_array[7] \u_dut.sram_rd_word_q $auto$async2sync.cc:234:execute$1942 $auto$async2sync.cc:234:execute$1940 $auto$async2sync.cc:234:execute$1938 $auto$async2sync.cc:234:execute$1934 [1:0] $auto$async2sync.cc:234:execute$1934 [2] } = 806'00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:125$652_Y when \spare_written_q.
+Import proof for assert: \rvalid_o when \rd_spare_pending_q.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:129$655_Y when \rd_spare_pending_q.
+Import proof for assert: $logic_and$formal/mlu_sram_sp_macro_formal.sv:130$659_Y when \rd_spare_pending_q.
+Import proof for assert: \rvalid_o when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:135$664_Y when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $0\pwr_gated_d1_q[0:0] when $assert$formal/mlu_sram_sp_macro_formal.sv:140$667_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:143$673_Y when \was_active_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:146$675_Y when \pwr_gated_d1_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:148$677_Y when 1'1.
+Import proof for assert: $lt$formal/mlu_sram_sp_macro_formal.sv:149$679_Y when 1'1.
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Imported 623 cells to SAT database.
+Import constraint from assume cell: \rst_n when 1'1.
+Import constraint from assume cell: $eq$formal/mlu_sram_sp_macro_formal.sv:113$643_Y when 1'1.
+Import constraint from assume cell: \repair_en_i when $assume$formal/mlu_sram_sp_macro_formal.sv:117$647_EN.
+Import constraint from assume cell: $auto$rtlil.cc:3334:Not$2037 when \bist_en_i.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:125$652_Y when \spare_written_q.
+Import proof for assert: \rvalid_o when \rd_spare_pending_q.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:129$655_Y when \rd_spare_pending_q.
+Import proof for assert: $logic_and$formal/mlu_sram_sp_macro_formal.sv:130$659_Y when \rd_spare_pending_q.
+Import proof for assert: \rvalid_o when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:135$664_Y when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $0\pwr_gated_d1_q[0:0] when $assert$formal/mlu_sram_sp_macro_formal.sv:140$667_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:143$673_Y when \was_active_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:146$675_Y when \pwr_gated_d1_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:148$677_Y when 1'1.
+Import proof for assert: $lt$formal/mlu_sram_sp_macro_formal.sv:149$679_Y when 1'1.
+
+Setting up time step 3:
+Final constraint equation: { } = { }
+Imported 623 cells to SAT database.
+Import constraint from assume cell: \rst_n when 1'1.
+Import constraint from assume cell: $eq$formal/mlu_sram_sp_macro_formal.sv:113$643_Y when 1'1.
+Import constraint from assume cell: \repair_en_i when $assume$formal/mlu_sram_sp_macro_formal.sv:117$647_EN.
+Import constraint from assume cell: $auto$rtlil.cc:3334:Not$2037 when \bist_en_i.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:125$652_Y when \spare_written_q.
+Import proof for assert: \rvalid_o when \rd_spare_pending_q.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:129$655_Y when \rd_spare_pending_q.
+Import proof for assert: $logic_and$formal/mlu_sram_sp_macro_formal.sv:130$659_Y when \rd_spare_pending_q.
+Import proof for assert: \rvalid_o when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:135$664_Y when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $0\pwr_gated_d1_q[0:0] when $assert$formal/mlu_sram_sp_macro_formal.sv:140$667_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:143$673_Y when \was_active_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:146$675_Y when \pwr_gated_d1_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:148$677_Y when 1'1.
+Import proof for assert: $lt$formal/mlu_sram_sp_macro_formal.sv:149$679_Y when 1'1.
+
+Setting up time step 4:
+Final constraint equation: { } = { }
+Imported 623 cells to SAT database.
+Import constraint from assume cell: \rst_n when 1'1.
+Import constraint from assume cell: $eq$formal/mlu_sram_sp_macro_formal.sv:113$643_Y when 1'1.
+Import constraint from assume cell: \repair_en_i when $assume$formal/mlu_sram_sp_macro_formal.sv:117$647_EN.
+Import constraint from assume cell: $auto$rtlil.cc:3334:Not$2037 when \bist_en_i.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:125$652_Y when \spare_written_q.
+Import proof for assert: \rvalid_o when \rd_spare_pending_q.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:129$655_Y when \rd_spare_pending_q.
+Import proof for assert: $logic_and$formal/mlu_sram_sp_macro_formal.sv:130$659_Y when \rd_spare_pending_q.
+Import proof for assert: \rvalid_o when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:135$664_Y when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $0\pwr_gated_d1_q[0:0] when $assert$formal/mlu_sram_sp_macro_formal.sv:140$667_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:143$673_Y when \was_active_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:146$675_Y when \pwr_gated_d1_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:148$677_Y when 1'1.
+Import proof for assert: $lt$formal/mlu_sram_sp_macro_formal.sv:149$679_Y when 1'1.
+
+Setting up time step 5:
+Final constraint equation: { } = { }
+Imported 623 cells to SAT database.
+Import constraint from assume cell: \rst_n when 1'1.
+Import constraint from assume cell: $eq$formal/mlu_sram_sp_macro_formal.sv:113$643_Y when 1'1.
+Import constraint from assume cell: \repair_en_i when $assume$formal/mlu_sram_sp_macro_formal.sv:117$647_EN.
+Import constraint from assume cell: $auto$rtlil.cc:3334:Not$2037 when \bist_en_i.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:125$652_Y when \spare_written_q.
+Import proof for assert: \rvalid_o when \rd_spare_pending_q.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:129$655_Y when \rd_spare_pending_q.
+Import proof for assert: $logic_and$formal/mlu_sram_sp_macro_formal.sv:130$659_Y when \rd_spare_pending_q.
+Import proof for assert: \rvalid_o when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:135$664_Y when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $0\pwr_gated_d1_q[0:0] when $assert$formal/mlu_sram_sp_macro_formal.sv:140$667_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:143$673_Y when \was_active_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:146$675_Y when \pwr_gated_d1_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:148$677_Y when 1'1.
+Import proof for assert: $lt$formal/mlu_sram_sp_macro_formal.sv:149$679_Y when 1'1.
+
+Setting up time step 6:
+Final constraint equation: { } = { }
+Imported 623 cells to SAT database.
+Import constraint from assume cell: \rst_n when 1'1.
+Import constraint from assume cell: $eq$formal/mlu_sram_sp_macro_formal.sv:113$643_Y when 1'1.
+Import constraint from assume cell: \repair_en_i when $assume$formal/mlu_sram_sp_macro_formal.sv:117$647_EN.
+Import constraint from assume cell: $auto$rtlil.cc:3334:Not$2037 when \bist_en_i.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:125$652_Y when \spare_written_q.
+Import proof for assert: \rvalid_o when \rd_spare_pending_q.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:129$655_Y when \rd_spare_pending_q.
+Import proof for assert: $logic_and$formal/mlu_sram_sp_macro_formal.sv:130$659_Y when \rd_spare_pending_q.
+Import proof for assert: \rvalid_o when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:135$664_Y when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $0\pwr_gated_d1_q[0:0] when $assert$formal/mlu_sram_sp_macro_formal.sv:140$667_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:143$673_Y when \was_active_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:146$675_Y when \pwr_gated_d1_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:148$677_Y when 1'1.
+Import proof for assert: $lt$formal/mlu_sram_sp_macro_formal.sv:149$679_Y when 1'1.
+
+Setting up time step 7:
+Final constraint equation: { } = { }
+Imported 623 cells to SAT database.
+Import constraint from assume cell: \rst_n when 1'1.
+Import constraint from assume cell: $eq$formal/mlu_sram_sp_macro_formal.sv:113$643_Y when 1'1.
+Import constraint from assume cell: \repair_en_i when $assume$formal/mlu_sram_sp_macro_formal.sv:117$647_EN.
+Import constraint from assume cell: $auto$rtlil.cc:3334:Not$2037 when \bist_en_i.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:125$652_Y when \spare_written_q.
+Import proof for assert: \rvalid_o when \rd_spare_pending_q.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:129$655_Y when \rd_spare_pending_q.
+Import proof for assert: $logic_and$formal/mlu_sram_sp_macro_formal.sv:130$659_Y when \rd_spare_pending_q.
+Import proof for assert: \rvalid_o when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:135$664_Y when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $0\pwr_gated_d1_q[0:0] when $assert$formal/mlu_sram_sp_macro_formal.sv:140$667_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:143$673_Y when \was_active_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:146$675_Y when \pwr_gated_d1_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:148$677_Y when 1'1.
+Import proof for assert: $lt$formal/mlu_sram_sp_macro_formal.sv:149$679_Y when 1'1.
+
+Setting up time step 8:
+Final constraint equation: { } = { }
+Imported 623 cells to SAT database.
+Import constraint from assume cell: \rst_n when 1'1.
+Import constraint from assume cell: $eq$formal/mlu_sram_sp_macro_formal.sv:113$643_Y when 1'1.
+Import constraint from assume cell: \repair_en_i when $assume$formal/mlu_sram_sp_macro_formal.sv:117$647_EN.
+Import constraint from assume cell: $auto$rtlil.cc:3334:Not$2037 when \bist_en_i.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:125$652_Y when \spare_written_q.
+Import proof for assert: \rvalid_o when \rd_spare_pending_q.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:129$655_Y when \rd_spare_pending_q.
+Import proof for assert: $logic_and$formal/mlu_sram_sp_macro_formal.sv:130$659_Y when \rd_spare_pending_q.
+Import proof for assert: \rvalid_o when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:135$664_Y when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $0\pwr_gated_d1_q[0:0] when $assert$formal/mlu_sram_sp_macro_formal.sv:140$667_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:143$673_Y when \was_active_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:146$675_Y when \pwr_gated_d1_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:148$677_Y when 1'1.
+Import proof for assert: $lt$formal/mlu_sram_sp_macro_formal.sv:149$679_Y when 1'1.
+
+Setting up time step 9:
+Final constraint equation: { } = { }
+Imported 623 cells to SAT database.
+Import constraint from assume cell: \rst_n when 1'1.
+Import constraint from assume cell: $eq$formal/mlu_sram_sp_macro_formal.sv:113$643_Y when 1'1.
+Import constraint from assume cell: \repair_en_i when $assume$formal/mlu_sram_sp_macro_formal.sv:117$647_EN.
+Import constraint from assume cell: $auto$rtlil.cc:3334:Not$2037 when \bist_en_i.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:125$652_Y when \spare_written_q.
+Import proof for assert: \rvalid_o when \rd_spare_pending_q.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:129$655_Y when \rd_spare_pending_q.
+Import proof for assert: $logic_and$formal/mlu_sram_sp_macro_formal.sv:130$659_Y when \rd_spare_pending_q.
+Import proof for assert: \rvalid_o when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:135$664_Y when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $0\pwr_gated_d1_q[0:0] when $assert$formal/mlu_sram_sp_macro_formal.sv:140$667_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:143$673_Y when \was_active_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:146$675_Y when \pwr_gated_d1_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:148$677_Y when 1'1.
+Import proof for assert: $lt$formal/mlu_sram_sp_macro_formal.sv:149$679_Y when 1'1.
+
+Setting up time step 10:
+Final constraint equation: { } = { }
+Imported 623 cells to SAT database.
+Import constraint from assume cell: \rst_n when 1'1.
+Import constraint from assume cell: $eq$formal/mlu_sram_sp_macro_formal.sv:113$643_Y when 1'1.
+Import constraint from assume cell: \repair_en_i when $assume$formal/mlu_sram_sp_macro_formal.sv:117$647_EN.
+Import constraint from assume cell: $auto$rtlil.cc:3334:Not$2037 when \bist_en_i.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:125$652_Y when \spare_written_q.
+Import proof for assert: \rvalid_o when \rd_spare_pending_q.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:129$655_Y when \rd_spare_pending_q.
+Import proof for assert: $logic_and$formal/mlu_sram_sp_macro_formal.sv:130$659_Y when \rd_spare_pending_q.
+Import proof for assert: \rvalid_o when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:135$664_Y when $assert$formal/mlu_sram_sp_macro_formal.sv:134$662_EN.
+Import proof for assert: $0\pwr_gated_d1_q[0:0] when $assert$formal/mlu_sram_sp_macro_formal.sv:140$667_EN.
+Import proof for assert: $eq$formal/mlu_sram_sp_macro_formal.sv:143$673_Y when \was_active_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:146$675_Y when \pwr_gated_d1_q.
+Import proof for assert: $logic_not$formal/mlu_sram_sp_macro_formal.sv:148$677_Y when 1'1.
+Import proof for assert: $lt$formal/mlu_sram_sp_macro_formal.sv:149$679_Y when 1'1.
+Import show expression: \bist_en_i
+Import show expression: \clk
+Import show expression: \dslp_i
+Import show expression: \repair_bad_addr_i
+Import show expression: \repair_en_i
+Import show expression: \req_addr_i
+Import show expression: \req_en_i
+Import show expression: \req_wdata_i
+Import show expression: \req_we_i
+Import show expression: \rst_n
+Import show expression: \sd_i
+Import show expression: \slp_i
+Import show expression: \bist_done_o
+Import show expression: \bist_fail_o
+Import show expression: \pwr_ready_o
+Import show expression: \rdata_o
+Import show expression: \rvalid_o
+
+Solving problem with 187655 variables and 512410 clauses..
+SAT proof finished - no model found: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+
+End of script. Logfile hash: d04942d8eb, CPU: user 9.84s system 0.12s, MEM: 186.54 MB peak
+Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+Time spent: 95% 1x sat (9 sec), 1% 14x opt_clean (0 sec), ...

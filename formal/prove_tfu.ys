@@ -1,0 +1,31 @@
+# =============================================================================
+# File: formal/prove_tfu.ys
+# Description: Yosys 0.60 Sequential SAT Proof Script for mlu_tfu_fractal_mac
+#              Exhaustively proves:
+#              - Mode 0: Cambricon-S SPARSE_BLOCK_4X4 Zero-Skip (arbitrary act/wt)
+#              - Mode 1: Multi-Precision Zero-Activation Annihilation (arbitrary wt)
+#              - Mode 2: Multi-Precision Zero-Weight Annihilation (arbitrary act)
+# =============================================================================
+read_verilog -sv -formal -Irtl rtl/mlu_pkg.sv rtl/mlu_tfu_fractal_mac.sv formal/mlu_tfu_fractal_mac_formal.sv
+prep -top mlu_tfu_fractal_mac_formal
+flatten
+async2sync
+chformal -lower
+design -save base
+
+# Case 0: Cambricon-S Block-4x4 Zero-Skip Exactness & Tag/Handshake
+connect -set \mode_sel_i 2'b00
+opt -full
+sat -verify -seq 8 -set-init-zero -prove-asserts -set-assumes -show-ports
+
+# Case 1: Zero-Activation Annihilation across all 8 Precision Modes
+design -load base
+connect -set \mode_sel_i 2'b01
+opt -full
+sat -verify -seq 8 -set-init-zero -prove-asserts -set-assumes -show-ports
+
+# Case 2: Zero-Weight Annihilation across all 8 Precision Modes
+design -load base
+connect -set \mode_sel_i 2'b10
+opt -full
+sat -verify -seq 8 -set-init-zero -prove-asserts -set-assumes -show-ports

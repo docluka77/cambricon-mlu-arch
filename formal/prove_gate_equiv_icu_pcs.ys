@@ -1,0 +1,55 @@
+# ==============================================================================
+# Stage 15B: Gate-Level Netlist (ASAP7 7nm) vs. SystemVerilog RTL Equivalence
+# Target IPs:
+#   4. mlu_bang_icu       (7,764-gate ASAP7 netlist, Sequential Miter SAT -seq 5)
+#   5. mlu_c2c_serdes_pcs (6,969-gate ASAP7 netlist, Sequential Miter SAT -seq 5)
+# ==============================================================================
+
+# --- 4. mlu_bang_icu (Sequential Miter SAT -seq 5) ---
+read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip rtl/mlu_bang_icu.sv
+chformal -remove
+prep -top mlu_bang_icu -flatten
+memory_map
+opt -fast
+async2sync
+dffunmap
+rename mlu_bang_icu gold_mlu_bang_icu
+design -stash gold_icu_db
+
+design -reset
+read_liberty -ignore_miss_func /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib
+read_verilog -overwrite formal/asap7_ff_noninv.v
+read_verilog synth/mlu_bang_icu_asap7_netlist.v
+prep -top mlu_bang_icu -flatten
+async2sync
+dffunmap
+rename mlu_bang_icu gate_mlu_bang_icu
+design -copy-from gold_icu_db -as gold_mlu_bang_icu gold_mlu_bang_icu
+miter -equiv -flatten -make_assert gold_mlu_bang_icu gate_mlu_bang_icu miter_mlu_bang_icu
+hierarchy -top miter_mlu_bang_icu
+sat -verify -seq 5 -set-init-zero -set-at 1 in_rst_ni 0 -prove-skip 1 -prove-asserts
+
+# --- 5. mlu_c2c_serdes_pcs (Sequential Miter SAT -seq 5) ---
+design -reset
+read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip rtl/mlu_c2c_serdes_pcs.sv
+chformal -remove
+prep -top mlu_c2c_serdes_pcs -flatten
+memory_map
+opt -fast
+async2sync
+dffunmap
+rename mlu_c2c_serdes_pcs gold_mlu_c2c_serdes_pcs
+design -stash gold_pcs_db
+
+design -reset
+read_liberty -ignore_miss_func /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib
+read_verilog -overwrite formal/asap7_ff_noninv.v
+read_verilog synth/mlu_c2c_serdes_pcs_asap7_netlist.v
+prep -top mlu_c2c_serdes_pcs -flatten
+async2sync
+dffunmap
+rename mlu_c2c_serdes_pcs gate_mlu_c2c_serdes_pcs
+design -copy-from gold_pcs_db -as gold_mlu_c2c_serdes_pcs gold_mlu_c2c_serdes_pcs
+miter -equiv -flatten -make_assert gold_mlu_c2c_serdes_pcs gate_mlu_c2c_serdes_pcs miter_mlu_c2c_serdes_pcs
+hierarchy -top miter_mlu_c2c_serdes_pcs
+sat -verify -seq 5 -set-init-zero -set-at 1 in_rst_n 0 -prove-skip 1 -prove-asserts

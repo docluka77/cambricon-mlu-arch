@@ -1,0 +1,14 @@
+# =============================================================================
+# File: formal/prove_sram_macro.ys
+# Description: Yosys 0.60 Sequential SAT Proof Script for mlu_sram_sp_macro
+# =============================================================================
+read_verilog -sv -formal -Irtl -Isram_ip rtl/mlu_pkg.sv sram_ip/mlu_sram_secded_ecc.sv sram_ip/mlu_sram_sp_macro.sv formal/mlu_sram_sp_macro_formal.sv
+prep -top mlu_sram_sp_macro_formal
+memory -nomap
+flatten
+async2sync
+chformal -lower
+opt -full
+memory_map
+opt -full
+sat -verify -seq 10 -set-init-zero -prove-asserts -set-assumes -show-ports

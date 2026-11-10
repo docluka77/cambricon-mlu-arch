@@ -1,0 +1,1282 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+
+-- Executing script file `formal/prove_cambricon_llm_kv.ys' --
+
+1. Executing Verilog-2005 frontend: rtl/mlu_pkg.sv
+Parsing formal SystemVerilog input from `rtl/mlu_pkg.sv' to AST representation.
+verilog frontend filename rtl/mlu_pkg.sv
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: rtl/mlu_cambricon_llm_flash_kv.sv
+Parsing formal SystemVerilog input from `rtl/mlu_cambricon_llm_flash_kv.sv' to AST representation.
+verilog frontend filename rtl/mlu_cambricon_llm_flash_kv.sv
+Generating RTLIL representation for module `\mlu_cambricon_llm_flash_kv'.
+Warning: Replacing memory \kv_ring_mem with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:191
+Warning: Replacing memory \rhs_s with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:168, rtl/mlu_cambricon_llm_flash_kv.sv:167
+Warning: Replacing memory \lhs_s with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:168, rtl/mlu_cambricon_llm_flash_kv.sv:166
+Warning: Replacing memory \scaled_u with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:120, rtl/mlu_cambricon_llm_flash_kv.sv:119
+Warning: Replacing memory \diff_u with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:119, rtl/mlu_cambricon_llm_flash_kv.sv:118
+Warning: Replacing memory \max_l2 with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:98, rtl/mlu_cambricon_llm_flash_kv.sv:95
+Warning: Replacing memory \min_l2 with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:97, rtl/mlu_cambricon_llm_flash_kv.sv:94
+Warning: Replacing memory \max_l1 with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:95, rtl/mlu_cambricon_llm_flash_kv.sv:91
+Warning: Replacing memory \min_l1 with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:94, rtl/mlu_cambricon_llm_flash_kv.sv:90
+Warning: Replacing memory \x_vec with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:73
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: formal/mlu_cambricon_llm_flash_kv_formal.sv
+Parsing formal SystemVerilog input from `formal/mlu_cambricon_llm_flash_kv_formal.sv' to AST representation.
+verilog frontend filename formal/mlu_cambricon_llm_flash_kv_formal.sv
+Generating RTLIL representation for module `\mlu_cambricon_llm_flash_kv_formal'.
+Successfully finished Verilog frontend.
+
+4. Executing PREP pass.
+
+4.1. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1.1. Analyzing design hierarchy..
+Top module:  \mlu_cambricon_llm_flash_kv_formal
+Used module:     \mlu_cambricon_llm_flash_kv
+Parameter \KV_RING_DEPTH = 4
+
+4.1.2. Executing AST frontend in derive mode using pre-parsed AST for module `\mlu_cambricon_llm_flash_kv'.
+Parameter \KV_RING_DEPTH = 4
+Generating RTLIL representation for module `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100'.
+Warning: Replacing memory \kv_ring_mem with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:191
+Warning: Replacing memory \rhs_s with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:168, rtl/mlu_cambricon_llm_flash_kv.sv:167
+Warning: Replacing memory \lhs_s with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:168, rtl/mlu_cambricon_llm_flash_kv.sv:166
+Warning: Replacing memory \scaled_u with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:120, rtl/mlu_cambricon_llm_flash_kv.sv:119
+Warning: Replacing memory \diff_u with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:119, rtl/mlu_cambricon_llm_flash_kv.sv:118
+Warning: Replacing memory \max_l2 with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:98, rtl/mlu_cambricon_llm_flash_kv.sv:95
+Warning: Replacing memory \min_l2 with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:97, rtl/mlu_cambricon_llm_flash_kv.sv:94
+Warning: Replacing memory \max_l1 with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:95, rtl/mlu_cambricon_llm_flash_kv.sv:91
+Warning: Replacing memory \min_l1 with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:94, rtl/mlu_cambricon_llm_flash_kv.sv:90
+Warning: Replacing memory \x_vec with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:73
+
+4.1.3. Analyzing design hierarchy..
+Top module:  \mlu_cambricon_llm_flash_kv_formal
+Used module:     $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100
+
+4.1.4. Analyzing design hierarchy..
+Top module:  \mlu_cambricon_llm_flash_kv_formal
+Used module:     $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100
+Removing unused module `\mlu_cambricon_llm_flash_kv'.
+Removed 1 unused modules.
+Module mlu_cambricon_llm_flash_kv_formal directly or indirectly contains formal properties -> setting "keep" attribute.
+
+4.2. Executing PROC pass (convert processes to netlists).
+
+4.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 3 switch rules as full_case in process $proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:115$350 in module mlu_cambricon_llm_flash_kv_formal.
+Marked 8 switch rules as full_case in process $proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:102$327 in module mlu_cambricon_llm_flash_kv_formal.
+Removed 1 dead cases from process $proc$rtl/mlu_cambricon_llm_flash_kv.sv:137$686 in module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.
+Marked 1 switch rules as full_case in process $proc$rtl/mlu_cambricon_llm_flash_kv.sv:137$686 in module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.
+Marked 4 switch rules as full_case in process $proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651 in module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.
+Marked 9 switch rules as full_case in process $proc$rtl/mlu_cambricon_llm_flash_kv.sv:140$541 in module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.
+Marked 12 switch rules as full_case in process $proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435 in module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.
+Removed a total of 1 dead cases.
+
+4.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 9 redundant assignments.
+Promoted 208 assignments to connections.
+
+4.2.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:97$387'.
+  Set init value: \q_saved_prev = 0
+Found init rule in `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:96$386'.
+  Set init value: \q_all8_acc = 1'0
+Found init rule in `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:95$385'.
+  Set init value: \q_tok0_rej = 1'0
+Found init rule in `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:94$384'.
+  Set init value: \q_cmd_tag = 8'00000000
+Found init rule in `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:93$383'.
+  Set init value: \q_prec_fp8 = 1'0
+Found init rule in `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:92$382'.
+  Set init value: \q_mode_spec = 1'0
+Found init rule in `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:91$381'.
+  Set init value: \q_cmd_valid = 1'0
+Found init rule in `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:30$380'.
+  Set init value: \init_cnt = 2'00
+
+4.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_ni in `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+
+4.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~42 debug messages>
+
+4.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:97$387'.
+Creating decoders for process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:96$386'.
+Creating decoders for process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:95$385'.
+Creating decoders for process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:94$384'.
+Creating decoders for process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:93$383'.
+Creating decoders for process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:92$382'.
+Creating decoders for process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:91$381'.
+Creating decoders for process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:30$380'.
+Creating decoders for process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:115$350'.
+     1/19: $0\q_saved_prev[31:0]
+     2/19: $0\q_all8_acc[0:0]
+     3/19: $0\q_tok0_rej[0:0]
+     4/19: $0\q_cmd_tag[7:0]
+     5/19: $0\q_prec_fp8[0:0]
+     6/19: $0\q_mode_spec[0:0]
+     7/19: $0\q_cmd_valid[0:0]
+     8/19: $assert$formal/mlu_cambricon_llm_flash_kv_formal.sv:157$378_EN
+     9/19: $assert$formal/mlu_cambricon_llm_flash_kv_formal.sv:154$376_EN
+    10/19: $assert$formal/mlu_cambricon_llm_flash_kv_formal.sv:152$373_EN
+    11/19: $assert$formal/mlu_cambricon_llm_flash_kv_formal.sv:148$370_EN
+    12/19: $assert$formal/mlu_cambricon_llm_flash_kv_formal.sv:147$368_EN
+    13/19: $assert$formal/mlu_cambricon_llm_flash_kv_formal.sv:144$366_EN
+    14/19: $assert$formal/mlu_cambricon_llm_flash_kv_formal.sv:143$364_EN
+    15/19: $assert$formal/mlu_cambricon_llm_flash_kv_formal.sv:139$362_EN
+    16/19: $assert$formal/mlu_cambricon_llm_flash_kv_formal.sv:138$360_EN
+    17/19: $assert$formal/mlu_cambricon_llm_flash_kv_formal.sv:135$356_EN
+    18/19: $assert$formal/mlu_cambricon_llm_flash_kv_formal.sv:134$354_EN
+    19/19: $assert$formal/mlu_cambricon_llm_flash_kv_formal.sv:133$352_EN
+Creating decoders for process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:102$327'.
+     1/8: $8\all8_acc_comb[0:0]
+     2/8: $7\all8_acc_comb[0:0]
+     3/8: $6\all8_acc_comb[0:0]
+     4/8: $5\all8_acc_comb[0:0]
+     5/8: $4\all8_acc_comb[0:0]
+     6/8: $3\all8_acc_comb[0:0]
+     7/8: $2\all8_acc_comb[0:0]
+     8/8: $1\all8_acc_comb[0:0]
+Creating decoders for process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:34$322'.
+     1/1: $0\init_cnt[1:0]
+Creating decoders for process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:137$686'.
+     1/1: $1$mem2reg_rd$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:137$431_DATA[63:0]$688
+Creating decoders for process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+     1/28: $3$lookahead\kv_ring_fp8$650[3:0]$671
+     2/28: $3$bitselwrite$pos$rtl/mlu_cambricon_llm_flash_kv.sv:215$430[1:0]$668
+     3/28: $3$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$432_ADDR[1:0]$669
+     4/28: $3$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$432_DATA[63:0]$670
+     5/28: $2$lookahead\kv_ring_fp8$650[3:0]$666
+     6/28: $2$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$432_DATA[63:0]$665
+     7/28: $2$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$432_ADDR[1:0]$664
+     8/28: $2$bitselwrite$pos$rtl/mlu_cambricon_llm_flash_kv.sv:215$430[1:0]$663
+     9/28: $1$lookahead\kv_ring_fp8$650[3:0]$662
+    10/28: $1$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$432_DATA[63:0]$661
+    11/28: $1$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$432_ADDR[1:0]$660
+    12/28: $1$bitselwrite$pos$rtl/mlu_cambricon_llm_flash_kv.sv:215$430[1:0]$659
+    13/28: $0\flash_req_valid_o[0:0]
+    14/28: $0\done_valid_o[0:0]
+    15/28: $1$fordecl_block$13.i[31:0]$658
+    16/28: $0\kv_ring_mem[3][63:0]
+    17/28: $0\kv_ring_mem[2][63:0]
+    18/28: $0\kv_ring_mem[1][63:0]
+    19/28: $0\kv_ring_mem[0][63:0]
+    20/28: $0\flash_ecc_err_cnt_o[31:0]
+    21/28: $0\total_kv_bytes_saved_o[31:0]
+    22/28: $0\total_accepted_tokens_o[31:0]
+    23/28: $0\bonus_token_idx_o[2:0]
+    24/28: $0\accepted_len_o[3:0]
+    25/28: $0\accepted_bitmap_o[7:0]
+    26/28: $0\done_tag_o[7:0]
+    27/28: $0\flash_page_addr_o[31:0]
+    28/28: $0\kv_packed_out_o[63:0]
+Creating decoders for process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+Creating decoders for process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:140$541'.
+     1/17: $1\kv_dequant_out_o[127:0] [127:112]
+     2/17: $8\kv_dequant_out_o[111:96]
+     3/17: $7\kv_dequant_out_o[95:80]
+     4/17: $6\kv_dequant_out_o[79:64]
+     5/17: $5\kv_dequant_out_o[63:48]
+     6/17: $4\kv_dequant_out_o[47:32]
+     7/17: $3\kv_dequant_out_o[31:16]
+     8/17: $2\kv_dequant_out_o[15:0]
+     9/17: $1$fordecl_block$9.k[31:0]$543
+    10/17: $1\kv_dequant_out_o[127:0] [111:96]
+    11/17: $1\kv_dequant_out_o[127:0] [95:80]
+    12/17: $1\kv_dequant_out_o[127:0] [79:64]
+    13/17: $1\kv_dequant_out_o[127:0] [63:48]
+    14/17: $1\kv_dequant_out_o[127:0] [47:32]
+    15/17: $1\kv_dequant_out_o[127:0] [31:16]
+    16/17: $1\kv_dequant_out_o[127:0] [15:0]
+    17/17: $9\kv_dequant_out_o[127:112]
+Creating decoders for process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+     1/12: $12\shift_amt[3:0]
+     2/12: $11\shift_amt[3:0]
+     3/12: $10\shift_amt[3:0]
+     4/12: $9\shift_amt[3:0]
+     5/12: $8\shift_amt[3:0]
+     6/12: $7\shift_amt[3:0]
+     7/12: $6\shift_amt[3:0]
+     8/12: $5\shift_amt[3:0]
+     9/12: $4\shift_amt[3:0]
+    10/12: $3\shift_amt[3:0]
+    11/12: $2\shift_amt[3:0]
+    12/12: $1\shift_amt[3:0]
+Creating decoders for process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$433'.
+
+4.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv_formal.\tok0_rej_comb' from process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:102$327'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv_formal.\all8_acc_comb' from process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:102$327'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv_formal.\sext17$func$formal/mlu_cambricon_llm_flash_kv_formal.sv:104$318.$result' from process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:102$327'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv_formal.\sext17$func$formal/mlu_cambricon_llm_flash_kv_formal.sv:104$318.v' from process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:102$327'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv_formal.\sext17$func$formal/mlu_cambricon_llm_flash_kv_formal.sv:104$319.$result' from process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:102$327'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv_formal.\sext17$func$formal/mlu_cambricon_llm_flash_kv_formal.sv:104$319.v' from process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:102$327'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv_formal.\sext17$func$formal/mlu_cambricon_llm_flash_kv_formal.sv:105$320.$result' from process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:102$327'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv_formal.\sext17$func$formal/mlu_cambricon_llm_flash_kv_formal.sv:105$320.v' from process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:102$327'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv_formal.$fordecl_block$316.k' from process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:102$327'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$mem2reg_rd$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:137$431_DATA' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:137$686'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\token_ok_comb' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\prefix_accept_comb' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\accepted_len_comb' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\bonus_idx_comb' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$fordecl_block$11.k' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\lhs_s[0]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\lhs_s[1]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\lhs_s[2]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\lhs_s[3]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\lhs_s[4]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\lhs_s[5]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\lhs_s[6]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\lhs_s[7]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\rhs_s[0]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\rhs_s[1]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\rhs_s[2]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\rhs_s[3]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\rhs_s[4]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\rhs_s[5]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\rhs_s[6]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\rhs_s[7]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$406.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$406.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$407.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$407.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$408.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$408.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$409.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$409.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$410.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$410.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$411.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$411.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$412.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$412.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$413.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$413.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$414.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$414.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$415.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$415.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$416.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$416.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$417.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$417.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$418.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$418.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$419.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$419.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$420.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$420.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$421.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$421.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$422.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$422.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$423.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$423.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$424.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$424.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$425.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$425.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$426.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$426.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$427.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$427.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$428.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$428.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$429.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$429.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\kv_dequant_out_o' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:140$541'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$fordecl_block$9.k' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:140$541'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\min_val' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\max_val' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\span_u' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\shift_amt' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\packed_int4_comb' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\packed_fp8_comb' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\packed_kv_comb' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$fordecl_block$3.i' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$fordecl_block$5.i' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$fordecl_block$7.k' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\min_l1[0]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\min_l1[1]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\min_l1[2]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\min_l1[3]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\max_l1[0]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\max_l1[1]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\max_l1[2]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\max_l1[3]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\min_l2[0]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\min_l2[1]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\max_l2[0]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\max_l2[1]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\diff_u[0]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\diff_u[1]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\diff_u[2]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\diff_u[3]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\diff_u[4]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\diff_u[5]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\diff_u[6]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\diff_u[7]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\scaled_u[0]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\scaled_u[1]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\scaled_u[2]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\scaled_u[3]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\scaled_u[4]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\scaled_u[5]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\scaled_u[6]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\scaled_u[7]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:100$388.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:100$388.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:100$389.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:100$389.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$390.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$390.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$391.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$391.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$392.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$392.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$393.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$393.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$394.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$394.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$395.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$395.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$396.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$396.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$397.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$397.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$398.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$398.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$399.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$399.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$400.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$400.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$401.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$401.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$402.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$402.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$403.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$403.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$404.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$404.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$405.$result' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$405.v' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$fordecl_block$1.k' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$433'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\x_vec[0]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$433'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\x_vec[1]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$433'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\x_vec[2]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$433'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\x_vec[3]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$433'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\x_vec[4]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$433'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\x_vec[5]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$433'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\x_vec[6]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$433'.
+No latch inferred for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\x_vec[7]' from process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$433'.
+
+4.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\mlu_cambricon_llm_flash_kv_formal.\q_cmd_valid' using process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:115$350'.
+  created $dff cell `$procdff$1285' with positive edge clock.
+Creating register for signal `\mlu_cambricon_llm_flash_kv_formal.\q_mode_spec' using process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:115$350'.
+  created $dff cell `$procdff$1286' with positive edge clock.
+Creating register for signal `\mlu_cambricon_llm_flash_kv_formal.\q_prec_fp8' using process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:115$350'.
+  created $dff cell `$procdff$1287' with positive edge clock.
+Creating register for signal `\mlu_cambricon_llm_flash_kv_formal.\q_cmd_tag' using process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:115$350'.
+  created $dff cell `$procdff$1288' with positive edge clock.
+Creating register for signal `\mlu_cambricon_llm_flash_kv_formal.\q_tok0_rej' using process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:115$350'.
+  created $dff cell `$procdff$1289' with positive edge clock.
+Creating register for signal `\mlu_cambricon_llm_flash_kv_formal.\q_all8_acc' using process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:115$350'.
+  created $dff cell `$procdff$1290' with positive edge clock.
+Creating register for signal `\mlu_cambricon_llm_flash_kv_formal.\q_saved_prev' using process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:115$350'.
+  created $dff cell `$procdff$1291' with positive edge clock.
+Creating register for signal `\mlu_cambricon_llm_flash_kv_formal.\init_cnt' using process `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:34$322'.
+  created $dff cell `$procdff$1292' with positive edge clock.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\kv_packed_out_o' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1297' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\flash_req_valid_o' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1302' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\flash_page_addr_o' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1307' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\done_valid_o' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1312' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\done_tag_o' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1317' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\accepted_bitmap_o' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1322' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\accepted_len_o' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1327' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\bonus_token_idx_o' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1332' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\total_accepted_tokens_o' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1337' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\total_kv_bytes_saved_o' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1342' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\flash_ecc_err_cnt_o' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1347' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\kv_ring_fp8' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1352' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$fordecl_block$13.i' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1357' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\kv_ring_mem[0]' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1362' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\kv_ring_mem[1]' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1367' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\kv_ring_mem[2]' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1372' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.\kv_ring_mem[3]' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1377' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$bitselwrite$pos$rtl/mlu_cambricon_llm_flash_kv.sv:215$430' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1382' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$432_ADDR' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1387' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$432_DATA' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1392' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$lookahead\kv_ring_fp8$650' using process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+  created $adff cell `$procdff$1397' with positive edge clock and positive level reset.
+
+4.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:97$387'.
+Removing empty process `mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:96$386'.
+Removing empty process `mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:95$385'.
+Removing empty process `mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:94$384'.
+Removing empty process `mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:93$383'.
+Removing empty process `mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:92$382'.
+Removing empty process `mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:91$381'.
+Removing empty process `mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:30$380'.
+Found and cleaned up 6 empty switches in `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:115$350'.
+Removing empty process `mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:115$350'.
+Found and cleaned up 8 empty switches in `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:102$327'.
+Removing empty process `mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:102$327'.
+Found and cleaned up 1 empty switch in `\mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:34$322'.
+Removing empty process `mlu_cambricon_llm_flash_kv_formal.$proc$formal/mlu_cambricon_llm_flash_kv_formal.sv:34$322'.
+Found and cleaned up 1 empty switch in `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:137$686'.
+Removing empty process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:137$686'.
+Found and cleaned up 5 empty switches in `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+Removing empty process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$651'.
+Removing empty process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$560'.
+Found and cleaned up 9 empty switches in `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:140$541'.
+Removing empty process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:140$541'.
+Found and cleaned up 12 empty switches in `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+Removing empty process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$435'.
+Removing empty process `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$433'.
+Cleaned up 42 empty switches.
+
+4.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv_formal.
+<suppressed ~27 debug messages>
+Optimizing module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.
+<suppressed ~49 debug messages>
+
+4.3. Executing FUTURE pass.
+
+4.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv_formal.
+Optimizing module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.
+
+4.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv_formal..
+Finding unused cells or wires in module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100..
+Removed 40 unused cells and 653 unused wires.
+<suppressed ~42 debug messages>
+
+4.6. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100...
+Checking module mlu_cambricon_llm_flash_kv_formal...
+Found and reported 0 problems.
+
+4.7. Executing OPT pass (performing simple optimizations).
+
+4.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.
+Optimizing module mlu_cambricon_llm_flash_kv_formal.
+
+4.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv_formal'.
+Removed a total of 1 cells.
+
+4.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$1001.
+    dead port 2/2 on $mux $procmux$1007.
+    dead port 2/2 on $mux $procmux$1013.
+    dead port 2/2 on $mux $procmux$1019.
+    dead port 2/2 on $mux $procmux$1049.
+    dead port 1/2 on $mux $procmux$1055.
+    dead port 1/2 on $mux $procmux$1058.
+    dead port 1/2 on $mux $procmux$1061.
+    dead port 1/2 on $mux $procmux$1064.
+    dead port 1/2 on $mux $procmux$1067.
+    dead port 1/2 on $mux $procmux$1070.
+    dead port 1/2 on $mux $procmux$1073.
+    dead port 1/2 on $mux $procmux$1076.
+    dead port 1/2 on $mux $procmux$1079.
+    dead port 1/2 on $mux $procmux$1082.
+    dead port 1/2 on $mux $procmux$1085.
+    dead port 1/2 on $mux $procmux$1091.
+    dead port 1/2 on $mux $procmux$1094.
+    dead port 1/2 on $mux $procmux$1097.
+    dead port 1/2 on $mux $procmux$1100.
+    dead port 1/2 on $mux $procmux$1103.
+    dead port 1/2 on $mux $procmux$1106.
+    dead port 1/2 on $mux $procmux$1109.
+    dead port 1/2 on $mux $procmux$1112.
+    dead port 1/2 on $mux $procmux$1115.
+    dead port 1/2 on $mux $procmux$1118.
+    dead port 1/2 on $mux $procmux$1124.
+    dead port 1/2 on $mux $procmux$1127.
+    dead port 1/2 on $mux $procmux$1130.
+    dead port 1/2 on $mux $procmux$1133.
+    dead port 1/2 on $mux $procmux$1136.
+    dead port 1/2 on $mux $procmux$1139.
+    dead port 1/2 on $mux $procmux$1142.
+    dead port 1/2 on $mux $procmux$1145.
+    dead port 1/2 on $mux $procmux$1148.
+    dead port 1/2 on $mux $procmux$1154.
+    dead port 1/2 on $mux $procmux$1157.
+    dead port 1/2 on $mux $procmux$1160.
+    dead port 1/2 on $mux $procmux$1163.
+    dead port 1/2 on $mux $procmux$1166.
+    dead port 1/2 on $mux $procmux$1169.
+    dead port 1/2 on $mux $procmux$1172.
+    dead port 1/2 on $mux $procmux$1175.
+    dead port 1/2 on $mux $procmux$1181.
+    dead port 1/2 on $mux $procmux$1184.
+    dead port 1/2 on $mux $procmux$1187.
+    dead port 1/2 on $mux $procmux$1190.
+    dead port 1/2 on $mux $procmux$1193.
+    dead port 1/2 on $mux $procmux$1196.
+    dead port 1/2 on $mux $procmux$1199.
+    dead port 1/2 on $mux $procmux$1205.
+    dead port 1/2 on $mux $procmux$1208.
+    dead port 1/2 on $mux $procmux$1211.
+    dead port 1/2 on $mux $procmux$1214.
+    dead port 1/2 on $mux $procmux$1217.
+    dead port 1/2 on $mux $procmux$1220.
+    dead port 1/2 on $mux $procmux$1226.
+    dead port 1/2 on $mux $procmux$1229.
+    dead port 1/2 on $mux $procmux$1232.
+    dead port 1/2 on $mux $procmux$1235.
+    dead port 1/2 on $mux $procmux$1238.
+    dead port 1/2 on $mux $procmux$1244.
+    dead port 1/2 on $mux $procmux$1247.
+    dead port 1/2 on $mux $procmux$1250.
+    dead port 1/2 on $mux $procmux$1253.
+    dead port 1/2 on $mux $procmux$1259.
+    dead port 1/2 on $mux $procmux$1262.
+    dead port 1/2 on $mux $procmux$1265.
+    dead port 1/2 on $mux $procmux$1271.
+    dead port 1/2 on $mux $procmux$1274.
+    dead port 1/2 on $mux $procmux$1280.
+    dead port 2/2 on $mux $procmux$836.
+    dead port 2/2 on $mux $procmux$983.
+    dead port 2/2 on $mux $procmux$989.
+    dead port 2/2 on $mux $procmux$995.
+Running muxtree optimizer on module \mlu_cambricon_llm_flash_kv_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 75 multiplexer ports.
+<suppressed ~325 debug messages>
+
+4.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv_formal.
+Performed a total of 0 changes.
+
+4.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100'.
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv_formal'.
+<suppressed ~36 debug messages>
+Removed a total of 12 cells.
+
+4.7.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100..
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv_formal..
+Removed 0 unused cells and 88 unused wires.
+<suppressed ~2 debug messages>
+
+4.7.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.
+Optimizing module mlu_cambricon_llm_flash_kv_formal.
+
+4.7.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.7.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \mlu_cambricon_llm_flash_kv_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~233 debug messages>
+
+4.7.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv_formal.
+Performed a total of 0 changes.
+
+4.7.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100'.
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv_formal'.
+Removed a total of 0 cells.
+
+4.7.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100..
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv_formal..
+
+4.7.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.
+Optimizing module mlu_cambricon_llm_flash_kv_formal.
+
+4.7.14. Finished fast OPT passes. (There is nothing left to do.)
+
+4.8. Executing WREDUCE pass (reducing word size of cells).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:100$503 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:100$503 ($sub).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:100$503 ($sub).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$505 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$505 ($sub).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$505 ($sub).
+Removed top 13 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$507 ($gt).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$509 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$509 ($sub).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$509 ($sub).
+Removed top 13 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$511 ($gt).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$513 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$513 ($sub).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$513 ($sub).
+Removed top 13 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$515 ($gt).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$517 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$517 ($sub).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$517 ($sub).
+Removed top 13 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$519 ($gt).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$521 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$521 ($sub).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$521 ($sub).
+Removed top 13 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$523 ($gt).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$525 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$525 ($sub).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$525 ($sub).
+Removed top 13 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$527 ($gt).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$529 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$529 ($sub).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$529 ($sub).
+Removed top 13 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$531 ($gt).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$533 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$533 ($sub).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$533 ($sub).
+Removed top 13 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$535 ($gt).
+Removed top 12 bits (of 16) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$544 ($shl).
+Removed top 12 bits (of 16) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$546 ($shl).
+Removed top 12 bits (of 16) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$548 ($shl).
+Removed top 12 bits (of 16) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$550 ($shl).
+Removed top 12 bits (of 16) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$552 ($shl).
+Removed top 12 bits (of 16) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$554 ($shl).
+Removed top 12 bits (of 16) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$556 ($shl).
+Removed top 12 bits (of 16) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$558 ($shl).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$610 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$610 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$610 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$611 ($ge).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$613 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$613 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$613 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$614 ($ge).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$616 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$616 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$616 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$617 ($ge).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$619 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$619 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$619 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$620 ($ge).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$622 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$622 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$622 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$623 ($ge).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$625 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$625 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$625 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$626 ($ge).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$628 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$628 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$628 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$629 ($ge).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$631 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$631 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$631 ($add).
+Removed top 1 bits (of 17) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$632 ($ge).
+Removed top 3 bits (of 4) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$641 ($add).
+Removed top 3 bits (of 4) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$641 ($add).
+Removed top 2 bits (of 4) from port Y of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$641 ($add).
+Removed top 2 bits (of 4) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$642 ($add).
+Removed top 3 bits (of 4) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$642 ($add).
+Removed top 1 bits (of 4) from port Y of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$642 ($add).
+Removed top 1 bits (of 4) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$643 ($add).
+Removed top 3 bits (of 4) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$643 ($add).
+Removed top 3 bits (of 4) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$644 ($add).
+Removed top 3 bits (of 4) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$645 ($add).
+Removed top 3 bits (of 4) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$646 ($add).
+Removed top 3 bits (of 4) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$647 ($add).
+Converting cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$neg$rtl/mlu_cambricon_llm_flash_kv.sv:215$672 ($neg) from signed to unsigned.
+Removed top 1 bits (of 3) from port A of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$neg$rtl/mlu_cambricon_llm_flash_kv.sv:215$672 ($neg).
+Removed top 28 bits (of 32) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:218$680 ($add).
+Removed top 28 bits (of 32) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:219$681 ($add).
+Removed top 31 bits (of 32) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:221$683 ($add).
+Removed top 28 bits (of 32) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:227$685 ($add).
+Removed top 1 bits (of 2) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$procmux$830_CMP0 ($eq).
+Removed top 1 bits (of 2) from port B of cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$procmux$899_CMP0 ($eq).
+Removed top 3 bits (of 4) from mux cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$procmux$1052 ($mux).
+Removed top 2 bits (of 4) from mux cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$procmux$1088 ($mux).
+Removed top 2 bits (of 4) from mux cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$procmux$1121 ($mux).
+Removed top 1 bits (of 4) from mux cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$procmux$1151 ($mux).
+Removed top 1 bits (of 4) from mux cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$procmux$1178 ($mux).
+Removed top 1 bits (of 4) from mux cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$procmux$1202 ($mux).
+Removed top 1 bits (of 4) from mux cell $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$procmux$1223 ($mux).
+Removed top 2 bits (of 4) from wire $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$10\shift_amt[3:0].
+Removed top 2 bits (of 4) from wire $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$11\shift_amt[3:0].
+Removed top 3 bits (of 4) from wire $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$12\shift_amt[3:0].
+Removed top 1 bits (of 4) from wire $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$6\shift_amt[3:0].
+Removed top 1 bits (of 4) from wire $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$7\shift_amt[3:0].
+Removed top 1 bits (of 4) from wire $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$8\shift_amt[3:0].
+Removed top 1 bits (of 4) from wire $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$9\shift_amt[3:0].
+Removed top 2 bits (of 4) from wire $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$641_Y.
+Removed top 1 bits (of 4) from wire $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$642_Y.
+Removed top 12 bits (of 64) from wire $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.packed_int4_comb.
+Removed top 1 bits (of 17) from wire $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.span_u.
+Removed top 1 bits (of 2) from port B of cell mlu_cambricon_llm_flash_kv_formal.$ge$formal/mlu_cambricon_llm_flash_kv_formal.sv:32$321 ($ge).
+Removed top 1 bits (of 2) from port B of cell mlu_cambricon_llm_flash_kv_formal.$add$formal/mlu_cambricon_llm_flash_kv_formal.sv:35$324 ($add).
+Removed top 5 bits (of 6) from mux cell mlu_cambricon_llm_flash_kv_formal.$ternary$formal/mlu_cambricon_llm_flash_kv_formal.sv:40$325 ($mux).
+Removed top 1 bits (of 3) from mux cell mlu_cambricon_llm_flash_kv_formal.$ternary$formal/mlu_cambricon_llm_flash_kv_formal.sv:41$326 ($mux).
+Converting cell mlu_cambricon_llm_flash_kv_formal.$add$formal/mlu_cambricon_llm_flash_kv_formal.sv:104$336 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv_formal.$add$formal/mlu_cambricon_llm_flash_kv_formal.sv:104$336 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv_formal.$add$formal/mlu_cambricon_llm_flash_kv_formal.sv:104$336 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv_formal.$lt$formal/mlu_cambricon_llm_flash_kv_formal.sv:104$337 ($lt).
+Removed top 15 bits (of 16) from port B of cell mlu_cambricon_llm_flash_kv_formal.$ge$formal/mlu_cambricon_llm_flash_kv_formal.sv:107$340 ($ge).
+Removed top 7 bits (of 8) from port B of cell mlu_cambricon_llm_flash_kv_formal.$add$formal/mlu_cambricon_llm_flash_kv_formal.sv:135$357 ($add).
+Removed top 28 bits (of 32) from port B of cell mlu_cambricon_llm_flash_kv_formal.$add$formal/mlu_cambricon_llm_flash_kv_formal.sv:152$374 ($add).
+Removed top 5 bits (of 6) from wire mlu_cambricon_llm_flash_kv_formal.opcode_w.
+Removed top 1 bits (of 3) from wire mlu_cambricon_llm_flash_kv_formal.prec_w.
+
+4.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100..
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv_formal..
+Removed 0 unused cells and 12 unused wires.
+<suppressed ~2 debug messages>
+
+4.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+4.11. Executing OPT pass (performing simple optimizations).
+
+4.11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.
+Optimizing module mlu_cambricon_llm_flash_kv_formal.
+
+4.11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100'.
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv_formal'.
+Removed a total of 0 cells.
+
+4.11.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100..
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv_formal..
+
+4.11.4. Finished fast OPT passes.
+
+4.12. Printing statistics.
+
+=== $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      277 wires
+     4863 wire bits
+      142 public wires
+     2933 public wire bits
+       29 ports
+      816 port bits
+      226 cells
+       27   $add
+       16   $adff
+        1   $and
+        9   $eq
+        8   $ge
+       15   $gt
+        8   $logic_and
+        3   $logic_not
+        7   $lt
+       91   $mux
+        1   $neg
+        1   $not
+        1   $or
+        1   $pmux
+        7   $reduce_and
+        2   $reduce_bool
+        2   $shift
+        1   $shiftx
+        8   $shl
+        8   $shr
+        9   $sub
+
+=== mlu_cambricon_llm_flash_kv_formal ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      107 wires
+     1073 wire bits
+       44 public wires
+      909 public wire bits
+       15 ports
+      462 port bits
+       88 cells
+        4   $add
+        1   $and
+       12   $check
+        8   $dff
+        5   $eq
+        2   $ge
+        1   $le
+        1   $logic_and
+        4   $logic_not
+        1   $logic_or
+       10   $lt
+       38   $mux
+        1   $not
+        1 submodules
+        1   $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+      314 mlu_cambricon_llm_flash_kv_formal
+      226 $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100
+
+        +----------Count including submodules.
+        | 
+      384 wires
+     5936 wire bits
+      186 public wires
+     3842 public wire bits
+       44 ports
+     1278 port bits
+        - memories
+        - memory bits
+        - processes
+      314 cells
+       31   $add
+       16   $adff
+        2   $and
+       12   $check
+        8   $dff
+       14   $eq
+       10   $ge
+       15   $gt
+        1   $le
+        9   $logic_and
+        7   $logic_not
+        1   $logic_or
+       17   $lt
+      129   $mux
+        1   $neg
+        2   $not
+        1   $or
+        1   $pmux
+        7   $reduce_and
+        2   $reduce_bool
+        2   $shift
+        1   $shiftx
+        8   $shl
+        8   $shr
+        9   $sub
+        1 submodules
+        1   $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100
+
+4.13. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100...
+Checking module mlu_cambricon_llm_flash_kv_formal...
+Found and reported 0 problems.
+
+5. Executing FLATTEN pass (flatten design).
+Deleting now unused module $paramod\mlu_cambricon_llm_flash_kv\KV_RING_DEPTH=s32'00000000000000000000000000000100.
+<suppressed ~1 debug messages>
+
+6. Executing ASYNC2SYNC pass.
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1377 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\kv_ring_mem[3][63:0], Q=\u_dut.kv_ring_mem[3]
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1372 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\kv_ring_mem[2][63:0], Q=\u_dut.kv_ring_mem[2]
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1367 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\kv_ring_mem[1][63:0], Q=\u_dut.kv_ring_mem[1]
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1362 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\kv_ring_mem[0][63:0], Q=\u_dut.kv_ring_mem[0]
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1352 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0$lookahead\kv_ring_fp8$650[3:0]$656, Q=\u_dut.kv_ring_fp8
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1347 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\flash_ecc_err_cnt_o[31:0], Q=\u_dut.flash_ecc_err_cnt_o
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1342 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\total_kv_bytes_saved_o[31:0], Q=\u_dut.total_kv_bytes_saved_o
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1337 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\total_accepted_tokens_o[31:0], Q=\u_dut.total_accepted_tokens_o
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1332 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\bonus_token_idx_o[2:0], Q=\u_dut.bonus_token_idx_o
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1327 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\accepted_len_o[3:0], Q=\u_dut.accepted_len_o
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1322 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\accepted_bitmap_o[7:0], Q=\u_dut.accepted_bitmap_o
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1317 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\done_tag_o[7:0], Q=\u_dut.done_tag_o
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1312 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\done_valid_o[0:0], Q=\u_dut.done_valid_o
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1307 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\flash_page_addr_o[31:0], Q=\u_dut.flash_page_addr_o
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1302 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\flash_req_valid_o[0:0], Q=\u_dut.flash_req_valid_o
+Replacing mlu_cambricon_llm_flash_kv_formal.$flatten\u_dut.$procdff$1297 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\kv_packed_out_o[63:0], Q=\u_dut.kv_packed_out_o
+
+7. Executing OPT pass (performing simple optimizations).
+
+7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv_formal.
+<suppressed ~40 debug messages>
+
+7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv_formal'.
+<suppressed ~51 debug messages>
+Removed a total of 17 cells.
+
+7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_cambricon_llm_flash_kv_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$999.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$999.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$993.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$993.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$987.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$987.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$981.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$981.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$977.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$977.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$1047.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$1047.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$1043.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$1043.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$1040.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$1040.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$1037.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$1037.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$1034.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$1034.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$1031.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$1031.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$1028.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$1028.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$1025.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$1025.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$1017.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$1017.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$1011.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$1011.
+    dead port 1/2 on $mux $flatten\u_dut.$procmux$1005.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$1005.
+Removed 32 multiplexer ports.
+<suppressed ~218 debug messages>
+
+7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv_formal.
+    Consolidated identical input bits for $mux cell $flatten\u_dut.$procmux$925:
+      Old ports: A=\u_dut.total_kv_bytes_saved_o, B=$flatten\u_dut.$add$rtl/mlu_cambricon_llm_flash_kv.sv:219$681_Y, Y=$flatten\u_dut.$procmux$925_Y
+      New ports: A=\u_dut.total_kv_bytes_saved_o [31:3], B=$flatten\u_dut.$add$rtl/mlu_cambricon_llm_flash_kv.sv:219$681_Y [31:3], Y=$flatten\u_dut.$procmux$925_Y [31:3]
+      New connections: $flatten\u_dut.$procmux$925_Y [2:0] = \u_dut.total_kv_bytes_saved_o [2:0]
+    Consolidated identical input bits for $mux cell $ternary$formal/mlu_cambricon_llm_flash_kv_formal.sv:41$326:
+      Old ports: A=2'00, B=2'10, Y=\prec_w
+      New ports: A=1'0, B=1'1, Y=\prec_w [1]
+      New connections: \prec_w [0] = 1'0
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv_formal.
+    Consolidated identical input bits for $mux cell $flatten\u_dut.$procmux$927:
+      Old ports: A=\u_dut.total_kv_bytes_saved_o, B=$flatten\u_dut.$procmux$925_Y, Y=$flatten\u_dut.$0\total_kv_bytes_saved_o[31:0]
+      New ports: A=\u_dut.total_kv_bytes_saved_o [31:3], B=$flatten\u_dut.$procmux$925_Y [31:3], Y=$flatten\u_dut.$0\total_kv_bytes_saved_o[31:0] [31:3]
+      New connections: $flatten\u_dut.$0\total_kv_bytes_saved_o[31:0] [2:0] = \u_dut.total_kv_bytes_saved_o [2:0]
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv_formal.
+Performed a total of 3 changes.
+
+7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv_formal'.
+Removed a total of 0 cells.
+
+7.6. Executing OPT_SHARE pass.
+
+7.7. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$1292 ($dff) from module mlu_cambricon_llm_flash_kv_formal (D = $add$formal/mlu_cambricon_llm_flash_kv_formal.sv:35$324_Y, Q = \init_cnt).
+Adding SRST signal on $procdff$1291 ($dff) from module mlu_cambricon_llm_flash_kv_formal (D = \total_kv_bytes_saved_o, Q = \q_saved_prev, rval = 0).
+Adding SRST signal on $procdff$1288 ($dff) from module mlu_cambricon_llm_flash_kv_formal (D = \cmd_tag_i, Q = \q_cmd_tag, rval = 8'00000000).
+Setting constant 1-bit at position 0 on $auto$async2sync.cc:118:execute$1449 ($dff) from module mlu_cambricon_llm_flash_kv_formal.
+
+7.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv_formal..
+Removed 188 unused cells and 207 unused wires.
+<suppressed ~228 debug messages>
+
+7.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv_formal.
+<suppressed ~80 debug messages>
+
+7.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+7.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_cambricon_llm_flash_kv_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$946.
+    dead port 2/2 on $mux $flatten\u_dut.$procmux$954.
+Removed 2 multiplexer ports.
+<suppressed ~32 debug messages>
+
+7.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv_formal.
+Performed a total of 0 changes.
+
+7.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv_formal'.
+Removed a total of 0 cells.
+
+7.14. Executing OPT_SHARE pass.
+
+7.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv_formal..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+7.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv_formal.
+
+7.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+7.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_cambricon_llm_flash_kv_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~30 debug messages>
+
+7.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv_formal.
+Performed a total of 0 changes.
+
+7.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv_formal'.
+Removed a total of 0 cells.
+
+7.22. Executing OPT_SHARE pass.
+
+7.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv_formal..
+
+7.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv_formal.
+
+7.26. Finished fast OPT passes. (There is nothing left to do.)
+
+8. Executing SAT pass (solving SAT problems in the circuit).
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Imported 157 cells to SAT database.
+Import set-constraint from init attribute: $auto$async2sync.cc:107:execute$1456 = 1'0
+Import set-constraint from init attribute: $auto$async2sync.cc:107:execute$1468 = 1'0
+Import set-constraint from init attribute: $auto$async2sync.cc:107:execute$1480 = 1'0
+Import set-constraint from init attribute: $auto$async2sync.cc:107:execute$1492 = 1'0
+Import set-constraint from init attribute: $auto$async2sync.cc:107:execute$1498 = 1'0
+Import set-constraint from init attribute: $auto$async2sync.cc:107:execute$1504 = 1'0
+Import set-constraint from init attribute: $auto$async2sync.cc:107:execute$1510 = 1'0
+Import set-constraint from init attribute: $auto$async2sync.cc:116:execute$1454 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:116:execute$1460 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:116:execute$1466 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:116:execute$1472 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:116:execute$1478 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:116:execute$1484 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:116:execute$1490 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:116:execute$1496 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:116:execute$1502 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:116:execute$1508 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:116:execute$1514 = 1'1
+Import set-constraint from init attribute: \init_cnt = 2'00
+Import set-constraint from init attribute: \q_all8_acc = 1'0
+Import set-constraint from init attribute: \q_cmd_tag = 8'00000000
+Import set-constraint from init attribute: \q_cmd_valid = 1'0
+Import set-constraint from init attribute: \q_mode_spec = 1'0
+Import set-constraint from init attribute: \q_prec_fp8 = 1'0
+Import set-constraint from init attribute: \q_saved_prev = 0
+Import set-constraint from init attribute: \q_tok0_rej = 1'0
+Final init constraint equation: { $auto$async2sync.cc:234:execute$1424 $auto$async2sync.cc:234:execute$1430 $auto$async2sync.cc:234:execute$1432 $auto$async2sync.cc:234:execute$1434 $auto$async2sync.cc:234:execute$1436 $auto$async2sync.cc:234:execute$1440 \q_tok0_rej \q_saved_prev \q_prec_fp8 \q_mode_spec \q_cmd_valid \q_cmd_tag \q_all8_acc \init_cnt $auto$async2sync.cc:116:execute$1514 $auto$async2sync.cc:116:execute$1508 $auto$async2sync.cc:116:execute$1502 $auto$async2sync.cc:116:execute$1496 $auto$async2sync.cc:116:execute$1490 $auto$async2sync.cc:116:execute$1484 $auto$async2sync.cc:116:execute$1478 $auto$async2sync.cc:116:execute$1472 $auto$async2sync.cc:116:execute$1466 $auto$async2sync.cc:116:execute$1460 $auto$async2sync.cc:116:execute$1454 $auto$async2sync.cc:107:execute$1510 $auto$async2sync.cc:107:execute$1504 $auto$async2sync.cc:107:execute$1498 $auto$async2sync.cc:107:execute$1492 $auto$async2sync.cc:107:execute$1480 $auto$async2sync.cc:107:execute$1468 $auto$async2sync.cc:107:execute$1456 } = 119'00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111111111110000000
+Import proof for assert: 1'1 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1454 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1460 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1466 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1472 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1478 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1484 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1490 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1496 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1502 when $auto$async2sync.cc:107:execute$1498.
+Import proof for assert: $auto$async2sync.cc:116:execute$1508 when $auto$async2sync.cc:107:execute$1504.
+Import proof for assert: $auto$async2sync.cc:116:execute$1514 when $auto$async2sync.cc:107:execute$1510.
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Imported 157 cells to SAT database.
+Import proof for assert: 1'1 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1454 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1460 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1466 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1472 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1478 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1484 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1490 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1496 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1502 when $auto$async2sync.cc:107:execute$1498.
+Import proof for assert: $auto$async2sync.cc:116:execute$1508 when $auto$async2sync.cc:107:execute$1504.
+Import proof for assert: $auto$async2sync.cc:116:execute$1514 when $auto$async2sync.cc:107:execute$1510.
+
+Setting up time step 3:
+Final constraint equation: { } = { }
+Imported 157 cells to SAT database.
+Import proof for assert: 1'1 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1454 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1460 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1466 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1472 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1478 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1484 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1490 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1496 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1502 when $auto$async2sync.cc:107:execute$1498.
+Import proof for assert: $auto$async2sync.cc:116:execute$1508 when $auto$async2sync.cc:107:execute$1504.
+Import proof for assert: $auto$async2sync.cc:116:execute$1514 when $auto$async2sync.cc:107:execute$1510.
+
+Setting up time step 4:
+Final constraint equation: { } = { }
+Imported 157 cells to SAT database.
+Import proof for assert: 1'1 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1454 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1460 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1466 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1472 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1478 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1484 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1490 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1496 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1502 when $auto$async2sync.cc:107:execute$1498.
+Import proof for assert: $auto$async2sync.cc:116:execute$1508 when $auto$async2sync.cc:107:execute$1504.
+Import proof for assert: $auto$async2sync.cc:116:execute$1514 when $auto$async2sync.cc:107:execute$1510.
+
+Setting up time step 5:
+Final constraint equation: { } = { }
+Imported 157 cells to SAT database.
+Import proof for assert: 1'1 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1454 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1460 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1466 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1472 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1478 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1484 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1490 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1496 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1502 when $auto$async2sync.cc:107:execute$1498.
+Import proof for assert: $auto$async2sync.cc:116:execute$1508 when $auto$async2sync.cc:107:execute$1504.
+Import proof for assert: $auto$async2sync.cc:116:execute$1514 when $auto$async2sync.cc:107:execute$1510.
+
+Setting up time step 6:
+Final constraint equation: { } = { }
+Imported 157 cells to SAT database.
+Import proof for assert: 1'1 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1454 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1460 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1466 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1472 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1478 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1484 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1490 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1496 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1502 when $auto$async2sync.cc:107:execute$1498.
+Import proof for assert: $auto$async2sync.cc:116:execute$1508 when $auto$async2sync.cc:107:execute$1504.
+Import proof for assert: $auto$async2sync.cc:116:execute$1514 when $auto$async2sync.cc:107:execute$1510.
+
+Setting up time step 7:
+Final constraint equation: { } = { }
+Imported 157 cells to SAT database.
+Import proof for assert: 1'1 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1454 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1460 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1466 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1472 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1478 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1484 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1490 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1496 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1502 when $auto$async2sync.cc:107:execute$1498.
+Import proof for assert: $auto$async2sync.cc:116:execute$1508 when $auto$async2sync.cc:107:execute$1504.
+Import proof for assert: $auto$async2sync.cc:116:execute$1514 when $auto$async2sync.cc:107:execute$1510.
+
+Setting up time step 8:
+Final constraint equation: { } = { }
+Imported 157 cells to SAT database.
+Import proof for assert: 1'1 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1454 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1460 when $auto$async2sync.cc:107:execute$1456.
+Import proof for assert: $auto$async2sync.cc:116:execute$1466 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1472 when $auto$async2sync.cc:107:execute$1468.
+Import proof for assert: $auto$async2sync.cc:116:execute$1478 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1484 when $auto$async2sync.cc:107:execute$1480.
+Import proof for assert: $auto$async2sync.cc:116:execute$1490 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1496 when $auto$async2sync.cc:107:execute$1492.
+Import proof for assert: $auto$async2sync.cc:116:execute$1502 when $auto$async2sync.cc:107:execute$1498.
+Import proof for assert: $auto$async2sync.cc:116:execute$1508 when $auto$async2sync.cc:107:execute$1504.
+Import proof for assert: $auto$async2sync.cc:116:execute$1514 when $auto$async2sync.cc:107:execute$1510.
+Import show expression: \accept_thresh_i
+Import show expression: \clk_i
+Import show expression: \cmd_tag_i
+Import show expression: \cmd_valid_i
+Import show expression: \draft_prob_i
+Import show expression: \flash_base_page_i
+Import show expression: \flash_ecc_clean_i
+Import show expression: \kv_fp16_in_i
+Import show expression: \kv_rd_addr_i
+Import show expression: \kv_rd_en_i
+Import show expression: \kv_wr_slot_i
+Import show expression: \mode_spec_i
+Import show expression: \prec_fp8_i
+Import show expression: \target_prob_i
+Import show expression: \tree_mask_i
+
+Solving problem with 55547 variables and 147060 clauses..
+SAT proof finished - no model found: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+
+Warnings: 10 unique messages, 20 total
+End of script. Logfile hash: 9543fe3e2a, CPU: user 0.67s system 0.04s, MEM: 68.11 MB peak
+Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+Time spent: 73% 1x sat (0 sec), 5% 8x opt_clean (0 sec), ...

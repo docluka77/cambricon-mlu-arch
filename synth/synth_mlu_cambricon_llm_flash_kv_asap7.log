@@ -1,0 +1,2063 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+
+-- Running command `
+  read_verilog -sv -Irtl rtl/mlu_pkg.sv rtl/mlu_cambricon_llm_flash_kv.sv;
+  chformal -remove;
+  synth -top mlu_cambricon_llm_flash_kv -noabc;
+  dfflibmap -liberty /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib;
+  abc -fast -liberty /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib;
+  stat -liberty /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib;
+  write_verilog -noattr synth/mlu_cambricon_llm_flash_kv_asap7_netlist.v
+' --
+
+1. Executing Verilog-2005 frontend: rtl/mlu_pkg.sv
+Parsing SystemVerilog input from `rtl/mlu_pkg.sv' to AST representation.
+verilog frontend filename rtl/mlu_pkg.sv
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: rtl/mlu_cambricon_llm_flash_kv.sv
+Parsing SystemVerilog input from `rtl/mlu_cambricon_llm_flash_kv.sv' to AST representation.
+verilog frontend filename rtl/mlu_cambricon_llm_flash_kv.sv
+Generating RTLIL representation for module `\mlu_cambricon_llm_flash_kv'.
+Warning: Replacing memory \kv_ring_mem with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:191
+Warning: Replacing memory \rhs_s with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:168, rtl/mlu_cambricon_llm_flash_kv.sv:167
+Warning: Replacing memory \lhs_s with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:168, rtl/mlu_cambricon_llm_flash_kv.sv:166
+Warning: Replacing memory \scaled_u with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:120, rtl/mlu_cambricon_llm_flash_kv.sv:119
+Warning: Replacing memory \diff_u with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:119, rtl/mlu_cambricon_llm_flash_kv.sv:118
+Warning: Replacing memory \max_l2 with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:98, rtl/mlu_cambricon_llm_flash_kv.sv:95
+Warning: Replacing memory \min_l2 with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:97, rtl/mlu_cambricon_llm_flash_kv.sv:94
+Warning: Replacing memory \max_l1 with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:95, rtl/mlu_cambricon_llm_flash_kv.sv:91
+Warning: Replacing memory \min_l1 with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:94, rtl/mlu_cambricon_llm_flash_kv.sv:90
+Warning: Replacing memory \x_vec with list of registers. See rtl/mlu_cambricon_llm_flash_kv.sv:73
+Successfully finished Verilog frontend.
+
+3. Executing SYNTH pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1.1. Analyzing design hierarchy..
+Top module:  \mlu_cambricon_llm_flash_kv
+
+3.1.2. Analyzing design hierarchy..
+Top module:  \mlu_cambricon_llm_flash_kv
+Removed 0 unused modules.
+
+3.2. Executing PROC pass (convert processes to netlists).
+
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed 1 dead cases from process $proc$rtl/mlu_cambricon_llm_flash_kv.sv:137$313 in module mlu_cambricon_llm_flash_kv.
+Marked 1 switch rules as full_case in process $proc$rtl/mlu_cambricon_llm_flash_kv.sv:137$313 in module mlu_cambricon_llm_flash_kv.
+Marked 4 switch rules as full_case in process $proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278 in module mlu_cambricon_llm_flash_kv.
+Marked 9 switch rules as full_case in process $proc$rtl/mlu_cambricon_llm_flash_kv.sv:140$168 in module mlu_cambricon_llm_flash_kv.
+Marked 12 switch rules as full_case in process $proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62 in module mlu_cambricon_llm_flash_kv.
+Removed a total of 1 dead cases.
+
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 191 assignments to connections.
+
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_ni in `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~27 debug messages>
+
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:137$313'.
+     1/1: $1$mem2reg_rd$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:137$58_DATA[63:0]$315
+Creating decoders for process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+     1/40: $3$lookahead\kv_ring_fp8$277[15:0]$298
+     2/40: $3$bitselwrite$pos$rtl/mlu_cambricon_llm_flash_kv.sv:215$57[3:0]$295
+     3/40: $3$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$59_ADDR[3:0]$296
+     4/40: $3$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$59_DATA[63:0]$297
+     5/40: $2$lookahead\kv_ring_fp8$277[15:0]$293
+     6/40: $2$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$59_DATA[63:0]$292
+     7/40: $2$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$59_ADDR[3:0]$291
+     8/40: $2$bitselwrite$pos$rtl/mlu_cambricon_llm_flash_kv.sv:215$57[3:0]$290
+     9/40: $1$lookahead\kv_ring_fp8$277[15:0]$289
+    10/40: $1$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$59_DATA[63:0]$288
+    11/40: $1$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$59_ADDR[3:0]$287
+    12/40: $1$bitselwrite$pos$rtl/mlu_cambricon_llm_flash_kv.sv:215$57[3:0]$286
+    13/40: $0\flash_req_valid_o[0:0]
+    14/40: $0\done_valid_o[0:0]
+    15/40: $1$fordecl_block$13.i[31:0]$285
+    16/40: $0\kv_ring_mem[15][63:0]
+    17/40: $0\kv_ring_mem[14][63:0]
+    18/40: $0\kv_ring_mem[13][63:0]
+    19/40: $0\kv_ring_mem[12][63:0]
+    20/40: $0\kv_ring_mem[11][63:0]
+    21/40: $0\kv_ring_mem[10][63:0]
+    22/40: $0\kv_ring_mem[9][63:0]
+    23/40: $0\kv_ring_mem[8][63:0]
+    24/40: $0\kv_ring_mem[7][63:0]
+    25/40: $0\kv_ring_mem[6][63:0]
+    26/40: $0\kv_ring_mem[5][63:0]
+    27/40: $0\kv_ring_mem[4][63:0]
+    28/40: $0\kv_ring_mem[3][63:0]
+    29/40: $0\kv_ring_mem[2][63:0]
+    30/40: $0\kv_ring_mem[1][63:0]
+    31/40: $0\kv_ring_mem[0][63:0]
+    32/40: $0\flash_ecc_err_cnt_o[31:0]
+    33/40: $0\total_kv_bytes_saved_o[31:0]
+    34/40: $0\total_accepted_tokens_o[31:0]
+    35/40: $0\bonus_token_idx_o[2:0]
+    36/40: $0\accepted_len_o[3:0]
+    37/40: $0\accepted_bitmap_o[7:0]
+    38/40: $0\done_tag_o[7:0]
+    39/40: $0\flash_page_addr_o[31:0]
+    40/40: $0\kv_packed_out_o[63:0]
+Creating decoders for process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+Creating decoders for process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:140$168'.
+     1/17: $1\kv_dequant_out_o[127:0] [127:112]
+     2/17: $8\kv_dequant_out_o[111:96]
+     3/17: $7\kv_dequant_out_o[95:80]
+     4/17: $6\kv_dequant_out_o[79:64]
+     5/17: $5\kv_dequant_out_o[63:48]
+     6/17: $4\kv_dequant_out_o[47:32]
+     7/17: $3\kv_dequant_out_o[31:16]
+     8/17: $2\kv_dequant_out_o[15:0]
+     9/17: $1$fordecl_block$9.k[31:0]$170
+    10/17: $1\kv_dequant_out_o[127:0] [111:96]
+    11/17: $1\kv_dequant_out_o[127:0] [95:80]
+    12/17: $1\kv_dequant_out_o[127:0] [79:64]
+    13/17: $1\kv_dequant_out_o[127:0] [63:48]
+    14/17: $1\kv_dequant_out_o[127:0] [47:32]
+    15/17: $1\kv_dequant_out_o[127:0] [31:16]
+    16/17: $1\kv_dequant_out_o[127:0] [15:0]
+    17/17: $9\kv_dequant_out_o[127:112]
+Creating decoders for process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+     1/12: $12\shift_amt[3:0]
+     2/12: $11\shift_amt[3:0]
+     3/12: $10\shift_amt[3:0]
+     4/12: $9\shift_amt[3:0]
+     5/12: $8\shift_amt[3:0]
+     6/12: $7\shift_amt[3:0]
+     7/12: $6\shift_amt[3:0]
+     8/12: $5\shift_amt[3:0]
+     9/12: $4\shift_amt[3:0]
+    10/12: $3\shift_amt[3:0]
+    11/12: $2\shift_amt[3:0]
+    12/12: $1\shift_amt[3:0]
+Creating decoders for process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$60'.
+
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.$mem2reg_rd$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:137$58_DATA' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:137$313'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\token_ok_comb' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\prefix_accept_comb' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\accepted_len_comb' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\bonus_idx_comb' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.$fordecl_block$11.k' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$33.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$33.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$34.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$34.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$35.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$35.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$36.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$36.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$37.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$37.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$38.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$38.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$39.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$39.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$40.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$40.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$41.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$41.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$42.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$42.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$43.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$43.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$44.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$44.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$45.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$45.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$46.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$46.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$47.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$47.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$48.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$48.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$49.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$49.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$50.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$50.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$51.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$51.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$52.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$52.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$53.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$53.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$54.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$54.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$55.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:166$55.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$56.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:167$56.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\lhs_s[0]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\lhs_s[1]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\lhs_s[2]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\lhs_s[3]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\lhs_s[4]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\lhs_s[5]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\lhs_s[6]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\lhs_s[7]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\rhs_s[0]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\rhs_s[1]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\rhs_s[2]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\rhs_s[3]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\rhs_s[4]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\rhs_s[5]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\rhs_s[6]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\rhs_s[7]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\kv_dequant_out_o' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:140$168'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.$fordecl_block$9.k' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:140$168'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\min_val' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\max_val' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\span_u' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\shift_amt' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\packed_int4_comb' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\packed_fp8_comb' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\packed_kv_comb' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.$fordecl_block$3.i' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.$fordecl_block$5.i' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:100$15.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:100$15.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:100$16.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:100$16.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.$fordecl_block$7.k' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$17.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$17.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$18.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$18.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$19.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$19.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$20.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$20.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$21.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$21.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$22.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$22.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$23.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$23.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$24.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$24.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$25.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$25.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$26.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$26.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$27.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$27.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$28.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$28.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$29.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$29.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$30.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$30.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$31.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$31.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$32.$result' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\sext17$func$rtl/mlu_cambricon_llm_flash_kv.sv:118$32.v' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\min_l1[0]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\min_l1[1]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\min_l1[2]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\min_l1[3]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\max_l1[0]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\max_l1[1]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\max_l1[2]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\max_l1[3]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\min_l2[0]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\min_l2[1]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\max_l2[0]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\max_l2[1]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\diff_u[0]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\diff_u[1]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\diff_u[2]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\diff_u[3]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\diff_u[4]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\diff_u[5]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\diff_u[6]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\diff_u[7]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\scaled_u[0]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\scaled_u[1]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\scaled_u[2]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\scaled_u[3]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\scaled_u[4]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\scaled_u[5]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\scaled_u[6]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\scaled_u[7]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.$fordecl_block$1.k' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$60'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\x_vec[0]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$60'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\x_vec[1]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$60'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\x_vec[2]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$60'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\x_vec[3]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$60'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\x_vec[4]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$60'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\x_vec[5]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$60'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\x_vec[6]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$60'.
+No latch inferred for signal `\mlu_cambricon_llm_flash_kv.\x_vec[7]' from process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$60'.
+
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_packed_out_o' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1000' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\flash_req_valid_o' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1005' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\flash_page_addr_o' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1010' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\done_valid_o' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1015' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\done_tag_o' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1020' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\accepted_bitmap_o' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1025' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\accepted_len_o' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1030' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\bonus_token_idx_o' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1035' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\total_accepted_tokens_o' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1040' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\total_kv_bytes_saved_o' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1045' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\flash_ecc_err_cnt_o' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1050' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_fp8' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1055' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.$fordecl_block$13.i' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1060' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.$bitselwrite$pos$rtl/mlu_cambricon_llm_flash_kv.sv:215$57' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1065' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[0]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1070' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[1]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1075' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[2]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1080' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[3]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1085' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[4]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1090' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[5]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1095' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[6]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1100' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[7]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1105' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[8]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1110' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[9]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1115' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[10]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1120' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[11]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1125' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[12]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1130' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[13]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1135' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[14]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1140' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.\kv_ring_mem[15]' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1145' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$59_ADDR' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1150' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.$mem2reg_wr$\kv_ring_mem$rtl/mlu_cambricon_llm_flash_kv.sv:214$59_DATA' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1155' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_cambricon_llm_flash_kv.$lookahead\kv_ring_fp8$277' using process `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+  created $adff cell `$procdff$1160' with positive edge clock and positive level reset.
+
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:137$313'.
+Removing empty process `mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:137$313'.
+Found and cleaned up 5 empty switches in `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+Removing empty process `mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:188$278'.
+Removing empty process `mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:164$187'.
+Found and cleaned up 9 empty switches in `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:140$168'.
+Removing empty process `mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:140$168'.
+Found and cleaned up 12 empty switches in `\mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+Removing empty process `mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:88$62'.
+Removing empty process `mlu_cambricon_llm_flash_kv.$proc$rtl/mlu_cambricon_llm_flash_kv.sv:71$60'.
+Cleaned up 27 empty switches.
+
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+<suppressed ~73 debug messages>
+
+3.3. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+
+3.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+Removed 50 unused cells and 606 unused wires.
+<suppressed ~51 debug messages>
+
+3.5. Executing CHECK pass (checking for obvious problems).
+Checking module mlu_cambricon_llm_flash_kv...
+Found and reported 0 problems.
+
+3.6. Executing OPT pass (performing simple optimizations).
+
+3.6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+
+3.6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+3.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_cambricon_llm_flash_kv..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$337.
+    dead port 2/2 on $mux $procmux$694.
+    dead port 2/2 on $mux $procmux$700.
+    dead port 2/2 on $mux $procmux$706.
+    dead port 2/2 on $mux $procmux$712.
+    dead port 2/2 on $mux $procmux$718.
+    dead port 2/2 on $mux $procmux$724.
+    dead port 2/2 on $mux $procmux$730.
+    dead port 2/2 on $mux $procmux$760.
+    dead port 1/2 on $mux $procmux$766.
+    dead port 1/2 on $mux $procmux$769.
+    dead port 1/2 on $mux $procmux$772.
+    dead port 1/2 on $mux $procmux$775.
+    dead port 1/2 on $mux $procmux$778.
+    dead port 1/2 on $mux $procmux$781.
+    dead port 1/2 on $mux $procmux$784.
+    dead port 1/2 on $mux $procmux$787.
+    dead port 1/2 on $mux $procmux$790.
+    dead port 1/2 on $mux $procmux$793.
+    dead port 1/2 on $mux $procmux$796.
+    dead port 1/2 on $mux $procmux$802.
+    dead port 1/2 on $mux $procmux$805.
+    dead port 1/2 on $mux $procmux$808.
+    dead port 1/2 on $mux $procmux$811.
+    dead port 1/2 on $mux $procmux$814.
+    dead port 1/2 on $mux $procmux$817.
+    dead port 1/2 on $mux $procmux$820.
+    dead port 1/2 on $mux $procmux$823.
+    dead port 1/2 on $mux $procmux$826.
+    dead port 1/2 on $mux $procmux$829.
+    dead port 1/2 on $mux $procmux$835.
+    dead port 1/2 on $mux $procmux$838.
+    dead port 1/2 on $mux $procmux$841.
+    dead port 1/2 on $mux $procmux$844.
+    dead port 1/2 on $mux $procmux$847.
+    dead port 1/2 on $mux $procmux$850.
+    dead port 1/2 on $mux $procmux$853.
+    dead port 1/2 on $mux $procmux$856.
+    dead port 1/2 on $mux $procmux$859.
+    dead port 1/2 on $mux $procmux$865.
+    dead port 1/2 on $mux $procmux$868.
+    dead port 1/2 on $mux $procmux$871.
+    dead port 1/2 on $mux $procmux$874.
+    dead port 1/2 on $mux $procmux$877.
+    dead port 1/2 on $mux $procmux$880.
+    dead port 1/2 on $mux $procmux$883.
+    dead port 1/2 on $mux $procmux$886.
+    dead port 1/2 on $mux $procmux$892.
+    dead port 1/2 on $mux $procmux$895.
+    dead port 1/2 on $mux $procmux$898.
+    dead port 1/2 on $mux $procmux$901.
+    dead port 1/2 on $mux $procmux$904.
+    dead port 1/2 on $mux $procmux$907.
+    dead port 1/2 on $mux $procmux$910.
+    dead port 1/2 on $mux $procmux$916.
+    dead port 1/2 on $mux $procmux$919.
+    dead port 1/2 on $mux $procmux$922.
+    dead port 1/2 on $mux $procmux$925.
+    dead port 1/2 on $mux $procmux$928.
+    dead port 1/2 on $mux $procmux$931.
+    dead port 1/2 on $mux $procmux$937.
+    dead port 1/2 on $mux $procmux$940.
+    dead port 1/2 on $mux $procmux$943.
+    dead port 1/2 on $mux $procmux$946.
+    dead port 1/2 on $mux $procmux$949.
+    dead port 1/2 on $mux $procmux$955.
+    dead port 1/2 on $mux $procmux$958.
+    dead port 1/2 on $mux $procmux$961.
+    dead port 1/2 on $mux $procmux$964.
+    dead port 1/2 on $mux $procmux$970.
+    dead port 1/2 on $mux $procmux$973.
+    dead port 1/2 on $mux $procmux$976.
+    dead port 1/2 on $mux $procmux$982.
+    dead port 1/2 on $mux $procmux$985.
+    dead port 1/2 on $mux $procmux$991.
+Removed 75 multiplexer ports.
+<suppressed ~409 debug messages>
+
+3.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv.
+Performed a total of 0 changes.
+
+3.6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv'.
+Removed a total of 0 cells.
+
+3.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+Removed 0 unused cells and 76 unused wires.
+<suppressed ~1 debug messages>
+
+3.6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+
+3.6.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.6.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_cambricon_llm_flash_kv..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~334 debug messages>
+
+3.6.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv.
+Performed a total of 0 changes.
+
+3.6.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv'.
+Removed a total of 0 cells.
+
+3.6.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.6.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+
+3.6.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+
+3.6.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.7. Executing FSM pass (extract and optimize FSM).
+
+3.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+3.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+3.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+
+3.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+3.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+3.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+3.8. Executing OPT pass (performing simple optimizations).
+
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv'.
+Removed a total of 0 cells.
+
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_cambricon_llm_flash_kv..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~334 debug messages>
+
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv.
+Performed a total of 0 changes.
+
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv'.
+Removed a total of 0 cells.
+
+3.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$1145 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[15]).
+Adding EN signal on $procdff$1140 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[14]).
+Adding EN signal on $procdff$1135 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[13]).
+Adding EN signal on $procdff$1130 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[12]).
+Adding EN signal on $procdff$1125 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[11]).
+Adding EN signal on $procdff$1120 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[10]).
+Adding EN signal on $procdff$1115 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[9]).
+Adding EN signal on $procdff$1110 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[8]).
+Adding EN signal on $procdff$1105 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[7]).
+Adding EN signal on $procdff$1100 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[6]).
+Adding EN signal on $procdff$1095 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[5]).
+Adding EN signal on $procdff$1090 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[4]).
+Adding EN signal on $procdff$1085 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[3]).
+Adding EN signal on $procdff$1080 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[2]).
+Adding EN signal on $procdff$1075 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[1]).
+Adding EN signal on $procdff$1070 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_ring_mem[0]).
+Adding EN signal on $procdff$1055 ($adff) from module mlu_cambricon_llm_flash_kv (D = $or$rtl/mlu_cambricon_llm_flash_kv.sv:215$306_Y, Q = \kv_ring_fp8).
+Adding EN signal on $procdff$1050 ($adff) from module mlu_cambricon_llm_flash_kv (D = $add$rtl/mlu_cambricon_llm_flash_kv.sv:221$310_Y, Q = \flash_ecc_err_cnt_o).
+Adding EN signal on $procdff$1045 ($adff) from module mlu_cambricon_llm_flash_kv (D = $add$rtl/mlu_cambricon_llm_flash_kv.sv:219$308_Y, Q = \total_kv_bytes_saved_o).
+Adding EN signal on $procdff$1040 ($adff) from module mlu_cambricon_llm_flash_kv (D = $add$rtl/mlu_cambricon_llm_flash_kv.sv:227$312_Y, Q = \total_accepted_tokens_o).
+Adding EN signal on $procdff$1035 ($adff) from module mlu_cambricon_llm_flash_kv (D = \bonus_idx_comb, Q = \bonus_token_idx_o).
+Adding EN signal on $procdff$1030 ($adff) from module mlu_cambricon_llm_flash_kv (D = \accepted_len_comb, Q = \accepted_len_o).
+Adding EN signal on $procdff$1025 ($adff) from module mlu_cambricon_llm_flash_kv (D = \prefix_accept_comb, Q = \accepted_bitmap_o).
+Adding EN signal on $procdff$1020 ($adff) from module mlu_cambricon_llm_flash_kv (D = \cmd_tag_i, Q = \done_tag_o).
+Adding EN signal on $procdff$1010 ($adff) from module mlu_cambricon_llm_flash_kv (D = $add$rtl/mlu_cambricon_llm_flash_kv.sv:218$307_Y, Q = \flash_page_addr_o).
+Adding EN signal on $procdff$1000 ($adff) from module mlu_cambricon_llm_flash_kv (D = \packed_kv_comb, Q = \kv_packed_out_o).
+
+3.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+Removed 72 unused cells and 72 unused wires.
+<suppressed ~73 debug messages>
+
+3.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+
+3.8.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_cambricon_llm_flash_kv..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~84 debug messages>
+
+3.8.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv.
+Performed a total of 0 changes.
+
+3.8.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv'.
+<suppressed ~27 debug messages>
+Removed a total of 9 cells.
+
+3.8.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.8.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+Removed 0 unused cells and 9 unused wires.
+<suppressed ~1 debug messages>
+
+3.8.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+
+3.8.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_cambricon_llm_flash_kv..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~84 debug messages>
+
+3.8.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv.
+Performed a total of 0 changes.
+
+3.8.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv'.
+Removed a total of 0 cells.
+
+3.8.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.8.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+
+3.8.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+
+3.8.23. Finished fast OPT passes. (There is nothing left to do.)
+
+3.9. Executing WREDUCE pass (reducing word size of cells).
+Converting cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:100$130 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:100$130 ($sub).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:100$130 ($sub).
+Converting cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$132 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$132 ($sub).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$132 ($sub).
+Removed top 13 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$134 ($gt).
+Converting cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$136 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$136 ($sub).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$136 ($sub).
+Removed top 13 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$138 ($gt).
+Converting cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$140 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$140 ($sub).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$140 ($sub).
+Removed top 13 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$142 ($gt).
+Converting cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$144 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$144 ($sub).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$144 ($sub).
+Removed top 13 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$146 ($gt).
+Converting cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$148 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$148 ($sub).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$148 ($sub).
+Removed top 13 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$150 ($gt).
+Converting cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$152 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$152 ($sub).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$152 ($sub).
+Removed top 13 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$154 ($gt).
+Converting cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$156 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$156 ($sub).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$156 ($sub).
+Removed top 13 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$158 ($gt).
+Converting cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$160 ($sub) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$160 ($sub).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$160 ($sub).
+Removed top 13 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$162 ($gt).
+Removed top 12 bits (of 16) from port A of cell mlu_cambricon_llm_flash_kv.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171 ($shl).
+Removed top 12 bits (of 16) from port A of cell mlu_cambricon_llm_flash_kv.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173 ($shl).
+Removed top 12 bits (of 16) from port A of cell mlu_cambricon_llm_flash_kv.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175 ($shl).
+Removed top 12 bits (of 16) from port A of cell mlu_cambricon_llm_flash_kv.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177 ($shl).
+Removed top 12 bits (of 16) from port A of cell mlu_cambricon_llm_flash_kv.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$179 ($shl).
+Removed top 12 bits (of 16) from port A of cell mlu_cambricon_llm_flash_kv.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$181 ($shl).
+Removed top 12 bits (of 16) from port A of cell mlu_cambricon_llm_flash_kv.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$183 ($shl).
+Removed top 12 bits (of 16) from port A of cell mlu_cambricon_llm_flash_kv.$shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$185 ($shl).
+Converting cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$237 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$237 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$237 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$238 ($ge).
+Converting cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$240 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$240 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$240 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$241 ($ge).
+Converting cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$243 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$243 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$243 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$244 ($ge).
+Converting cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$246 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$246 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$246 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$247 ($ge).
+Converting cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$249 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$249 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$249 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$250 ($ge).
+Converting cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$252 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$252 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$252 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$253 ($ge).
+Converting cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$255 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$255 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$255 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$256 ($ge).
+Converting cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$258 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$258 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:166$258 ($add).
+Removed top 1 bits (of 17) from port B of cell mlu_cambricon_llm_flash_kv.$ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$259 ($ge).
+Removed top 3 bits (of 4) from port A of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$268 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$268 ($add).
+Removed top 2 bits (of 4) from port Y of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$268 ($add).
+Removed top 2 bits (of 4) from port A of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$269 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$269 ($add).
+Removed top 1 bits (of 4) from port Y of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$269 ($add).
+Removed top 1 bits (of 4) from port A of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$270 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$270 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$271 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$272 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$273 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$274 ($add).
+Converting cell mlu_cambricon_llm_flash_kv.$neg$rtl/mlu_cambricon_llm_flash_kv.sv:215$299 ($neg) from signed to unsigned.
+Removed top 1 bits (of 5) from port A of cell mlu_cambricon_llm_flash_kv.$neg$rtl/mlu_cambricon_llm_flash_kv.sv:215$299 ($neg).
+Removed top 28 bits (of 32) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:218$307 ($add).
+Removed top 28 bits (of 32) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:219$308 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:221$310 ($add).
+Removed top 28 bits (of 32) from port B of cell mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:227$312 ($add).
+Removed top 1 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$procmux$325_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$procmux$326_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$procmux$327_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$procmux$328_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$procmux$329_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$procmux$330_CMP0 ($eq).
+Removed top 3 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$procmux$331_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$procmux$481_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$procmux$498_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$procmux$516_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$procmux$535_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$procmux$555_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$procmux$576_CMP0 ($eq).
+Removed top 3 bits (of 4) from port B of cell mlu_cambricon_llm_flash_kv.$procmux$598_CMP0 ($eq).
+Removed top 3 bits (of 4) from mux cell mlu_cambricon_llm_flash_kv.$procmux$763 ($mux).
+Removed top 2 bits (of 4) from mux cell mlu_cambricon_llm_flash_kv.$procmux$799 ($mux).
+Removed top 2 bits (of 4) from mux cell mlu_cambricon_llm_flash_kv.$procmux$832 ($mux).
+Removed top 1 bits (of 4) from mux cell mlu_cambricon_llm_flash_kv.$procmux$862 ($mux).
+Removed top 1 bits (of 4) from mux cell mlu_cambricon_llm_flash_kv.$procmux$889 ($mux).
+Removed top 1 bits (of 4) from mux cell mlu_cambricon_llm_flash_kv.$procmux$913 ($mux).
+Removed top 1 bits (of 4) from mux cell mlu_cambricon_llm_flash_kv.$procmux$934 ($mux).
+Removed top 2 bits (of 4) from wire mlu_cambricon_llm_flash_kv.$10\shift_amt[3:0].
+Removed top 2 bits (of 4) from wire mlu_cambricon_llm_flash_kv.$11\shift_amt[3:0].
+Removed top 3 bits (of 4) from wire mlu_cambricon_llm_flash_kv.$12\shift_amt[3:0].
+Removed top 1 bits (of 4) from wire mlu_cambricon_llm_flash_kv.$6\shift_amt[3:0].
+Removed top 1 bits (of 4) from wire mlu_cambricon_llm_flash_kv.$7\shift_amt[3:0].
+Removed top 1 bits (of 4) from wire mlu_cambricon_llm_flash_kv.$8\shift_amt[3:0].
+Removed top 1 bits (of 4) from wire mlu_cambricon_llm_flash_kv.$9\shift_amt[3:0].
+Removed top 2 bits (of 4) from wire mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$268_Y.
+Removed top 1 bits (of 4) from wire mlu_cambricon_llm_flash_kv.$add$rtl/mlu_cambricon_llm_flash_kv.sv:178$269_Y.
+Removed top 12 bits (of 64) from wire mlu_cambricon_llm_flash_kv.packed_int4_comb.
+
+3.10. Executing PEEPOPT pass (run peephole optimizers).
+
+3.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+Removed 0 unused cells and 10 unused wires.
+<suppressed ~1 debug messages>
+
+3.12. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module mlu_cambricon_llm_flash_kv:
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$172 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$174 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$176 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$178 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$180 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$182 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$184 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$186 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$237 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$240 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$243 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$246 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$249 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$252 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$255 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$258 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$268 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$269 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$270 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$271 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$272 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$273 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$274 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:218$307 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:219$308 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:221$310 ($add).
+  creating $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:227$312 ($add).
+  creating $macc model for $neg$rtl/mlu_cambricon_llm_flash_kv.sv:215$299 ($neg).
+  creating $macc model for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:100$130 ($sub).
+  creating $macc model for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$132 ($sub).
+  creating $macc model for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$136 ($sub).
+  creating $macc model for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$140 ($sub).
+  creating $macc model for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$144 ($sub).
+  creating $macc model for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$148 ($sub).
+  creating $macc model for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$152 ($sub).
+  creating $macc model for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$156 ($sub).
+  creating $macc model for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$160 ($sub).
+  merging $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$273 into $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$274.
+  merging $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$272 into $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$274.
+  merging $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$271 into $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$274.
+  merging $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$270 into $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$274.
+  merging $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$269 into $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$274.
+  merging $macc model for $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$268 into $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$274.
+  creating $alu model for $macc $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$136.
+  creating $alu model for $macc $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$132.
+  creating $alu model for $macc $sub$rtl/mlu_cambricon_llm_flash_kv.sv:100$130.
+  creating $alu model for $macc $neg$rtl/mlu_cambricon_llm_flash_kv.sv:215$299.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:227$312.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:221$310.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:219$308.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:218$307.
+  creating $alu model for $macc $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$140.
+  creating $alu model for $macc $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$144.
+  creating $alu model for $macc $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$148.
+  creating $alu model for $macc $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$152.
+  creating $alu model for $macc $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$156.
+  creating $alu model for $macc $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$160.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$258.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$255.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$252.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$249.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$246.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$243.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$240.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$237.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$186.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$184.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$182.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$180.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$178.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$176.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$174.
+  creating $alu model for $macc $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$172.
+  creating $macc cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:178$274: $auto$alumacc.cc:382:replace_macc$1257
+  creating $alu model for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$238 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$241 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$244 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$247 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$250 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$253 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$256 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$259 ($ge): new $alu
+  creating $alu model for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$134 ($gt): new $alu
+  creating $alu model for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$138 ($gt): new $alu
+  creating $alu model for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$142 ($gt): new $alu
+  creating $alu model for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$146 ($gt): new $alu
+  creating $alu model for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$150 ($gt): new $alu
+  creating $alu model for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$154 ($gt): new $alu
+  creating $alu model for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$158 ($gt): new $alu
+  creating $alu model for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$162 ($gt): new $alu
+  creating $alu model for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:91$104 ($gt): new $alu
+  creating $alu model for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:91$108 ($gt): new $alu
+  creating $alu model for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:91$112 ($gt): new $alu
+  creating $alu model for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:91$116 ($gt): new $alu
+  creating $alu model for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:95$120 ($gt): new $alu
+  creating $alu model for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:95$124 ($gt): new $alu
+  creating $alu model for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:98$128 ($gt): new $alu
+  creating $alu model for $lt$rtl/mlu_cambricon_llm_flash_kv.sv:90$102 ($lt): merged with $gt$rtl/mlu_cambricon_llm_flash_kv.sv:91$104.
+  creating $alu model for $lt$rtl/mlu_cambricon_llm_flash_kv.sv:90$106 ($lt): merged with $gt$rtl/mlu_cambricon_llm_flash_kv.sv:91$108.
+  creating $alu model for $lt$rtl/mlu_cambricon_llm_flash_kv.sv:90$110 ($lt): merged with $gt$rtl/mlu_cambricon_llm_flash_kv.sv:91$112.
+  creating $alu model for $lt$rtl/mlu_cambricon_llm_flash_kv.sv:90$114 ($lt): merged with $gt$rtl/mlu_cambricon_llm_flash_kv.sv:91$116.
+  creating $alu model for $lt$rtl/mlu_cambricon_llm_flash_kv.sv:94$118 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_cambricon_llm_flash_kv.sv:94$122 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_cambricon_llm_flash_kv.sv:97$126 ($lt): new $alu
+  creating $alu cell for $lt$rtl/mlu_cambricon_llm_flash_kv.sv:97$126: $auto$alumacc.cc:512:replace_alu$1284
+  creating $alu cell for $lt$rtl/mlu_cambricon_llm_flash_kv.sv:94$122: $auto$alumacc.cc:512:replace_alu$1291
+  creating $alu cell for $lt$rtl/mlu_cambricon_llm_flash_kv.sv:94$118: $auto$alumacc.cc:512:replace_alu$1298
+  creating $alu cell for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:98$128: $auto$alumacc.cc:512:replace_alu$1305
+  creating $alu cell for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:95$124: $auto$alumacc.cc:512:replace_alu$1318
+  creating $alu cell for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:95$120: $auto$alumacc.cc:512:replace_alu$1331
+  creating $alu cell for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:91$116, $lt$rtl/mlu_cambricon_llm_flash_kv.sv:90$114: $auto$alumacc.cc:512:replace_alu$1344
+  creating $alu cell for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:91$112, $lt$rtl/mlu_cambricon_llm_flash_kv.sv:90$110: $auto$alumacc.cc:512:replace_alu$1357
+  creating $alu cell for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:91$108, $lt$rtl/mlu_cambricon_llm_flash_kv.sv:90$106: $auto$alumacc.cc:512:replace_alu$1370
+  creating $alu cell for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:91$104, $lt$rtl/mlu_cambricon_llm_flash_kv.sv:90$102: $auto$alumacc.cc:512:replace_alu$1383
+  creating $alu cell for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$162: $auto$alumacc.cc:512:replace_alu$1396
+  creating $alu cell for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$158: $auto$alumacc.cc:512:replace_alu$1407
+  creating $alu cell for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$154: $auto$alumacc.cc:512:replace_alu$1418
+  creating $alu cell for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$150: $auto$alumacc.cc:512:replace_alu$1429
+  creating $alu cell for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$146: $auto$alumacc.cc:512:replace_alu$1440
+  creating $alu cell for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$142: $auto$alumacc.cc:512:replace_alu$1451
+  creating $alu cell for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$138: $auto$alumacc.cc:512:replace_alu$1462
+  creating $alu cell for $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$134: $auto$alumacc.cc:512:replace_alu$1473
+  creating $alu cell for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$259: $auto$alumacc.cc:512:replace_alu$1484
+  creating $alu cell for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$256: $auto$alumacc.cc:512:replace_alu$1499
+  creating $alu cell for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$253: $auto$alumacc.cc:512:replace_alu$1514
+  creating $alu cell for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$250: $auto$alumacc.cc:512:replace_alu$1529
+  creating $alu cell for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$247: $auto$alumacc.cc:512:replace_alu$1544
+  creating $alu cell for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$244: $auto$alumacc.cc:512:replace_alu$1559
+  creating $alu cell for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$241: $auto$alumacc.cc:512:replace_alu$1574
+  creating $alu cell for $ge$rtl/mlu_cambricon_llm_flash_kv.sv:168$238: $auto$alumacc.cc:512:replace_alu$1589
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$172: $auto$alumacc.cc:512:replace_alu$1604
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$174: $auto$alumacc.cc:512:replace_alu$1607
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$176: $auto$alumacc.cc:512:replace_alu$1610
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$178: $auto$alumacc.cc:512:replace_alu$1613
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$180: $auto$alumacc.cc:512:replace_alu$1616
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$182: $auto$alumacc.cc:512:replace_alu$1619
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$184: $auto$alumacc.cc:512:replace_alu$1622
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:147$186: $auto$alumacc.cc:512:replace_alu$1625
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$237: $auto$alumacc.cc:512:replace_alu$1628
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$240: $auto$alumacc.cc:512:replace_alu$1631
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$243: $auto$alumacc.cc:512:replace_alu$1634
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$246: $auto$alumacc.cc:512:replace_alu$1637
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$249: $auto$alumacc.cc:512:replace_alu$1640
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$252: $auto$alumacc.cc:512:replace_alu$1643
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$255: $auto$alumacc.cc:512:replace_alu$1646
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:166$258: $auto$alumacc.cc:512:replace_alu$1649
+  creating $alu cell for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$160: $auto$alumacc.cc:512:replace_alu$1652
+  creating $alu cell for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$156: $auto$alumacc.cc:512:replace_alu$1655
+  creating $alu cell for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$152: $auto$alumacc.cc:512:replace_alu$1658
+  creating $alu cell for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$148: $auto$alumacc.cc:512:replace_alu$1661
+  creating $alu cell for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$144: $auto$alumacc.cc:512:replace_alu$1664
+  creating $alu cell for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$140: $auto$alumacc.cc:512:replace_alu$1667
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:218$307: $auto$alumacc.cc:512:replace_alu$1670
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:219$308: $auto$alumacc.cc:512:replace_alu$1673
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:221$310: $auto$alumacc.cc:512:replace_alu$1676
+  creating $alu cell for $add$rtl/mlu_cambricon_llm_flash_kv.sv:227$312: $auto$alumacc.cc:512:replace_alu$1679
+  creating $alu cell for $neg$rtl/mlu_cambricon_llm_flash_kv.sv:215$299: $auto$alumacc.cc:512:replace_alu$1682
+  creating $alu cell for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:100$130: $auto$alumacc.cc:512:replace_alu$1685
+  creating $alu cell for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$132: $auto$alumacc.cc:512:replace_alu$1688
+  creating $alu cell for $sub$rtl/mlu_cambricon_llm_flash_kv.sv:118$136: $auto$alumacc.cc:512:replace_alu$1691
+  created 56 $alu and 1 $macc cells.
+
+3.13. Executing SHARE pass (SAT-based resource sharing).
+Found 16 cells in module mlu_cambricon_llm_flash_kv that may be considered for resource sharing.
+  Analyzing resource sharing options for $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$161 ($shr):
+    Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1406 }.
+    Found 7 candidates: $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1417 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$162_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$158_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$161: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1406 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$161: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1417 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1406 $auto$rtlil.cc:3334:Not$1417 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1428 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$162_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$154_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$161: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1406 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$161: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1428 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1406 $auto$rtlil.cc:3334:Not$1428 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1439 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$162_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$150_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$161: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1406 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$161: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1439 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1406 $auto$rtlil.cc:3334:Not$1439 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1450 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$162_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$146_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$161: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1406 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$161: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1450 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1406 $auto$rtlil.cc:3334:Not$1450 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1461 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$162_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$142_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$161: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1406 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$161: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1461 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1406 $auto$rtlil.cc:3334:Not$1461 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1472 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$162_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$138_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$161: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1406 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$161: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1472 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1406 $auto$rtlil.cc:3334:Not$1472 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1483 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$162_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$134_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$161: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1406 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$161: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1483 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1406 $auto$rtlil.cc:3334:Not$1483 } = 3'101
+  Analyzing resource sharing options for $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157 ($shr):
+    Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1417 }.
+    Found 6 candidates: $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1428 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$158_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$154_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1417 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1428 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1417 $auto$rtlil.cc:3334:Not$1428 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1439 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$158_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$150_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1417 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1439 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1417 $auto$rtlil.cc:3334:Not$1439 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1450 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$158_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$146_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1417 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1450 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1417 $auto$rtlil.cc:3334:Not$1450 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1461 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$158_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$142_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1417 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1461 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1417 $auto$rtlil.cc:3334:Not$1461 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1472 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$158_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$138_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1417 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1472 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1417 $auto$rtlil.cc:3334:Not$1472 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1483 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$158_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$134_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1417 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$157: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1483 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1417 $auto$rtlil.cc:3334:Not$1483 } = 3'101
+  Analyzing resource sharing options for $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153 ($shr):
+    Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1428 }.
+    Found 5 candidates: $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1439 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$154_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$150_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1428 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1439 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1428 $auto$rtlil.cc:3334:Not$1439 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1450 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$154_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$146_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1428 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1450 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1428 $auto$rtlil.cc:3334:Not$1450 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1461 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$154_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$142_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1428 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1461 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1428 $auto$rtlil.cc:3334:Not$1461 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1472 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$154_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$138_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1428 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1472 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1428 $auto$rtlil.cc:3334:Not$1472 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1483 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$154_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$134_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1428 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$153: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1483 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1428 $auto$rtlil.cc:3334:Not$1483 } = 3'101
+  Analyzing resource sharing options for $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149 ($shr):
+    Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1439 }.
+    Found 4 candidates: $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1450 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$150_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$146_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1439 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1450 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1439 $auto$rtlil.cc:3334:Not$1450 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1461 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$150_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$142_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1439 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1461 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1439 $auto$rtlil.cc:3334:Not$1461 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1472 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$150_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$138_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1439 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1472 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1439 $auto$rtlil.cc:3334:Not$1472 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1483 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$150_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$134_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1439 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$149: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1483 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1439 $auto$rtlil.cc:3334:Not$1483 } = 3'101
+  Analyzing resource sharing options for $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145 ($shr):
+    Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1450 }.
+    Found 3 candidates: $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1461 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$146_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$142_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1450 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1461 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1450 $auto$rtlil.cc:3334:Not$1461 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1472 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$146_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$138_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1450 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1472 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1450 $auto$rtlil.cc:3334:Not$1472 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1483 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$146_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$134_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1450 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$145: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1483 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1450 $auto$rtlil.cc:3334:Not$1483 } = 3'101
+  Analyzing resource sharing options for $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141 ($shr):
+    Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1461 }.
+    Found 2 candidates: $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137 $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1472 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$142_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$138_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1461 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1472 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1461 $auto$rtlil.cc:3334:Not$1472 } = 3'101
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1483 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$142_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$134_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1461 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$141: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1483 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1461 $auto$rtlil.cc:3334:Not$1483 } = 3'101
+  Analyzing resource sharing options for $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137 ($shr):
+    Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1472 }.
+    Found 1 candidates: $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133
+    Analyzing resource sharing with $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133 ($shr):
+      Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1483 }.
+      Forbidden control signals for this pair of cells: { $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$138_Y $gt$rtl/mlu_cambricon_llm_flash_kv.sv:120$134_Y }
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1472 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$137: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1483 } = 2'10
+      Activation pattern for cell $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133: $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y = 1'1
+      Size of SAT problem: 11 cells, 684 variables, 1779 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1472 $auto$rtlil.cc:3334:Not$1483 } = 3'101
+  Analyzing resource sharing options for $shr$rtl/mlu_cambricon_llm_flash_kv.sv:119$133 ($shr):
+    Found 2 activation_patterns using ctrl signal { $eq$rtl/mlu_cambricon_llm_flash_kv.sv:124$164_Y $auto$rtlil.cc:3334:Not$1483 }.
+    No candidates found.
+  Analyzing resource sharing options for $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$185 ($shl):
+    Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+    Found 7 candidates: $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$183 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$181 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$179 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$183 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$185: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$183: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$181 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$185: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$181: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$179 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$185: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$179: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$185: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$185: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$185: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$185: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+  Analyzing resource sharing options for $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$183 ($shl):
+    Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+    Found 6 candidates: $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$181 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$179 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$181 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$183: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$181: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$179 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$183: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$179: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$183: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$183: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$183: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$183: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+  Analyzing resource sharing options for $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$181 ($shl):
+    Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+    Found 5 candidates: $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$179 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$179 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$181: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$179: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$181: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$181: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$181: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$181: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+  Analyzing resource sharing options for $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$179 ($shl):
+    Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+    Found 4 candidates: $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$179: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$179: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$179: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$179: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+  Analyzing resource sharing options for $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177 ($shl):
+    Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+    Found 3 candidates: $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$177: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+  Analyzing resource sharing options for $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175 ($shl):
+    Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+    Found 2 candidates: $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173 $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$175: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+  Analyzing resource sharing options for $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173 ($shl):
+    Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+    Found 1 candidates: $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171
+    Analyzing resource sharing with $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171 ($shl):
+      Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$173: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Activation pattern for cell $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+      Size of SAT problem: 0 cells, 9 variables, 18 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: { \rd_is_fp8 \kv_rd_en_i } = 2'01
+  Analyzing resource sharing options for $shl$rtl/mlu_cambricon_llm_flash_kv.sv:148$171 ($shl):
+    Found 1 activation_patterns using ctrl signal { \rd_is_fp8 \kv_rd_en_i }.
+    No candidates found.
+
+3.14. Executing OPT pass (performing simple optimizations).
+
+3.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+<suppressed ~15 debug messages>
+
+3.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv'.
+Removed a total of 0 cells.
+
+3.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_cambricon_llm_flash_kv..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~84 debug messages>
+
+3.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv.
+Performed a total of 0 changes.
+
+3.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv'.
+Removed a total of 0 cells.
+
+3.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+Removed 21 unused cells and 51 unused wires.
+<suppressed ~22 debug messages>
+
+3.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+
+3.14.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.14.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_cambricon_llm_flash_kv..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~84 debug messages>
+
+3.14.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv.
+Performed a total of 0 changes.
+
+3.14.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv'.
+Removed a total of 0 cells.
+
+3.14.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.14.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+
+3.14.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+
+3.14.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.15. Executing MEMORY pass.
+
+3.15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+3.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+3.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+3.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+3.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+3.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+
+3.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+3.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+3.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+
+3.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+
+3.17. Executing OPT pass (performing simple optimizations).
+
+3.17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+<suppressed ~6 debug messages>
+
+3.17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv'.
+Removed a total of 0 cells.
+
+3.17.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+Removed 1 unused cells and 4 unused wires.
+<suppressed ~2 debug messages>
+
+3.17.5. Finished fast OPT passes.
+
+3.18. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+3.19. Executing OPT pass (performing simple optimizations).
+
+3.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+
+3.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv'.
+Removed a total of 0 cells.
+
+3.19.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_cambricon_llm_flash_kv..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~78 debug messages>
+
+3.19.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv.
+Performed a total of 0 changes.
+
+3.19.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv'.
+Removed a total of 0 cells.
+
+3.19.6. Executing OPT_SHARE pass.
+
+3.19.7. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $auto$ff.cc:337:slice$1217 ($adffe) from module mlu_cambricon_llm_flash_kv (D = \total_kv_bytes_saved_o [2:0], Q = \total_kv_bytes_saved_o [2:0]).
+Handling D = Q on $auto$ff.cc:337:slice$1694 ($adffe) from module mlu_cambricon_llm_flash_kv (removing D path).
+Setting constant 0-bit at position 0 on $auto$ff.cc:337:slice$1694 ($dlatch) from module mlu_cambricon_llm_flash_kv.
+Setting constant 0-bit at position 1 on $auto$ff.cc:337:slice$1694 ($dlatch) from module mlu_cambricon_llm_flash_kv.
+Setting constant 0-bit at position 2 on $auto$ff.cc:337:slice$1694 ($dlatch) from module mlu_cambricon_llm_flash_kv.
+
+3.19.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+Removed 2 unused cells and 2 unused wires.
+<suppressed ~3 debug messages>
+
+3.19.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+
+3.19.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.19.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_cambricon_llm_flash_kv..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~78 debug messages>
+
+3.19.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_cambricon_llm_flash_kv.
+Performed a total of 0 changes.
+
+3.19.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv'.
+Removed a total of 0 cells.
+
+3.19.14. Executing OPT_SHARE pass.
+
+3.19.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.19.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+
+3.19.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+
+3.19.18. Finished fast OPT passes. (There is nothing left to do.)
+
+3.20. Executing TECHMAP pass (map to technology primitives).
+
+3.20.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+verilog frontend filename /usr/local/bin/../share/yosys/techmap.v
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `\$connect'.
+Generating RTLIL representation for module `\$input_port'.
+Successfully finished Verilog frontend.
+
+3.20.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $adffe.
+Using template $paramod$2470b7ea32c975a55c3ab8b283381b72d09e16d3\_90_alu for cells of type $alu.
+Using template $paramod$3ace65afedd5f6a6849996376b6c02262a5f23eb\_90_alu for cells of type $alu.
+Using template $paramod$a7817265ef3ab2ee43da53bbd8a90f6450d412d9\_90_alu for cells of type $alu.
+Using template $paramod$6a42b6fefed750f8a1c58eab59479d960557103c\_90_alu for cells of type $alu.
+Using template $paramod$80fd49bc875a8a1ceaa5f1b164eef265e92f0909\_90_alu for cells of type $alu.
+Using template $paramod$2753e3023d523bfa2f5b10494ebb07daa0152fb8\_90_pmux for cells of type $pmux.
+Using template $paramod$constmap:8e66935af44a896019f0d79093f4b96da592009b$paramod$5d4d003f4d8c2a39483cef3e2edb1474fbca443f\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shl.
+Using template $paramod$6df0329addda9228fcc2546de2aaf14ad26c98e1\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod$cff66329c78f14c05756fa469890bd1a4784ffc2\_90_alu for cells of type $alu.
+Using template $paramod$constmap:af01e24a4ee67fa87ae4ed198b07b68a3ff37eb9$paramod$435a18e3e8496480f4be003be1d6e23c96d80164\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shr.
+Using template $paramod$63067eb4f250a9022f25d6b50fcb8396820a5e14\_90_alu for cells of type $alu.
+Using template $paramod$d4c0c20b0ee59f495e14575c4397dc0a6dd9e8e6\_90_alu for cells of type $alu.
+Using extmapper maccmap for cells of type $macc_v2.
+  add \prefix_accept_comb [0] (1 bits, unsigned)
+  add \prefix_accept_comb [7] (1 bits, unsigned)
+  add \prefix_accept_comb [6] (1 bits, unsigned)
+  add \prefix_accept_comb [5] (1 bits, unsigned)
+  add \prefix_accept_comb [4] (1 bits, unsigned)
+  add \prefix_accept_comb [3] (1 bits, unsigned)
+  add \prefix_accept_comb [2] (1 bits, unsigned)
+  add \prefix_accept_comb [1] (1 bits, unsigned)
+  packed 3 (3) bits / 3 words into adder tree
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $logic_not.
+Using template $paramod$constmap:446553370afc6c2aa6cc0b8f657b7f64b237ff7c$paramod$962bb79c2a50a422516483c1c9c06046761917ac\_90_shift_shiftx for cells of type $shiftx.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $eq.
+Using template $paramod$constmap:343d5bf964fbde3314566bd95cd7027785ed71af$paramod$21c03ec725157176e885a706babcf9521550823c\_90_shift_shiftx for cells of type $shift.
+Using extmapper simplemap for cells of type $and.
+Analyzing pattern of constant bits for this cell:
+Creating constmapped module `$paramod$constmap:25d54f29cc86ec0e8239c60bc4c3a8dea9c6ba08$paramod$21c03ec725157176e885a706babcf9521550823c\_90_shift_shiftx'.
+
+3.20.43. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$constmap:25d54f29cc86ec0e8239c60bc4c3a8dea9c6ba08$paramod$21c03ec725157176e885a706babcf9521550823c\_90_shift_shiftx..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$4652.
+    dead port 2/2 on $mux $procmux$4646.
+    dead port 2/2 on $mux $procmux$4640.
+    dead port 2/2 on $mux $procmux$4634.
+Removed 4 multiplexer ports.
+<suppressed ~1508 debug messages>
+
+3.20.44. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$constmap:25d54f29cc86ec0e8239c60bc4c3a8dea9c6ba08$paramod$21c03ec725157176e885a706babcf9521550823c\_90_shift_shiftx.
+<suppressed ~2 debug messages>
+Removed 0 unused cells and 10 unused wires.
+Using template $paramod$constmap:25d54f29cc86ec0e8239c60bc4c3a8dea9c6ba08$paramod$21c03ec725157176e885a706babcf9521550823c\_90_shift_shiftx for cells of type $shift.
+Using extmapper simplemap for cells of type $adff.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000001 for cells of type $fa.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000010 for cells of type $fa.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000011 for cells of type $fa.
+Using template $paramod$740b056ede97228d3eae64ea2fdc81f0a33e0fe7\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000010001 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000010001 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000100000 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000101 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000101 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000011101 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000011101 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000010000 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000010000 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000100 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000100 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~5665 debug messages>
+
+3.21. Executing OPT pass (performing simple optimizations).
+
+3.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_cambricon_llm_flash_kv.
+<suppressed ~5629 debug messages>
+
+3.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_cambricon_llm_flash_kv'.
+<suppressed ~2163 debug messages>
+Removed a total of 721 cells.
+
+3.21.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.21.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_cambricon_llm_flash_kv..
+Removed 1393 unused cells and 3932 unused wires.
+<suppressed ~1394 debug messages>
+
+3.21.5. Finished fast OPT passes.
+
+3.22. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `mlu_cambricon_llm_flash_kv'. Setting top module to mlu_cambricon_llm_flash_kv.
+
+3.22.1. Analyzing design hierarchy..
+Top module:  \mlu_cambricon_llm_flash_kv
+
+3.22.2. Analyzing design hierarchy..
+Top module:  \mlu_cambricon_llm_flash_kv
+Removed 0 unused modules.
+
+3.23. Printing statistics.
+
+=== mlu_cambricon_llm_flash_kv ===
+
+        +----------Local Count, excluding submodules.
+        | 
+     2914 wires
+    13333 wire bits
+      154 public wires
+     3714 public wire bits
+       29 ports
+      816 port bits
+    10340 cells
+     3612   $_AND_
+     1252   $_DFFE_PN0P_
+        2   $_DFF_PN0_
+     1607   $_MUX_
+      499   $_NOT_
+     2086   $_OR_
+     1282   $_XOR_
+
+3.24. Executing CHECK pass (checking for obvious problems).
+Checking module mlu_cambricon_llm_flash_kv...
+Found and reported 0 problems.
+
+4. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell DFFLQNx1_ASAP7_75t_R (inv, pins=3, area=0.29) is a direct match for cell type $_DFF_N_.
+  cell DFFHQNx1_ASAP7_75t_R (inv, pins=3, area=0.29) is a direct match for cell type $_DFF_P_.
+  cell DFFASRHQNx1_ASAP7_75t_R (inv, pins=5, area=0.38) is a direct match for cell type $_DFFSR_PNN_.
+  final dff cell mappings:
+    \DFFLQNx1_ASAP7_75t_R _DFF_N_ (.CLK( C), .D( D), .QN(~Q));
+    \DFFHQNx1_ASAP7_75t_R _DFF_P_ (.CLK( C), .D( D), .QN(~Q));
+    unmapped dff cell: $_DFF_NN0_
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    unmapped dff cell: $_DFF_PN0_
+    unmapped dff cell: $_DFF_PN1_
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    unmapped dff cell: $_DFFE_NN_
+    unmapped dff cell: $_DFFE_NP_
+    unmapped dff cell: $_DFFE_PN_
+    unmapped dff cell: $_DFFE_PP_
+    unmapped dff cell: $_DFFSR_NNN_
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    \DFFASRHQNx1_ASAP7_75t_R _DFFSR_PNN_ (.CLK( C), .D( D), .QN(~Q), .RESETN( R), .SETN( S));
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+4.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+<suppressed ~8 debug messages>
+Mapping DFF cells in module `\mlu_cambricon_llm_flash_kv':
+  mapped 1254 $_DFFSR_PNN_ cells to \DFFASRHQNx1_ASAP7_75t_R cells.
+
+5. Executing ABC pass (technology mapping using ABC).
+
+5.1. Extracting gate netlist of module `\mlu_cambricon_llm_flash_kv' to `<abc-temp-dir>/input.blif'..
+
+5.1.1. Executed ABC.
+Extracted 11592 gates and 13316 wires to a netlist network with 1722 inputs and 1595 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Dec 15 2025 17:24:15)
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_lib -w /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.27 sec
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFASRHQNx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFHQNx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFHQNx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFHQNx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFHQx4_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFLQNx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFLQNx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFLQNx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFLQx4_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DHLx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DHLx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DHLx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLLx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLLx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLLx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx1_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx2_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx2p67DC_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx3_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx4DC_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx4_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx5_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx5p33DC_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx6p67DC_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx8DC_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFHx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFHx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFHx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFHx4_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFLx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFLx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFLx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFLx4_ASAP7_75t_R".
+ABC: Library "asap7_rvt_ff" from "/nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib" has 169 cells (33 skipped: 23 seq; 0 tri-state; 10 no func; 0 dont_use; 0 with 2 outputs; 0 with 3+ outputs).  Time =     0.37 sec
+ABC: Memory =   82.23 MB. Time =     0.37 sec
+ABC: Warning: Detected 2 multi-output cells (for example, "FAx1_ASAP7_75t_R").
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: 
+
+5.1.2. Re-integrating ABC results.
+ABC RESULTS:   A2O1A1Ixp33_ASAP7_75t_R cells:      548
+ABC RESULTS:   A2O1A1O1Ixp25_ASAP7_75t_R cells:      157
+ABC RESULTS:   AND2x2_ASAP7_75t_R cells:       36
+ABC RESULTS:   AND3x1_ASAP7_75t_R cells:       39
+ABC RESULTS:   AND4x2_ASAP7_75t_R cells:        9
+ABC RESULTS:   AO21x1_ASAP7_75t_R cells:      294
+ABC RESULTS:   AO22x1_ASAP7_75t_R cells:       18
+ABC RESULTS:   AOI211xp5_ASAP7_75t_R cells:       99
+ABC RESULTS:   AOI21xp33_ASAP7_75t_R cells:      613
+ABC RESULTS:   AOI221xp5_ASAP7_75t_R cells:      125
+ABC RESULTS:   AOI22xp33_ASAP7_75t_R cells:      215
+ABC RESULTS:   AOI311xp33_ASAP7_75t_R cells:       10
+ABC RESULTS:   AOI31xp33_ASAP7_75t_R cells:      142
+ABC RESULTS:   INVx1_ASAP7_75t_R cells:     1622
+ABC RESULTS:   MAJIxp5_ASAP7_75t_R cells:      236
+ABC RESULTS:   MAJx2_ASAP7_75t_R cells:        9
+ABC RESULTS:   NAND2xp33_ASAP7_75t_R cells:     1872
+ABC RESULTS:   NAND3xp33_ASAP7_75t_R cells:      229
+ABC RESULTS:   NAND4xp25_ASAP7_75t_R cells:      149
+ABC RESULTS:   NAND5xp2_ASAP7_75t_R cells:       45
+ABC RESULTS:   NOR2xp33_ASAP7_75t_R cells:      775
+ABC RESULTS:   NOR3xp33_ASAP7_75t_R cells:      261
+ABC RESULTS:   NOR4xp25_ASAP7_75t_R cells:       79
+ABC RESULTS:   NOR5xp2_ASAP7_75t_R cells:       25
+ABC RESULTS:   O2A1O1Ixp33_ASAP7_75t_R cells:      290
+ABC RESULTS:   OA211x2_ASAP7_75t_R cells:        5
+ABC RESULTS:   OA21x2_ASAP7_75t_R cells:       58
+ABC RESULTS:   OA31x2_ASAP7_75t_R cells:        8
+ABC RESULTS:   OAI211xp5_ASAP7_75t_R cells:      269
+ABC RESULTS:   OAI21xp33_ASAP7_75t_R cells:     1810
+ABC RESULTS:   OAI221xp5_ASAP7_75t_R cells:       17
+ABC RESULTS:   OAI22xp33_ASAP7_75t_R cells:      315
+ABC RESULTS:   OAI311xp33_ASAP7_75t_R cells:       17
+ABC RESULTS:   OAI31xp33_ASAP7_75t_R cells:      187
+ABC RESULTS:   OR2x4_ASAP7_75t_R cells:       30
+ABC RESULTS:   OR3x1_ASAP7_75t_R cells:       29
+ABC RESULTS:   XNOR2x2_ASAP7_75t_R cells:      681
+ABC RESULTS:   XOR2x2_ASAP7_75t_R cells:      177
+ABC RESULTS:        internal signals:     9999
+ABC RESULTS:           input signals:     1722
+ABC RESULTS:          output signals:     1595
+Removing temp directory.
+Removing global temp directory.
+
+6. Printing statistics.
+
+=== mlu_cambricon_llm_flash_kv ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+    18642        - wires
+    29061        - wire bits
+      154        - public wires
+     3714        - public wire bits
+       29        - ports
+      816        - port bits
+    12754 1.37E+03 cells
+      548   47.939   A2O1A1Ixp33_ASAP7_75t_R
+      157   20.602   A2O1A1O1Ixp25_ASAP7_75t_R
+       36    3.149   AND2x2_ASAP7_75t_R
+       39    3.412   AND3x1_ASAP7_75t_R
+        9     1.05   AND4x2_ASAP7_75t_R
+      294   25.719   AO21x1_ASAP7_75t_R
+       18    2.362   AO22x1_ASAP7_75t_R
+       99    8.661   AOI211xp5_ASAP7_75t_R
+      613   44.688   AOI21xp33_ASAP7_75t_R
+      125   12.757   AOI221xp5_ASAP7_75t_R
+      215   18.808   AOI22xp33_ASAP7_75t_R
+       10    1.021   AOI311xp33_ASAP7_75t_R
+      142   12.422   AOI31xp33_ASAP7_75t_R
+     1254  475.366   DFFASRHQNx1_ASAP7_75t_R
+     1622   70.946   INVx1_ASAP7_75t_R
+      236   24.086   MAJIxp5_ASAP7_75t_R
+        9    1.181   MAJx2_ASAP7_75t_R
+     1872  109.175   NAND2xp33_ASAP7_75t_R
+      229   16.694   NAND3xp33_ASAP7_75t_R
+      149   13.035   NAND4xp25_ASAP7_75t_R
+       45    4.593   NAND5xp2_ASAP7_75t_R
+      775   45.198   NOR2xp33_ASAP7_75t_R
+      261   19.027   NOR3xp33_ASAP7_75t_R
+       79    6.911   NOR4xp25_ASAP7_75t_R
+       25    2.551   NOR5xp2_ASAP7_75t_R
+      290   25.369   O2A1O1Ixp33_ASAP7_75t_R
+        5    0.583   OA211x2_ASAP7_75t_R
+       58    5.919   OA21x2_ASAP7_75t_R
+        8     1.75   OA31x2_ASAP7_75t_R
+      269   23.532   OAI211xp5_ASAP7_75t_R
+     1810  131.949   OAI21xp33_ASAP7_75t_R
+       17    1.735   OAI221xp5_ASAP7_75t_R
+      315   27.556   OAI22xp33_ASAP7_75t_R
+       17    1.735   OAI311xp33_ASAP7_75t_R
+      187   16.359   OAI31xp33_ASAP7_75t_R
+       30    3.499   OR2x4_ASAP7_75t_R
+       29    2.537   OR3x1_ASAP7_75t_R
+      681  109.219   XNOR2x2_ASAP7_75t_R
+      177   28.387   XOR2x2_ASAP7_75t_R
+
+   Chip area for module '\mlu_cambricon_llm_flash_kv': 1371.482280
+     of which used for sequential elements: 475.366320 (34.66%)
+
+7. Executing Verilog backend.
+
+7.1. Executing BMUXMAP pass.
+
+7.2. Executing DEMUXMAP pass.
+Dumping module `\mlu_cambricon_llm_flash_kv'.
+
+Warnings: 10 unique messages, 10 total
+End of script. Logfile hash: 317ad73782, CPU: user 1.95s system 0.08s, MEM: 161.22 MB peak
+Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+Time spent: 49% 1x abc (1 sec), 11% 2x write_verilog (0 sec), ...

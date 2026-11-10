@@ -1,0 +1,1403 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+
+-- Running command `
+        read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip rtl/mlu_mfu_dma_engine.sv;
+        chformal -remove;
+        synth -top mlu_mfu_dma_engine  -noabc;
+        dfflibmap -liberty /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib;
+        abc -fast -liberty /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib;
+        stat -liberty /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib;
+        write_verilog -noattr synth/mlu_mfu_dma_engine_asap7_netlist.v
+    ' --
+
+1. Executing Verilog-2005 frontend: rtl/mlu_mfu_dma_engine.sv
+Parsing SystemVerilog input from `rtl/mlu_mfu_dma_engine.sv' to AST representation.
+verilog frontend filename rtl/mlu_mfu_dma_engine.sv
+Generating RTLIL representation for module `\mlu_mfu_dma_engine'.
+Successfully finished Verilog frontend.
+
+2. Executing SYNTH pass.
+
+2.1. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1.1. Analyzing design hierarchy..
+Top module:  \mlu_mfu_dma_engine
+
+2.1.2. Analyzing design hierarchy..
+Top module:  \mlu_mfu_dma_engine
+Removed 0 unused modules.
+
+2.2. Executing PROC pass (convert processes to netlists).
+
+2.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+2.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed 1 dead cases from process $proc$rtl/mlu_mfu_dma_engine.sv:185$55 in module mlu_mfu_dma_engine.
+Marked 25 switch rules as full_case in process $proc$rtl/mlu_mfu_dma_engine.sv:185$55 in module mlu_mfu_dma_engine.
+Removed a total of 1 dead cases.
+
+2.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 23 assignments to connections.
+
+2.2.4. Executing PROC_INIT pass (extract init attributes).
+
+2.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_ni in `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+
+2.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~28 debug messages>
+
+2.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+     1/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [63:56]
+     2/146: $12\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:56]$271
+     3/146: $11\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$266
+     4/146: $11\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[55:48]$265
+     5/146: $10\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$260
+     6/146: $10\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[47:40]$259
+     7/146: $9\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$254
+     8/146: $9\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[39:32]$253
+     9/146: $8\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$248
+    10/146: $8\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[31:24]$247
+    11/146: $7\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$242
+    12/146: $7\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[23:16]$241
+    13/146: $6\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$236
+    14/146: $6\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[15:8]$235
+    15/146: $5\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$230
+    16/146: $5\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[7:0]$229
+    17/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$result[3:0]$225
+    18/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$fordecl_block$1.i[31:0]$228
+    19/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.cnt[3:0]$227
+    20/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.bmp[7:0]$226
+    21/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$result[63:0]$219
+    22/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$fordecl_block$3.k[31:0]$224
+    23/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$223
+    24/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [55:48]
+    25/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [47:40]
+    26/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [39:32]
+    27/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [31:24]
+    28/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [23:16]
+    29/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [15:8]
+    30/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [7:0]
+    31/146: $12\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$272
+    32/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.bmp[7:0]$221
+    33/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.comp_word[63:0]$220
+    34/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$fordecl_block$1.i[31:0]$217
+    35/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.cnt[3:0]$216
+    36/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.bmp[7:0]$215
+    37/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$result[3:0]$214
+    38/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$fordecl_block$3.k[31:0]$213
+    39/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$212
+    40/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$211
+    41/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.bmp[7:0]$210
+    42/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.comp_word[63:0]$209
+    43/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$result[63:0]$208
+    44/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [63:56]
+    45/146: $12\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:56]$192
+    46/146: $11\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$187
+    47/146: $11\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[55:48]$186
+    48/146: $10\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$181
+    49/146: $10\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[47:40]$180
+    50/146: $9\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$175
+    51/146: $9\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[39:32]$174
+    52/146: $8\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$169
+    53/146: $8\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[31:24]$168
+    54/146: $7\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$163
+    55/146: $7\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[23:16]$162
+    56/146: $6\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$157
+    57/146: $6\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[15:8]$156
+    58/146: $5\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$151
+    59/146: $5\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[7:0]$150
+    60/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$result[3:0]$146
+    61/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$fordecl_block$1.i[31:0]$149
+    62/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.cnt[3:0]$148
+    63/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.bmp[7:0]$147
+    64/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$result[63:0]$140
+    65/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$fordecl_block$3.k[31:0]$145
+    66/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$144
+    67/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [55:48]
+    68/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [47:40]
+    69/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [39:32]
+    70/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [31:24]
+    71/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [23:16]
+    72/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [15:8]
+    73/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [7:0]
+    74/146: $12\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$193
+    75/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.bmp[7:0]$142
+    76/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.comp_word[63:0]$141
+    77/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$fordecl_block$1.i[31:0]$138
+    78/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.cnt[3:0]$137
+    79/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.bmp[7:0]$136
+    80/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$result[3:0]$135
+    81/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$fordecl_block$3.k[31:0]$134
+    82/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$133
+    83/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$132
+    84/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.bmp[7:0]$131
+    85/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.comp_word[63:0]$130
+    86/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$result[63:0]$129
+    87/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$fordecl_block$1.i[31:0]$116
+    88/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.cnt[3:0]$115
+    89/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.bmp[7:0]$114
+    90/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$result[3:0]$113
+    91/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$fordecl_block$3.k[31:0]$112
+    92/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$111
+    93/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$110
+    94/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.bmp[7:0]$109
+    95/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.comp_word[63:0]$108
+    96/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$result[63:0]$107
+    97/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$fordecl_block$1.i[31:0]$106
+    98/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.cnt[3:0]$105
+    99/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.bmp[7:0]$104
+   100/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$result[3:0]$103
+   101/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$fordecl_block$3.k[31:0]$102
+   102/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$101
+   103/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$100
+   104/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.bmp[7:0]$99
+   105/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.comp_word[63:0]$98
+   106/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$result[63:0]$97
+   107/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$fordecl_block$1.i[31:0]$96
+   108/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.cnt[3:0]$95
+   109/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.bmp[7:0]$94
+   110/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$result[3:0]$93
+   111/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$fordecl_block$3.k[31:0]$92
+   112/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$91
+   113/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$90
+   114/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.bmp[7:0]$89
+   115/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.comp_word[63:0]$88
+   116/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$result[63:0]$87
+   117/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$fordecl_block$1.i[31:0]$86
+   118/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.cnt[3:0]$85
+   119/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.bmp[7:0]$84
+   120/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$result[3:0]$83
+   121/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$fordecl_block$3.k[31:0]$82
+   122/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$81
+   123/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$80
+   124/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.bmp[7:0]$79
+   125/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.comp_word[63:0]$78
+   126/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$result[63:0]$77
+   127/146: $0\done_valid_o[0:0]
+   128/146: $0\wr_data_q[63:0]
+   129/146: $0\col_idx_q[7:0]
+   130/146: $0\row_idx_q[7:0]
+   131/146: $0\dst_stride_q[7:0]
+   132/146: $0\src_stride_q[7:0]
+   133/146: $0\row_beats_q[7:0]
+   134/146: $0\num_rows_q[7:0]
+   135/146: $0\beat_cnt_q[15:0]
+   136/146: $0\total_beats_q[15:0]
+   137/146: $0\dst_base_q[31:0]
+   138/146: $0\src_base_q[31:0]
+   139/146: $0\tag_q[7:0]
+   140/146: $0\dst_space_q[2:0]
+   141/146: $0\src_space_q[2:0]
+   142/146: $0\op_q[5:0]
+   143/146: $0\state_q[1:0]
+   144/146: $0\done_tag_o[7:0]
+   145/146: $0\uncompressed_bytes_wr_o[31:0]
+   146/146: $0\compressed_bytes_rd_o[31:0]
+Creating decoders for process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:121$14'.
+     1/2: $1\curr_wr_addr[31:0]
+     2/2: $1\curr_rd_addr[31:0]
+
+2.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\mlu_mfu_dma_engine.\curr_idx_off' from process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:121$14'.
+No latch inferred for signal `\mlu_mfu_dma_engine.\curr_rd_addr' from process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:121$14'.
+No latch inferred for signal `\mlu_mfu_dma_engine.\curr_wr_addr' from process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:121$14'.
+
+2.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\mlu_mfu_dma_engine.\compressed_bytes_rd_o' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1456' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\uncompressed_bytes_wr_o' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1461' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\done_valid_o' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1466' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\done_tag_o' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1471' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\state_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1476' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\op_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1481' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\src_space_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1486' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\dst_space_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1491' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\tag_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1496' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\src_base_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1501' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\dst_base_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1506' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\total_beats_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1511' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\beat_cnt_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1516' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\num_rows_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1521' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\row_beats_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1526' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\src_stride_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1531' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\dst_stride_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1536' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\row_idx_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1541' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\col_idx_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1546' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\wr_data_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1551' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$result' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1556' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.comp_word' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1561' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.bmp' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1566' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1571' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1576' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$fordecl_block$3.k' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $dff cell `$procdff$1583' with positive edge clock.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$result' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1588' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.bmp' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1593' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.cnt' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1598' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$fordecl_block$1.i' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $dff cell `$procdff$1605' with positive edge clock.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$result' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1610' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.comp_word' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1615' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.bmp' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1620' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1625' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1630' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$fordecl_block$3.k' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $dff cell `$procdff$1637' with positive edge clock.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$result' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1642' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.bmp' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1647' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.cnt' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1652' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$fordecl_block$1.i' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $dff cell `$procdff$1659' with positive edge clock.
+
+2.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+2.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 27 empty switches in `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+Removing empty process `mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+Found and cleaned up 1 empty switch in `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:121$14'.
+Removing empty process `mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:121$14'.
+Cleaned up 28 empty switches.
+
+2.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+<suppressed ~144 debug messages>
+
+2.3. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+<suppressed ~47 debug messages>
+
+2.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Removed 376 unused cells and 860 unused wires.
+<suppressed ~407 debug messages>
+
+2.5. Executing CHECK pass (checking for obvious problems).
+Checking module mlu_mfu_dma_engine...
+Found and reported 0 problems.
+
+2.6. Executing OPT pass (performing simple optimizations).
+
+2.6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+
+2.6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+<suppressed ~261 debug messages>
+Removed a total of 87 cells.
+
+2.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$311.
+    dead port 2/2 on $mux $procmux$313.
+    dead port 2/2 on $mux $procmux$315.
+    dead port 2/2 on $mux $procmux$335.
+    dead port 2/2 on $mux $procmux$337.
+    dead port 2/2 on $mux $procmux$339.
+    dead port 2/2 on $mux $procmux$359.
+    dead port 2/2 on $mux $procmux$361.
+    dead port 2/2 on $mux $procmux$363.
+    dead port 2/2 on $mux $procmux$383.
+    dead port 2/2 on $mux $procmux$385.
+    dead port 2/2 on $mux $procmux$387.
+    dead port 2/2 on $mux $procmux$407.
+    dead port 2/2 on $mux $procmux$409.
+    dead port 2/2 on $mux $procmux$411.
+    dead port 2/2 on $mux $procmux$431.
+    dead port 2/2 on $mux $procmux$433.
+    dead port 2/2 on $mux $procmux$435.
+    dead port 2/2 on $mux $procmux$455.
+    dead port 2/2 on $mux $procmux$457.
+    dead port 2/2 on $mux $procmux$459.
+    dead port 2/2 on $mux $procmux$479.
+    dead port 2/2 on $mux $procmux$481.
+    dead port 2/2 on $mux $procmux$483.
+    dead port 2/2 on $mux $procmux$718.
+    dead port 2/2 on $mux $procmux$720.
+    dead port 2/2 on $mux $procmux$722.
+    dead port 2/2 on $mux $procmux$744.
+    dead port 2/2 on $mux $procmux$746.
+    dead port 2/2 on $mux $procmux$748.
+    dead port 2/2 on $mux $procmux$770.
+    dead port 2/2 on $mux $procmux$772.
+    dead port 2/2 on $mux $procmux$774.
+    dead port 2/2 on $mux $procmux$796.
+    dead port 2/2 on $mux $procmux$798.
+    dead port 2/2 on $mux $procmux$800.
+    dead port 2/2 on $mux $procmux$822.
+    dead port 2/2 on $mux $procmux$824.
+    dead port 2/2 on $mux $procmux$826.
+    dead port 2/2 on $mux $procmux$848.
+    dead port 2/2 on $mux $procmux$850.
+    dead port 2/2 on $mux $procmux$852.
+    dead port 2/2 on $mux $procmux$874.
+    dead port 2/2 on $mux $procmux$876.
+    dead port 2/2 on $mux $procmux$878.
+    dead port 2/2 on $mux $procmux$900.
+    dead port 2/2 on $mux $procmux$902.
+    dead port 2/2 on $mux $procmux$904.
+Removed 48 multiplexer ports.
+<suppressed ~226 debug messages>
+
+2.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine.
+    New ctrl vector for $pmux cell $procmux$1439: { $procmux$1443_CMP $procmux$1441_CMP $eq$rtl/mlu_mfu_dma_engine.sv:112$12_Y }
+    New ctrl vector for $pmux cell $procmux$1446: { $procmux$1443_CMP $procmux$1442_CMP }
+  Optimizing cells in module \mlu_mfu_dma_engine.
+Performed a total of 2 changes.
+
+2.6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+<suppressed ~24 debug messages>
+Removed a total of 8 cells.
+
+2.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Removed 2 unused cells and 143 unused wires.
+<suppressed ~3 debug messages>
+
+2.6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+
+2.6.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.6.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~184 debug messages>
+
+2.6.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine.
+    New ctrl vector for $pmux cell $procmux$1413: $auto$opt_reduce.cc:137:opt_pmux$1661
+    New ctrl vector for $pmux cell $procmux$1429: $auto$opt_reduce.cc:137:opt_pmux$1663
+  Optimizing cells in module \mlu_mfu_dma_engine.
+Performed a total of 2 changes.
+
+2.6.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+2.6.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.6.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+2.6.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+
+2.6.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.6.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~180 debug messages>
+
+2.6.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine.
+Performed a total of 0 changes.
+
+2.6.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+Removed a total of 0 cells.
+
+2.6.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.6.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+
+2.6.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+
+2.6.23. Finished fast OPT passes. (There is nothing left to do.)
+
+2.7. Executing FSM pass (extract and optimize FSM).
+
+2.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+Not marking mlu_mfu_dma_engine.state_q as FSM state register:
+    Users of register don't seem to benefit from recoding.
+
+2.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+2.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+2.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+
+2.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+2.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+2.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+2.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+2.8. Executing OPT pass (performing simple optimizations).
+
+2.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+
+2.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+Removed a total of 0 cells.
+
+2.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~180 debug messages>
+
+2.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine.
+Performed a total of 0 changes.
+
+2.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+Removed a total of 0 cells.
+
+2.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$1551 ($adff) from module mlu_mfu_dma_engine (D = $0\wr_data_q[63:0], Q = \wr_data_q).
+Adding EN signal on $procdff$1546 ($adff) from module mlu_mfu_dma_engine (D = $0\col_idx_q[7:0], Q = \col_idx_q).
+Adding EN signal on $procdff$1541 ($adff) from module mlu_mfu_dma_engine (D = $0\row_idx_q[7:0], Q = \row_idx_q).
+Adding EN signal on $procdff$1536 ($adff) from module mlu_mfu_dma_engine (D = $ternary$rtl/mlu_mfu_dma_engine.sv:225$121_Y, Q = \dst_stride_q).
+Adding EN signal on $procdff$1531 ($adff) from module mlu_mfu_dma_engine (D = $ternary$rtl/mlu_mfu_dma_engine.sv:224$119_Y, Q = \src_stride_q).
+Adding EN signal on $procdff$1526 ($adff) from module mlu_mfu_dma_engine (D = \init_cols, Q = \row_beats_q).
+Adding EN signal on $procdff$1521 ($adff) from module mlu_mfu_dma_engine (D = \init_rows, Q = \num_rows_q).
+Adding EN signal on $procdff$1516 ($adff) from module mlu_mfu_dma_engine (D = $0\beat_cnt_q[15:0], Q = \beat_cnt_q).
+Adding EN signal on $procdff$1511 ($adff) from module mlu_mfu_dma_engine (D = $procmux$1337_Y, Q = \total_beats_q).
+Adding EN signal on $procdff$1506 ($adff) from module mlu_mfu_dma_engine (D = \cmd_inst_i [95:64], Q = \dst_base_q).
+Adding EN signal on $procdff$1501 ($adff) from module mlu_mfu_dma_engine (D = \cmd_inst_i [63:32], Q = \src_base_q).
+Adding EN signal on $procdff$1496 ($adff) from module mlu_mfu_dma_engine (D = \cmd_inst_i [103:96], Q = \tag_q).
+Adding EN signal on $procdff$1491 ($adff) from module mlu_mfu_dma_engine (D = \cmd_inst_i [110:108], Q = \dst_space_q).
+Adding EN signal on $procdff$1486 ($adff) from module mlu_mfu_dma_engine (D = \cmd_inst_i [113:111], Q = \src_space_q).
+Adding EN signal on $procdff$1481 ($adff) from module mlu_mfu_dma_engine (D = \cmd_inst_i [127:122], Q = \op_q).
+Adding EN signal on $procdff$1476 ($adff) from module mlu_mfu_dma_engine (D = $0\state_q[1:0], Q = \state_q).
+Adding EN signal on $procdff$1471 ($adff) from module mlu_mfu_dma_engine (D = \tag_q, Q = \done_tag_o).
+Adding EN signal on $procdff$1461 ($adff) from module mlu_mfu_dma_engine (D = $add$rtl/mlu_mfu_dma_engine.sv:243$207_Y, Q = \uncompressed_bytes_wr_o).
+Adding EN signal on $procdff$1456 ($adff) from module mlu_mfu_dma_engine (D = $add$rtl/mlu_mfu_dma_engine.sv:242$206_Y, Q = \compressed_bytes_rd_o).
+
+2.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Removed 30 unused cells and 30 unused wires.
+<suppressed ~31 debug messages>
+
+2.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+<suppressed ~5 debug messages>
+
+2.8.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.8.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~139 debug messages>
+
+2.8.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine.
+Performed a total of 0 changes.
+
+2.8.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+<suppressed ~63 debug messages>
+Removed a total of 21 cells.
+
+2.8.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.8.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Removed 0 unused cells and 21 unused wires.
+<suppressed ~1 debug messages>
+
+2.8.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+
+2.8.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.8.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~141 debug messages>
+
+2.8.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine.
+Performed a total of 0 changes.
+
+2.8.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+Removed a total of 0 cells.
+
+2.8.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.8.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+
+2.8.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+
+2.8.23. Finished fast OPT passes. (There is nothing left to do.)
+
+2.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 2) from port B of cell mlu_mfu_dma_engine.$auto$opt_dff.cc:248:make_patterns_logic$1692 ($ne).
+Removed top 1 bits (of 2) from port B of cell mlu_mfu_dma_engine.$auto$opt_dff.cc:248:make_patterns_logic$1690 ($ne).
+Removed top 1 bits (of 2) from port B of cell mlu_mfu_dma_engine.$auto$opt_dff.cc:248:make_patterns_logic$1677 ($ne).
+Removed top 1 bits (of 2) from port B of cell mlu_mfu_dma_engine.$auto$opt_dff.cc:248:make_patterns_logic$1668 ($ne).
+Removed top 25 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:122$17 ($shiftx).
+Removed top 13 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:129$23 ($add).
+Removed top 13 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:130$25 ($add).
+Removed top 24 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:135$26 ($mul).
+Removed top 24 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:135$26 ($mul).
+Removed top 16 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:135$26 ($mul).
+Removed top 16 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:135$27 ($add).
+Removed top 24 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:135$27 ($add).
+Removed top 15 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:135$27 ($add).
+Removed top 12 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:134$29 ($add).
+Removed top 24 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:137$30 ($mul).
+Removed top 24 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:137$30 ($mul).
+Removed top 16 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:137$30 ($mul).
+Removed top 16 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:137$31 ($add).
+Removed top 24 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:137$31 ($add).
+Removed top 15 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:137$31 ($add).
+Removed top 12 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:136$33 ($add).
+Removed top 16 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:141$34 ($add).
+Removed top 16 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:147$39 ($add).
+Removed top 13 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:152$43 ($add).
+Removed top 1 bits (of 2) from port B of cell mlu_mfu_dma_engine.$eq$rtl/mlu_mfu_dma_engine.sv:162$48 ($eq).
+Removed top 8 bits (of 16) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:228$123 ($mul).
+Removed top 8 bits (of 16) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:228$123 ($mul).
+Removed top 25 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$160 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$161 ($add).
+Removed top 25 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$166 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$167 ($add).
+Removed top 25 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$172 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$173 ($add).
+Removed top 25 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$178 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$179 ($add).
+Removed top 25 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$184 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$185 ($add).
+Removed top 25 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$190 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$191 ($add).
+Removed top 25 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$196 ($shiftx).
+Removed top 3 bits (of 4) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$199 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$199 ($add).
+Removed top 2 bits (of 4) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$199 ($add).
+Removed top 2 bits (of 4) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$200 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$200 ($add).
+Removed top 1 bits (of 4) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$200 ($add).
+Removed top 1 bits (of 4) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$201 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$201 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$202 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$203 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$204 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$205 ($add).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:242$206 ($add).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:243$207 ($add).
+Removed top 25 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$239 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$240 ($add).
+Removed top 25 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$245 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$246 ($add).
+Removed top 25 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$251 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$252 ($add).
+Removed top 25 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$257 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$258 ($add).
+Removed top 25 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$263 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$264 ($add).
+Removed top 25 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$269 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$270 ($add).
+Removed top 25 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$275 ($shiftx).
+Removed top 15 bits (of 16) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:267$287 ($add).
+Removed top 7 bits (of 8) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:273$290 ($add).
+Removed top 7 bits (of 8) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:275$292 ($add).
+Removed top 2 bits (of 3) from mux cell mlu_mfu_dma_engine.$procmux$465 ($mux).
+Removed top 1 bits (of 2) from mux cell mlu_mfu_dma_engine.$procmux$1386 ($mux).
+Removed top 1 bits (of 2) from mux cell mlu_mfu_dma_engine.$procmux$1395 ($mux).
+Removed top 15 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:135$27_Y.
+Removed top 15 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:137$31_Y.
+Removed top 2 bits (of 4) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$199_Y.
+Removed top 1 bits (of 4) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$200_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:135$26_Y.
+Removed top 21 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:137$30_Y.
+Removed top 1 bits (of 2) from wire mlu_mfu_dma_engine.$procmux$1386_Y.
+Removed top 1 bits (of 2) from wire mlu_mfu_dma_engine.$procmux$1395_Y.
+Removed top 2 bits (of 3) from wire mlu_mfu_dma_engine.$procmux$465_Y.
+Removed top 3 bits (of 8) from wire mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$196_Y.
+
+2.10. Executing PEEPOPT pass (run peephole optimizers).
+
+2.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Removed 0 unused cells and 10 unused wires.
+<suppressed ~1 debug messages>
+
+2.12. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module mlu_mfu_dma_engine:
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:129$23 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:130$25 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:134$29 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:135$27 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:136$33 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:137$31 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:141$34 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:147$39 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:152$43 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:242$206 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:243$207 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:267$287 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:273$290 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:275$292 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:57$199 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:57$200 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:57$201 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:57$202 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:57$203 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:57$204 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:57$205 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:75$161 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:75$167 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:75$173 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:75$179 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:75$185 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:75$191 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:75$240 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:75$246 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:75$252 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:75$258 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:75$264 ($add).
+  creating $macc model for $add$rtl/mlu_mfu_dma_engine.sv:75$270 ($add).
+  creating $macc model for $mul$rtl/mlu_mfu_dma_engine.sv:135$26 ($mul).
+  creating $macc model for $mul$rtl/mlu_mfu_dma_engine.sv:137$30 ($mul).
+  creating $macc model for $mul$rtl/mlu_mfu_dma_engine.sv:228$123 ($mul).
+  merging $macc model for $add$rtl/mlu_mfu_dma_engine.sv:57$204 into $add$rtl/mlu_mfu_dma_engine.sv:57$205.
+  merging $macc model for $add$rtl/mlu_mfu_dma_engine.sv:57$203 into $add$rtl/mlu_mfu_dma_engine.sv:57$205.
+  merging $macc model for $add$rtl/mlu_mfu_dma_engine.sv:57$202 into $add$rtl/mlu_mfu_dma_engine.sv:57$205.
+  merging $macc model for $add$rtl/mlu_mfu_dma_engine.sv:57$201 into $add$rtl/mlu_mfu_dma_engine.sv:57$205.
+  merging $macc model for $add$rtl/mlu_mfu_dma_engine.sv:57$200 into $add$rtl/mlu_mfu_dma_engine.sv:57$205.
+  merging $macc model for $add$rtl/mlu_mfu_dma_engine.sv:57$199 into $add$rtl/mlu_mfu_dma_engine.sv:57$205.
+  merging $macc model for $add$rtl/mlu_mfu_dma_engine.sv:57$205 into $add$rtl/mlu_mfu_dma_engine.sv:242$206.
+  merging $macc model for $mul$rtl/mlu_mfu_dma_engine.sv:137$30 into $add$rtl/mlu_mfu_dma_engine.sv:137$31.
+  merging $macc model for $mul$rtl/mlu_mfu_dma_engine.sv:135$26 into $add$rtl/mlu_mfu_dma_engine.sv:135$27.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:75$191.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:75$185.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:75$179.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:75$173.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:75$167.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:75$161.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:75$240.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:75$246.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:75$252.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:75$258.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:75$264.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:75$270.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:275$292.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:273$290.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:267$287.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:243$207.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:152$43.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:147$39.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:141$34.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:136$33.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:134$29.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:130$25.
+  creating $alu model for $macc $add$rtl/mlu_mfu_dma_engine.sv:129$23.
+  creating $macc cell for $add$rtl/mlu_mfu_dma_engine.sv:135$27: $auto$alumacc.cc:382:replace_macc$1765
+  creating $macc cell for $mul$rtl/mlu_mfu_dma_engine.sv:228$123: $auto$alumacc.cc:382:replace_macc$1766
+  creating $macc cell for $add$rtl/mlu_mfu_dma_engine.sv:137$31: $auto$alumacc.cc:382:replace_macc$1767
+  creating $macc cell for $add$rtl/mlu_mfu_dma_engine.sv:242$206: $auto$alumacc.cc:382:replace_macc$1768
+  creating $alu model for $ge$rtl/mlu_mfu_dma_engine.sv:267$288 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_mfu_dma_engine.sv:273$291 ($ge): new $alu
+  creating $alu model for $lt$rtl/mlu_mfu_dma_engine.sv:275$293 ($lt): new $alu
+  creating $alu cell for $lt$rtl/mlu_mfu_dma_engine.sv:275$293: $auto$alumacc.cc:512:replace_alu$1772
+  creating $alu cell for $ge$rtl/mlu_mfu_dma_engine.sv:273$291: $auto$alumacc.cc:512:replace_alu$1777
+  creating $alu cell for $ge$rtl/mlu_mfu_dma_engine.sv:267$288: $auto$alumacc.cc:512:replace_alu$1790
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:129$23: $auto$alumacc.cc:512:replace_alu$1803
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:130$25: $auto$alumacc.cc:512:replace_alu$1806
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:134$29: $auto$alumacc.cc:512:replace_alu$1809
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:136$33: $auto$alumacc.cc:512:replace_alu$1812
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:141$34: $auto$alumacc.cc:512:replace_alu$1815
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:147$39: $auto$alumacc.cc:512:replace_alu$1818
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:152$43: $auto$alumacc.cc:512:replace_alu$1821
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:243$207: $auto$alumacc.cc:512:replace_alu$1824
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:267$287: $auto$alumacc.cc:512:replace_alu$1827
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:273$290: $auto$alumacc.cc:512:replace_alu$1830
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:275$292: $auto$alumacc.cc:512:replace_alu$1833
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:75$270: $auto$alumacc.cc:512:replace_alu$1836
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:75$264: $auto$alumacc.cc:512:replace_alu$1839
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:75$258: $auto$alumacc.cc:512:replace_alu$1842
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:75$252: $auto$alumacc.cc:512:replace_alu$1845
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:75$246: $auto$alumacc.cc:512:replace_alu$1848
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:75$240: $auto$alumacc.cc:512:replace_alu$1851
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:75$161: $auto$alumacc.cc:512:replace_alu$1854
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:75$167: $auto$alumacc.cc:512:replace_alu$1857
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:75$173: $auto$alumacc.cc:512:replace_alu$1860
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:75$179: $auto$alumacc.cc:512:replace_alu$1863
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:75$185: $auto$alumacc.cc:512:replace_alu$1866
+  creating $alu cell for $add$rtl/mlu_mfu_dma_engine.sv:75$191: $auto$alumacc.cc:512:replace_alu$1869
+  created 26 $alu and 4 $macc cells.
+
+2.13. Executing SHARE pass (SAT-based resource sharing).
+Found 2 cells in module mlu_mfu_dma_engine that may be considered for resource sharing.
+  Analyzing resource sharing options for $mul$rtl/mlu_mfu_dma_engine.sv:137$30 ($mul):
+    Found cell that is never activated: $mul$rtl/mlu_mfu_dma_engine.sv:137$30
+    Cell is never active. Sharing is pointless, we simply remove it.
+  Analyzing resource sharing options for $mul$rtl/mlu_mfu_dma_engine.sv:135$26 ($mul):
+    Found cell that is never activated: $mul$rtl/mlu_mfu_dma_engine.sv:135$26
+    Cell is never active. Sharing is pointless, we simply remove it.
+Removing 2 cells in module mlu_mfu_dma_engine:
+  Removing cell $mul$rtl/mlu_mfu_dma_engine.sv:135$26 ($mul).
+  Removing cell $mul$rtl/mlu_mfu_dma_engine.sv:137$30 ($mul).
+
+2.14. Executing OPT pass (performing simple optimizations).
+
+2.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+<suppressed ~1 debug messages>
+
+2.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+Removed a total of 0 cells.
+
+2.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~141 debug messages>
+
+2.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine.
+Performed a total of 0 changes.
+
+2.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+Removed a total of 0 cells.
+
+2.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Removed 7 unused cells and 12 unused wires.
+<suppressed ~8 debug messages>
+
+2.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+
+2.14.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.14.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~141 debug messages>
+
+2.14.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine.
+Performed a total of 0 changes.
+
+2.14.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+Removed a total of 0 cells.
+
+2.14.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.14.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+
+2.14.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+
+2.14.16. Finished fast OPT passes. (There is nothing left to do.)
+
+2.15. Executing MEMORY pass.
+
+2.15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+2.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+2.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+2.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+2.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+2.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+
+2.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+2.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+2.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+
+2.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+2.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+
+2.17. Executing OPT pass (performing simple optimizations).
+
+2.17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+<suppressed ~77 debug messages>
+
+2.17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+<suppressed ~93 debug messages>
+Removed a total of 27 cells.
+
+2.17.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Removed 0 unused cells and 96 unused wires.
+<suppressed ~1 debug messages>
+
+2.17.5. Finished fast OPT passes.
+
+2.18. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+2.19. Executing OPT pass (performing simple optimizations).
+
+2.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+<suppressed ~1 debug messages>
+
+2.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+Removed a total of 0 cells.
+
+2.19.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~48 debug messages>
+
+2.19.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine.
+    Consolidated identical input bits for $mux cell $procmux$441:
+      Old ports: A={ 2'00 \decomp_bitmap_i [0] }, B={ 1'0 $add$rtl/mlu_mfu_dma_engine.sv:75$161_Y [1:0] }, Y=$6\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$157
+      New ports: A={ 1'0 \decomp_bitmap_i [0] }, B=$add$rtl/mlu_mfu_dma_engine.sv:75$161_Y [1:0], Y=$6\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$157 [1:0]
+      New connections: $6\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$157 [2] = 1'0
+  Optimizing cells in module \mlu_mfu_dma_engine.
+Performed a total of 1 changes.
+
+2.19.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+Removed a total of 0 cells.
+
+2.19.6. Executing OPT_SHARE pass.
+    Found cells that share an operand and can be merged by moving the $pmux $procmux$1439 in front of them:
+        $auto$alumacc.cc:512:replace_alu$1821
+        $auto$alumacc.cc:512:replace_alu$1812
+        $auto$alumacc.cc:512:replace_alu$1806
+
+    Found cells that share an operand and can be merged by moving the $pmux $procmux$1446 in front of them:
+        $auto$alumacc.cc:512:replace_alu$1809
+        $auto$alumacc.cc:512:replace_alu$1803
+
+2.19.7. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $auto$ff.cc:337:slice$1749 ($adffe) from module mlu_mfu_dma_engine (D = \uncompressed_bytes_wr_o [2:0], Q = \uncompressed_bytes_wr_o [2:0]).
+Handling D = Q on $auto$ff.cc:337:slice$1890 ($adffe) from module mlu_mfu_dma_engine (removing D path).
+Setting constant 0-bit at position 0 on $auto$ff.cc:337:slice$1890 ($dlatch) from module mlu_mfu_dma_engine.
+Setting constant 0-bit at position 1 on $auto$ff.cc:337:slice$1890 ($dlatch) from module mlu_mfu_dma_engine.
+Setting constant 0-bit at position 2 on $auto$ff.cc:337:slice$1890 ($dlatch) from module mlu_mfu_dma_engine.
+
+2.19.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Removed 2 unused cells and 18 unused wires.
+<suppressed ~3 debug messages>
+
+2.19.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+
+2.19.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.19.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~52 debug messages>
+
+2.19.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine.
+    New ctrl vector for $pmux cell $procmux$1439: $procmux$1441_CMP
+    New ctrl vector for $pmux cell $procmux$1446: $procmux$1442_CMP
+  Optimizing cells in module \mlu_mfu_dma_engine.
+Performed a total of 2 changes.
+
+2.19.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+Removed a total of 0 cells.
+
+2.19.14. Executing OPT_SHARE pass.
+
+2.19.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.19.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+
+2.19.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+
+2.19.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.19.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~52 debug messages>
+
+2.19.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine.
+Performed a total of 0 changes.
+
+2.19.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+Removed a total of 0 cells.
+
+2.19.22. Executing OPT_SHARE pass.
+
+2.19.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.19.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+
+2.19.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+
+2.19.26. Finished fast OPT passes. (There is nothing left to do.)
+
+2.20. Executing TECHMAP pass (map to technology primitives).
+
+2.20.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+verilog frontend filename /usr/local/bin/../share/yosys/techmap.v
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `\$connect'.
+Generating RTLIL representation for module `\$input_port'.
+Successfully finished Verilog frontend.
+
+2.20.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $adffe.
+Using extmapper simplemap for cells of type $mux.
+Using template $paramod$ed515afd372375eed228c602d861b693e104bf70\_90_pmux for cells of type $pmux.
+Using template $paramod$7e708ae28ab761f11d0fb59d3ffc72f6a4baf5d9\_90_alu for cells of type $alu.
+Using template $paramod$3ef7d3dd227da7627a99c5e5a6a4deb817573e39\_90_alu for cells of type $alu.
+Using template $paramod$c3cd1564c35d873179656addd6052d7ea8b6d991\_90_alu for cells of type $alu.
+Using template $paramod$2af30114e9bd4ccb04dad757b3f0a8f6bf0615b0\_90_alu for cells of type $alu.
+Using template $paramod$80fd49bc875a8a1ceaa5f1b164eef265e92f0909\_90_alu for cells of type $alu.
+Using template $paramod$1f51813910dee7facc4d450cf018c121fdb5fc98\_90_alu for cells of type $alu.
+Using template $paramod$constmap:1db19fc90c5c187562552ddcd06077898235dca9$paramod$59548de4fa0d06d34fef05b96271e1cc2cf17c30\_90_shift_shiftx for cells of type $shiftx.
+Using template $paramod$2bd81f420048247ff6903399c560fe0f8bd48ccc\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $reduce_and.
+Using template $paramod$6df0329addda9228fcc2546de2aaf14ad26c98e1\_90_alu for cells of type $alu.
+Using template $paramod$a1bc51c02ce12ac21eb18988e83292af48ed7d72\_90_alu for cells of type $alu.
+Using extmapper maccmap for cells of type $macc_v2.
+  add \compressed_bytes_rd_o (32 bits, unsigned)
+  add \decomp_bitmap_i [0] (1 bits, unsigned)
+  add \decomp_bitmap_i [7] (1 bits, unsigned)
+  add \decomp_bitmap_i [6] (1 bits, unsigned)
+  add \decomp_bitmap_i [5] (1 bits, unsigned)
+  add \decomp_bitmap_i [4] (1 bits, unsigned)
+  add \decomp_bitmap_i [3] (1 bits, unsigned)
+  add \decomp_bitmap_i [2] (1 bits, unsigned)
+  add \decomp_bitmap_i [1] (1 bits, unsigned)
+  packed 4 (4) bits / 4 words into adder tree
+  add \row_idx_q * \dst_stride_q (8x8 bits, unsigned)
+  add \col_idx_q (8 bits, unsigned)
+  add \init_rows * \init_cols (8x8 bits, unsigned)
+  add \row_idx_q * \src_stride_q (8x8 bits, unsigned)
+  add \col_idx_q (8 bits, unsigned)
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $logic_and.
+Using template $paramod$constmap:25c0e512fbf3df171a3a2668f4c993c7786b5562$paramod$083b8b44ada278bca8f3f9b35ebdda092d8ef136\_90_shift_shiftx for cells of type $shiftx.
+Using template $paramod$constmap:20b7bf36ed507d37d465c280f0fab4cb70727669$paramod$941157bc7b60aa0bc21f21bf79f9f0cdf59f8b44\_90_shift_shiftx for cells of type $shiftx.
+Using template $paramod$constmap:e06a0a1adb0f8985cfbbf8ba025518fcec6d3b16$paramod$3bc42dccc683f8adaddd1d2d9861164873fa59f0\_90_shift_shiftx for cells of type $shiftx.
+Using extmapper simplemap for cells of type $and.
+Using template $paramod$97565c3687be688407d1272a293bd9d0ae6852dc\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $adff.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000010001 for cells of type $fa.
+Using template $paramod$3bb72ad0665cdca279bbc49ed6a39f403f16497f\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000010000 for cells of type $fa.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000100000 for cells of type $fa.
+Using template $paramod$fbc7873bff55778c0b3173955b7e4bce1d9d6834\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000001000 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000001000 for cells of type $lcu.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000011 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000011 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000010 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000010 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000010000 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000011101 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000011101 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000010001 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~3927 debug messages>
+
+2.21. Executing OPT pass (performing simple optimizations).
+
+2.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+<suppressed ~5339 debug messages>
+
+2.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+<suppressed ~435 debug messages>
+Removed a total of 145 cells.
+
+2.21.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.21.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Removed 1224 unused cells and 1750 unused wires.
+<suppressed ~1225 debug messages>
+
+2.21.5. Finished fast OPT passes.
+
+2.22. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `mlu_mfu_dma_engine'. Setting top module to mlu_mfu_dma_engine.
+
+2.22.1. Analyzing design hierarchy..
+Top module:  \mlu_mfu_dma_engine
+
+2.22.2. Analyzing design hierarchy..
+Top module:  \mlu_mfu_dma_engine
+Removed 0 unused modules.
+
+2.23. Printing statistics.
+
+=== mlu_mfu_dma_engine ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      877 wires
+     7971 wire bits
+       44 public wires
+      934 public wire bits
+       22 ports
+      480 port bits
+     3485 cells
+     1246   $_AND_
+      293   $_DFFE_PN0P_
+        6   $_DFFE_PN1P_
+        1   $_DFF_PN0_
+      727   $_MUX_
+       66   $_NOT_
+      425   $_OR_
+      721   $_XOR_
+
+2.24. Executing CHECK pass (checking for obvious problems).
+Checking module mlu_mfu_dma_engine...
+Found and reported 0 problems.
+
+3. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell DFFLQNx1_ASAP7_75t_R (inv, pins=3, area=0.29) is a direct match for cell type $_DFF_N_.
+  cell DFFHQNx1_ASAP7_75t_R (inv, pins=3, area=0.29) is a direct match for cell type $_DFF_P_.
+  cell DFFASRHQNx1_ASAP7_75t_R (inv, pins=5, area=0.38) is a direct match for cell type $_DFFSR_PNN_.
+  final dff cell mappings:
+    \DFFLQNx1_ASAP7_75t_R _DFF_N_ (.CLK( C), .D( D), .QN(~Q));
+    \DFFHQNx1_ASAP7_75t_R _DFF_P_ (.CLK( C), .D( D), .QN(~Q));
+    unmapped dff cell: $_DFF_NN0_
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    unmapped dff cell: $_DFF_PN0_
+    unmapped dff cell: $_DFF_PN1_
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    unmapped dff cell: $_DFFE_NN_
+    unmapped dff cell: $_DFFE_NP_
+    unmapped dff cell: $_DFFE_PN_
+    unmapped dff cell: $_DFFE_PP_
+    unmapped dff cell: $_DFFSR_NNN_
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    \DFFASRHQNx1_ASAP7_75t_R _DFFSR_PNN_ (.CLK( C), .D( D), .QN(~Q), .RESETN( R), .SETN( S));
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+3.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+<suppressed ~8 debug messages>
+Mapping DFF cells in module `\mlu_mfu_dma_engine':
+  mapped 300 $_DFFSR_PNN_ cells to \DFFASRHQNx1_ASAP7_75t_R cells.
+
+4. Executing ABC pass (technology mapping using ABC).
+
+4.1. Extracting gate netlist of module `\mlu_mfu_dma_engine' to `<abc-temp-dir>/input.blif'..
+
+4.1.1. Executed ABC.
+Extracted 3784 gates and 4340 wires to a netlist network with 554 inputs and 509 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Dec 15 2025 17:24:15)
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_lib -w /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.34 sec
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFASRHQNx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFHQNx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFHQNx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFHQNx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFHQx4_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFLQNx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFLQNx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFLQNx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFLQx4_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DHLx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DHLx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DHLx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLLx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLLx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLLx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx1_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx2_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx2p67DC_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx3_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx4DC_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx4_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx5_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx5p33DC_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx6p67DC_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx8DC_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFHx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFHx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFHx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFHx4_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFLx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFLx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFLx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFLx4_ASAP7_75t_R".
+ABC: Library "asap7_rvt_ff" from "/nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib" has 169 cells (33 skipped: 23 seq; 0 tri-state; 10 no func; 0 dont_use; 0 with 2 outputs; 0 with 3+ outputs).  Time =     0.47 sec
+ABC: Memory =   82.23 MB. Time =     0.47 sec
+ABC: Warning: Detected 2 multi-output cells (for example, "FAx1_ASAP7_75t_R").
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: 
+
+4.1.2. Re-integrating ABC results.
+ABC RESULTS:   A2O1A1Ixp33_ASAP7_75t_R cells:      378
+ABC RESULTS:   A2O1A1O1Ixp25_ASAP7_75t_R cells:       28
+ABC RESULTS:   AND2x2_ASAP7_75t_R cells:       65
+ABC RESULTS:   AND3x1_ASAP7_75t_R cells:       23
+ABC RESULTS:   AO211x2_ASAP7_75t_R cells:        1
+ABC RESULTS:   AO21x1_ASAP7_75t_R cells:       65
+ABC RESULTS:   AO22x1_ASAP7_75t_R cells:        2
+ABC RESULTS:   AOI211xp5_ASAP7_75t_R cells:       95
+ABC RESULTS:   AOI21xp33_ASAP7_75t_R cells:      403
+ABC RESULTS:   AOI221xp5_ASAP7_75t_R cells:        7
+ABC RESULTS:   AOI22xp33_ASAP7_75t_R cells:       20
+ABC RESULTS:   AOI311xp33_ASAP7_75t_R cells:        2
+ABC RESULTS:   AOI31xp33_ASAP7_75t_R cells:        2
+ABC RESULTS:   INVx1_ASAP7_75t_R cells:      891
+ABC RESULTS:   MAJIxp5_ASAP7_75t_R cells:      117
+ABC RESULTS:   MAJx2_ASAP7_75t_R cells:       21
+ABC RESULTS:   NAND2xp33_ASAP7_75t_R cells:      859
+ABC RESULTS:   NAND3xp33_ASAP7_75t_R cells:      299
+ABC RESULTS:   NAND4xp25_ASAP7_75t_R cells:       22
+ABC RESULTS:   NAND5xp2_ASAP7_75t_R cells:        1
+ABC RESULTS:   NOR2xp33_ASAP7_75t_R cells:      673
+ABC RESULTS:   NOR3xp33_ASAP7_75t_R cells:      137
+ABC RESULTS:   NOR4xp25_ASAP7_75t_R cells:       25
+ABC RESULTS:   NOR5xp2_ASAP7_75t_R cells:       16
+ABC RESULTS:   O2A1O1Ixp33_ASAP7_75t_R cells:      140
+ABC RESULTS:   OA211x2_ASAP7_75t_R cells:        4
+ABC RESULTS:   OA21x2_ASAP7_75t_R cells:       10
+ABC RESULTS:   OA221x2_ASAP7_75t_R cells:        1
+ABC RESULTS:   OA22x2_ASAP7_75t_R cells:        3
+ABC RESULTS:   OAI211xp5_ASAP7_75t_R cells:      198
+ABC RESULTS:   OAI21xp33_ASAP7_75t_R cells:      599
+ABC RESULTS:   OAI221xp5_ASAP7_75t_R cells:        8
+ABC RESULTS:   OAI22xp33_ASAP7_75t_R cells:       14
+ABC RESULTS:   OAI311xp33_ASAP7_75t_R cells:        7
+ABC RESULTS:   OAI31xp33_ASAP7_75t_R cells:       22
+ABC RESULTS:   OR2x4_ASAP7_75t_R cells:        4
+ABC RESULTS:   OR3x1_ASAP7_75t_R cells:       13
+ABC RESULTS:   XNOR2x2_ASAP7_75t_R cells:      113
+ABC RESULTS:   XOR2x2_ASAP7_75t_R cells:       47
+ABC RESULTS:        internal signals:     3277
+ABC RESULTS:           input signals:      554
+ABC RESULTS:          output signals:      509
+Removing temp directory.
+Removing global temp directory.
+
+5. Printing statistics.
+
+=== mlu_mfu_dma_engine ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     7365        - wires
+    14459        - wire bits
+       44        - public wires
+      934        - public wire bits
+       22        - ports
+      480        - port bits
+     5635  492.862 cells
+      378   33.067   A2O1A1Ixp33_ASAP7_75t_R
+       28    3.674   A2O1A1O1Ixp25_ASAP7_75t_R
+       65    5.686   AND2x2_ASAP7_75t_R
+       23    2.012   AND3x1_ASAP7_75t_R
+        1    0.233   AO211x2_ASAP7_75t_R
+       65    5.686   AO21x1_ASAP7_75t_R
+        2    0.262   AO22x1_ASAP7_75t_R
+       95    8.311   AOI211xp5_ASAP7_75t_R
+      403   29.379   AOI21xp33_ASAP7_75t_R
+        7    0.714   AOI221xp5_ASAP7_75t_R
+       20     1.75   AOI22xp33_ASAP7_75t_R
+        2    0.204   AOI311xp33_ASAP7_75t_R
+        2    0.175   AOI31xp33_ASAP7_75t_R
+      300  113.724   DFFASRHQNx1_ASAP7_75t_R
+      891   38.972   INVx1_ASAP7_75t_R
+      117   11.941   MAJIxp5_ASAP7_75t_R
+       21    2.756   MAJx2_ASAP7_75t_R
+      859   50.097   NAND2xp33_ASAP7_75t_R
+      299   21.797   NAND3xp33_ASAP7_75t_R
+       22    1.925   NAND4xp25_ASAP7_75t_R
+        1    0.102   NAND5xp2_ASAP7_75t_R
+      673   39.249   NOR2xp33_ASAP7_75t_R
+      137    9.987   NOR3xp33_ASAP7_75t_R
+       25    2.187   NOR4xp25_ASAP7_75t_R
+       16    1.633   NOR5xp2_ASAP7_75t_R
+      140   12.247   O2A1O1Ixp33_ASAP7_75t_R
+        4    0.467   OA211x2_ASAP7_75t_R
+       10    1.021   OA21x2_ASAP7_75t_R
+        1    0.233   OA221x2_ASAP7_75t_R
+        3    0.437   OA22x2_ASAP7_75t_R
+      198   17.321   OAI211xp5_ASAP7_75t_R
+      599   43.667   OAI21xp33_ASAP7_75t_R
+        8    0.816   OAI221xp5_ASAP7_75t_R
+       14    1.225   OAI22xp33_ASAP7_75t_R
+        7    0.714   OAI311xp33_ASAP7_75t_R
+       22    1.925   OAI31xp33_ASAP7_75t_R
+        4    0.467   OR2x4_ASAP7_75t_R
+       13    1.137   OR3x1_ASAP7_75t_R
+      113   18.123   XNOR2x2_ASAP7_75t_R
+       47    7.538   XOR2x2_ASAP7_75t_R
+
+   Chip area for module '\mlu_mfu_dma_engine': 492.862320
+     of which used for sequential elements: 113.724000 (23.07%)
+
+6. Executing Verilog backend.
+
+6.1. Executing BMUXMAP pass.
+
+6.2. Executing DEMUXMAP pass.
+Dumping module `\mlu_mfu_dma_engine'.
+
+End of script. Logfile hash: 7c736cf363, CPU: user 1.51s system 0.13s, MEM: 147.23 MB peak
+Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+Time spent: 43% 1x abc (1 sec), 16% 2x stat (0 sec), ...

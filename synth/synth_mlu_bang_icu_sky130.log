@@ -1,0 +1,1779 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+
+-- Running command `
+        read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip rtl/mlu_bang_icu.sv;
+        chformal -remove;
+        synth -top mlu_bang_icu  -noabc;
+        dfflibmap -liberty /nfs/share/home/chenpei/hyr/dac2027_llm_dsa_marathon/synth/lib/sky130_fd_sc_hd__tt_025C_1v80.lib;
+        abc -fast -liberty /nfs/share/home/chenpei/hyr/dac2027_llm_dsa_marathon/synth/lib/sky130_fd_sc_hd__tt_025C_1v80.lib;
+        stat -liberty /nfs/share/home/chenpei/hyr/dac2027_llm_dsa_marathon/synth/lib/sky130_fd_sc_hd__tt_025C_1v80.lib;
+        write_verilog -noattr synth/mlu_bang_icu_sky130_netlist.v
+    ' --
+
+1. Executing Verilog-2005 frontend: rtl/mlu_bang_icu.sv
+Parsing SystemVerilog input from `rtl/mlu_bang_icu.sv' to AST representation.
+verilog frontend filename rtl/mlu_bang_icu.sv
+Generating RTLIL representation for module `\mlu_bang_icu'.
+Successfully finished Verilog frontend.
+
+2. Executing SYNTH pass.
+
+2.1. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1.1. Analyzing design hierarchy..
+Top module:  \mlu_bang_icu
+
+2.1.2. Analyzing design hierarchy..
+Top module:  \mlu_bang_icu
+Removed 0 unused modules.
+
+2.2. Executing PROC pass (convert processes to netlists).
+
+2.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+2.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 42 switch rules as full_case in process $proc$rtl/mlu_bang_icu.sv:244$621 in module mlu_bang_icu.
+Marked 6 switch rules as full_case in process $proc$rtl/mlu_bang_icu.sv:229$604 in module mlu_bang_icu.
+Marked 8 switch rules as full_case in process $proc$rtl/mlu_bang_icu.sv:188$566 in module mlu_bang_icu.
+Marked 56 switch rules as full_case in process $proc$rtl/mlu_bang_icu.sv:146$164 in module mlu_bang_icu.
+Marked 16 switch rules as full_case in process $proc$rtl/mlu_bang_icu.sv:102$65 in module mlu_bang_icu.
+Marked 1 switch rules as full_case in process $proc$rtl/mlu_bang_icu.sv:73$63 in module mlu_bang_icu.
+Removed a total of 0 dead cases.
+
+2.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 103 assignments to connections.
+
+2.2.4. Executing PROC_INIT pass (extract init attributes).
+
+2.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_ni in `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+
+2.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~131 debug messages>
+
+2.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+     1/89: $2$lookahead\sb_wram_reg_q$620[47:0]$935
+     2/89: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:282$53[31:0]$926
+     3/89: $2$lookahead\sb_uses_wram_q$619[7:0]$934
+     4/89: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:281$52[2:0]$925
+     5/89: $2$lookahead\sb_dst_reg_q$618[175:0]$933
+     6/89: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:280$51[31:0]$924
+     7/89: $2$lookahead\sb_src_reg_q$617[175:0]$932
+     8/89: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:279$50[31:0]$923
+     9/89: $2$lookahead\sb_dst_space_q$616[23:0]$931
+    10/89: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:278$49[31:0]$922
+    11/89: $2$lookahead\sb_src_space_q$615[23:0]$930
+    12/89: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:277$48[31:0]$921
+    13/89: $2$lookahead\sb_tag_q$614[63:0]$929
+    14/89: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:276$47[31:0]$920
+    15/89: $2$lookahead\sb_q_idx_q$613[23:0]$928
+    16/89: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:275$46[31:0]$919
+    17/89: $42$lookahead\sb_valid_q$612[7:0]$927
+    18/89: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:274$45[2:0]$918
+    19/89: $41$lookahead\sb_valid_q$612[7:7]$916
+    20/89: $40$lookahead\sb_valid_q$612[7:7]$910
+    21/89: $39$lookahead\sb_valid_q$612[7:7]$904
+    22/89: $38$lookahead\sb_valid_q$612[7:7]$898
+    23/89: $37$lookahead\sb_valid_q$612[7:7]$892
+    24/89: $36$lookahead\sb_valid_q$612[6:6]$886
+    25/89: $35$lookahead\sb_valid_q$612[6:6]$880
+    26/89: $34$lookahead\sb_valid_q$612[6:6]$874
+    27/89: $33$lookahead\sb_valid_q$612[6:6]$868
+    28/89: $32$lookahead\sb_valid_q$612[6:6]$862
+    29/89: $31$lookahead\sb_valid_q$612[5:5]$856
+    30/89: $30$lookahead\sb_valid_q$612[5:5]$850
+    31/89: $29$lookahead\sb_valid_q$612[5:5]$844
+    32/89: $28$lookahead\sb_valid_q$612[5:5]$838
+    33/89: $27$lookahead\sb_valid_q$612[5:5]$832
+    34/89: $26$lookahead\sb_valid_q$612[4:4]$826
+    35/89: $25$lookahead\sb_valid_q$612[4:4]$820
+    36/89: $24$lookahead\sb_valid_q$612[4:4]$814
+    37/89: $23$lookahead\sb_valid_q$612[4:4]$808
+    38/89: $22$lookahead\sb_valid_q$612[4:4]$802
+    39/89: $21$lookahead\sb_valid_q$612[3:3]$796
+    40/89: $20$lookahead\sb_valid_q$612[3:3]$790
+    41/89: $19$lookahead\sb_valid_q$612[3:3]$784
+    42/89: $18$lookahead\sb_valid_q$612[3:3]$778
+    43/89: $17$lookahead\sb_valid_q$612[3:3]$772
+    44/89: $16$lookahead\sb_valid_q$612[2:2]$766
+    45/89: $15$lookahead\sb_valid_q$612[2:2]$760
+    46/89: $14$lookahead\sb_valid_q$612[2:2]$754
+    47/89: $13$lookahead\sb_valid_q$612[2:2]$748
+    48/89: $12$lookahead\sb_valid_q$612[2:2]$742
+    49/89: $11$lookahead\sb_valid_q$612[1:1]$736
+    50/89: $10$lookahead\sb_valid_q$612[1:1]$730
+    51/89: $9$lookahead\sb_valid_q$612[1:1]$724
+    52/89: $8$lookahead\sb_valid_q$612[1:1]$718
+    53/89: $7$lookahead\sb_valid_q$612[1:1]$712
+    54/89: $6$lookahead\sb_valid_q$612[0:0]$706
+    55/89: $5$lookahead\sb_valid_q$612[0:0]$700
+    56/89: $4$lookahead\sb_valid_q$612[0:0]$694
+    57/89: $3$lookahead\sb_valid_q$612[0:0]$688
+    58/89: $2$lookahead\sb_valid_q$612[0:0]$682
+    59/89: $0\inst_retired_cnt_o[31:0]
+    60/89: $1$lookahead\sb_wram_reg_q$620[47:0]$676
+    61/89: $1$lookahead\sb_uses_wram_q$619[7:0]$675
+    62/89: $1$lookahead\sb_dst_reg_q$618[175:0]$674
+    63/89: $1$lookahead\sb_src_reg_q$617[175:0]$673
+    64/89: $1$lookahead\sb_dst_space_q$616[23:0]$672
+    65/89: $1$lookahead\sb_src_space_q$615[23:0]$671
+    66/89: $1$lookahead\sb_tag_q$614[63:0]$670
+    67/89: $1$lookahead\sb_q_idx_q$613[23:0]$669
+    68/89: $1$lookahead\sb_valid_q$612[7:0]$668
+    69/89: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:282$53[31:0]$667
+    70/89: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:281$52[2:0]$666
+    71/89: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:280$51[31:0]$665
+    72/89: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:279$50[31:0]$664
+    73/89: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:278$49[31:0]$663
+    74/89: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:277$48[31:0]$662
+    75/89: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:276$47[31:0]$661
+    76/89: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:275$46[31:0]$660
+    77/89: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:274$45[2:0]$659
+    78/89: $1$fordecl_block$9.s[31:0]$650
+    79/89: $1$fordecl_block$9.$for_loop$10[7].$fordecl_block$11.e[31:0]$658
+    80/89: $1$fordecl_block$9.$for_loop$10[6].$fordecl_block$11.e[31:0]$657
+    81/89: $1$fordecl_block$9.$for_loop$10[5].$fordecl_block$11.e[31:0]$656
+    82/89: $1$fordecl_block$9.$for_loop$10[4].$fordecl_block$11.e[31:0]$655
+    83/89: $1$fordecl_block$9.$for_loop$10[3].$fordecl_block$11.e[31:0]$654
+    84/89: $1$fordecl_block$9.$for_loop$10[2].$fordecl_block$11.e[31:0]$653
+    85/89: $1$fordecl_block$9.$for_loop$10[1].$fordecl_block$11.e[31:0]$652
+    86/89: $1$fordecl_block$9.$for_loop$10[0].$fordecl_block$11.e[31:0]$651
+    87/89: $0\pwr_gate_cfg_valid_o[0:0]
+    88/89: $0\hazard_stall_cnt_o[31:0]
+    89/89: $0\idle_threshold_o[7:0]
+Creating decoders for process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:229$604'.
+     1/6: $6\done_cnt_comb[31:0]
+     2/6: $5\done_cnt_comb[31:0]
+     3/6: $4\done_cnt_comb[31:0]
+     4/6: $3\done_cnt_comb[31:0]
+     5/6: $2\done_cnt_comb[31:0]
+     6/6: $1\done_cnt_comb[31:0]
+Creating decoders for process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:188$566'.
+     1/16: $8\free_slot_idx[2:0]
+     2/16: $8\sb_full[0:0]
+     3/16: $7\free_slot_idx[2:0]
+     4/16: $7\sb_full[0:0]
+     5/16: $6\free_slot_idx[2:0]
+     6/16: $6\sb_full[0:0]
+     7/16: $5\free_slot_idx[2:0]
+     8/16: $5\sb_full[0:0]
+     9/16: $4\free_slot_idx[2:0]
+    10/16: $4\sb_full[0:0]
+    11/16: $3\free_slot_idx[2:0]
+    12/16: $3\sb_full[0:0]
+    13/16: $2\free_slot_idx[2:0]
+    14/16: $2\sb_full[0:0]
+    15/16: $1\free_slot_idx[2:0]
+    16/16: $1\sb_full[0:0]
+Creating decoders for process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+     1/104: $56\mem_or_tag_hazard[0:0]
+     2/104: $55\mem_or_tag_hazard[0:0]
+     3/104: $54\mem_or_tag_hazard[0:0]
+     4/104: $53\mem_or_tag_hazard[0:0]
+     5/104: $52\mem_or_tag_hazard[0:0]
+     6/104: $51\mem_or_tag_hazard[0:0]
+     7/104: $50\mem_or_tag_hazard[0:0]
+     8/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$44.$result[0:0]$528
+     9/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$44.sp[2:0]$529
+    10/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$43.$result[0:0]$526
+    11/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$43.sp[2:0]$527
+    12/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$42.$result[0:0]$524
+    13/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$42.sp[2:0]$525
+    14/104: $49\mem_or_tag_hazard[0:0]
+    15/104: $48\mem_or_tag_hazard[0:0]
+    16/104: $47\mem_or_tag_hazard[0:0]
+    17/104: $46\mem_or_tag_hazard[0:0]
+    18/104: $45\mem_or_tag_hazard[0:0]
+    19/104: $44\mem_or_tag_hazard[0:0]
+    20/104: $43\mem_or_tag_hazard[0:0]
+    21/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$41.$result[0:0]$484
+    22/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$41.sp[2:0]$485
+    23/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$40.$result[0:0]$482
+    24/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$40.sp[2:0]$483
+    25/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$39.$result[0:0]$480
+    26/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$39.sp[2:0]$481
+    27/104: $42\mem_or_tag_hazard[0:0]
+    28/104: $41\mem_or_tag_hazard[0:0]
+    29/104: $40\mem_or_tag_hazard[0:0]
+    30/104: $39\mem_or_tag_hazard[0:0]
+    31/104: $38\mem_or_tag_hazard[0:0]
+    32/104: $37\mem_or_tag_hazard[0:0]
+    33/104: $36\mem_or_tag_hazard[0:0]
+    34/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$38.$result[0:0]$440
+    35/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$38.sp[2:0]$441
+    36/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$37.$result[0:0]$438
+    37/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$37.sp[2:0]$439
+    38/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$36.$result[0:0]$436
+    39/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$36.sp[2:0]$437
+    40/104: $35\mem_or_tag_hazard[0:0]
+    41/104: $34\mem_or_tag_hazard[0:0]
+    42/104: $33\mem_or_tag_hazard[0:0]
+    43/104: $32\mem_or_tag_hazard[0:0]
+    44/104: $31\mem_or_tag_hazard[0:0]
+    45/104: $30\mem_or_tag_hazard[0:0]
+    46/104: $29\mem_or_tag_hazard[0:0]
+    47/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$35.$result[0:0]$396
+    48/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$35.sp[2:0]$397
+    49/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$34.$result[0:0]$394
+    50/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$34.sp[2:0]$395
+    51/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$33.$result[0:0]$392
+    52/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$33.sp[2:0]$393
+    53/104: $28\mem_or_tag_hazard[0:0]
+    54/104: $27\mem_or_tag_hazard[0:0]
+    55/104: $26\mem_or_tag_hazard[0:0]
+    56/104: $25\mem_or_tag_hazard[0:0]
+    57/104: $24\mem_or_tag_hazard[0:0]
+    58/104: $23\mem_or_tag_hazard[0:0]
+    59/104: $22\mem_or_tag_hazard[0:0]
+    60/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$32.$result[0:0]$352
+    61/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$32.sp[2:0]$353
+    62/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$31.$result[0:0]$350
+    63/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$31.sp[2:0]$351
+    64/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$30.$result[0:0]$348
+    65/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$30.sp[2:0]$349
+    66/104: $21\mem_or_tag_hazard[0:0]
+    67/104: $20\mem_or_tag_hazard[0:0]
+    68/104: $19\mem_or_tag_hazard[0:0]
+    69/104: $18\mem_or_tag_hazard[0:0]
+    70/104: $17\mem_or_tag_hazard[0:0]
+    71/104: $16\mem_or_tag_hazard[0:0]
+    72/104: $15\mem_or_tag_hazard[0:0]
+    73/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$29.$result[0:0]$308
+    74/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$29.sp[2:0]$309
+    75/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$28.$result[0:0]$306
+    76/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$28.sp[2:0]$307
+    77/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$27.$result[0:0]$304
+    78/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$27.sp[2:0]$305
+    79/104: $14\mem_or_tag_hazard[0:0]
+    80/104: $13\mem_or_tag_hazard[0:0]
+    81/104: $12\mem_or_tag_hazard[0:0]
+    82/104: $11\mem_or_tag_hazard[0:0]
+    83/104: $10\mem_or_tag_hazard[0:0]
+    84/104: $9\mem_or_tag_hazard[0:0]
+    85/104: $8\mem_or_tag_hazard[0:0]
+    86/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$26.$result[0:0]$264
+    87/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$26.sp[2:0]$265
+    88/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$25.$result[0:0]$262
+    89/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$25.sp[2:0]$263
+    90/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$24.$result[0:0]$260
+    91/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$24.sp[2:0]$261
+    92/104: $7\mem_or_tag_hazard[0:0]
+    93/104: $6\mem_or_tag_hazard[0:0]
+    94/104: $5\mem_or_tag_hazard[0:0]
+    95/104: $4\mem_or_tag_hazard[0:0]
+    96/104: $3\mem_or_tag_hazard[0:0]
+    97/104: $2\mem_or_tag_hazard[0:0]
+    98/104: $1\mem_or_tag_hazard[0:0]
+    99/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$23.$result[0:0]$220
+   100/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$23.sp[2:0]$221
+   101/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$22.$result[0:0]$218
+   102/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$22.sp[2:0]$219
+   103/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$21.$result[0:0]$216
+   104/104: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$21.sp[2:0]$217
+Creating decoders for process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:102$65'.
+     1/32: $16\queue_busy_o[4:0]
+     2/32: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$20[2:0]$147
+     3/32: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$20[2:0]$145
+     4/32: $15\queue_busy_o[4:0]
+     5/32: $14\queue_busy_o[4:0]
+     6/32: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$19[2:0]$137
+     7/32: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$19[2:0]$135
+     8/32: $13\queue_busy_o[4:0]
+     9/32: $12\queue_busy_o[4:0]
+    10/32: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$18[2:0]$127
+    11/32: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$18[2:0]$125
+    12/32: $11\queue_busy_o[4:0]
+    13/32: $10\queue_busy_o[4:0]
+    14/32: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$17[2:0]$117
+    15/32: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$17[2:0]$115
+    16/32: $9\queue_busy_o[4:0]
+    17/32: $8\queue_busy_o[4:0]
+    18/32: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$16[2:0]$107
+    19/32: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$16[2:0]$105
+    20/32: $7\queue_busy_o[4:0]
+    21/32: $6\queue_busy_o[4:0]
+    22/32: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$15[2:0]$97
+    23/32: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$15[2:0]$95
+    24/32: $5\queue_busy_o[4:0]
+    25/32: $4\queue_busy_o[4:0]
+    26/32: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$14[2:0]$87
+    27/32: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$14[2:0]$85
+    28/32: $3\queue_busy_o[4:0]
+    29/32: $2\queue_busy_o[4:0]
+    30/32: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$13[2:0]$77
+    31/32: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$13[2:0]$75
+    32/32: $1\queue_busy_o[4:0]
+Creating decoders for process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:73$63'.
+     1/4: $2\target_q_mask[4:0]
+     2/4: $2\target_q_idx[2:0]
+     3/4: $1\target_q_mask[4:0]
+     4/4: $1\target_q_idx[2:0]
+
+2.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\mlu_bang_icu.\done_cnt_comb' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:229$604'.
+No latch inferred for signal `\mlu_bang_icu.$fordecl_block$7.e' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:229$604'.
+No latch inferred for signal `\mlu_bang_icu.\sb_full' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:188$566'.
+No latch inferred for signal `\mlu_bang_icu.\free_slot_idx' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:188$566'.
+No latch inferred for signal `\mlu_bang_icu.$fordecl_block$5.s' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:188$566'.
+No latch inferred for signal `\mlu_bang_icu.\mem_or_tag_hazard' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.$fordecl_block$3.s' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$21.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$21.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$22.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$22.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$23.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$23.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$24.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$24.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$25.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$25.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$26.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$26.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$27.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$27.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$28.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$28.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$29.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$29.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$30.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$30.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$31.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$31.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$32.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$32.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$33.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$33.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$34.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$34.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$35.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$35.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$36.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$36.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$37.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$37.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$38.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$38.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$39.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$39.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$40.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$40.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$41.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$41.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$42.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$42.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$43.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$43.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$44.$result' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$44.sp' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+No latch inferred for signal `\mlu_bang_icu.\queue_busy_o' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:102$65'.
+No latch inferred for signal `\mlu_bang_icu.$fordecl_block$1.s' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:102$65'.
+No latch inferred for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$13' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:102$65'.
+No latch inferred for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$14' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:102$65'.
+No latch inferred for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$15' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:102$65'.
+No latch inferred for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$16' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:102$65'.
+No latch inferred for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$17' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:102$65'.
+No latch inferred for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$18' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:102$65'.
+No latch inferred for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$19' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:102$65'.
+No latch inferred for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$20' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:102$65'.
+No latch inferred for signal `\mlu_bang_icu.\target_q_idx' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:73$63'.
+No latch inferred for signal `\mlu_bang_icu.\target_q_mask' from process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:73$63'.
+
+2.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\mlu_bang_icu.\pwr_gate_cfg_valid_o' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$1884' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.\idle_threshold_o' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$1889' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.\inst_retired_cnt_o' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$1894' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.\hazard_stall_cnt_o' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$1899' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.\sb_valid_q' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$1904' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.\sb_q_idx_q' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$1909' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.\sb_tag_q' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$1914' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.\sb_src_space_q' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$1919' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.\sb_dst_space_q' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$1924' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.\sb_src_reg_q' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$1929' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.\sb_dst_reg_q' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$1934' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.\sb_uses_wram_q' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$1939' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.\sb_wram_reg_q' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$1944' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$fordecl_block$9.s' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $dff cell `$procdff$1951' with positive edge clock.
+Creating register for signal `\mlu_bang_icu.$fordecl_block$9.$for_loop$10[0].$fordecl_block$11.e' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $dff cell `$procdff$1958' with positive edge clock.
+Creating register for signal `\mlu_bang_icu.$fordecl_block$9.$for_loop$10[1].$fordecl_block$11.e' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $dff cell `$procdff$1965' with positive edge clock.
+Creating register for signal `\mlu_bang_icu.$fordecl_block$9.$for_loop$10[2].$fordecl_block$11.e' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $dff cell `$procdff$1972' with positive edge clock.
+Creating register for signal `\mlu_bang_icu.$fordecl_block$9.$for_loop$10[3].$fordecl_block$11.e' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $dff cell `$procdff$1979' with positive edge clock.
+Creating register for signal `\mlu_bang_icu.$fordecl_block$9.$for_loop$10[4].$fordecl_block$11.e' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $dff cell `$procdff$1986' with positive edge clock.
+Creating register for signal `\mlu_bang_icu.$fordecl_block$9.$for_loop$10[5].$fordecl_block$11.e' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $dff cell `$procdff$1993' with positive edge clock.
+Creating register for signal `\mlu_bang_icu.$fordecl_block$9.$for_loop$10[6].$fordecl_block$11.e' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $dff cell `$procdff$2000' with positive edge clock.
+Creating register for signal `\mlu_bang_icu.$fordecl_block$9.$for_loop$10[7].$fordecl_block$11.e' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $dff cell `$procdff$2007' with positive edge clock.
+Creating register for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:274$45' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2012' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:275$46' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2017' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:276$47' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2022' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:277$48' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2027' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:278$49' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2032' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:279$50' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2037' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:280$51' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2042' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:281$52' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2047' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$bitselwrite$pos$rtl/mlu_bang_icu.sv:282$53' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2052' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$lookahead\sb_valid_q$612' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2057' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$lookahead\sb_q_idx_q$613' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2062' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$lookahead\sb_tag_q$614' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2067' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$lookahead\sb_src_space_q$615' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2072' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$lookahead\sb_dst_space_q$616' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2077' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$lookahead\sb_src_reg_q$617' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2082' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$lookahead\sb_dst_reg_q$618' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2087' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$lookahead\sb_uses_wram_q$619' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2092' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu.$lookahead\sb_wram_reg_q$620' using process `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+  created $adff cell `$procdff$2097' with positive edge clock and positive level reset.
+
+2.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+2.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 43 empty switches in `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+Removing empty process `mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:244$621'.
+Found and cleaned up 6 empty switches in `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:229$604'.
+Removing empty process `mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:229$604'.
+Found and cleaned up 8 empty switches in `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:188$566'.
+Removing empty process `mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:188$566'.
+Found and cleaned up 56 empty switches in `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+Removing empty process `mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:146$164'.
+Found and cleaned up 16 empty switches in `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:102$65'.
+Removing empty process `mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:102$65'.
+Found and cleaned up 2 empty switches in `\mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:73$63'.
+Removing empty process `mlu_bang_icu.$proc$rtl/mlu_bang_icu.sv:73$63'.
+Cleaned up 131 empty switches.
+
+2.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+<suppressed ~139 debug messages>
+
+2.3. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+<suppressed ~5 debug messages>
+
+2.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+Removed 170 unused cells and 914 unused wires.
+<suppressed ~171 debug messages>
+
+2.5. Executing CHECK pass (checking for obvious problems).
+Checking module mlu_bang_icu...
+Found and reported 0 problems.
+
+2.6. Executing OPT pass (performing simple optimizations).
+
+2.6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+
+2.6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+<suppressed ~519 debug messages>
+Removed a total of 173 cells.
+
+2.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_bang_icu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$1260.
+    dead port 2/2 on $mux $procmux$1266.
+    dead port 2/2 on $mux $procmux$1272.
+    dead port 2/2 on $mux $procmux$1278.
+    dead port 2/2 on $mux $procmux$1284.
+    dead port 2/2 on $mux $procmux$1290.
+    dead port 2/2 on $mux $procmux$1317.
+    dead port 2/2 on $mux $procmux$1323.
+    dead port 2/2 on $mux $procmux$1329.
+    dead port 2/2 on $mux $procmux$1335.
+    dead port 2/2 on $mux $procmux$1341.
+    dead port 2/2 on $mux $procmux$1347.
+    dead port 2/2 on $mux $procmux$1374.
+    dead port 2/2 on $mux $procmux$1380.
+    dead port 2/2 on $mux $procmux$1386.
+    dead port 2/2 on $mux $procmux$1392.
+    dead port 2/2 on $mux $procmux$1398.
+    dead port 2/2 on $mux $procmux$1404.
+    dead port 2/2 on $mux $procmux$1431.
+    dead port 2/2 on $mux $procmux$1437.
+    dead port 2/2 on $mux $procmux$1443.
+    dead port 2/2 on $mux $procmux$1449.
+    dead port 2/2 on $mux $procmux$1455.
+    dead port 2/2 on $mux $procmux$1461.
+    dead port 2/2 on $mux $procmux$1488.
+    dead port 2/2 on $mux $procmux$1494.
+    dead port 2/2 on $mux $procmux$1500.
+    dead port 2/2 on $mux $procmux$1506.
+    dead port 2/2 on $mux $procmux$1512.
+    dead port 2/2 on $mux $procmux$1518.
+    dead port 2/2 on $mux $procmux$1545.
+    dead port 2/2 on $mux $procmux$1551.
+    dead port 2/2 on $mux $procmux$1557.
+    dead port 2/2 on $mux $procmux$1563.
+    dead port 2/2 on $mux $procmux$1569.
+    dead port 2/2 on $mux $procmux$1575.
+    dead port 2/2 on $mux $procmux$1602.
+    dead port 2/2 on $mux $procmux$1608.
+    dead port 2/2 on $mux $procmux$1614.
+    dead port 2/2 on $mux $procmux$1620.
+    dead port 2/2 on $mux $procmux$1626.
+    dead port 2/2 on $mux $procmux$1632.
+    dead port 2/2 on $mux $procmux$1659.
+    dead port 2/2 on $mux $procmux$1665.
+    dead port 2/2 on $mux $procmux$1671.
+    dead port 2/2 on $mux $procmux$1677.
+    dead port 2/2 on $mux $procmux$1683.
+    dead port 2/2 on $mux $procmux$1689.
+    dead port 2/2 on $mux $procmux$1716.
+    dead port 2/2 on $mux $procmux$1734.
+    dead port 2/2 on $mux $procmux$1752.
+    dead port 2/2 on $mux $procmux$1770.
+    dead port 2/2 on $mux $procmux$1788.
+    dead port 2/2 on $mux $procmux$1806.
+    dead port 2/2 on $mux $procmux$1824.
+    dead port 2/2 on $mux $procmux$1842.
+    dead port 1/2 on $mux $procmux$1863.
+    dead port 1/2 on $mux $procmux$1872.
+Removed 58 multiplexer ports.
+<suppressed ~836 debug messages>
+
+2.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_bang_icu.
+Performed a total of 0 changes.
+
+2.6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+Removed a total of 0 cells.
+
+2.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+Removed 0 unused cells and 231 unused wires.
+<suppressed ~1 debug messages>
+
+2.6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+
+2.6.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.6.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_bang_icu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~514 debug messages>
+
+2.6.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_bang_icu.
+Performed a total of 0 changes.
+
+2.6.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+Removed a total of 0 cells.
+
+2.6.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.6.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+
+2.6.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+
+2.6.16. Finished fast OPT passes. (There is nothing left to do.)
+
+2.7. Executing FSM pass (extract and optimize FSM).
+
+2.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+2.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+2.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+2.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+
+2.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+2.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+2.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+2.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+2.8. Executing OPT pass (performing simple optimizations).
+
+2.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+
+2.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+Removed a total of 0 cells.
+
+2.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_bang_icu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~514 debug messages>
+
+2.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_bang_icu.
+Performed a total of 0 changes.
+
+2.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+Removed a total of 0 cells.
+
+2.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$1944 ($adff) from module mlu_bang_icu (D = $or$rtl/mlu_bang_icu.sv:282$1005_Y, Q = \sb_wram_reg_q).
+Adding EN signal on $procdff$1939 ($adff) from module mlu_bang_icu (D = $or$rtl/mlu_bang_icu.sv:281$997_Y, Q = \sb_uses_wram_q).
+Adding EN signal on $procdff$1934 ($adff) from module mlu_bang_icu (D = $or$rtl/mlu_bang_icu.sv:280$990_Y, Q = \sb_dst_reg_q).
+Adding EN signal on $procdff$1929 ($adff) from module mlu_bang_icu (D = $or$rtl/mlu_bang_icu.sv:279$982_Y, Q = \sb_src_reg_q).
+Adding EN signal on $procdff$1924 ($adff) from module mlu_bang_icu (D = $or$rtl/mlu_bang_icu.sv:278$974_Y, Q = \sb_dst_space_q).
+Adding EN signal on $procdff$1919 ($adff) from module mlu_bang_icu (D = $or$rtl/mlu_bang_icu.sv:277$966_Y, Q = \sb_src_space_q).
+Adding EN signal on $procdff$1914 ($adff) from module mlu_bang_icu (D = $or$rtl/mlu_bang_icu.sv:276$958_Y, Q = \sb_tag_q).
+Adding EN signal on $procdff$1909 ($adff) from module mlu_bang_icu (D = $or$rtl/mlu_bang_icu.sv:275$950_Y, Q = \sb_q_idx_q).
+Adding EN signal on $procdff$1899 ($adff) from module mlu_bang_icu (D = $add$rtl/mlu_bang_icu.sv:294$1008_Y, Q = \hazard_stall_cnt_o).
+Adding EN signal on $procdff$1889 ($adff) from module mlu_bang_icu (D = \inst_i [7:0], Q = \idle_threshold_o).
+
+2.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+Removed 10 unused cells and 10 unused wires.
+<suppressed ~11 debug messages>
+
+2.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+
+2.8.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.8.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_bang_icu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~494 debug messages>
+
+2.8.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_bang_icu.
+Performed a total of 0 changes.
+
+2.8.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+Removed a total of 0 cells.
+
+2.8.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.8.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+
+2.8.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+
+2.8.16. Finished fast OPT passes. (There is nothing left to do.)
+
+2.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 5 bits (of 6) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:62$54 ($eq).
+Removed top 4 bits (of 6) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:63$55 ($eq).
+Removed top 4 bits (of 6) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:64$56 ($eq).
+Converting cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$82 ($neg) from signed to unsigned.
+Removed top 1 bits (of 4) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$82 ($neg).
+Converting cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$88 ($neg) from signed to unsigned.
+Removed top 1 bits (of 4) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$88 ($neg).
+Converting cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$102 ($neg) from signed to unsigned.
+Removed top 1 bits (of 4) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$102 ($neg).
+Converting cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$108 ($neg) from signed to unsigned.
+Removed top 1 bits (of 4) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$108 ($neg).
+Converting cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$118 ($neg) from signed to unsigned.
+Removed top 1 bits (of 4) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$118 ($neg).
+Converting cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$128 ($neg) from signed to unsigned.
+Removed top 1 bits (of 4) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$128 ($neg).
+Converting cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$138 ($neg) from signed to unsigned.
+Removed top 1 bits (of 4) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$138 ($neg).
+Converting cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$148 ($neg) from signed to unsigned.
+Removed top 1 bits (of 4) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:107$148 ($neg).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:129$155 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:116$224 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:117$226 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:162$232 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:116$237 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:117$239 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:162$276 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:162$320 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:162$364 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:162$408 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:162$452 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:162$496 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:162$540 ($eq).
+Removed top 31 bits (of 32) from port B of cell mlu_bang_icu.$add$rtl/mlu_bang_icu.sv:233$607 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_bang_icu.$add$rtl/mlu_bang_icu.sv:233$608 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_bang_icu.$add$rtl/mlu_bang_icu.sv:233$609 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_bang_icu.$add$rtl/mlu_bang_icu.sv:233$610 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_bang_icu.$add$rtl/mlu_bang_icu.sv:237$611 ($add).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$684 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$690 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$696 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$714 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$720 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$726 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$744 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$750 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$756 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$774 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$780 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$786 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$804 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$810 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$816 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$834 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$840 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$846 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$864 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$870 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$876 ($eq).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$894 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$900 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$eq$rtl/mlu_bang_icu.sv:266$906 ($eq).
+Converting cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:274$936 ($neg) from signed to unsigned.
+Removed top 1 bits (of 4) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:274$936 ($neg).
+Removed top 30 bits (of 32) from port B of cell mlu_bang_icu.$mul$rtl/mlu_bang_icu.sv:275$943 ($mul).
+Removed top 27 bits (of 32) from port Y of cell mlu_bang_icu.$mul$rtl/mlu_bang_icu.sv:275$943 ($mul).
+Removed top 27 bits (of 33) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:275$944 ($neg).
+Converting cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:275$944 ($neg) from signed to unsigned.
+Removed top 1 bits (of 6) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:275$944 ($neg).
+Removed top 26 bits (of 33) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:276$952 ($neg).
+Converting cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:276$952 ($neg) from signed to unsigned.
+Removed top 1 bits (of 7) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:276$952 ($neg).
+Removed top 27 bits (of 31) from port B of cell mlu_bang_icu.$mul$rtl/mlu_bang_icu.sv:279$975 ($mul).
+Removed top 24 bits (of 31) from port Y of cell mlu_bang_icu.$mul$rtl/mlu_bang_icu.sv:279$975 ($mul).
+Removed top 24 bits (of 33) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:279$976 ($neg).
+Converting cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:279$976 ($neg) from signed to unsigned.
+Removed top 1 bits (of 9) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:279$976 ($neg).
+Removed top 29 bits (of 31) from port B of cell mlu_bang_icu.$mul$rtl/mlu_bang_icu.sv:282$998 ($mul).
+Removed top 26 bits (of 31) from port Y of cell mlu_bang_icu.$mul$rtl/mlu_bang_icu.sv:282$998 ($mul).
+Removed top 26 bits (of 33) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:282$1003 ($neg).
+Converting cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:282$1003 ($neg) from signed to unsigned.
+Removed top 1 bits (of 7) from port A of cell mlu_bang_icu.$neg$rtl/mlu_bang_icu.sv:282$1003 ($neg).
+Removed top 31 bits (of 32) from port B of cell mlu_bang_icu.$add$rtl/mlu_bang_icu.sv:294$1008 ($add).
+Removed top 31 bits (of 32) from mux cell mlu_bang_icu.$procmux$1206 ($mux).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$procmux$1861_CMP0 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu.$procmux$1862_CMP0 ($eq).
+Removed top 31 bits (of 32) from wire mlu_bang_icu.$1\done_cnt_comb[31:0].
+Removed top 27 bits (of 32) from wire mlu_bang_icu.$mul$rtl/mlu_bang_icu.sv:275$943_Y.
+Removed top 24 bits (of 32) from wire mlu_bang_icu.$mul$rtl/mlu_bang_icu.sv:279$975_Y.
+Removed top 26 bits (of 32) from wire mlu_bang_icu.$mul$rtl/mlu_bang_icu.sv:282$998_Y.
+Removed top 3 bits (of 8) from wire mlu_bang_icu.$or$rtl/mlu_bang_icu.sv:274$942_Y.
+Removed top 3 bits (of 24) from wire mlu_bang_icu.$or$rtl/mlu_bang_icu.sv:278$974_Y.
+Removed top 3 bits (of 8) from wire mlu_bang_icu.$or$rtl/mlu_bang_icu.sv:281$997_Y.
+Removed top 15 bits (of 24) from wire mlu_bang_icu.$shift$rtl/mlu_bang_icu.sv:278$973_Y.
+Removed top 1 bits (of 8) from wire mlu_bang_icu.$shift$rtl/mlu_bang_icu.sv:281$996_Y.
+
+2.10. Executing PEEPOPT pass (run peephole optimizers).
+left shiftmul pattern in mlu_bang_icu: shift=$shift$rtl/mlu_bang_icu.sv:275$945, mul=$mul$rtl/mlu_bang_icu.sv:275$943
+left shiftmul pattern in mlu_bang_icu: shift=$shift$rtl/mlu_bang_icu.sv:275$949, mul=$mul$rtl/mlu_bang_icu.sv:275$943
+left shiftmul pattern in mlu_bang_icu: shift=$shift$rtl/mlu_bang_icu.sv:277$965, mul=$mul$rtl/mlu_bang_icu.sv:275$943
+left shiftmul pattern in mlu_bang_icu: shift=$shift$rtl/mlu_bang_icu.sv:278$973, mul=$mul$rtl/mlu_bang_icu.sv:275$943
+
+2.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+Removed 2 unused cells and 11 unused wires.
+<suppressed ~3 debug messages>
+
+2.12. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module mlu_bang_icu:
+  creating $macc model for $add$rtl/mlu_bang_icu.sv:233$607 ($add).
+  creating $macc model for $add$rtl/mlu_bang_icu.sv:233$608 ($add).
+  creating $macc model for $add$rtl/mlu_bang_icu.sv:233$609 ($add).
+  creating $macc model for $add$rtl/mlu_bang_icu.sv:233$610 ($add).
+  creating $macc model for $add$rtl/mlu_bang_icu.sv:237$611 ($add).
+  creating $macc model for $add$rtl/mlu_bang_icu.sv:292$1007 ($add).
+  creating $macc model for $add$rtl/mlu_bang_icu.sv:294$1008 ($add).
+  creating $macc model for $auto$peepopt_pm.h:1001:block_9$2119 ($neg).
+  creating $macc model for $auto$peepopt_pm.h:1001:block_9$2122 ($neg).
+  creating $macc model for $auto$peepopt_pm.h:1001:block_9$2125 ($neg).
+  creating $macc model for $auto$peepopt_pm.h:1001:block_9$2128 ($neg).
+  creating $macc model for $mul$rtl/mlu_bang_icu.sv:279$975 ($mul).
+  creating $macc model for $mul$rtl/mlu_bang_icu.sv:282$998 ($mul).
+  creating $macc model for $neg$rtl/mlu_bang_icu.sv:107$102 ($neg).
+  creating $macc model for $neg$rtl/mlu_bang_icu.sv:107$108 ($neg).
+  creating $macc model for $neg$rtl/mlu_bang_icu.sv:107$118 ($neg).
+  creating $macc model for $neg$rtl/mlu_bang_icu.sv:107$128 ($neg).
+  creating $macc model for $neg$rtl/mlu_bang_icu.sv:107$138 ($neg).
+  creating $macc model for $neg$rtl/mlu_bang_icu.sv:107$148 ($neg).
+  creating $macc model for $neg$rtl/mlu_bang_icu.sv:107$82 ($neg).
+  creating $macc model for $neg$rtl/mlu_bang_icu.sv:107$88 ($neg).
+  creating $macc model for $neg$rtl/mlu_bang_icu.sv:274$936 ($neg).
+  creating $macc model for $neg$rtl/mlu_bang_icu.sv:276$952 ($neg).
+  creating $macc model for $neg$rtl/mlu_bang_icu.sv:279$976 ($neg).
+  creating $macc model for $neg$rtl/mlu_bang_icu.sv:282$1003 ($neg).
+  creating $alu model for $macc $neg$rtl/mlu_bang_icu.sv:282$1003.
+  creating $alu model for $macc $neg$rtl/mlu_bang_icu.sv:279$976.
+  creating $alu model for $macc $neg$rtl/mlu_bang_icu.sv:276$952.
+  creating $alu model for $macc $neg$rtl/mlu_bang_icu.sv:274$936.
+  creating $alu model for $macc $neg$rtl/mlu_bang_icu.sv:107$88.
+  creating $alu model for $macc $neg$rtl/mlu_bang_icu.sv:107$82.
+  creating $alu model for $macc $neg$rtl/mlu_bang_icu.sv:107$148.
+  creating $alu model for $macc $neg$rtl/mlu_bang_icu.sv:107$138.
+  creating $alu model for $macc $neg$rtl/mlu_bang_icu.sv:107$128.
+  creating $alu model for $macc $neg$rtl/mlu_bang_icu.sv:107$118.
+  creating $alu model for $macc $neg$rtl/mlu_bang_icu.sv:107$108.
+  creating $alu model for $macc $neg$rtl/mlu_bang_icu.sv:107$102.
+  creating $alu model for $macc $auto$peepopt_pm.h:1001:block_9$2128.
+  creating $alu model for $macc $auto$peepopt_pm.h:1001:block_9$2125.
+  creating $alu model for $macc $auto$peepopt_pm.h:1001:block_9$2122.
+  creating $alu model for $macc $auto$peepopt_pm.h:1001:block_9$2119.
+  creating $alu model for $macc $add$rtl/mlu_bang_icu.sv:294$1008.
+  creating $alu model for $macc $add$rtl/mlu_bang_icu.sv:292$1007.
+  creating $alu model for $macc $add$rtl/mlu_bang_icu.sv:237$611.
+  creating $alu model for $macc $add$rtl/mlu_bang_icu.sv:233$610.
+  creating $alu model for $macc $add$rtl/mlu_bang_icu.sv:233$609.
+  creating $alu model for $macc $add$rtl/mlu_bang_icu.sv:233$608.
+  creating $alu model for $macc $add$rtl/mlu_bang_icu.sv:233$607.
+  creating $macc cell for $mul$rtl/mlu_bang_icu.sv:279$975: $auto$alumacc.cc:382:replace_macc$2129
+  creating $macc cell for $mul$rtl/mlu_bang_icu.sv:282$998: $auto$alumacc.cc:382:replace_macc$2130
+  creating $alu model for $lt$rtl/mlu_bang_icu.sv:106$106 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_bang_icu.sv:106$116 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_bang_icu.sv:106$126 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_bang_icu.sv:106$136 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_bang_icu.sv:106$146 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_bang_icu.sv:106$76 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_bang_icu.sv:106$86 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_bang_icu.sv:106$96 ($lt): new $alu
+  creating $alu cell for $lt$rtl/mlu_bang_icu.sv:106$96: $auto$alumacc.cc:512:replace_alu$2139
+  creating $alu cell for $lt$rtl/mlu_bang_icu.sv:106$86: $auto$alumacc.cc:512:replace_alu$2144
+  creating $alu cell for $lt$rtl/mlu_bang_icu.sv:106$76: $auto$alumacc.cc:512:replace_alu$2149
+  creating $alu cell for $lt$rtl/mlu_bang_icu.sv:106$146: $auto$alumacc.cc:512:replace_alu$2154
+  creating $alu cell for $lt$rtl/mlu_bang_icu.sv:106$136: $auto$alumacc.cc:512:replace_alu$2159
+  creating $alu cell for $lt$rtl/mlu_bang_icu.sv:106$126: $auto$alumacc.cc:512:replace_alu$2164
+  creating $alu cell for $lt$rtl/mlu_bang_icu.sv:106$116: $auto$alumacc.cc:512:replace_alu$2169
+  creating $alu cell for $lt$rtl/mlu_bang_icu.sv:106$106: $auto$alumacc.cc:512:replace_alu$2174
+  creating $alu cell for $add$rtl/mlu_bang_icu.sv:233$607: $auto$alumacc.cc:512:replace_alu$2179
+  creating $alu cell for $add$rtl/mlu_bang_icu.sv:233$608: $auto$alumacc.cc:512:replace_alu$2182
+  creating $alu cell for $add$rtl/mlu_bang_icu.sv:233$609: $auto$alumacc.cc:512:replace_alu$2185
+  creating $alu cell for $add$rtl/mlu_bang_icu.sv:233$610: $auto$alumacc.cc:512:replace_alu$2188
+  creating $alu cell for $add$rtl/mlu_bang_icu.sv:237$611: $auto$alumacc.cc:512:replace_alu$2191
+  creating $alu cell for $add$rtl/mlu_bang_icu.sv:292$1007: $auto$alumacc.cc:512:replace_alu$2194
+  creating $alu cell for $add$rtl/mlu_bang_icu.sv:294$1008: $auto$alumacc.cc:512:replace_alu$2197
+  creating $alu cell for $auto$peepopt_pm.h:1001:block_9$2119: $auto$alumacc.cc:512:replace_alu$2200
+  creating $alu cell for $auto$peepopt_pm.h:1001:block_9$2122: $auto$alumacc.cc:512:replace_alu$2203
+  creating $alu cell for $auto$peepopt_pm.h:1001:block_9$2125: $auto$alumacc.cc:512:replace_alu$2206
+  creating $alu cell for $auto$peepopt_pm.h:1001:block_9$2128: $auto$alumacc.cc:512:replace_alu$2209
+  creating $alu cell for $neg$rtl/mlu_bang_icu.sv:107$102: $auto$alumacc.cc:512:replace_alu$2212
+  creating $alu cell for $neg$rtl/mlu_bang_icu.sv:107$108: $auto$alumacc.cc:512:replace_alu$2215
+  creating $alu cell for $neg$rtl/mlu_bang_icu.sv:107$118: $auto$alumacc.cc:512:replace_alu$2218
+  creating $alu cell for $neg$rtl/mlu_bang_icu.sv:107$128: $auto$alumacc.cc:512:replace_alu$2221
+  creating $alu cell for $neg$rtl/mlu_bang_icu.sv:107$138: $auto$alumacc.cc:512:replace_alu$2224
+  creating $alu cell for $neg$rtl/mlu_bang_icu.sv:107$148: $auto$alumacc.cc:512:replace_alu$2227
+  creating $alu cell for $neg$rtl/mlu_bang_icu.sv:107$82: $auto$alumacc.cc:512:replace_alu$2230
+  creating $alu cell for $neg$rtl/mlu_bang_icu.sv:107$88: $auto$alumacc.cc:512:replace_alu$2233
+  creating $alu cell for $neg$rtl/mlu_bang_icu.sv:274$936: $auto$alumacc.cc:512:replace_alu$2236
+  creating $alu cell for $neg$rtl/mlu_bang_icu.sv:276$952: $auto$alumacc.cc:512:replace_alu$2239
+  creating $alu cell for $neg$rtl/mlu_bang_icu.sv:279$976: $auto$alumacc.cc:512:replace_alu$2242
+  creating $alu cell for $neg$rtl/mlu_bang_icu.sv:282$1003: $auto$alumacc.cc:512:replace_alu$2245
+  created 31 $alu and 2 $macc cells.
+
+2.13. Executing SHARE pass (SAT-based resource sharing).
+
+2.14. Executing OPT pass (performing simple optimizations).
+
+2.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+<suppressed ~8 debug messages>
+
+2.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+<suppressed ~15 debug messages>
+Removed a total of 3 cells.
+
+2.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_bang_icu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~494 debug messages>
+
+2.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_bang_icu.
+Performed a total of 0 changes.
+
+2.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+Removed a total of 0 cells.
+
+2.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+Removed 8 unused cells and 25 unused wires.
+<suppressed ~9 debug messages>
+
+2.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+
+2.14.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.14.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_bang_icu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~494 debug messages>
+
+2.14.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_bang_icu.
+Performed a total of 0 changes.
+
+2.14.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+Removed a total of 0 cells.
+
+2.14.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.14.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+
+2.14.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+
+2.14.16. Finished fast OPT passes. (There is nothing left to do.)
+
+2.15. Executing MEMORY pass.
+
+2.15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+2.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+2.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+2.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+2.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+2.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+
+2.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+2.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+2.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+
+2.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+2.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+
+2.17. Executing OPT pass (performing simple optimizations).
+
+2.17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+<suppressed ~180 debug messages>
+
+2.17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+Removed a total of 0 cells.
+
+2.17.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+Removed 0 unused cells and 34 unused wires.
+<suppressed ~1 debug messages>
+
+2.17.5. Finished fast OPT passes.
+
+2.18. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+2.19. Executing OPT pass (performing simple optimizations).
+
+2.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+
+2.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+Removed a total of 0 cells.
+
+2.19.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_bang_icu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~122 debug messages>
+
+2.19.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_bang_icu.
+    Consolidated identical input bits for $mux cell $procmux$1203:
+      Old ports: A={ 31'0000000000000000000000000000000 \eng_done_valid_i [0] }, B={ 30'000000000000000000000000000000 $add$rtl/mlu_bang_icu.sv:233$607_Y [1:0] }, Y=$2\done_cnt_comb[31:0]
+      New ports: A={ 1'0 \eng_done_valid_i [0] }, B=$add$rtl/mlu_bang_icu.sv:233$607_Y [1:0], Y=$2\done_cnt_comb[31:0] [1:0]
+      New connections: $2\done_cnt_comb[31:0] [31:2] = 30'000000000000000000000000000000
+    Consolidated identical input bits for $mux cell $procmux$1251:
+      Old ports: A=3'111, B=3'000, Y=$1\free_slot_idx[2:0]
+      New ports: A=1'1, B=1'0, Y=$1\free_slot_idx[2:0] [0]
+      New connections: $1\free_slot_idx[2:0] [2:1] = { $1\free_slot_idx[2:0] [0] $1\free_slot_idx[2:0] [0] }
+  Optimizing cells in module \mlu_bang_icu.
+    Consolidated identical input bits for $mux cell $procmux$1245:
+      Old ports: A=3'110, B=$1\free_slot_idx[2:0], Y=$2\free_slot_idx[2:0]
+      New ports: A=2'10, B={ $1\free_slot_idx[2:0] [0] $1\free_slot_idx[2:0] [0] }, Y=$2\free_slot_idx[2:0] [1:0]
+      New connections: $2\free_slot_idx[2:0] [2] = $2\free_slot_idx[2:0] [1]
+  Optimizing cells in module \mlu_bang_icu.
+Performed a total of 3 changes.
+
+2.19.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+Removed a total of 0 cells.
+
+2.19.6. Executing OPT_SHARE pass.
+
+2.19.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.19.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+
+2.19.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+<suppressed ~118 debug messages>
+
+2.19.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.19.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_bang_icu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~121 debug messages>
+
+2.19.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_bang_icu.
+    Consolidated identical input bits for $mux cell $procmux$1200:
+      Old ports: A={ 30'000000000000000000000000000000 $2\done_cnt_comb[31:0] [1:0] }, B=$add$rtl/mlu_bang_icu.sv:233$608_Y, Y=$3\done_cnt_comb[31:0]
+      New ports: A={ 1'0 $2\done_cnt_comb[31:0] [1:0] }, B=$add$rtl/mlu_bang_icu.sv:233$608_Y [2:0], Y=$3\done_cnt_comb[31:0] [2:0]
+      New connections: $3\done_cnt_comb[31:0] [31:3] = 29'00000000000000000000000000000
+  Optimizing cells in module \mlu_bang_icu.
+Performed a total of 1 changes.
+
+2.19.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+Removed a total of 0 cells.
+
+2.19.14. Executing OPT_SHARE pass.
+
+2.19.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.19.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+Removed 0 unused cells and 29 unused wires.
+<suppressed ~1 debug messages>
+
+2.19.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+<suppressed ~113 debug messages>
+
+2.19.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.19.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_bang_icu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~121 debug messages>
+
+2.19.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_bang_icu.
+    Consolidated identical input bits for $mux cell $procmux$1197:
+      Old ports: A={ 29'00000000000000000000000000000 $3\done_cnt_comb[31:0] [2:0] }, B=$add$rtl/mlu_bang_icu.sv:233$609_Y, Y=$4\done_cnt_comb[31:0]
+      New ports: A={ 1'0 $3\done_cnt_comb[31:0] [2:0] }, B=$add$rtl/mlu_bang_icu.sv:233$609_Y [3:0], Y=$4\done_cnt_comb[31:0] [3:0]
+      New connections: $4\done_cnt_comb[31:0] [31:4] = 28'0000000000000000000000000000
+  Optimizing cells in module \mlu_bang_icu.
+Performed a total of 1 changes.
+
+2.19.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+Removed a total of 0 cells.
+
+2.19.22. Executing OPT_SHARE pass.
+
+2.19.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.19.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+Removed 0 unused cells and 28 unused wires.
+<suppressed ~1 debug messages>
+
+2.19.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+<suppressed ~109 debug messages>
+
+2.19.26. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.19.27. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_bang_icu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~121 debug messages>
+
+2.19.28. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_bang_icu.
+    Consolidated identical input bits for $mux cell $procmux$1194:
+      Old ports: A={ 28'0000000000000000000000000000 $4\done_cnt_comb[31:0] [3:0] }, B=$add$rtl/mlu_bang_icu.sv:233$610_Y, Y=$5\done_cnt_comb[31:0]
+      New ports: A={ 1'0 $4\done_cnt_comb[31:0] [3:0] }, B=$add$rtl/mlu_bang_icu.sv:233$610_Y [4:0], Y=$5\done_cnt_comb[31:0] [4:0]
+      New connections: $5\done_cnt_comb[31:0] [31:5] = 27'000000000000000000000000000
+  Optimizing cells in module \mlu_bang_icu.
+Performed a total of 1 changes.
+
+2.19.29. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+Removed a total of 0 cells.
+
+2.19.30. Executing OPT_SHARE pass.
+
+2.19.31. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.19.32. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+Removed 0 unused cells and 27 unused wires.
+<suppressed ~1 debug messages>
+
+2.19.33. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+<suppressed ~105 debug messages>
+
+2.19.34. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.19.35. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_bang_icu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~121 debug messages>
+
+2.19.36. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_bang_icu.
+    Consolidated identical input bits for $mux cell $procmux$1191:
+      Old ports: A={ 27'000000000000000000000000000 $5\done_cnt_comb[31:0] [4:0] }, B=$add$rtl/mlu_bang_icu.sv:237$611_Y, Y=\done_cnt_comb
+      New ports: A={ 1'0 $5\done_cnt_comb[31:0] [4:0] }, B=$add$rtl/mlu_bang_icu.sv:237$611_Y [5:0], Y=\done_cnt_comb [5:0]
+      New connections: \done_cnt_comb [31:6] = 26'00000000000000000000000000
+  Optimizing cells in module \mlu_bang_icu.
+Performed a total of 1 changes.
+
+2.19.37. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+Removed a total of 0 cells.
+
+2.19.38. Executing OPT_SHARE pass.
+
+2.19.39. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.19.40. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+Removed 0 unused cells and 26 unused wires.
+<suppressed ~1 debug messages>
+
+2.19.41. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+
+2.19.42. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.19.43. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_bang_icu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~121 debug messages>
+
+2.19.44. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_bang_icu.
+Performed a total of 0 changes.
+
+2.19.45. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+Removed a total of 0 cells.
+
+2.19.46. Executing OPT_SHARE pass.
+
+2.19.47. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.19.48. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+
+2.19.49. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+
+2.19.50. Finished fast OPT passes. (There is nothing left to do.)
+
+2.20. Executing TECHMAP pass (map to technology primitives).
+
+2.20.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+verilog frontend filename /usr/local/bin/../share/yosys/techmap.v
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `\$connect'.
+Generating RTLIL representation for module `\$input_port'.
+Successfully finished Verilog frontend.
+
+2.20.2. Continuing TECHMAP pass.
+Using template $paramod$00298f3f8094950cb9a5ff2fda48d0d8bde8806c\_90_alu for cells of type $alu.
+Using template $paramod$b18e16801adf491a64caa0542270798e5d4ac6b6\_90_alu for cells of type $alu.
+Using template $paramod$740b056ede97228d3eae64ea2fdc81f0a33e0fe7\_90_alu for cells of type $alu.
+Using template $paramod$78e969f2586efcf3a5b0b0440bcca0db83d5cca2\_90_alu for cells of type $alu.
+Using template $paramod$7e708ae28ab761f11d0fb59d3ffc72f6a4baf5d9\_90_alu for cells of type $alu.
+Using template $paramod$3ef274a4ad1e446c08416d1cf6cb5ab03146d407\_90_alu for cells of type $alu.
+Using template $paramod$b8a7a49af93c9972e4faced050a7ddb2a5968b70\_90_alu for cells of type $alu.
+Using template $paramod$025d767fc934a3e7d59a671de523743ebaa07759\_90_alu for cells of type $alu.
+Using template $paramod$9f3f81d189a6b1d5c738a580270bbb92e45c5c71\_90_alu for cells of type $alu.
+Using template $paramod$6a42b6fefed750f8a1c58eab59479d960557103c\_90_alu for cells of type $alu.
+Using template $paramod$fbc7873bff55778c0b3173955b7e4bce1d9d6834\_90_alu for cells of type $alu.
+Using extmapper maccmap for cells of type $macc_v2.
+  add \free_slot_idx * 2'11 (3x2 bits, unsigned)
+  add 4'1011 * \free_slot_idx (4x3 bits, unsigned)
+Using extmapper simplemap for cells of type $adffe.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $logic_or.
+Using template $paramod$constmap:3ce1a1a4a960616f307618d5a405dba935bbf851$paramod$35d35d14a64c888f466d35398fe1889a42aa3977\_90_shift_shiftx for cells of type $shift.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $mux.
+Using template $paramod$constmap:82d13b1faa4b21cb1487e5b4ddefba1164cb15a1$paramod$40ccfd5a7f1418017a9af25543d0c43a198b5946\_90_shift_shiftx for cells of type $shift.
+Using template $paramod$constmap:34074ebd678b7939be4ac05d0a1c59fd3b9498d1$paramod$4a02c667dcfa770c46385d5113716b7fba017494\_90_shift_shiftx for cells of type $shift.
+Analyzing pattern of constant bits for this cell:
+Creating constmapped module `$paramod$constmap:e1f862e78bbddd0a6c885843fe2d8d03be33ecd1$paramod$4a02c667dcfa770c46385d5113716b7fba017494\_90_shift_shiftx'.
+
+2.20.40. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$constmap:e1f862e78bbddd0a6c885843fe2d8d03be33ecd1$paramod$4a02c667dcfa770c46385d5113716b7fba017494\_90_shift_shiftx..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$7520.
+    dead port 2/2 on $mux $procmux$7514.
+    dead port 2/2 on $mux $procmux$7508.
+    dead port 2/2 on $mux $procmux$7502.
+    dead port 2/2 on $mux $procmux$7496.
+Removed 5 multiplexer ports.
+<suppressed ~1476 debug messages>
+
+2.20.41. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$constmap:e1f862e78bbddd0a6c885843fe2d8d03be33ecd1$paramod$4a02c667dcfa770c46385d5113716b7fba017494\_90_shift_shiftx.
+<suppressed ~2 debug messages>
+Removed 0 unused cells and 10 unused wires.
+Using template $paramod$constmap:e1f862e78bbddd0a6c885843fe2d8d03be33ecd1$paramod$4a02c667dcfa770c46385d5113716b7fba017494\_90_shift_shiftx for cells of type $shift.
+Using template $paramod$constmap:5e7469752f59dbc8bef3c04feacb4249f7e16ad2$paramod$409781814c91f00d9cc7cbbb6c4394c1e0dab276\_90_shift_shiftx for cells of type $shift.
+Analyzing pattern of constant bits for this cell:
+Creating constmapped module `$paramod$constmap:656a22200df5fab3b4703ef18f7274dc5c301761$paramod$409781814c91f00d9cc7cbbb6c4394c1e0dab276\_90_shift_shiftx'.
+
+2.20.47. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$constmap:656a22200df5fab3b4703ef18f7274dc5c301761$paramod$409781814c91f00d9cc7cbbb6c4394c1e0dab276\_90_shift_shiftx..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$7668.
+    dead port 2/2 on $mux $procmux$7662.
+    dead port 2/2 on $mux $procmux$7656.
+    dead port 2/2 on $mux $procmux$7650.
+    dead port 2/2 on $mux $procmux$7644.
+    dead port 2/2 on $mux $procmux$7638.
+    dead port 2/2 on $mux $procmux$7632.
+Removed 7 multiplexer ports.
+<suppressed ~708 debug messages>
+
+2.20.48. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$constmap:656a22200df5fab3b4703ef18f7274dc5c301761$paramod$409781814c91f00d9cc7cbbb6c4394c1e0dab276\_90_shift_shiftx.
+<suppressed ~27 debug messages>
+Removed 0 unused cells and 12 unused wires.
+Using template $paramod$constmap:656a22200df5fab3b4703ef18f7274dc5c301761$paramod$409781814c91f00d9cc7cbbb6c4394c1e0dab276\_90_shift_shiftx for cells of type $shift.
+Using template $paramod$constmap:46e4f8ef202d4e1369f4261f204516e948989719$paramod$64cb32072cf62de767fdb67406006ca171a97153\_90_shift_shiftx for cells of type $shift.
+Analyzing pattern of constant bits for this cell:
+Creating constmapped module `$paramod$constmap:de80fdef8ab0585a040375472c27beef35e21a39$paramod$64cb32072cf62de767fdb67406006ca171a97153\_90_shift_shiftx'.
+
+2.20.54. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$constmap:de80fdef8ab0585a040375472c27beef35e21a39$paramod$64cb32072cf62de767fdb67406006ca171a97153\_90_shift_shiftx..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$8120.
+    dead port 2/2 on $mux $procmux$8114.
+    dead port 2/2 on $mux $procmux$8108.
+    dead port 2/2 on $mux $procmux$8102.
+    dead port 2/2 on $mux $procmux$8096.
+    dead port 2/2 on $mux $procmux$8090.
+    dead port 2/2 on $mux $procmux$8084.
+    dead port 2/2 on $mux $procmux$8078.
+    dead port 2/2 on $mux $procmux$8072.
+Removed 9 multiplexer ports.
+<suppressed ~866 debug messages>
+
+2.20.55. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$constmap:de80fdef8ab0585a040375472c27beef35e21a39$paramod$64cb32072cf62de767fdb67406006ca171a97153\_90_shift_shiftx.
+<suppressed ~25 debug messages>
+Removed 0 unused cells and 14 unused wires.
+Using template $paramod$constmap:de80fdef8ab0585a040375472c27beef35e21a39$paramod$64cb32072cf62de767fdb67406006ca171a97153\_90_shift_shiftx for cells of type $shift.
+Analyzing pattern of constant bits for this cell:
+Creating constmapped module `$paramod$constmap:9d7c541a436e2c9bb59914d3a53cc61c099f37b0$paramod$40ccfd5a7f1418017a9af25543d0c43a198b5946\_90_shift_shiftx'.
+
+2.20.56. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$constmap:9d7c541a436e2c9bb59914d3a53cc61c099f37b0$paramod$40ccfd5a7f1418017a9af25543d0c43a198b5946\_90_shift_shiftx..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$7459.
+    dead port 2/2 on $mux $procmux$7453.
+    dead port 2/2 on $mux $procmux$7447.
+Removed 3 multiplexer ports.
+<suppressed ~47 debug messages>
+
+2.20.57. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$constmap:9d7c541a436e2c9bb59914d3a53cc61c099f37b0$paramod$40ccfd5a7f1418017a9af25543d0c43a198b5946\_90_shift_shiftx.
+<suppressed ~2 debug messages>
+Removed 0 unused cells and 9 unused wires.
+Using template $paramod$constmap:9d7c541a436e2c9bb59914d3a53cc61c099f37b0$paramod$40ccfd5a7f1418017a9af25543d0c43a198b5946\_90_shift_shiftx for cells of type $shift.
+Using template $paramod$constmap:4879c7790943f62ae6e32ae3fab2c5a8c1f7fe99$paramod$d0111132c5e329e4b453aa8969c1141e972e133e\_90_shift_shiftx for cells of type $shift.
+Analyzing pattern of constant bits for this cell:
+Creating constmapped module `$paramod$constmap:319d04b846d1102ebd8040b0cf6944a6fbf4d839$paramod$d0111132c5e329e4b453aa8969c1141e972e133e\_90_shift_shiftx'.
+
+2.20.63. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$constmap:319d04b846d1102ebd8040b0cf6944a6fbf4d839$paramod$d0111132c5e329e4b453aa8969c1141e972e133e\_90_shift_shiftx..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$9166.
+    dead port 2/2 on $mux $procmux$9160.
+    dead port 2/2 on $mux $procmux$9154.
+    dead port 2/2 on $mux $procmux$9148.
+    dead port 2/2 on $mux $procmux$9142.
+    dead port 2/2 on $mux $procmux$9136.
+    dead port 2/2 on $mux $procmux$9130.
+Removed 7 multiplexer ports.
+<suppressed ~706 debug messages>
+
+2.20.64. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$constmap:319d04b846d1102ebd8040b0cf6944a6fbf4d839$paramod$d0111132c5e329e4b453aa8969c1141e972e133e\_90_shift_shiftx.
+<suppressed ~27 debug messages>
+Removed 0 unused cells and 12 unused wires.
+Using template $paramod$constmap:319d04b846d1102ebd8040b0cf6944a6fbf4d839$paramod$d0111132c5e329e4b453aa8969c1141e972e133e\_90_shift_shiftx for cells of type $shift.
+Using template $paramod$24fb226dd75c9d3f6955ec2ad61d794776778cf6\_90_pmux for cells of type $pmux.
+Using template $paramod$d31bf4d7d72e59528d18fbd4f322e9d608532043\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $adff.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000111 for cells of type $fa.
+Using template $paramod$dbcdc7e8aa1a4080cea2deda6fdc8772064f4d90\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000100 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000100 for cells of type $lcu.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000100001 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000100001 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000010 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000010 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000011 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000011 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000101 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000101 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000110 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000110 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000100000 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Using extmapper simplemap for cells of type $ne.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000111 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~3034 debug messages>
+
+2.21. Executing OPT pass (performing simple optimizations).
+
+2.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu.
+<suppressed ~30914 debug messages>
+
+2.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu'.
+<suppressed ~5727 debug messages>
+Removed a total of 1909 cells.
+
+2.21.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.21.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu..
+Removed 1522 unused cells and 2975 unused wires.
+<suppressed ~1523 debug messages>
+
+2.21.5. Finished fast OPT passes.
+
+2.22. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `mlu_bang_icu'. Setting top module to mlu_bang_icu.
+
+2.22.1. Analyzing design hierarchy..
+Top module:  \mlu_bang_icu
+
+2.22.2. Analyzing design hierarchy..
+Top module:  \mlu_bang_icu
+Removed 0 unused modules.
+
+2.23. Printing statistics.
+
+=== mlu_bang_icu ===
+
+        +----------Local Count, excluding submodules.
+        | 
+     1621 wires
+    33601 wire bits
+       73 public wires
+     1259 public wire bits
+       19 ports
+      401 port bits
+     8444 cells
+     1013   $_AND_
+      583   $_DFFE_PN0P_
+        1   $_DFFE_PN1P_
+       41   $_DFF_PN0_
+     3347   $_MUX_
+      420   $_NOT_
+     1842   $_OR_
+     1197   $_XOR_
+
+2.24. Executing CHECK pass (checking for obvious problems).
+Checking module mlu_bang_icu...
+Found and reported 0 problems.
+
+3. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell sky130_fd_sc_hd__dfxtp_1 (noninv, pins=3, area=20.02) is a direct match for cell type $_DFF_P_.
+  cell sky130_fd_sc_hd__dfrtn_1 (noninv, pins=4, area=25.02) is a direct match for cell type $_DFF_NN0_.
+  cell sky130_fd_sc_hd__dfrtp_1 (noninv, pins=4, area=25.02) is a direct match for cell type $_DFF_PN0_.
+  cell sky130_fd_sc_hd__dfstp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN1_.
+  cell sky130_fd_sc_hd__edfxtp_1 (noninv, pins=4, area=30.03) is a direct match for cell type $_DFFE_PP_.
+  cell sky130_fd_sc_hd__dfbbn_1 (noninv, pins=6, area=32.53) is a direct match for cell type $_DFFSR_NNN_.
+  cell sky130_fd_sc_hd__dfbbp_1 (noninv, pins=6, area=32.53) is a direct match for cell type $_DFFSR_PNN_.
+  final dff cell mappings:
+    unmapped dff cell: $_DFF_N_
+    \sky130_fd_sc_hd__dfxtp_1 _DFF_P_ (.CLK( C), .D( D), .Q( Q));
+    \sky130_fd_sc_hd__dfrtn_1 _DFF_NN0_ (.CLK_N( C), .D( D), .Q( Q), .RESET_B( R));
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    \sky130_fd_sc_hd__dfrtp_1 _DFF_PN0_ (.CLK( C), .D( D), .Q( Q), .RESET_B( R));
+    \sky130_fd_sc_hd__dfstp_2 _DFF_PN1_ (.CLK( C), .D( D), .Q( Q), .SET_B( R));
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    unmapped dff cell: $_DFFE_NN_
+    unmapped dff cell: $_DFFE_NP_
+    unmapped dff cell: $_DFFE_PN_
+    \sky130_fd_sc_hd__edfxtp_1 _DFFE_PP_ (.CLK( C), .D( D), .DE( E), .Q( Q));
+    \sky130_fd_sc_hd__dfbbn_1 _DFFSR_NNN_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    \sky130_fd_sc_hd__dfbbp_1 _DFFSR_PNN_ (.CLK( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+3.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+<suppressed ~24 debug messages>
+Mapping DFF cells in module `\mlu_bang_icu':
+  mapped 624 $_DFF_PN0_ cells to \sky130_fd_sc_hd__dfrtp_1 cells.
+  mapped 1 $_DFF_PN1_ cells to \sky130_fd_sc_hd__dfstp_2 cells.
+
+4. Executing ABC pass (technology mapping using ABC).
+
+4.1. Extracting gate netlist of module `\mlu_bang_icu' to `<abc-temp-dir>/input.blif'..
+
+4.1.1. Executed ABC.
+Extracted 8403 gates and 9166 wires to a netlist network with 761 inputs and 643 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Dec 15 2025 17:24:15)
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_lib -w /nfs/share/home/chenpei/hyr/dac2027_llm_dsa_marathon/synth/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.13 sec
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_12" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_3" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_6" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_8" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__diode_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_8".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__edfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__edfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_0".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_8".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_8".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_bleeder_1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_12" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_3" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_6" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_8" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__lpflow_inputisolatch_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfsbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_4".
+ABC: Library "sky130_fd_sc_hd__tt_025C_1v80" from "/nfs/share/home/chenpei/hyr/dac2027_llm_dsa_marathon/synth/lib/sky130_fd_sc_hd__tt_025C_1v80.lib" has 334 cells (94 skipped: 63 seq; 13 tri-state; 18 no func; 0 dont_use; 0 with 2 outputs; 0 with 3+ outputs).  Time =     0.17 sec
+ABC: Memory =   19.81 MB. Time =     0.17 sec
+ABC: Warning: Detected 9 multi-output cells (for example, "sky130_fd_sc_hd__fa_1").
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: 
+
+4.1.2. Re-integrating ABC results.
+ABC RESULTS:   sky130_fd_sc_hd__a2111oi_0 cells:       24
+ABC RESULTS:   sky130_fd_sc_hd__a211oi_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__a21boi_0 cells:       12
+ABC RESULTS:   sky130_fd_sc_hd__a21o_2 cells:       12
+ABC RESULTS:   sky130_fd_sc_hd__a21oi_1 cells:      164
+ABC RESULTS:   sky130_fd_sc_hd__a22oi_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__a31oi_1 cells:       34
+ABC RESULTS:   sky130_fd_sc_hd__a32oi_1 cells:       44
+ABC RESULTS:   sky130_fd_sc_hd__a41oi_1 cells:       27
+ABC RESULTS:   sky130_fd_sc_hd__and3_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__clkinv_1 cells:      651
+ABC RESULTS:   sky130_fd_sc_hd__mux2i_1 cells:        8
+ABC RESULTS:   sky130_fd_sc_hd__nand2_1 cells:     1962
+ABC RESULTS:   sky130_fd_sc_hd__nand3_1 cells:      217
+ABC RESULTS:   sky130_fd_sc_hd__nand3b_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nand4_1 cells:      772
+ABC RESULTS:   sky130_fd_sc_hd__nor2_1 cells:      342
+ABC RESULTS:   sky130_fd_sc_hd__nor3_1 cells:      231
+ABC RESULTS:   sky130_fd_sc_hd__nor3b_1 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__nor4_1 cells:      121
+ABC RESULTS:   sky130_fd_sc_hd__o2111ai_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o211ai_1 cells:       22
+ABC RESULTS:   sky130_fd_sc_hd__o21a_1 cells:       10
+ABC RESULTS:   sky130_fd_sc_hd__o21ai_0 cells:      887
+ABC RESULTS:   sky130_fd_sc_hd__o21bai_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o22ai_1 cells:       81
+ABC RESULTS:   sky130_fd_sc_hd__o2bb2ai_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o31ai_1 cells:       36
+ABC RESULTS:   sky130_fd_sc_hd__o32ai_1 cells:       68
+ABC RESULTS:   sky130_fd_sc_hd__o41ai_1 cells:       35
+ABC RESULTS:   sky130_fd_sc_hd__or2_2 cells:       24
+ABC RESULTS:   sky130_fd_sc_hd__or3_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__or4_2 cells:       10
+ABC RESULTS:   sky130_fd_sc_hd__xnor2_1 cells:      489
+ABC RESULTS:   sky130_fd_sc_hd__xor2_1 cells:      212
+ABC RESULTS:        internal signals:     7762
+ABC RESULTS:           input signals:      761
+ABC RESULTS:          output signals:      643
+Removing temp directory.
+Removing global temp directory.
+
+5. Printing statistics.
+
+=== mlu_bang_icu ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     9478        - wires
+    41458        - wire bits
+       73        - public wires
+     1259        - public wire bits
+       19        - ports
+      401        - port bits
+     7137 4.96E+04 cells
+       24  210.202   sky130_fd_sc_hd__a2111oi_0
+        3   22.522   sky130_fd_sc_hd__a211oi_1
+       12   90.086   sky130_fd_sc_hd__a21boi_0
+       12  105.101   sky130_fd_sc_hd__a21o_2
+      164  820.787   sky130_fd_sc_hd__a21oi_1
+        2   15.014   sky130_fd_sc_hd__a22oi_1
+       34  212.704   sky130_fd_sc_hd__a31oi_1
+       44   385.37   sky130_fd_sc_hd__a32oi_1
+       27  236.477   sky130_fd_sc_hd__a41oi_1
+        2   15.014   sky130_fd_sc_hd__and3_2
+      651 2.44E+03   sky130_fd_sc_hd__clkinv_1
+      624 1.56E+04   sky130_fd_sc_hd__dfrtp_1
+        1   26.275   sky130_fd_sc_hd__dfstp_2
+        8   80.077   sky130_fd_sc_hd__mux2i_1
+     1962 7.36E+03   sky130_fd_sc_hd__nand2_1
+      217 1.09E+03   sky130_fd_sc_hd__nand3_1
+        1    7.507   sky130_fd_sc_hd__nand3b_1
+      772 4.83E+03   sky130_fd_sc_hd__nand4_1
+      342 1.28E+03   sky130_fd_sc_hd__nor2_1
+      231 1.16E+03   sky130_fd_sc_hd__nor3_1
+        4   30.029   sky130_fd_sc_hd__nor3b_1
+      121  756.976   sky130_fd_sc_hd__nor4_1
+        1    8.758   sky130_fd_sc_hd__o2111ai_1
+       22  165.158   sky130_fd_sc_hd__o211ai_1
+       10   75.072   sky130_fd_sc_hd__o21a_1
+      887 4.44E+03   sky130_fd_sc_hd__o21ai_0
+        1    7.507   sky130_fd_sc_hd__o21bai_1
+       81  506.736   sky130_fd_sc_hd__o22ai_1
+        2   17.517   sky130_fd_sc_hd__o2bb2ai_1
+       36  270.259   sky130_fd_sc_hd__o31ai_1
+       68  595.571   sky130_fd_sc_hd__o32ai_1
+       35  306.544   sky130_fd_sc_hd__o41ai_1
+       24  150.144   sky130_fd_sc_hd__or2_2
+        1    7.507   sky130_fd_sc_hd__or3_2
+       10   87.584   sky130_fd_sc_hd__or4_2
+      489 4.28E+03   sky130_fd_sc_hd__xnor2_1
+      212 1.86E+03   sky130_fd_sc_hd__xor2_1
+
+   Chip area for module '\mlu_bang_icu': 49570.041600
+     of which used for sequential elements: 15641.251200 (31.55%)
+
+6. Executing Verilog backend.
+
+6.1. Executing BMUXMAP pass.
+
+6.2. Executing DEMUXMAP pass.
+Dumping module `\mlu_bang_icu'.
+
+End of script. Logfile hash: aabf82594d, CPU: user 2.29s system 0.06s, MEM: 101.39 MB peak
+Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+Time spent: 55% 1x abc (2 sec), 10% 53x opt_expr (0 sec), ...

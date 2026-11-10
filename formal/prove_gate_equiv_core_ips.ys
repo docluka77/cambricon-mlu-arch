@@ -1,0 +1,81 @@
+# ==============================================================================
+# Stage 15A: Gate-Level Netlist (ASAP7 7nm) vs. SystemVerilog RTL Equivalence
+# Target IPs:
+#   1. mlu_sram_secded_ecc (1,648-gate ASAP7 netlist, Unbounded Comb Miter SAT)
+#   2. mlu_pmu_clock_gate  (1,528-gate ASAP7 netlist, Sequential Miter SAT)
+#   3. mlu_mfu_dma_engine  (4,768-gate ASAP7 netlist, Sequential Miter SAT)
+# ==============================================================================
+
+# --- 1. mlu_sram_secded_ecc (Unbounded Combinational Miter SAT across 2^72 inputs) ---
+read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip sram_ip/mlu_sram_secded_ecc.sv
+chformal -remove
+prep -top mlu_sram_secded_ecc -flatten
+memory_map
+opt -fast
+async2sync
+dffunmap
+rename mlu_sram_secded_ecc gold_mlu_sram_secded_ecc
+design -stash gold_ecc_db
+
+design -reset
+read_liberty -ignore_miss_func /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib
+read_verilog -overwrite formal/asap7_ff_noninv.v
+read_verilog synth/mlu_sram_secded_ecc_asap7_netlist.v
+prep -top mlu_sram_secded_ecc -flatten
+async2sync
+dffunmap
+rename mlu_sram_secded_ecc gate_mlu_sram_secded_ecc
+design -copy-from gold_ecc_db -as gold_mlu_sram_secded_ecc gold_mlu_sram_secded_ecc
+miter -equiv -flatten -make_assert gold_mlu_sram_secded_ecc gate_mlu_sram_secded_ecc miter_mlu_sram_secded_ecc
+hierarchy -top miter_mlu_sram_secded_ecc
+sat -verify -prove-asserts
+
+# --- 2. mlu_pmu_clock_gate (Sequential Miter SAT -seq 6) ---
+design -reset
+read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip rtl/mlu_pmu_clock_gate.sv
+chformal -remove
+prep -top mlu_pmu_clock_gate -flatten
+memory_map
+opt -fast
+async2sync
+dffunmap
+rename mlu_pmu_clock_gate gold_mlu_pmu_clock_gate
+design -stash gold_pmu_db
+
+design -reset
+read_liberty -ignore_miss_func /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib
+read_verilog -overwrite formal/asap7_ff_noninv.v
+read_verilog synth/mlu_pmu_clock_gate_asap7_netlist.v
+prep -top mlu_pmu_clock_gate -flatten
+async2sync
+dffunmap
+rename mlu_pmu_clock_gate gate_mlu_pmu_clock_gate
+design -copy-from gold_pmu_db -as gold_mlu_pmu_clock_gate gold_mlu_pmu_clock_gate
+miter -equiv -flatten -make_assert gold_mlu_pmu_clock_gate gate_mlu_pmu_clock_gate miter_mlu_pmu_clock_gate
+hierarchy -top miter_mlu_pmu_clock_gate
+sat -verify -seq 6 -set-init-zero -set-at 1 in_rst_ni 0 -prove-skip 1 -prove-asserts
+
+# --- 3. mlu_mfu_dma_engine (Sequential Miter SAT -seq 6) ---
+design -reset
+read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip rtl/mlu_mfu_dma_engine.sv
+chformal -remove
+prep -top mlu_mfu_dma_engine -flatten
+memory_map
+opt -fast
+async2sync
+dffunmap
+rename mlu_mfu_dma_engine gold_mlu_mfu_dma_engine
+design -stash gold_dma_db
+
+design -reset
+read_liberty -ignore_miss_func /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib
+read_verilog -overwrite formal/asap7_ff_noninv.v
+read_verilog synth/mlu_mfu_dma_engine_asap7_netlist.v
+prep -top mlu_mfu_dma_engine -flatten
+async2sync
+dffunmap
+rename mlu_mfu_dma_engine gate_mlu_mfu_dma_engine
+design -copy-from gold_dma_db -as gold_mlu_mfu_dma_engine gold_mlu_mfu_dma_engine
+miter -equiv -flatten -make_assert gold_mlu_mfu_dma_engine gate_mlu_mfu_dma_engine miter_mlu_mfu_dma_engine
+hierarchy -top miter_mlu_mfu_dma_engine
+sat -verify -seq 6 -set-init-zero -set-at 1 in_rst_ni 0 -prove-skip 1 -prove-asserts

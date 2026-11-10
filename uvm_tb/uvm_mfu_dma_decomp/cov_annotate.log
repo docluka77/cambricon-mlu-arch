@@ -1,0 +1,11 @@
+Coverage Summary:
+  line       :  18.2% ( 4964/27256)
+  toggle     :  68.1% ( 2355/ 3460)
+  branch     :   0.0% (    0/    0)
+  expr       :   0.0% (    0/    0)
+  fsm_state  :   0.0% (    0/    0)
+  fsm_arc    :   0.0% (    0/    0)
+  covergroup : 100.0% (    9/    9)
+Annotation Summary:
+  lines with all attached points covered : 7.5%  (1528/20384)
+See lines with '%00' in /nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon/uvm_tb/uvm_mfu_dma_decomp/annotated_cov

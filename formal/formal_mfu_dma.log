@@ -1,0 +1,1336 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+
+-- Executing script file `formal/prove_mfu_dma.ys' --
+
+1. Executing Verilog-2005 frontend: rtl/mlu_pkg.sv
+Parsing formal SystemVerilog input from `rtl/mlu_pkg.sv' to AST representation.
+verilog frontend filename rtl/mlu_pkg.sv
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: rtl/mlu_mfu_dma_engine.sv
+Parsing formal SystemVerilog input from `rtl/mlu_mfu_dma_engine.sv' to AST representation.
+verilog frontend filename rtl/mlu_mfu_dma_engine.sv
+Generating RTLIL representation for module `\mlu_mfu_dma_engine'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: formal/mlu_mfu_dma_engine_formal.sv
+Parsing formal SystemVerilog input from `formal/mlu_mfu_dma_engine_formal.sv' to AST representation.
+verilog frontend filename formal/mlu_mfu_dma_engine_formal.sv
+Generating RTLIL representation for module `\mlu_mfu_dma_engine_formal'.
+Successfully finished Verilog frontend.
+
+4. Executing PREP pass.
+
+4.1. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1.1. Analyzing design hierarchy..
+Top module:  \mlu_mfu_dma_engine_formal
+Used module:     \mlu_mfu_dma_engine
+
+4.1.2. Analyzing design hierarchy..
+Top module:  \mlu_mfu_dma_engine_formal
+Used module:     \mlu_mfu_dma_engine
+Removed 0 unused modules.
+Module mlu_mfu_dma_engine_formal directly or indirectly contains formal properties -> setting "keep" attribute.
+
+4.2. Executing PROC pass (convert processes to netlists).
+
+4.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$formal/mlu_mfu_dma_engine_formal.sv:109$311 in module mlu_mfu_dma_engine_formal.
+Marked 3 switch rules as full_case in process $proc$formal/mlu_mfu_dma_engine_formal.sv:82$304 in module mlu_mfu_dma_engine_formal.
+Marked 1 switch rules as full_case in process $proc$formal/mlu_mfu_dma_engine_formal.sv:40$299 in module mlu_mfu_dma_engine_formal.
+Removed 1 dead cases from process $proc$rtl/mlu_mfu_dma_engine.sv:185$55 in module mlu_mfu_dma_engine.
+Marked 25 switch rules as full_case in process $proc$rtl/mlu_mfu_dma_engine.sv:185$55 in module mlu_mfu_dma_engine.
+Removed a total of 1 dead cases.
+
+4.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 25 assignments to connections.
+
+4.2.4. Executing PROC_INIT pass (extract init attributes).
+
+4.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_ni in `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:82$304'.
+Found async reset \rst_ni in `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+
+4.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~47 debug messages>
+
+4.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:109$311'.
+     1/20: $2$fordecl_block$296.b[31:0]$318
+     2/20: $1$fordecl_block$296.b[31:0]$313
+     3/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:144$372_EN
+     4/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:141$368_EN
+     5/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN
+     6/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN
+     7/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:133$355_EN
+     8/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:132$352_EN
+     9/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:128$350_EN
+    10/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:126$345_EN
+    11/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:123$343_EN
+    12/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:119$341_EN
+    13/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:119$338_EN
+    14/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:119$335_EN
+    15/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:119$332_EN
+    16/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:119$329_EN
+    17/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:119$326_EN
+    18/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:119$323_EN
+    19/20: $assert$formal/mlu_mfu_dma_engine_formal.sv:119$320_EN
+    20/20: $assume$formal/mlu_mfu_dma_engine_formal.sv:112$314_EN
+Creating decoders for process `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:82$304'.
+     1/7: $0\active_beat_cnt_q[15:0]
+     2/7: $0\active_dst_base_q[31:0]
+     3/7: $0\active_src_base_q[31:0]
+     4/7: $0\active_op_q[5:0]
+     5/7: $0\expected_tag_q[7:0]
+     6/7: $0\latched_bmp_q[7:0]
+     7/7: $0\resp_received_for_beat_q[0:0]
+Creating decoders for process `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:40$299'.
+     1/2: $assume$formal/mlu_mfu_dma_engine_formal.sv:42$303_EN
+     2/2: $assume$formal/mlu_mfu_dma_engine_formal.sv:41$301_EN
+Creating decoders for process `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:37$298'.
+Creating decoders for process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+     1/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [63:56]
+     2/146: $12\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:56]$271
+     3/146: $11\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$266
+     4/146: $11\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[55:48]$265
+     5/146: $10\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$260
+     6/146: $10\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[47:40]$259
+     7/146: $9\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$254
+     8/146: $9\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[39:32]$253
+     9/146: $8\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$248
+    10/146: $8\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[31:24]$247
+    11/146: $7\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$242
+    12/146: $7\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[23:16]$241
+    13/146: $6\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$236
+    14/146: $6\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[15:8]$235
+    15/146: $5\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$230
+    16/146: $5\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[7:0]$229
+    17/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$result[3:0]$225
+    18/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$fordecl_block$1.i[31:0]$228
+    19/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.cnt[3:0]$227
+    20/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.bmp[7:0]$226
+    21/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$result[63:0]$219
+    22/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$fordecl_block$3.k[31:0]$224
+    23/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$223
+    24/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [55:48]
+    25/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [47:40]
+    26/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [39:32]
+    27/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [31:24]
+    28/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [23:16]
+    29/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [15:8]
+    30/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$222 [7:0]
+    31/146: $12\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$272
+    32/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.bmp[7:0]$221
+    33/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.comp_word[63:0]$220
+    34/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$fordecl_block$1.i[31:0]$217
+    35/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.cnt[3:0]$216
+    36/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.bmp[7:0]$215
+    37/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$result[3:0]$214
+    38/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$fordecl_block$3.k[31:0]$213
+    39/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$212
+    40/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$211
+    41/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.bmp[7:0]$210
+    42/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.comp_word[63:0]$209
+    43/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$result[63:0]$208
+    44/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [63:56]
+    45/146: $12\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:56]$192
+    46/146: $11\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$187
+    47/146: $11\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[55:48]$186
+    48/146: $10\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$181
+    49/146: $10\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[47:40]$180
+    50/146: $9\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$175
+    51/146: $9\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[39:32]$174
+    52/146: $8\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$169
+    53/146: $8\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[31:24]$168
+    54/146: $7\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$163
+    55/146: $7\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[23:16]$162
+    56/146: $6\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$157
+    57/146: $6\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[15:8]$156
+    58/146: $5\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$151
+    59/146: $5\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[7:0]$150
+    60/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$result[3:0]$146
+    61/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$fordecl_block$1.i[31:0]$149
+    62/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.cnt[3:0]$148
+    63/146: $4\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.bmp[7:0]$147
+    64/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$result[63:0]$140
+    65/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$fordecl_block$3.k[31:0]$145
+    66/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$144
+    67/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [55:48]
+    68/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [47:40]
+    69/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [39:32]
+    70/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [31:24]
+    71/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [23:16]
+    72/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [15:8]
+    73/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$143 [7:0]
+    74/146: $12\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$193
+    75/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.bmp[7:0]$142
+    76/146: $4\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.comp_word[63:0]$141
+    77/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$fordecl_block$1.i[31:0]$138
+    78/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.cnt[3:0]$137
+    79/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.bmp[7:0]$136
+    80/146: $3\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$result[3:0]$135
+    81/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$fordecl_block$3.k[31:0]$134
+    82/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$133
+    83/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$132
+    84/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.bmp[7:0]$131
+    85/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.comp_word[63:0]$130
+    86/146: $3\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$result[63:0]$129
+    87/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$fordecl_block$1.i[31:0]$116
+    88/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.cnt[3:0]$115
+    89/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.bmp[7:0]$114
+    90/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$result[3:0]$113
+    91/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$fordecl_block$3.k[31:0]$112
+    92/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$111
+    93/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$110
+    94/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.bmp[7:0]$109
+    95/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.comp_word[63:0]$108
+    96/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$result[63:0]$107
+    97/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$fordecl_block$1.i[31:0]$106
+    98/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.cnt[3:0]$105
+    99/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.bmp[7:0]$104
+   100/146: $2\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$result[3:0]$103
+   101/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$fordecl_block$3.k[31:0]$102
+   102/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$101
+   103/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$100
+   104/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.bmp[7:0]$99
+   105/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.comp_word[63:0]$98
+   106/146: $2\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$result[63:0]$97
+   107/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$fordecl_block$1.i[31:0]$96
+   108/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.cnt[3:0]$95
+   109/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.bmp[7:0]$94
+   110/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$result[3:0]$93
+   111/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$fordecl_block$3.k[31:0]$92
+   112/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx[2:0]$91
+   113/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word[63:0]$90
+   114/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.bmp[7:0]$89
+   115/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.comp_word[63:0]$88
+   116/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$result[63:0]$87
+   117/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$fordecl_block$1.i[31:0]$86
+   118/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.cnt[3:0]$85
+   119/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.bmp[7:0]$84
+   120/146: $1\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$result[3:0]$83
+   121/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$fordecl_block$3.k[31:0]$82
+   122/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx[2:0]$81
+   123/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word[63:0]$80
+   124/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.bmp[7:0]$79
+   125/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.comp_word[63:0]$78
+   126/146: $1\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$result[63:0]$77
+   127/146: $0\done_valid_o[0:0]
+   128/146: $0\wr_data_q[63:0]
+   129/146: $0\col_idx_q[7:0]
+   130/146: $0\row_idx_q[7:0]
+   131/146: $0\dst_stride_q[7:0]
+   132/146: $0\src_stride_q[7:0]
+   133/146: $0\row_beats_q[7:0]
+   134/146: $0\num_rows_q[7:0]
+   135/146: $0\beat_cnt_q[15:0]
+   136/146: $0\total_beats_q[15:0]
+   137/146: $0\dst_base_q[31:0]
+   138/146: $0\src_base_q[31:0]
+   139/146: $0\tag_q[7:0]
+   140/146: $0\dst_space_q[2:0]
+   141/146: $0\src_space_q[2:0]
+   142/146: $0\op_q[5:0]
+   143/146: $0\state_q[1:0]
+   144/146: $0\done_tag_o[7:0]
+   145/146: $0\uncompressed_bytes_wr_o[31:0]
+   146/146: $0\compressed_bytes_rd_o[31:0]
+Creating decoders for process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:121$14'.
+     1/2: $1\curr_wr_addr[31:0]
+     2/2: $1\curr_rd_addr[31:0]
+
+4.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\mlu_mfu_dma_engine_formal.$fordecl_block$296.b' from process `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:109$311'.
+No latch inferred for signal `\mlu_mfu_dma_engine.\curr_idx_off' from process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:121$14'.
+No latch inferred for signal `\mlu_mfu_dma_engine.\curr_rd_addr' from process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:121$14'.
+No latch inferred for signal `\mlu_mfu_dma_engine.\curr_wr_addr' from process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:121$14'.
+
+4.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\mlu_mfu_dma_engine_formal.\resp_received_for_beat_q' using process `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:82$304'.
+  created $adff cell `$procdff$1689' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine_formal.\latched_bmp_q' using process `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:82$304'.
+  created $adff cell `$procdff$1694' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine_formal.\expected_tag_q' using process `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:82$304'.
+  created $adff cell `$procdff$1699' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine_formal.\active_op_q' using process `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:82$304'.
+  created $adff cell `$procdff$1704' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine_formal.\active_src_base_q' using process `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:82$304'.
+  created $adff cell `$procdff$1709' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine_formal.\active_dst_base_q' using process `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:82$304'.
+  created $adff cell `$procdff$1714' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine_formal.\active_beat_cnt_q' using process `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:82$304'.
+  created $adff cell `$procdff$1719' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine_formal.\init_done_q' using process `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:37$298'.
+  created $dff cell `$procdff$1720' with positive edge clock.
+Creating register for signal `\mlu_mfu_dma_engine.\compressed_bytes_rd_o' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1725' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\uncompressed_bytes_wr_o' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1730' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\done_valid_o' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1735' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\done_tag_o' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1740' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\state_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1745' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\op_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1750' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\src_space_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1755' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\dst_space_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1760' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\tag_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1765' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\src_base_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1770' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\dst_base_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1775' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\total_beats_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1780' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\beat_cnt_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1785' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\num_rows_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1790' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\row_beats_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1795' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\src_stride_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1800' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\dst_stride_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1805' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\row_idx_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1810' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\col_idx_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1815' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\wr_data_q' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1820' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$result' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1825' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.comp_word' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1830' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.bmp' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1835' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.dense_word' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1840' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.nz_idx' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1845' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:241$5.$fordecl_block$3.k' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $dff cell `$procdff$1852' with positive edge clock.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$result' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1857' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.bmp' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1862' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.cnt' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1867' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:242$6.$fordecl_block$1.i' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $dff cell `$procdff$1874' with positive edge clock.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$result' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1879' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.comp_word' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1884' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.bmp' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1889' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.dense_word' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1894' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.nz_idx' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1899' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\expand_zero_bitmap$func$rtl/mlu_mfu_dma_engine.sv:256$7.$fordecl_block$3.k' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $dff cell `$procdff$1906' with positive edge clock.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$result' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1911' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.bmp' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1916' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.cnt' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $adff cell `$procdff$1921' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_mfu_dma_engine.\popcnt8$func$rtl/mlu_mfu_dma_engine.sv:257$8.$fordecl_block$1.i' using process `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+  created $dff cell `$procdff$1928' with positive edge clock.
+
+4.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 15 empty switches in `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:109$311'.
+Removing empty process `mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:109$311'.
+Found and cleaned up 3 empty switches in `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:82$304'.
+Removing empty process `mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:82$304'.
+Found and cleaned up 1 empty switch in `\mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:40$299'.
+Removing empty process `mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:40$299'.
+Removing empty process `mlu_mfu_dma_engine_formal.$proc$formal/mlu_mfu_dma_engine_formal.sv:37$298'.
+Found and cleaned up 27 empty switches in `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+Removing empty process `mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:185$55'.
+Found and cleaned up 1 empty switch in `\mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:121$14'.
+Removing empty process `mlu_mfu_dma_engine.$proc$rtl/mlu_mfu_dma_engine.sv:121$14'.
+Cleaned up 47 empty switches.
+
+4.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine_formal.
+<suppressed ~44 debug messages>
+Optimizing module mlu_mfu_dma_engine.
+<suppressed ~144 debug messages>
+
+4.3. Executing FUTURE pass.
+
+4.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine_formal.
+Optimizing module mlu_mfu_dma_engine.
+
+4.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine_formal..
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Removed 397 unused cells and 948 unused wires.
+<suppressed ~412 debug messages>
+
+4.6. Executing CHECK pass (checking for obvious problems).
+Checking module mlu_mfu_dma_engine...
+Checking module mlu_mfu_dma_engine_formal...
+Found and reported 0 problems.
+
+4.7. Executing OPT pass (performing simple optimizations).
+
+4.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+Optimizing module mlu_mfu_dma_engine_formal.
+
+4.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+<suppressed ~264 debug messages>
+Finding identical cells in module `\mlu_mfu_dma_engine_formal'.
+<suppressed ~3 debug messages>
+Removed a total of 89 cells.
+
+4.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$1003.
+    dead port 2/2 on $mux $procmux$1005.
+    dead port 2/2 on $mux $procmux$1007.
+    dead port 2/2 on $mux $procmux$1029.
+    dead port 2/2 on $mux $procmux$1031.
+    dead port 2/2 on $mux $procmux$1033.
+    dead port 2/2 on $mux $procmux$1055.
+    dead port 2/2 on $mux $procmux$1057.
+    dead port 2/2 on $mux $procmux$1059.
+    dead port 2/2 on $mux $procmux$1081.
+    dead port 2/2 on $mux $procmux$1083.
+    dead port 2/2 on $mux $procmux$1085.
+    dead port 2/2 on $mux $procmux$1107.
+    dead port 2/2 on $mux $procmux$1109.
+    dead port 2/2 on $mux $procmux$1111.
+    dead port 2/2 on $mux $procmux$1133.
+    dead port 2/2 on $mux $procmux$1135.
+    dead port 2/2 on $mux $procmux$1137.
+    dead port 2/2 on $mux $procmux$544.
+    dead port 2/2 on $mux $procmux$546.
+    dead port 2/2 on $mux $procmux$548.
+    dead port 2/2 on $mux $procmux$568.
+    dead port 2/2 on $mux $procmux$570.
+    dead port 2/2 on $mux $procmux$572.
+    dead port 2/2 on $mux $procmux$592.
+    dead port 2/2 on $mux $procmux$594.
+    dead port 2/2 on $mux $procmux$596.
+    dead port 2/2 on $mux $procmux$616.
+    dead port 2/2 on $mux $procmux$618.
+    dead port 2/2 on $mux $procmux$620.
+    dead port 2/2 on $mux $procmux$640.
+    dead port 2/2 on $mux $procmux$642.
+    dead port 2/2 on $mux $procmux$644.
+    dead port 2/2 on $mux $procmux$664.
+    dead port 2/2 on $mux $procmux$666.
+    dead port 2/2 on $mux $procmux$668.
+    dead port 2/2 on $mux $procmux$688.
+    dead port 2/2 on $mux $procmux$690.
+    dead port 2/2 on $mux $procmux$692.
+    dead port 2/2 on $mux $procmux$712.
+    dead port 2/2 on $mux $procmux$714.
+    dead port 2/2 on $mux $procmux$716.
+    dead port 2/2 on $mux $procmux$951.
+    dead port 2/2 on $mux $procmux$953.
+    dead port 2/2 on $mux $procmux$955.
+    dead port 2/2 on $mux $procmux$977.
+    dead port 2/2 on $mux $procmux$979.
+    dead port 2/2 on $mux $procmux$981.
+Running muxtree optimizer on module \mlu_mfu_dma_engine_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 48 multiplexer ports.
+<suppressed ~307 debug messages>
+
+4.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine.
+    New ctrl vector for $pmux cell $procmux$1672: { $procmux$1676_CMP $procmux$1674_CMP $eq$rtl/mlu_mfu_dma_engine.sv:112$12_Y }
+    New ctrl vector for $pmux cell $procmux$1679: { $procmux$1676_CMP $procmux$1675_CMP }
+  Optimizing cells in module \mlu_mfu_dma_engine.
+  Optimizing cells in module \mlu_mfu_dma_engine_formal.
+Performed a total of 2 changes.
+
+4.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+<suppressed ~24 debug messages>
+Finding identical cells in module `\mlu_mfu_dma_engine_formal'.
+<suppressed ~21 debug messages>
+Removed a total of 15 cells.
+
+4.7.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Finding unused cells or wires in module \mlu_mfu_dma_engine_formal..
+Removed 2 unused cells and 152 unused wires.
+<suppressed ~4 debug messages>
+
+4.7.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+Optimizing module mlu_mfu_dma_engine_formal.
+
+4.7.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.7.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \mlu_mfu_dma_engine_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~253 debug messages>
+
+4.7.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine.
+    New ctrl vector for $pmux cell $procmux$1646: $auto$opt_reduce.cc:137:opt_pmux$1930
+    New ctrl vector for $pmux cell $procmux$1662: $auto$opt_reduce.cc:137:opt_pmux$1932
+  Optimizing cells in module \mlu_mfu_dma_engine.
+  Optimizing cells in module \mlu_mfu_dma_engine_formal.
+Performed a total of 2 changes.
+
+4.7.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `\mlu_mfu_dma_engine_formal'.
+Removed a total of 1 cells.
+
+4.7.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Finding unused cells or wires in module \mlu_mfu_dma_engine_formal..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+4.7.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+Optimizing module mlu_mfu_dma_engine_formal.
+
+4.7.14. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.7.15. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \mlu_mfu_dma_engine_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~249 debug messages>
+
+4.7.16. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine.
+  Optimizing cells in module \mlu_mfu_dma_engine_formal.
+Performed a total of 0 changes.
+
+4.7.17. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+Finding identical cells in module `\mlu_mfu_dma_engine_formal'.
+Removed a total of 0 cells.
+
+4.7.18. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Finding unused cells or wires in module \mlu_mfu_dma_engine_formal..
+
+4.7.19. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+Optimizing module mlu_mfu_dma_engine_formal.
+
+4.7.20. Finished fast OPT passes. (There is nothing left to do.)
+
+4.8. Executing WREDUCE pass (reducing word size of cells).
+Removed top 30 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:122$15 ($mul).
+Removed top 27 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:122$15 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:122$15 ($mul).
+Removed top 25 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:122$16 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:122$16 ($add).
+Removed top 24 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:122$16 ($add).
+Removed top 23 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:122$17 ($shiftx).
+Removed top 13 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:129$23 ($add).
+Removed top 13 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:130$25 ($add).
+Removed top 24 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:135$26 ($mul).
+Removed top 24 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:135$26 ($mul).
+Removed top 16 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:135$26 ($mul).
+Removed top 16 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:135$27 ($add).
+Removed top 24 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:135$27 ($add).
+Removed top 15 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:135$27 ($add).
+Removed top 12 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:134$29 ($add).
+Removed top 24 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:137$30 ($mul).
+Removed top 24 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:137$30 ($mul).
+Removed top 16 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:137$30 ($mul).
+Removed top 16 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:137$31 ($add).
+Removed top 24 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:137$31 ($add).
+Removed top 15 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:137$31 ($add).
+Removed top 12 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:136$33 ($add).
+Removed top 16 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:141$34 ($add).
+Removed top 16 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:147$39 ($add).
+Removed top 13 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:152$43 ($add).
+Removed top 1 bits (of 2) from port B of cell mlu_mfu_dma_engine.$eq$rtl/mlu_mfu_dma_engine.sv:162$48 ($eq).
+Removed top 8 bits (of 16) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:228$123 ($mul).
+Removed top 8 bits (of 16) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:228$123 ($mul).
+Removed top 29 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$158 ($mul).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$158 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$158 ($mul).
+Removed top 25 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$159 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$159 ($add).
+Removed top 24 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$159 ($add).
+Removed top 23 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$160 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$161 ($add).
+Removed top 29 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$164 ($mul).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$164 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$164 ($mul).
+Removed top 25 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$165 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$165 ($add).
+Removed top 24 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$165 ($add).
+Removed top 23 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$166 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$167 ($add).
+Removed top 29 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$170 ($mul).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$170 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$170 ($mul).
+Removed top 25 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$171 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$171 ($add).
+Removed top 24 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$171 ($add).
+Removed top 23 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$172 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$173 ($add).
+Removed top 29 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$176 ($mul).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$176 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$176 ($mul).
+Removed top 25 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$177 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$177 ($add).
+Removed top 24 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$177 ($add).
+Removed top 23 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$178 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$179 ($add).
+Removed top 29 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$182 ($mul).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$182 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$182 ($mul).
+Removed top 25 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$183 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$183 ($add).
+Removed top 24 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$183 ($add).
+Removed top 23 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$184 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$185 ($add).
+Removed top 29 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$188 ($mul).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$188 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$188 ($mul).
+Removed top 25 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$189 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$189 ($add).
+Removed top 24 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$189 ($add).
+Removed top 23 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$190 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$191 ($add).
+Removed top 29 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$194 ($mul).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$194 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$194 ($mul).
+Removed top 25 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$195 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$195 ($add).
+Removed top 24 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$195 ($add).
+Removed top 23 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$196 ($shiftx).
+Removed top 3 bits (of 4) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$198 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$198 ($add).
+Removed top 2 bits (of 4) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$198 ($add).
+Removed top 2 bits (of 4) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$199 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$199 ($add).
+Removed top 1 bits (of 4) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$199 ($add).
+Removed top 1 bits (of 4) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$200 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$200 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$201 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$202 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$203 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$204 ($add).
+Removed top 3 bits (of 4) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$205 ($add).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:242$206 ($add).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:243$207 ($add).
+Removed top 29 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$237 ($mul).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$237 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$237 ($mul).
+Removed top 25 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$238 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$238 ($add).
+Removed top 24 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$238 ($add).
+Removed top 23 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$239 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$240 ($add).
+Removed top 29 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$243 ($mul).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$243 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$243 ($mul).
+Removed top 25 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$244 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$244 ($add).
+Removed top 24 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$244 ($add).
+Removed top 23 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$245 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$246 ($add).
+Removed top 29 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$249 ($mul).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$249 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$249 ($mul).
+Removed top 25 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$250 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$250 ($add).
+Removed top 24 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$250 ($add).
+Removed top 23 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$251 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$252 ($add).
+Removed top 29 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$255 ($mul).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$255 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$255 ($mul).
+Removed top 25 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$256 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$256 ($add).
+Removed top 24 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$256 ($add).
+Removed top 23 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$257 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$258 ($add).
+Removed top 29 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$261 ($mul).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$261 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$261 ($mul).
+Removed top 25 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$262 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$262 ($add).
+Removed top 24 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$262 ($add).
+Removed top 23 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$263 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$264 ($add).
+Removed top 29 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$267 ($mul).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$267 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$267 ($mul).
+Removed top 25 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$268 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$268 ($add).
+Removed top 24 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$268 ($add).
+Removed top 23 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$269 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:75$270 ($add).
+Removed top 29 bits (of 32) from port A of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$273 ($mul).
+Removed top 28 bits (of 32) from port B of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$273 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$273 ($mul).
+Removed top 25 bits (of 32) from port A of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$274 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$274 ($add).
+Removed top 24 bits (of 32) from port Y of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$274 ($add).
+Removed top 23 bits (of 32) from port B of cell mlu_mfu_dma_engine.$shiftx$rtl/mlu_mfu_dma_engine.sv:74$275 ($shiftx).
+Removed top 15 bits (of 16) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:267$287 ($add).
+Removed top 7 bits (of 8) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:273$290 ($add).
+Removed top 7 bits (of 8) from port B of cell mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:275$292 ($add).
+Removed top 2 bits (of 3) from mux cell mlu_mfu_dma_engine.$procmux$1118 ($mux).
+Removed top 1 bits (of 2) from mux cell mlu_mfu_dma_engine.$procmux$1619 ($mux).
+Removed top 1 bits (of 2) from mux cell mlu_mfu_dma_engine.$procmux$1628 ($mux).
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:122$16_Y.
+Removed top 15 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:135$27_Y.
+Removed top 15 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:137$31_Y.
+Removed top 2 bits (of 4) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$198_Y.
+Removed top 1 bits (of 4) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:57$199_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$159_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$165_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$171_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$177_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$183_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$189_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$195_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$238_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$244_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$250_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$256_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$262_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$268_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$add$rtl/mlu_mfu_dma_engine.sv:74$274_Y.
+Removed top 28 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:122$15_Y.
+Removed top 24 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:135$26_Y.
+Removed top 21 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:137$30_Y.
+Removed top 26 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$158_Y.
+Removed top 26 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$164_Y.
+Removed top 26 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$170_Y.
+Removed top 26 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$176_Y.
+Removed top 26 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$182_Y.
+Removed top 26 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$188_Y.
+Removed top 26 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$194_Y.
+Removed top 26 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$237_Y.
+Removed top 26 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$243_Y.
+Removed top 26 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$249_Y.
+Removed top 26 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$255_Y.
+Removed top 26 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$261_Y.
+Removed top 26 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$267_Y.
+Removed top 26 bits (of 32) from wire mlu_mfu_dma_engine.$mul$rtl/mlu_mfu_dma_engine.sv:74$273_Y.
+Removed top 2 bits (of 3) from wire mlu_mfu_dma_engine.$procmux$1118_Y.
+Removed top 1 bits (of 2) from wire mlu_mfu_dma_engine.$procmux$1619_Y.
+Removed top 1 bits (of 2) from wire mlu_mfu_dma_engine.$procmux$1628_Y.
+Removed top 15 bits (of 16) from port B of cell mlu_mfu_dma_engine_formal.$add$formal/mlu_mfu_dma_engine_formal.sv:104$310 ($add).
+Removed top 13 bits (of 32) from port B of cell mlu_mfu_dma_engine_formal.$add$formal/mlu_mfu_dma_engine_formal.sv:140$366 ($add).
+Removed top 13 bits (of 32) from port B of cell mlu_mfu_dma_engine_formal.$add$formal/mlu_mfu_dma_engine_formal.sv:141$370 ($add).
+
+4.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Finding unused cells or wires in module \mlu_mfu_dma_engine_formal..
+Removed 0 unused cells and 39 unused wires.
+<suppressed ~1 debug messages>
+
+4.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+4.11. Executing OPT pass (performing simple optimizations).
+
+4.11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine.
+Optimizing module mlu_mfu_dma_engine_formal.
+
+4.11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine'.
+Finding identical cells in module `\mlu_mfu_dma_engine_formal'.
+Removed a total of 0 cells.
+
+4.11.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine..
+Finding unused cells or wires in module \mlu_mfu_dma_engine_formal..
+
+4.11.4. Finished fast OPT passes.
+
+4.12. Printing statistics.
+
+=== mlu_mfu_dma_engine ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      271 wires
+     3446 wire bits
+       44 public wires
+      934 public wire bits
+       22 ports
+      480 port bits
+      257 cells
+       49   $add
+       20   $adff
+       10   $eq
+        2   $ge
+        2   $logic_and
+        6   $logic_not
+        1   $lt
+       18   $mul
+      125   $mux
+        7   $pmux
+        1   $reduce_bool
+        1   $reduce_or
+       15   $shiftx
+
+=== mlu_mfu_dma_engine_formal ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      112 wires
+     1003 wire bits
+       31 public wires
+      712 public wire bits
+       22 ports
+      480 port bits
+      109 cells
+        3   $add
+        7   $adff
+       20   $check
+        1   $dff
+        9   $eq
+        1   $le
+        7   $logic_and
+       13   $logic_not
+        1   $logic_or
+       47   $mux
+        1 submodules
+        1   mlu_mfu_dma_engine
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+      366 mlu_mfu_dma_engine_formal
+      257 mlu_mfu_dma_engine
+
+        +----------Count including submodules.
+        | 
+      383 wires
+     4449 wire bits
+       75 public wires
+     1646 public wire bits
+       44 ports
+      960 port bits
+        - memories
+        - memory bits
+        - processes
+      366 cells
+       52   $add
+       27   $adff
+       20   $check
+        1   $dff
+       19   $eq
+        2   $ge
+        1   $le
+        9   $logic_and
+       19   $logic_not
+        1   $logic_or
+        1   $lt
+       18   $mul
+      172   $mux
+        7   $pmux
+        1   $reduce_bool
+        1   $reduce_or
+       15   $shiftx
+        1 submodules
+        1   mlu_mfu_dma_engine
+
+4.13. Executing CHECK pass (checking for obvious problems).
+Checking module mlu_mfu_dma_engine...
+Checking module mlu_mfu_dma_engine_formal...
+Found and reported 0 problems.
+
+5. Executing FLATTEN pass (flatten design).
+Deleting now unused module mlu_mfu_dma_engine.
+<suppressed ~1 debug messages>
+
+6. Executing ASYNC2SYNC pass.
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1820 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\wr_data_q[63:0], Q=\u_dut.wr_data_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1815 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\col_idx_q[7:0], Q=\u_dut.col_idx_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1810 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\row_idx_q[7:0], Q=\u_dut.row_idx_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1805 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\dst_stride_q[7:0], Q=\u_dut.dst_stride_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1800 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\src_stride_q[7:0], Q=\u_dut.src_stride_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1795 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\row_beats_q[7:0], Q=\u_dut.row_beats_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1790 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\num_rows_q[7:0], Q=\u_dut.num_rows_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1785 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\beat_cnt_q[15:0], Q=\u_dut.beat_cnt_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1780 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\total_beats_q[15:0], Q=\u_dut.total_beats_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1775 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\dst_base_q[31:0], Q=\u_dut.dst_base_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1770 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\src_base_q[31:0], Q=\u_dut.src_base_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1765 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\tag_q[7:0], Q=\u_dut.tag_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1760 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\dst_space_q[2:0], Q=\u_dut.dst_space_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1755 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\src_space_q[2:0], Q=\u_dut.src_space_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1750 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\op_q[5:0], Q=\u_dut.op_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1745 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\state_q[1:0], Q=\u_dut.state_q
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1740 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\done_tag_o[7:0], Q=\u_dut.done_tag_o
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1735 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\done_valid_o[0:0], Q=\u_dut.done_valid_o
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1730 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\uncompressed_bytes_wr_o[31:0], Q=\u_dut.uncompressed_bytes_wr_o
+Replacing mlu_mfu_dma_engine_formal.$flatten\u_dut.$procdff$1725 ($adff): ARST=\u_dut.rst_ni, D=$flatten\u_dut.$0\compressed_bytes_rd_o[31:0], Q=\u_dut.compressed_bytes_rd_o
+Replacing mlu_mfu_dma_engine_formal.$procdff$1689 ($adff): ARST=\rst_ni, D=$0\resp_received_for_beat_q[0:0], Q=\resp_received_for_beat_q
+Replacing mlu_mfu_dma_engine_formal.$procdff$1694 ($adff): ARST=\rst_ni, D=$0\latched_bmp_q[7:0], Q=\latched_bmp_q
+Replacing mlu_mfu_dma_engine_formal.$procdff$1699 ($adff): ARST=\rst_ni, D=$0\expected_tag_q[7:0], Q=\expected_tag_q
+Replacing mlu_mfu_dma_engine_formal.$procdff$1704 ($adff): ARST=\rst_ni, D=$0\active_op_q[5:0], Q=\active_op_q
+Replacing mlu_mfu_dma_engine_formal.$procdff$1709 ($adff): ARST=\rst_ni, D=$0\active_src_base_q[31:0], Q=\active_src_base_q
+Replacing mlu_mfu_dma_engine_formal.$procdff$1714 ($adff): ARST=\rst_ni, D=$0\active_dst_base_q[31:0], Q=\active_dst_base_q
+Replacing mlu_mfu_dma_engine_formal.$procdff$1719 ($adff): ARST=\rst_ni, D=$0\active_beat_cnt_q[15:0], Q=\active_beat_cnt_q
+
+7. Executing OPT pass (performing simple optimizations).
+
+7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine_formal.
+<suppressed ~246 debug messages>
+
+7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine_formal'.
+<suppressed ~12 debug messages>
+Removed a total of 4 cells.
+
+7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~197 debug messages>
+
+7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine_formal.
+    Consolidated identical input bits for $mux cell $flatten\u_dut.$procmux$1642:
+      Old ports: A=\u_dut.uncompressed_bytes_wr_o, B=$flatten\u_dut.$add$rtl/mlu_mfu_dma_engine.sv:243$207_Y, Y=$flatten\u_dut.$procmux$1642_Y
+      New ports: A=\u_dut.uncompressed_bytes_wr_o [31:3], B=$flatten\u_dut.$add$rtl/mlu_mfu_dma_engine.sv:243$207_Y [31:3], Y=$flatten\u_dut.$procmux$1642_Y [31:3]
+      New connections: $flatten\u_dut.$procmux$1642_Y [2:0] = \u_dut.uncompressed_bytes_wr_o [2:0]
+  Optimizing cells in module \mlu_mfu_dma_engine_formal.
+    Consolidated identical input bits for $mux cell $flatten\u_dut.$procmux$1644:
+      Old ports: A=\u_dut.uncompressed_bytes_wr_o, B=$flatten\u_dut.$procmux$1642_Y, Y=$flatten\u_dut.$procmux$1644_Y
+      New ports: A=\u_dut.uncompressed_bytes_wr_o [31:3], B=$flatten\u_dut.$procmux$1642_Y [31:3], Y=$flatten\u_dut.$procmux$1644_Y [31:3]
+      New connections: $flatten\u_dut.$procmux$1644_Y [2:0] = \u_dut.uncompressed_bytes_wr_o [2:0]
+  Optimizing cells in module \mlu_mfu_dma_engine_formal.
+    Consolidated identical input bits for $mux cell $flatten\u_dut.$procmux$1646:
+      Old ports: A=\u_dut.uncompressed_bytes_wr_o, B=$flatten\u_dut.$procmux$1644_Y, Y=$flatten\u_dut.$0\uncompressed_bytes_wr_o[31:0]
+      New ports: A=\u_dut.uncompressed_bytes_wr_o [31:3], B=$flatten\u_dut.$procmux$1644_Y [31:3], Y=$flatten\u_dut.$0\uncompressed_bytes_wr_o[31:0] [31:3]
+      New connections: $flatten\u_dut.$0\uncompressed_bytes_wr_o[31:0] [2:0] = \u_dut.uncompressed_bytes_wr_o [2:0]
+  Optimizing cells in module \mlu_mfu_dma_engine_formal.
+Performed a total of 3 changes.
+
+7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine_formal'.
+<suppressed ~96 debug messages>
+Removed a total of 32 cells.
+
+7.6. Executing OPT_SHARE pass.
+    Found cells that share an operand and can be merged by moving the $pmux $flatten\u_dut.$procmux$1679 in front of them:
+        $flatten\u_dut.$add$rtl/mlu_mfu_dma_engine.sv:134$29
+        $flatten\u_dut.$add$rtl/mlu_mfu_dma_engine.sv:129$23
+
+    Found cells that share an operand and can be merged by moving the $pmux $flatten\u_dut.$procmux$1672 in front of them:
+        $flatten\u_dut.$add$rtl/mlu_mfu_dma_engine.sv:152$43
+        $flatten\u_dut.$add$rtl/mlu_mfu_dma_engine.sv:136$33
+        $flatten\u_dut.$add$rtl/mlu_mfu_dma_engine.sv:130$25
+
+7.7. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$1689 ($sdff) from module mlu_mfu_dma_engine_formal (D = $procmux$518_Y, Q = $auto$async2sync.cc:234:execute$2013, rval = 1'0).
+Adding SRST signal on $procdff$1719 ($sdff) from module mlu_mfu_dma_engine_formal (D = $procmux$492_Y, Q = $auto$async2sync.cc:234:execute$2025, rval = 16'0000000000000000).
+Setting constant 1-bit at position 0 on $procdff$1720 ($dff) from module mlu_mfu_dma_engine_formal.
+
+7.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine_formal..
+Removed 39 unused cells and 185 unused wires.
+<suppressed ~48 debug messages>
+
+7.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine_formal.
+<suppressed ~1 debug messages>
+
+7.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+7.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~184 debug messages>
+
+7.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine_formal.
+    New ctrl vector for $pmux cell $flatten\u_dut.$procmux$1494: $auto$opt_reduce.cc:137:opt_pmux$2204
+    New ctrl vector for $pmux cell $flatten\u_dut.$procmux$1672: $flatten\u_dut.$procmux$1674_CMP
+    New ctrl vector for $pmux cell $flatten\u_dut.$procmux$1679: $flatten\u_dut.$procmux$1675_CMP
+  Optimizing cells in module \mlu_mfu_dma_engine_formal.
+Performed a total of 3 changes.
+
+7.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine_formal'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+7.14. Executing OPT_SHARE pass.
+
+7.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine_formal..
+Removed 0 unused cells and 4 unused wires.
+<suppressed ~1 debug messages>
+
+7.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine_formal.
+
+7.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+7.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_mfu_dma_engine_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~174 debug messages>
+
+7.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_mfu_dma_engine_formal.
+Performed a total of 0 changes.
+
+7.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_mfu_dma_engine_formal'.
+Removed a total of 0 cells.
+
+7.22. Executing OPT_SHARE pass.
+
+7.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_mfu_dma_engine_formal..
+
+7.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_mfu_dma_engine_formal.
+
+7.26. Finished fast OPT passes. (There is nothing left to do.)
+
+8. Executing SAT pass (solving SAT problems in the circuit).
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Imported 283 cells to SAT database.
+Import constraint from assume cell: $eq$formal/mlu_mfu_dma_engine_formal.sv:112$315_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import constraint from assume cell: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:41$302_Y when 1'0.
+Import constraint from assume cell: \rst_ni when 1'1.
+Final init constraint equation: { $auto$async2sync.cc:234:execute$2023 $auto$async2sync.cc:234:execute$2021 $auto$async2sync.cc:234:execute$2019 $auto$async2sync.cc:234:execute$2017 $auto$async2sync.cc:234:execute$2015 $auto$async2sync.cc:234:execute$1973 $auto$async2sync.cc:234:execute$1975 $auto$async2sync.cc:234:execute$1977 $auto$async2sync.cc:234:execute$1979 $auto$async2sync.cc:234:execute$1981 $auto$async2sync.cc:234:execute$1983 $auto$async2sync.cc:234:execute$1985 $auto$async2sync.cc:234:execute$1987 $auto$async2sync.cc:234:execute$1989 $auto$async2sync.cc:234:execute$1991 $auto$async2sync.cc:234:execute$1993 $auto$async2sync.cc:234:execute$1995 $auto$async2sync.cc:234:execute$1997 $auto$async2sync.cc:234:execute$1999 $auto$async2sync.cc:234:execute$2001 $auto$async2sync.cc:234:execute$2003 $auto$async2sync.cc:234:execute$2005 $auto$async2sync.cc:234:execute$2007 $auto$async2sync.cc:234:execute$2009 $auto$async2sync.cc:234:execute$2011 $auto$async2sync.cc:234:execute$2025 $auto$async2sync.cc:234:execute$2013 } = 406'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$321_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$320_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$324_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$323_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$327_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$326_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$330_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$329_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$333_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$332_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$336_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$335_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$339_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$338_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$342_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$341_EN.
+Import proof for assert: $le$formal/mlu_mfu_dma_engine_formal.sv:123$344_Y when \rst_ni.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:126$348_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:128$351_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:128$350_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:132$354_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:133$357_Y when \rst_ni.
+Import proof for assert: \resp_received_for_beat_q when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:140$367_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:141$371_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:144$373_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:144$372_EN.
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Imported 283 cells to SAT database.
+Import constraint from assume cell: $eq$formal/mlu_mfu_dma_engine_formal.sv:112$315_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import constraint from assume cell: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:41$302_Y when 1'0.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$321_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$320_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$324_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$323_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$327_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$326_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$330_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$329_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$333_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$332_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$336_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$335_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$339_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$338_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$342_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$341_EN.
+Import proof for assert: $le$formal/mlu_mfu_dma_engine_formal.sv:123$344_Y when \rst_ni.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:126$348_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:128$351_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:128$350_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:132$354_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:133$357_Y when \rst_ni.
+Import proof for assert: \resp_received_for_beat_q when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:140$367_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:141$371_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:144$373_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:144$372_EN.
+
+Setting up time step 3:
+Final constraint equation: { } = { }
+Imported 283 cells to SAT database.
+Import constraint from assume cell: $eq$formal/mlu_mfu_dma_engine_formal.sv:112$315_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import constraint from assume cell: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:41$302_Y when 1'0.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$321_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$320_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$324_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$323_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$327_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$326_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$330_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$329_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$333_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$332_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$336_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$335_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$339_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$338_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$342_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$341_EN.
+Import proof for assert: $le$formal/mlu_mfu_dma_engine_formal.sv:123$344_Y when \rst_ni.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:126$348_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:128$351_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:128$350_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:132$354_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:133$357_Y when \rst_ni.
+Import proof for assert: \resp_received_for_beat_q when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:140$367_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:141$371_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:144$373_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:144$372_EN.
+
+Setting up time step 4:
+Final constraint equation: { } = { }
+Imported 283 cells to SAT database.
+Import constraint from assume cell: $eq$formal/mlu_mfu_dma_engine_formal.sv:112$315_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import constraint from assume cell: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:41$302_Y when 1'0.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$321_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$320_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$324_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$323_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$327_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$326_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$330_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$329_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$333_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$332_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$336_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$335_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$339_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$338_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$342_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$341_EN.
+Import proof for assert: $le$formal/mlu_mfu_dma_engine_formal.sv:123$344_Y when \rst_ni.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:126$348_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:128$351_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:128$350_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:132$354_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:133$357_Y when \rst_ni.
+Import proof for assert: \resp_received_for_beat_q when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:140$367_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:141$371_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:144$373_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:144$372_EN.
+
+Setting up time step 5:
+Final constraint equation: { } = { }
+Imported 283 cells to SAT database.
+Import constraint from assume cell: $eq$formal/mlu_mfu_dma_engine_formal.sv:112$315_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import constraint from assume cell: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:41$302_Y when 1'0.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$321_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$320_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$324_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$323_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$327_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$326_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$330_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$329_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$333_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$332_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$336_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$335_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$339_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$338_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$342_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$341_EN.
+Import proof for assert: $le$formal/mlu_mfu_dma_engine_formal.sv:123$344_Y when \rst_ni.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:126$348_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:128$351_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:128$350_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:132$354_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:133$357_Y when \rst_ni.
+Import proof for assert: \resp_received_for_beat_q when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:140$367_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:141$371_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:144$373_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:144$372_EN.
+
+Setting up time step 6:
+Final constraint equation: { } = { }
+Imported 283 cells to SAT database.
+Import constraint from assume cell: $eq$formal/mlu_mfu_dma_engine_formal.sv:112$315_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import constraint from assume cell: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:41$302_Y when 1'0.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$321_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$320_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$324_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$323_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$327_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$326_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$330_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$329_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$333_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$332_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$336_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$335_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$339_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$338_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$342_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$341_EN.
+Import proof for assert: $le$formal/mlu_mfu_dma_engine_formal.sv:123$344_Y when \rst_ni.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:126$348_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:128$351_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:128$350_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:132$354_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:133$357_Y when \rst_ni.
+Import proof for assert: \resp_received_for_beat_q when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:140$367_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:141$371_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:144$373_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:144$372_EN.
+
+Setting up time step 7:
+Final constraint equation: { } = { }
+Imported 283 cells to SAT database.
+Import constraint from assume cell: $eq$formal/mlu_mfu_dma_engine_formal.sv:112$315_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import constraint from assume cell: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:41$302_Y when 1'0.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$321_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$320_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$324_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$323_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$327_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$326_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$330_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$329_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$333_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$332_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$336_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$335_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$339_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$338_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$342_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$341_EN.
+Import proof for assert: $le$formal/mlu_mfu_dma_engine_formal.sv:123$344_Y when \rst_ni.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:126$348_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:128$351_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:128$350_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:132$354_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:133$357_Y when \rst_ni.
+Import proof for assert: \resp_received_for_beat_q when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:140$367_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:141$371_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:144$373_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:144$372_EN.
+
+Setting up time step 8:
+Final constraint equation: { } = { }
+Imported 283 cells to SAT database.
+Import constraint from assume cell: $eq$formal/mlu_mfu_dma_engine_formal.sv:112$315_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import constraint from assume cell: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:41$302_Y when 1'0.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$321_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$320_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$324_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$323_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$327_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$326_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$330_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$329_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$333_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$332_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$336_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$335_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$339_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$338_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$342_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$341_EN.
+Import proof for assert: $le$formal/mlu_mfu_dma_engine_formal.sv:123$344_Y when \rst_ni.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:126$348_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:128$351_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:128$350_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:132$354_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:133$357_Y when \rst_ni.
+Import proof for assert: \resp_received_for_beat_q when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:140$367_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:141$371_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:144$373_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:144$372_EN.
+
+Setting up time step 9:
+Final constraint equation: { } = { }
+Imported 283 cells to SAT database.
+Import constraint from assume cell: $eq$formal/mlu_mfu_dma_engine_formal.sv:112$315_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import constraint from assume cell: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:41$302_Y when 1'0.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$321_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$320_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$324_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$323_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$327_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$326_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$330_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$329_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$333_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$332_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$336_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$335_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$339_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$338_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$342_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$341_EN.
+Import proof for assert: $le$formal/mlu_mfu_dma_engine_formal.sv:123$344_Y when \rst_ni.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:126$348_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:128$351_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:128$350_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:132$354_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:133$357_Y when \rst_ni.
+Import proof for assert: \resp_received_for_beat_q when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:140$367_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:141$371_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:144$373_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:144$372_EN.
+
+Setting up time step 10:
+Final constraint equation: { } = { }
+Imported 283 cells to SAT database.
+Import constraint from assume cell: $eq$formal/mlu_mfu_dma_engine_formal.sv:112$315_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import constraint from assume cell: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:41$302_Y when 1'0.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$321_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$320_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$324_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$323_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$327_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$326_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$330_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$329_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$333_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$332_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$336_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$335_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$339_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$338_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:119$342_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:119$341_EN.
+Import proof for assert: $le$formal/mlu_mfu_dma_engine_formal.sv:123$344_Y when \rst_ni.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:126$348_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:128$351_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:128$350_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:132$354_Y when \rst_ni.
+Import proof for assert: $logic_not$formal/mlu_mfu_dma_engine_formal.sv:133$357_Y when \rst_ni.
+Import proof for assert: \resp_received_for_beat_q when $assert$formal/mlu_mfu_dma_engine_formal.sv:135$358_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:140$367_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:141$371_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:140$364_EN.
+Import proof for assert: $eq$formal/mlu_mfu_dma_engine_formal.sv:144$373_Y when $assert$formal/mlu_mfu_dma_engine_formal.sv:144$372_EN.
+Import show expression: \clk_i
+Import show expression: \cmd_inst_i
+Import show expression: \cmd_valid_i
+Import show expression: \decomp_bitmap_i
+Import show expression: \idx_offset_i
+Import show expression: \rd_resp_data_i
+Import show expression: \rd_resp_valid_i
+Import show expression: \rst_ni
+Import show expression: \cmd_ready_o
+Import show expression: \compressed_bytes_rd_o
+Import show expression: \done_tag_o
+Import show expression: \done_valid_o
+Import show expression: \mfu_busy_o
+Import show expression: \nram_transpose_mode_o
+Import show expression: \rd_req_addr_o
+Import show expression: \rd_req_space_o
+Import show expression: \rd_req_valid_o
+Import show expression: \uncompressed_bytes_wr_o
+Import show expression: \wr_req_addr_o
+Import show expression: \wr_req_data_o
+Import show expression: \wr_req_space_o
+Import show expression: \wr_req_valid_o
+
+Solving problem with 277674 variables and 766937 clauses..
+SAT proof finished - no model found: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+
+End of script. Logfile hash: b789e22989, CPU: user 7.74s system 0.18s, MEM: 255.91 MB peak
+Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+Time spent: 97% 1x sat (7 sec), 0% 9x opt_clean (0 sec), ...

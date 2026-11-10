@@ -1,0 +1,36 @@
+# =============================================================================
+# File: formal/prove_vfu.ys
+# Description: Yosys 0.60 Sequential SAT Proof Script for mlu_vfu_sfu_pipe
+#              Exhaustively proves:
+#              - Mode 0: 2-Cycle Determinism + Saturating VADD Bounds
+#              - Mode 1: 2-Cycle Determinism + Softmax Non-Negativity & Sum > 0
+#              - Mode 2: 2-Cycle Determinism + Cambricon-Q QuantStat Bounds
+# =============================================================================
+read_verilog -sv -formal -Irtl rtl/mlu_pkg.sv rtl/mlu_vfu_sfu_pipe.sv formal/mlu_vfu_sfu_pipe_formal.sv
+prep -top mlu_vfu_sfu_pipe_formal
+flatten
+chformal -lower
+design -save base
+
+# Mode 0: Pipeline Determinism & Saturating VADD Bounds
+connect -set \mode_sel_i 2'b00
+opt -full
+async2sync
+opt -full
+sat -verify -seq 6 -set-init-zero -prove-asserts -set-assumes -show-ports
+
+# Mode 1: Pipeline Determinism & Online Safe Softmax Non-Negativity
+design -load base
+connect -set \mode_sel_i 2'b01
+opt -full
+async2sync
+opt -full
+sat -verify -seq 6 -set-init-zero -prove-asserts -set-assumes -show-ports
+
+# Mode 2: Pipeline Determinism & Cambricon-Q QuantStat Bounds
+design -load base
+connect -set \mode_sel_i 2'b10
+opt -full
+async2sync
+opt -full
+sat -verify -seq 6 -set-init-zero -prove-asserts -set-assumes -show-ports

@@ -1,0 +1,25 @@
+[SOAK-500K] Cycle 100000 / 500000 | Retired=19996 | MACs=113904 | Barriers=999 | Flits=95887 | Hangs=0 | Mismatches=0
+[SOAK-500K] Cycle 200000 / 500000 | Retired=39996 | MACs=222568 | Barriers=1999 | Flits=191887 | Hangs=0 | Mismatches=0
+[SOAK-500K] Cycle 300000 / 500000 | Retired=59996 | MACs=333576 | Barriers=2999 | Flits=287887 | Hangs=0 | Mismatches=0
+[SOAK-500K] Cycle 400000 / 500000 | Retired=79996 | MACs=447656 | Barriers=3999 | Flits=383887 | Hangs=0 | Mismatches=0
+[SOAK-500K] Cycle 500000 / 500000 | Retired=99960 | MACs=559280 | Barriers=4998 | Flits=479887 | Hangs=0 | Mismatches=0
+==============================================================================
+ STAGE 17: 500,000-CYCLE FULL-CHIP RANDOMIZED SOAK STRESS SUMMARY
+==============================================================================
+  Total Clock Cycles Simulated   : 500000
+  Total Randomized Epochs        : 4998
+  Total Retired BANG ISA Insts   : 99960 (Expected: 99960)
+  Total Tensor MAC Operations    : 559280
+  Total Active MAC Cycles        : 59976
+  Total PMU Clock-Gated Cycles   : 9451704
+  Union-Task Cluster Barriers    : 4998 (Expected: 4998)
+  MPU Broadcast / AllReduce Ops  : 2545 / 2453
+  MLU-Link NoC Routed Flits      : 479887
+  C2C SerDes ACKs / NACKs        : 479887 / 16025
+  C2C CRC Faults / GBN Replays   : 16025 / 16025
+  SECDED 1b SEC / 2b DED Events  : 1250 / 1249
+  Hangs / Deadlocks / Mismatches : 0 / 0 / 0
+==============================================================================
+SOAK_500K_STRESS_TEST_PASS
+- /nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon/uvm_tb/uvm_soak_500k/tb_soak_500k.sv:518: Verilog $finish
+[VERILATOR-5.054] Completed 500002 cycles in 4.31026 s (116.003 kHz)

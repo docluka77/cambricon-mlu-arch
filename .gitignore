@@ -1,0 +1,69 @@
+# ==============================================================================
+# Cambricon Siyuan 590 / 690 (MLUarch05 / MLUarch06 & Cambricon-LLM/Q/S)
+# Open-Source Repository .gitignore
+# ==============================================================================
+
+# Verilator & C++ Simulation Build Directories
+build/
+**/build/
+obj_dir/
+obj_dir_*/
+obj_stage*/
+**/obj_dir/
+**/obj_dir_*/
+**/obj_stage*/
+*.gch
+*.o
+*.d
+*.a
+*.so
+*.vcd
+*.fst
+
+# Python Bytecode & Virtual Environments
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.pytest_cache/
+
+# Raw Binary Coverage Databases (Annotated RTL coverage & Markdown reports are tracked)
+**/coverage.dat
+**/coverage.info
+results/merged_uvm_coverage.dat
+results/merged_uvm_coverage.info
+uvm_tb/*/annotated_cov/
+results/cov_annotated/uvm_*
+
+# Temporary Formal Mutation Work Sandboxes (MUTATION_REPORT.md & JSON are tracked)
+formal/mutation_testing/work*/
+formal/mutation_testing/sandboxes/
+
+# Historical One-Off Archive Scripts
+scripts/archive/
+
+# Oversized Full-Chip & Macro Gate-Level Netlists (> 35 MB each; GitHub 100 MB limit)
+# Note: All 36 Yosys synthesis logs (synth_*.log), PPA_SUMMARY.md, ppa_metrics.json,
+# and all 24 Core IP gate-level netlists (<= 13 MB each, used by Stage 15 Gate-Level
+# Formal Equivalence Miters) ARE tracked in git.
+# Run `make synth` to regenerate these 12 macro netlists locally using Yosys 0.60.
+synth/mlu_tfu_fractal_mac_asap7_netlist.v
+synth/mlu_tfu_fractal_mac_sky130_netlist.v
+synth/mlu_vfu_sfu_pipe_asap7_netlist.v
+synth/mlu_vfu_sfu_pipe_sky130_netlist.v
+synth/mlu_ipu_core_asap7_netlist.v
+synth/mlu_ipu_core_sky130_netlist.v
+synth/mlu_mtp_cluster_asap7_netlist.v
+synth/mlu_mtp_cluster_sky130_netlist.v
+synth/mlu_chip_top_asap7_netlist.v
+synth/mlu_chip_top_sky130_netlist.v
+synth/mlu_4chip_oam_node_asap7_netlist.v
+synth/mlu_4chip_oam_node_sky130_netlist.v
+
+# OS & Editor Metadata
+.DS_Store
+Thumbs.db
+*.swp
+*~

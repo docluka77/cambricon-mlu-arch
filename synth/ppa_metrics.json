@@ -1,0 +1,452 @@
+[
+  {
+    "module": "mlu_sram_secded_ecc",
+    "category": "SRAM IP",
+    "description": "Hsiao (72,64) SECDED Single-Cycle ECC Codec",
+    "fmax_asap7_ghz": 1.5,
+    "logic_levels_asap7": 6,
+    "asap7_7nm": {
+      "total_cells": 2906,
+      "comb_cells": 2906,
+      "seq_cells": 0,
+      "total_area_um2": 217.77,
+      "comb_area_um2": 217.77,
+      "seq_area_um2": 0.0,
+      "seq_area_pct": 0.0
+    },
+    "sky130_130nm": {
+      "total_cells": 992,
+      "comb_cells": 992,
+      "seq_cells": 0,
+      "total_area_um2": 11337.12,
+      "comb_area_um2": 11337.12,
+      "seq_area_um2": 0.0,
+      "seq_area_pct": 0.0
+    }
+  },
+  {
+    "module": "mlu_sram_sp_macro",
+    "category": "SRAM IP",
+    "description": "Single-Port ECC SRAM Macro + 6-Phase March-C- BIST + Scrubber",
+    "fmax_asap7_ghz": 1.45,
+    "logic_levels_asap7": 9,
+    "asap7_7nm": {
+      "total_cells": 7652,
+      "comb_cells": 6889,
+      "seq_cells": 763,
+      "total_area_um2": 756.06,
+      "comb_area_um2": 523.51,
+      "seq_area_um2": 232.55,
+      "seq_area_pct": 30.76
+    },
+    "sky130_130nm": {
+      "total_cells": 4706,
+      "comb_cells": 4591,
+      "seq_cells": 115,
+      "total_area_um2": 48238.76,
+      "comb_area_um2": 25899.84,
+      "seq_area_um2": 22338.92,
+      "seq_area_pct": 46.31
+    }
+  },
+  {
+    "module": "mlu_nram_banked_scratchpad",
+    "category": "Memory Subsys",
+    "description": "8-Bank 64b NRAM + XOR Bank Swizzle + 8x8 2D Transpose Crossbar",
+    "fmax_asap7_ghz": 1.38,
+    "logic_levels_asap7": 12,
+    "asap7_7nm": {
+      "total_cells": 91260,
+      "comb_cells": 85115,
+      "seq_cells": 6145,
+      "total_area_um2": 8305.47,
+      "comb_area_um2": 6429.52,
+      "seq_area_um2": 1875.95,
+      "seq_area_pct": 22.59
+    },
+    "sky130_130nm": {
+      "total_cells": 71700,
+      "comb_cells": 70739,
+      "seq_cells": 961,
+      "total_area_um2": 561519.79,
+      "comb_area_um2": 381782.41,
+      "seq_area_um2": 179737.38,
+      "seq_area_pct": 32.01
+    }
+  },
+  {
+    "module": "mlu_wram_weight_buffer",
+    "category": "Memory Subsys",
+    "description": "Ping-Pong 2x4-Bank WRAM + Cambricon-S 2:4 Sparsity Metadata",
+    "fmax_asap7_ghz": 1.4,
+    "logic_levels_asap7": 11,
+    "asap7_7nm": {
+      "total_cells": 65214,
+      "comb_cells": 58556,
+      "seq_cells": 6658,
+      "total_area_um2": 6442.22,
+      "comb_area_um2": 4422.19,
+      "seq_area_um2": 2020.03,
+      "seq_area_pct": 31.36
+    },
+    "sky130_130nm": {
+      "total_cells": 40554,
+      "comb_cells": 39656,
+      "seq_cells": 898,
+      "total_area_um2": 412362.99,
+      "comb_area_um2": 216905.53,
+      "seq_area_um2": 195457.46,
+      "seq_area_pct": 47.4
+    }
+  },
+  {
+    "module": "mlu_mpu_shared_sram",
+    "category": "Memory Subsys",
+    "description": "8-Bank Cluster Shared SRAM + 1-to-4 Multi-Cast + Atomic Adder",
+    "fmax_asap7_ghz": 1.35,
+    "logic_levels_asap7": 14,
+    "asap7_7nm": {
+      "total_cells": 137601,
+      "comb_cells": 123283,
+      "seq_cells": 14318,
+      "total_area_um2": 13296.6,
+      "comb_area_um2": 9039.06,
+      "seq_area_um2": 4257.53,
+      "seq_area_pct": 32.02
+    },
+    "sky130_130nm": {
+      "total_cells": 90277,
+      "comb_cells": 89335,
+      "seq_cells": 942,
+      "total_area_um2": 849393.39,
+      "comb_area_um2": 424135.53,
+      "seq_area_um2": 425257.86,
+      "seq_area_pct": 50.07
+    }
+  },
+  {
+    "module": "mlu_bang_icu",
+    "category": "Control/ISA",
+    "description": "128-bit BANG ISA Decoder + 5-Engine Scoreboard + RAW/WAW Tracker",
+    "fmax_asap7_ghz": 1.42,
+    "logic_levels_asap7": 11,
+    "asap7_7nm": {
+      "total_cells": 7742,
+      "comb_cells": 7117,
+      "seq_cells": 625,
+      "total_area_um2": 745.84,
+      "comb_area_um2": 508.91,
+      "seq_area_um2": 236.93,
+      "seq_area_pct": 31.77
+    },
+    "sky130_130nm": {
+      "total_cells": 7137,
+      "comb_cells": 6512,
+      "seq_cells": 625,
+      "total_area_um2": 49570.04,
+      "comb_area_um2": 33928.79,
+      "seq_area_um2": 15641.25,
+      "seq_area_pct": 31.55
+    }
+  },
+  {
+    "module": "mlu_pmu_clock_gate",
+    "category": "Power/Clock",
+    "description": "Per-Domain Activity-Driven Clock Gate + Droop Throttle FSM",
+    "fmax_asap7_ghz": 1.5,
+    "logic_levels_asap7": 7,
+    "asap7_7nm": {
+      "total_cells": 1642,
+      "comb_cells": 1460,
+      "seq_cells": 182,
+      "total_area_um2": 177.8,
+      "comb_area_um2": 108.81,
+      "seq_area_um2": 68.99,
+      "seq_area_pct": 38.8
+    },
+    "sky130_130nm": {
+      "total_cells": 1478,
+      "comb_cells": 1296,
+      "seq_cells": 182,
+      "total_area_um2": 11407.19,
+      "comb_area_um2": 6851.57,
+      "seq_area_um2": 4555.62,
+      "seq_area_pct": 39.94
+    }
+  },
+  {
+    "module": "mlu_tfu_fractal_mac",
+    "category": "Tensor Compute",
+    "description": "Multi-Precision (INT4/INT8/FP8/BF16/FP16) + 2:4 Sparse Fractal MAC",
+    "fmax_asap7_ghz": 1.32,
+    "logic_levels_asap7": 16,
+    "asap7_7nm": {
+      "total_cells": 707613,
+      "comb_cells": 707255,
+      "seq_cells": 358,
+      "total_area_um2": 53233.65,
+      "comb_area_um2": 53097.94,
+      "seq_area_um2": 135.71,
+      "seq_area_pct": 0.25
+    },
+    "sky130_130nm": {
+      "total_cells": 574127,
+      "comb_cells": 573769,
+      "seq_cells": 358,
+      "total_area_um2": 3094826.93,
+      "comb_area_um2": 3085867.09,
+      "seq_area_um2": 8959.84,
+      "seq_area_pct": 0.29
+    }
+  },
+  {
+    "module": "mlu_vfu_sfu_pipe",
+    "category": "Vector/SFU",
+    "description": "8-Lane SIMD Vector Pipe + LayerNorm/RMSNorm/RoPE/Online-Softmax/GELU",
+    "fmax_asap7_ghz": 1.34,
+    "logic_levels_asap7": 15,
+    "asap7_7nm": {
+      "total_cells": 350768,
+      "comb_cells": 349877,
+      "seq_cells": 891,
+      "total_area_um2": 31179.83,
+      "comb_area_um2": 30842.07,
+      "seq_area_um2": 337.76,
+      "seq_area_pct": 1.08
+    },
+    "sky130_130nm": {
+      "total_cells": 313028,
+      "comb_cells": 312137,
+      "seq_cells": 891,
+      "total_area_um2": 1788439.0,
+      "comb_area_um2": 1766135.11,
+      "seq_area_um2": 22303.89,
+      "seq_area_pct": 1.25
+    }
+  },
+  {
+    "module": "mlu_mfu_dma_engine",
+    "category": "DMA/Coalesce",
+    "description": "3D Strided DMA + Cambricon-LLM FlashDecoding Gather + Zero-Bitmap Decomp",
+    "fmax_asap7_ghz": 1.38,
+    "logic_levels_asap7": 12,
+    "asap7_7nm": {
+      "total_cells": 5635,
+      "comb_cells": 5335,
+      "seq_cells": 300,
+      "total_area_um2": 492.86,
+      "comb_area_um2": 379.14,
+      "seq_area_um2": 113.72,
+      "seq_area_pct": 23.07
+    },
+    "sky130_130nm": {
+      "total_cells": 5235,
+      "comb_cells": 4935,
+      "seq_cells": 300,
+      "total_area_um2": 32263.44,
+      "comb_area_um2": 24748.74,
+      "seq_area_um2": 7514.71,
+      "seq_area_pct": 23.29
+    }
+  },
+  {
+    "module": "mlu_link_noc_router",
+    "category": "Interconnect",
+    "description": "5-Port Dual-VC Wormhole NoC Router + In-Switch AllReduce Combiner",
+    "fmax_asap7_ghz": 1.36,
+    "logic_levels_asap7": 13,
+    "asap7_7nm": {
+      "total_cells": 88621,
+      "comb_cells": 87197,
+      "seq_cells": 1424,
+      "total_area_um2": 7180.2,
+      "comb_area_um2": 6640.39,
+      "seq_area_um2": 539.81,
+      "seq_area_pct": 7.52
+    },
+    "sky130_130nm": {
+      "total_cells": 102740,
+      "comb_cells": 101316,
+      "seq_cells": 1424,
+      "total_area_um2": 532917.36,
+      "comb_area_um2": 497283.18,
+      "seq_area_um2": 35634.18,
+      "seq_area_pct": 6.69
+    }
+  },
+  {
+    "module": "mlu_c2c_serdes_pcs",
+    "category": "Chiplet I/O",
+    "description": "512 GB/s Dual-Die C2C PCS + CRC-16-CCITT + Go-Back-N Replay Buffer",
+    "fmax_asap7_ghz": 1.4,
+    "logic_levels_asap7": 11,
+    "asap7_7nm": {
+      "total_cells": 8140,
+      "comb_cells": 7036,
+      "seq_cells": 1104,
+      "total_area_um2": 904.7,
+      "comb_area_um2": 486.2,
+      "seq_area_um2": 418.5,
+      "seq_area_pct": 46.26
+    },
+    "sky130_130nm": {
+      "total_cells": 6087,
+      "comb_cells": 4983,
+      "seq_cells": 1104,
+      "total_area_um2": 65726.79,
+      "comb_area_um2": 38100.29,
+      "seq_area_um2": 27626.5,
+      "seq_area_pct": 42.03
+    }
+  },
+  {
+    "module": "mlu_cambricon_llm_flash_kv",
+    "category": "LLM Engine",
+    "description": "Cambricon-LLM Flash-Assisted INT4/FP8 KV Quant-Pack & Speculative Tree Verifier",
+    "fmax_asap7_ghz": 1.38,
+    "logic_levels_asap7": 12,
+    "asap7_7nm": {
+      "total_cells": 12754,
+      "comb_cells": 11500,
+      "seq_cells": 1254,
+      "total_area_um2": 1371.48,
+      "comb_area_um2": 896.12,
+      "seq_area_um2": 475.37,
+      "seq_area_pct": 34.66
+    },
+    "sky130_130nm": {
+      "total_cells": 13038,
+      "comb_cells": 11784,
+      "seq_cells": 1254,
+      "total_area_um2": 92976.67,
+      "comb_area_um2": 61596.58,
+      "seq_area_um2": 31380.1,
+      "seq_area_pct": 33.75
+    }
+  },
+  {
+    "module": "mlu_ipu_core",
+    "category": "Core Hierarchy",
+    "description": "Complete Cambricon IPU Core (ICU + PMU + NRAM + WRAM + TFU + VFU + MFU + LLM_KV)",
+    "fmax_asap7_ghz": 1.3,
+    "logic_levels_asap7": 17,
+    "asap7_7nm": {
+      "total_cells": 1009212,
+      "comb_cells": 992776,
+      "seq_cells": 16436,
+      "total_area_um2": 93607.35,
+      "comb_area_um2": 88334.17,
+      "seq_area_um2": 5273.18,
+      "seq_area_pct": 5.63
+    },
+    "sky130_130nm": {
+      "total_cells": 1031001,
+      "comb_cells": 1025512,
+      "seq_cells": 5489,
+      "total_area_um2": 6068421.35,
+      "comb_area_um2": 5602370.62,
+      "seq_area_um2": 466050.73,
+      "seq_area_pct": 7.68
+    }
+  },
+  {
+    "module": "mlu_mpu_core",
+    "category": "Core Hierarchy",
+    "description": "Complete Cambricon MPU Core (Shared SRAM + 1-to-4 Broadcast + AllReduce)",
+    "fmax_asap7_ghz": 1.34,
+    "logic_levels_asap7": 14,
+    "asap7_7nm": {
+      "total_cells": 138847,
+      "comb_cells": 124397,
+      "seq_cells": 14450,
+      "total_area_um2": 13420.37,
+      "comb_area_um2": 9112.79,
+      "seq_area_um2": 4307.57,
+      "seq_area_pct": 32.1
+    },
+    "sky130_130nm": {
+      "total_cells": 91687,
+      "comb_cells": 90613,
+      "seq_cells": 1074,
+      "total_area_um2": 857617.52,
+      "comb_area_um2": 429056.5,
+      "seq_area_um2": 428561.02,
+      "seq_area_pct": 49.97
+    }
+  },
+  {
+    "module": "mlu_mtp_cluster",
+    "category": "Cluster Hier",
+    "description": "MTP Cluster (4x IPU Cores + 1x MPU Core + Union-Task Sync + HBM Arbiter)",
+    "fmax_asap7_ghz": 1.3,
+    "logic_levels_asap7": 18,
+    "asap7_7nm": {
+      "total_cells": 4180209,
+      "comb_cells": 4099978,
+      "seq_cells": 80231,
+      "total_area_um2": 388204.41,
+      "comb_area_um2": 362790.1,
+      "seq_area_um2": 25414.31,
+      "seq_area_pct": 6.55
+    },
+    "sky130_130nm": {
+      "total_cells": 4219654,
+      "comb_cells": 4196587,
+      "seq_cells": 23067,
+      "total_area_um2": 25153984.67,
+      "comb_area_um2": 22860294.84,
+      "seq_area_um2": 2293689.83,
+      "seq_area_pct": 9.12
+    }
+  },
+  {
+    "module": "mlu_chip_top",
+    "category": "Full-Chip Top",
+    "description": "Cambricon Siyuan 590/690 Top (MTP Cluster + MLU-Link Router + C2C SerDes)",
+    "fmax_asap7_ghz": 1.3,
+    "logic_levels_asap7": 18,
+    "asap7_7nm": {
+      "total_cells": 4276945,
+      "comb_cells": 4194186,
+      "seq_cells": 82759,
+      "total_area_um2": 396288.31,
+      "comb_area_um2": 369915.68,
+      "seq_area_um2": 26372.62,
+      "seq_area_pct": 6.65
+    },
+    "sky130_130nm": {
+      "total_cells": 4328490,
+      "comb_cells": 4302895,
+      "seq_cells": 25595,
+      "total_area_um2": 25752610.04,
+      "comb_area_um2": 23395659.54,
+      "seq_area_um2": 2356950.5,
+      "seq_area_pct": 9.15
+    }
+  },
+  {
+    "module": "mlu_4chip_oam_node",
+    "category": "Multi-Chip OAM",
+    "description": "4-Chip OAM MLU-Link Ring AllReduce & C2C SerDes Interconnect Fabric",
+    "fmax_asap7_ghz": 1.34,
+    "logic_levels_asap7": 14,
+    "asap7_7nm": {
+      "total_cells": 401355,
+      "comb_cells": 390434,
+      "seq_cells": 10921,
+      "total_area_um2": 33644.3,
+      "comb_area_um2": 29504.37,
+      "seq_area_um2": 4139.93,
+      "seq_area_pct": 12.31
+    },
+    "sky130_130nm": {
+      "total_cells": 448488,
+      "comb_cells": 437567,
+      "seq_cells": 10921,
+      "total_area_um2": 2478371.96,
+      "comb_area_um2": 2205084.85,
+      "seq_area_um2": 273287.1,
+      "seq_area_pct": 11.03
+    }
+  }
+]

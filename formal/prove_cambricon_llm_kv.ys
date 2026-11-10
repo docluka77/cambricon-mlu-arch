@@ -1,0 +1,11 @@
+# =============================================================================
+# File: formal/prove_cambricon_llm_kv.ys
+# Description: Yosys 0.60 Sequential SAT Formal Proof for mlu_cambricon_llm_flash_kv
+# =============================================================================
+read_verilog -sv -formal -Irtl rtl/mlu_pkg.sv rtl/mlu_cambricon_llm_flash_kv.sv formal/mlu_cambricon_llm_flash_kv_formal.sv
+prep -top mlu_cambricon_llm_flash_kv_formal
+flatten
+async2sync
+chformal -lower
+opt -full
+sat -verify -seq 8 -set-init-zero -prove-asserts -show-ports

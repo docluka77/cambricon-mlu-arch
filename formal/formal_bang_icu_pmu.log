@@ -1,0 +1,1201 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+
+-- Executing script file `formal/prove_bang_icu_pmu.ys' --
+
+1. Executing Verilog-2005 frontend: rtl/mlu_pkg.sv
+Parsing formal SystemVerilog input from `rtl/mlu_pkg.sv' to AST representation.
+verilog frontend filename rtl/mlu_pkg.sv
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: rtl/mlu_bang_icu.sv
+Parsing formal SystemVerilog input from `rtl/mlu_bang_icu.sv' to AST representation.
+verilog frontend filename rtl/mlu_bang_icu.sv
+Generating RTLIL representation for module `\mlu_bang_icu'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: rtl/mlu_pmu_clock_gate.sv
+Parsing formal SystemVerilog input from `rtl/mlu_pmu_clock_gate.sv' to AST representation.
+verilog frontend filename rtl/mlu_pmu_clock_gate.sv
+Generating RTLIL representation for module `\mlu_pmu_clock_gate'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: formal/mlu_bang_icu_pmu_formal.sv
+Parsing formal SystemVerilog input from `formal/mlu_bang_icu_pmu_formal.sv' to AST representation.
+verilog frontend filename formal/mlu_bang_icu_pmu_formal.sv
+Generating RTLIL representation for module `\mlu_bang_icu_pmu_formal'.
+Successfully finished Verilog frontend.
+
+5. Executing PREP pass.
+
+5.1. Executing HIERARCHY pass (managing design hierarchy).
+
+5.1.1. Analyzing design hierarchy..
+Top module:  \mlu_bang_icu_pmu_formal
+Used module:     \mlu_pmu_clock_gate
+Used module:     \mlu_bang_icu
+Parameter \DEFAULT_IDLE_THRESH = 8'00000100
+
+5.1.2. Executing AST frontend in derive mode using pre-parsed AST for module `\mlu_pmu_clock_gate'.
+Parameter \DEFAULT_IDLE_THRESH = 8'00000100
+Generating RTLIL representation for module `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100'.
+Parameter \SCOREBOARD_SLOTS = 2
+
+5.1.3. Executing AST frontend in derive mode using pre-parsed AST for module `\mlu_bang_icu'.
+Parameter \SCOREBOARD_SLOTS = 2
+Generating RTLIL representation for module `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010'.
+
+5.1.4. Analyzing design hierarchy..
+Top module:  \mlu_bang_icu_pmu_formal
+Used module:     $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100
+Used module:     $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010
+
+5.1.5. Analyzing design hierarchy..
+Top module:  \mlu_bang_icu_pmu_formal
+Used module:     $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100
+Used module:     $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010
+Removing unused module `\mlu_pmu_clock_gate'.
+Removing unused module `\mlu_bang_icu'.
+Removed 2 unused modules.
+Module mlu_bang_icu_pmu_formal directly or indirectly contains formal properties -> setting "keep" attribute.
+
+5.2. Executing PROC pass (convert processes to netlists).
+
+5.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+5.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$formal/mlu_bang_icu_pmu_formal.sv:117$1116 in module mlu_bang_icu_pmu_formal.
+Marked 12 switch rules as full_case in process $proc$rtl/mlu_bang_icu.sv:244$1473 in module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.
+Marked 6 switch rules as full_case in process $proc$rtl/mlu_bang_icu.sv:229$1456 in module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.
+Marked 2 switch rules as full_case in process $proc$rtl/mlu_bang_icu.sv:188$1424 in module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.
+Marked 14 switch rules as full_case in process $proc$rtl/mlu_bang_icu.sv:146$1322 in module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.
+Marked 4 switch rules as full_case in process $proc$rtl/mlu_bang_icu.sv:102$1289 in module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.
+Marked 1 switch rules as full_case in process $proc$rtl/mlu_bang_icu.sv:73$1287 in module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.
+Marked 12 switch rules as full_case in process $proc$rtl/mlu_pmu_clock_gate.sv:100$1217 in module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.
+Marked 8 switch rules as full_case in process $proc$rtl/mlu_pmu_clock_gate.sv:81$1198 in module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.
+Marked 10 switch rules as full_case in process $proc$rtl/mlu_pmu_clock_gate.sv:53$1178 in module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.
+Removed a total of 0 dead cases.
+
+5.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 5 redundant assignments.
+Promoted 74 assignments to connections.
+
+5.2.4. Executing PROC_INIT pass (extract init attributes).
+
+5.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_ni in `\mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:117$1116'.
+Found async reset \rst_ni in `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+Found async reset \rst_ni in `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:100$1217'.
+
+5.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~96 debug messages>
+
+5.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:141$1134'.
+     1/12: $assert$formal/mlu_bang_icu_pmu_formal.sv:173$1174_EN
+     2/12: $assert$formal/mlu_bang_icu_pmu_formal.sv:172$1171_EN
+     3/12: $assert$formal/mlu_bang_icu_pmu_formal.sv:171$1168_EN
+     4/12: $assert$formal/mlu_bang_icu_pmu_formal.sv:170$1165_EN
+     5/12: $assert$formal/mlu_bang_icu_pmu_formal.sv:169$1162_EN
+     6/12: $assert$formal/mlu_bang_icu_pmu_formal.sv:164$1160_EN
+     7/12: $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN
+     8/12: $assert$formal/mlu_bang_icu_pmu_formal.sv:161$1154_EN
+     9/12: $assert$formal/mlu_bang_icu_pmu_formal.sv:153$1149_EN
+    10/12: $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN
+    11/12: $assert$formal/mlu_bang_icu_pmu_formal.sv:150$1145_EN
+    12/12: $assert$formal/mlu_bang_icu_pmu_formal.sv:146$1137_EN
+Creating decoders for process `\mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:117$1116'.
+     1/5: $0\ref_dst_reg_q[21:0]
+     2/5: $0\ref_dst_space_q[2:0]
+     3/5: $0\ref_tag_q[7:0]
+     4/5: $0\ref_q_idx_q[2:0]
+     5/5: $0\ref_valid_q[0:0]
+Creating decoders for process `\mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:106$1115'.
+     1/1: $1\disp_q_idx[2:0]
+Creating decoders for process `\mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:40$1105'.
+Creating decoders for process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+     1/53: $2$lookahead\sb_wram_reg_q$1472[11:0]$1595
+     2/53: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:282$1277[31:0]$1586
+     3/53: $2$lookahead\sb_uses_wram_q$1471[1:0]$1594
+     4/53: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:281$1276[0:0]$1585
+     5/53: $2$lookahead\sb_dst_reg_q$1470[43:0]$1593
+     6/53: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:280$1275[31:0]$1584
+     7/53: $2$lookahead\sb_src_reg_q$1469[43:0]$1592
+     8/53: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:279$1274[31:0]$1583
+     9/53: $2$lookahead\sb_dst_space_q$1468[5:0]$1591
+    10/53: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:278$1273[31:0]$1582
+    11/53: $2$lookahead\sb_src_space_q$1467[5:0]$1590
+    12/53: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:277$1272[31:0]$1581
+    13/53: $2$lookahead\sb_tag_q$1466[15:0]$1589
+    14/53: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:276$1271[31:0]$1580
+    15/53: $2$lookahead\sb_q_idx_q$1465[5:0]$1588
+    16/53: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:275$1270[31:0]$1579
+    17/53: $12$lookahead\sb_valid_q$1464[1:0]$1587
+    18/53: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:274$1269[0:0]$1578
+    19/53: $11$lookahead\sb_valid_q$1464[1:1]$1576
+    20/53: $10$lookahead\sb_valid_q$1464[1:1]$1570
+    21/53: $9$lookahead\sb_valid_q$1464[1:1]$1564
+    22/53: $8$lookahead\sb_valid_q$1464[1:1]$1558
+    23/53: $7$lookahead\sb_valid_q$1464[1:1]$1552
+    24/53: $6$lookahead\sb_valid_q$1464[0:0]$1546
+    25/53: $5$lookahead\sb_valid_q$1464[0:0]$1540
+    26/53: $4$lookahead\sb_valid_q$1464[0:0]$1534
+    27/53: $3$lookahead\sb_valid_q$1464[0:0]$1528
+    28/53: $2$lookahead\sb_valid_q$1464[0:0]$1522
+    29/53: $0\inst_retired_cnt_o[31:0]
+    30/53: $1$lookahead\sb_wram_reg_q$1472[11:0]$1516
+    31/53: $1$lookahead\sb_uses_wram_q$1471[1:0]$1515
+    32/53: $1$lookahead\sb_dst_reg_q$1470[43:0]$1514
+    33/53: $1$lookahead\sb_src_reg_q$1469[43:0]$1513
+    34/53: $1$lookahead\sb_dst_space_q$1468[5:0]$1512
+    35/53: $1$lookahead\sb_src_space_q$1467[5:0]$1511
+    36/53: $1$lookahead\sb_tag_q$1466[15:0]$1510
+    37/53: $1$lookahead\sb_q_idx_q$1465[5:0]$1509
+    38/53: $1$lookahead\sb_valid_q$1464[1:0]$1508
+    39/53: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:282$1277[31:0]$1507
+    40/53: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:281$1276[0:0]$1506
+    41/53: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:280$1275[31:0]$1505
+    42/53: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:279$1274[31:0]$1504
+    43/53: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:278$1273[31:0]$1503
+    44/53: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:277$1272[31:0]$1502
+    45/53: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:276$1271[31:0]$1501
+    46/53: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:275$1270[31:0]$1500
+    47/53: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:274$1269[0:0]$1499
+    48/53: $1$fordecl_block$9.s[31:0]$1496
+    49/53: $1$fordecl_block$9.$for_loop$10[1].$fordecl_block$11.e[31:0]$1498
+    50/53: $1$fordecl_block$9.$for_loop$10[0].$fordecl_block$11.e[31:0]$1497
+    51/53: $0\pwr_gate_cfg_valid_o[0:0]
+    52/53: $0\hazard_stall_cnt_o[31:0]
+    53/53: $0\idle_threshold_o[7:0]
+Creating decoders for process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:229$1456'.
+     1/6: $6\done_cnt_comb[31:0]
+     2/6: $5\done_cnt_comb[31:0]
+     3/6: $4\done_cnt_comb[31:0]
+     4/6: $3\done_cnt_comb[31:0]
+     5/6: $2\done_cnt_comb[31:0]
+     6/6: $1\done_cnt_comb[31:0]
+Creating decoders for process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:188$1424'.
+     1/4: $2\free_slot_idx[0:0]
+     2/4: $2\sb_full[0:0]
+     3/4: $1\free_slot_idx[0:0]
+     4/4: $1\sb_full[0:0]
+Creating decoders for process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+     1/26: $14\mem_or_tag_hazard[0:0]
+     2/26: $13\mem_or_tag_hazard[0:0]
+     3/26: $12\mem_or_tag_hazard[0:0]
+     4/26: $11\mem_or_tag_hazard[0:0]
+     5/26: $10\mem_or_tag_hazard[0:0]
+     6/26: $9\mem_or_tag_hazard[0:0]
+     7/26: $8\mem_or_tag_hazard[0:0]
+     8/26: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$1268.$result[0:0]$1386
+     9/26: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$1268.sp[2:0]$1387
+    10/26: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$1267.$result[0:0]$1384
+    11/26: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$1267.sp[2:0]$1385
+    12/26: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$1266.$result[0:0]$1382
+    13/26: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$1266.sp[2:0]$1383
+    14/26: $7\mem_or_tag_hazard[0:0]
+    15/26: $6\mem_or_tag_hazard[0:0]
+    16/26: $5\mem_or_tag_hazard[0:0]
+    17/26: $4\mem_or_tag_hazard[0:0]
+    18/26: $3\mem_or_tag_hazard[0:0]
+    19/26: $2\mem_or_tag_hazard[0:0]
+    20/26: $1\mem_or_tag_hazard[0:0]
+    21/26: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$1265.$result[0:0]$1342
+    22/26: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$1265.sp[2:0]$1343
+    23/26: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$1264.$result[0:0]$1340
+    24/26: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$1264.sp[2:0]$1341
+    25/26: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$1263.$result[0:0]$1338
+    26/26: $1\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$1263.sp[2:0]$1339
+Creating decoders for process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:102$1289'.
+     1/8: $4\queue_busy_o[4:0]
+     2/8: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$1262[2:0]$1305
+     3/8: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$1262[2:0]$1303
+     4/8: $3\queue_busy_o[4:0]
+     5/8: $2\queue_busy_o[4:0]
+     6/8: $2$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$1261[2:0]$1295
+     7/8: $1$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$1261[2:0]$1293
+     8/8: $1\queue_busy_o[4:0]
+Creating decoders for process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:73$1287'.
+     1/4: $2\target_q_mask[4:0]
+     2/4: $2\target_q_idx[2:0]
+     3/4: $1\target_q_mask[4:0]
+     4/4: $1\target_q_idx[2:0]
+Creating decoders for process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:100$1217'.
+     1/20: $0\sram_dslp_q[2:0] [2]
+     2/20: $0\sram_dslp_q[2:0] [1]
+     3/20: $0\sram_slp_q[2:0] [1]
+     4/20: $0\mem_idle_cnt_q[26:0] [17:9]
+     5/20: $0\sram_dslp_q[2:0] [0]
+     6/20: $0\sram_slp_q[2:0] [0]
+     7/20: $0\mem_idle_cnt_q[26:0] [8:0]
+     8/20: $0\eng_idle_cnt_q[44:0] [35:27]
+     9/20: $0\eng_idle_cnt_q[44:0] [26:18]
+    10/20: $0\eng_idle_cnt_q[44:0] [17:9]
+    11/20: $0\eng_idle_cnt_q[44:0] [8:0]
+    12/20: $0\gated_saved_cycles_o[31:0]
+    13/20: $1$fordecl_block$1018.m[31:0]$1222
+    14/20: $1$fordecl_block$1016.e[31:0]$1221
+    15/20: $0\mem_idle_cnt_q[26:0] [26:18]
+    16/20: $0\sram_slp_q[2:0] [2]
+    17/20: $0\eng_idle_cnt_q[44:0] [44:36]
+    18/20: $0\sram_sleep_cycles_o[31:0]
+    19/20: $0\idle_thresh_q[7:0]
+    20/20: $0\active_mac_cycles_o[31:0]
+Creating decoders for process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:81$1198'.
+     1/8: $3\sleep_mem_inc[31:0]
+     2/8: $2\sleep_mem_inc[31:0]
+     3/8: $1\sleep_mem_inc[31:0]
+     4/8: $5\gated_eng_inc[31:0]
+     5/8: $4\gated_eng_inc[31:0]
+     6/8: $3\gated_eng_inc[31:0]
+     7/8: $2\gated_eng_inc[31:0]
+     8/8: $1\gated_eng_inc[31:0]
+Creating decoders for process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:53$1178'.
+     1/10: $10\eng_clk_en_o[4:4]
+     2/10: $9\eng_clk_en_o[4:4]
+     3/10: $8\eng_clk_en_o[3:3]
+     4/10: $7\eng_clk_en_o[3:3]
+     5/10: $6\eng_clk_en_o[2:2]
+     6/10: $5\eng_clk_en_o[2:2]
+     7/10: $4\eng_clk_en_o[1:1]
+     8/10: $3\eng_clk_en_o[1:1]
+     9/10: $2\eng_clk_en_o[0:0]
+    10/10: $1\eng_clk_en_o[0:0]
+
+5.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\mlu_bang_icu_pmu_formal.\disp_q_idx' from process `\mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:106$1115'.
+No latch inferred for signal `\mlu_bang_icu_pmu_formal.\dec_inst' from process `\mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:40$1105'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\done_cnt_comb' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:229$1456'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$fordecl_block$7.e' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:229$1456'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\sb_full' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:188$1424'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\free_slot_idx' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:188$1424'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$fordecl_block$5.s' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:188$1424'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\mem_or_tag_hazard' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$fordecl_block$3.s' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$1263.$result' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$1263.sp' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$1264.$result' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$1264.sp' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$1265.$result' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$1265.sp' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$1266.$result' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:155$1266.sp' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$1267.$result' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:167$1267.sp' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$1268.$result' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\is_scratchpad_space$func$rtl/mlu_bang_icu.sv:173$1268.sp' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\queue_busy_o' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:102$1289'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$fordecl_block$1.s' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:102$1289'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$1261' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:102$1289'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$bitselwrite$pos$rtl/mlu_bang_icu.sv:107$1262' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:102$1289'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\target_q_idx' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:73$1287'.
+No latch inferred for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\target_q_mask' from process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:73$1287'.
+No latch inferred for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.\gated_eng_inc' from process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:81$1198'.
+No latch inferred for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.\sleep_mem_inc' from process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:81$1198'.
+No latch inferred for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$fordecl_block$1012.e' from process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:81$1198'.
+No latch inferred for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$fordecl_block$1014.m' from process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:81$1198'.
+No latch inferred for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.\eng_clk_en_o' from process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:53$1178'.
+No latch inferred for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$fordecl_block$1010.e' from process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:53$1178'.
+
+5.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\mlu_bang_icu_pmu_formal.\ref_valid_q' using process `\mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:117$1116'.
+  created $adff cell `$procdff$2198' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu_pmu_formal.\ref_q_idx_q' using process `\mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:117$1116'.
+  created $adff cell `$procdff$2203' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu_pmu_formal.\ref_tag_q' using process `\mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:117$1116'.
+  created $adff cell `$procdff$2208' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu_pmu_formal.\ref_dst_space_q' using process `\mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:117$1116'.
+  created $adff cell `$procdff$2213' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_bang_icu_pmu_formal.\ref_dst_reg_q' using process `\mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:117$1116'.
+  created $adff cell `$procdff$2218' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\pwr_gate_cfg_valid_o' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2223' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\idle_threshold_o' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2228' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\inst_retired_cnt_o' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2233' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\hazard_stall_cnt_o' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2238' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\sb_valid_q' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2243' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\sb_q_idx_q' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2248' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\sb_tag_q' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2253' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\sb_src_space_q' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2258' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\sb_dst_space_q' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2263' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\sb_src_reg_q' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2268' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\sb_dst_reg_q' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2273' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\sb_uses_wram_q' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2278' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.\sb_wram_reg_q' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2283' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$fordecl_block$9.s' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $dff cell `$procdff$2290' with positive edge clock.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$fordecl_block$9.$for_loop$10[0].$fordecl_block$11.e' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $dff cell `$procdff$2297' with positive edge clock.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$fordecl_block$9.$for_loop$10[1].$fordecl_block$11.e' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $dff cell `$procdff$2304' with positive edge clock.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$bitselwrite$pos$rtl/mlu_bang_icu.sv:274$1269' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2309' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$bitselwrite$pos$rtl/mlu_bang_icu.sv:275$1270' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2314' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$bitselwrite$pos$rtl/mlu_bang_icu.sv:276$1271' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2319' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$bitselwrite$pos$rtl/mlu_bang_icu.sv:277$1272' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2324' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$bitselwrite$pos$rtl/mlu_bang_icu.sv:278$1273' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2329' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$bitselwrite$pos$rtl/mlu_bang_icu.sv:279$1274' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2334' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$bitselwrite$pos$rtl/mlu_bang_icu.sv:280$1275' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2339' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$bitselwrite$pos$rtl/mlu_bang_icu.sv:281$1276' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2344' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$bitselwrite$pos$rtl/mlu_bang_icu.sv:282$1277' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2349' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$lookahead\sb_valid_q$1464' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2354' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$lookahead\sb_q_idx_q$1465' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2359' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$lookahead\sb_tag_q$1466' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2364' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$lookahead\sb_src_space_q$1467' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2369' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$lookahead\sb_dst_space_q$1468' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2374' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$lookahead\sb_src_reg_q$1469' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2379' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$lookahead\sb_dst_reg_q$1470' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2384' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$lookahead\sb_uses_wram_q$1471' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2389' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$lookahead\sb_wram_reg_q$1472' using process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+  created $adff cell `$procdff$2394' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.\active_mac_cycles_o' using process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:100$1217'.
+  created $adff cell `$procdff$2399' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.\gated_saved_cycles_o' using process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:100$1217'.
+  created $adff cell `$procdff$2404' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.\sram_sleep_cycles_o' using process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:100$1217'.
+  created $adff cell `$procdff$2409' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.\idle_thresh_q' using process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:100$1217'.
+  created $adff cell `$procdff$2414' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.\eng_idle_cnt_q' using process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:100$1217'.
+  created $adff cell `$procdff$2419' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.\mem_idle_cnt_q' using process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:100$1217'.
+  created $adff cell `$procdff$2424' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.\sram_slp_q' using process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:100$1217'.
+  created $adff cell `$procdff$2429' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.\sram_dslp_q' using process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:100$1217'.
+  created $adff cell `$procdff$2434' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$fordecl_block$1016.e' using process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:100$1217'.
+  created $dff cell `$procdff$2441' with positive edge clock.
+Creating register for signal `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$fordecl_block$1018.m' using process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:100$1217'.
+  created $dff cell `$procdff$2448' with positive edge clock.
+
+5.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+5.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 10 empty switches in `\mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:141$1134'.
+Removing empty process `mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:141$1134'.
+Found and cleaned up 2 empty switches in `\mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:117$1116'.
+Removing empty process `mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:117$1116'.
+Found and cleaned up 1 empty switch in `\mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:106$1115'.
+Removing empty process `mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:106$1115'.
+Removing empty process `mlu_bang_icu_pmu_formal.$proc$formal/mlu_bang_icu_pmu_formal.sv:40$1105'.
+Found and cleaned up 13 empty switches in `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+Removing empty process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:244$1473'.
+Found and cleaned up 6 empty switches in `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:229$1456'.
+Removing empty process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:229$1456'.
+Found and cleaned up 2 empty switches in `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:188$1424'.
+Removing empty process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:188$1424'.
+Found and cleaned up 14 empty switches in `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+Removing empty process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:146$1322'.
+Found and cleaned up 4 empty switches in `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:102$1289'.
+Removing empty process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:102$1289'.
+Found and cleaned up 2 empty switches in `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:73$1287'.
+Removing empty process `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$proc$rtl/mlu_bang_icu.sv:73$1287'.
+Found and cleaned up 24 empty switches in `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:100$1217'.
+Removing empty process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:100$1217'.
+Found and cleaned up 8 empty switches in `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:81$1198'.
+Removing empty process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:81$1198'.
+Found and cleaned up 10 empty switches in `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:53$1178'.
+Removing empty process `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$proc$rtl/mlu_pmu_clock_gate.sv:53$1178'.
+Cleaned up 96 empty switches.
+
+5.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu_pmu_formal.
+<suppressed ~24 debug messages>
+Optimizing module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.
+<suppressed ~91 debug messages>
+Optimizing module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.
+<suppressed ~29 debug messages>
+
+5.3. Executing FUTURE pass.
+
+5.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu_pmu_formal.
+Optimizing module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.
+Optimizing module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.
+
+5.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu_pmu_formal..
+Finding unused cells or wires in module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010..
+Finding unused cells or wires in module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100..
+Removed 118 unused cells and 638 unused wires.
+<suppressed ~121 debug messages>
+
+5.6. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010...
+Checking module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100...
+Checking module mlu_bang_icu_pmu_formal...
+Found and reported 0 problems.
+
+5.7. Executing OPT pass (performing simple optimizations).
+
+5.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.
+Optimizing module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.
+Optimizing module mlu_bang_icu_pmu_formal.
+
+5.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010'.
+<suppressed ~177 debug messages>
+Finding identical cells in module `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100'.
+<suppressed ~33 debug messages>
+Finding identical cells in module `\mlu_bang_icu_pmu_formal'.
+<suppressed ~12 debug messages>
+Removed a total of 74 cells.
+
+5.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$1863.
+    dead port 2/2 on $mux $procmux$1869.
+    dead port 2/2 on $mux $procmux$1875.
+    dead port 2/2 on $mux $procmux$1881.
+    dead port 2/2 on $mux $procmux$1887.
+    dead port 2/2 on $mux $procmux$1893.
+    dead port 2/2 on $mux $procmux$1920.
+    dead port 2/2 on $mux $procmux$1926.
+    dead port 2/2 on $mux $procmux$1932.
+    dead port 2/2 on $mux $procmux$1938.
+    dead port 2/2 on $mux $procmux$1944.
+    dead port 2/2 on $mux $procmux$1950.
+    dead port 2/2 on $mux $procmux$1977.
+    dead port 2/2 on $mux $procmux$1995.
+    dead port 1/2 on $mux $procmux$2016.
+    dead port 1/2 on $mux $procmux$2025.
+Running muxtree optimizer on module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$2153.
+    dead port 1/2 on $mux $procmux$2162.
+    dead port 1/2 on $mux $procmux$2171.
+    dead port 1/2 on $mux $procmux$2180.
+    dead port 1/2 on $mux $procmux$2189.
+Running muxtree optimizer on module \mlu_bang_icu_pmu_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 21 multiplexer ports.
+<suppressed ~271 debug messages>
+
+5.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.
+  Optimizing cells in module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.
+  Optimizing cells in module \mlu_bang_icu_pmu_formal.
+Performed a total of 0 changes.
+
+5.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010'.
+Finding identical cells in module `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100'.
+Finding identical cells in module `\mlu_bang_icu_pmu_formal'.
+<suppressed ~15 debug messages>
+Removed a total of 5 cells.
+
+5.7.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010..
+Finding unused cells or wires in module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100..
+Finding unused cells or wires in module \mlu_bang_icu_pmu_formal..
+Removed 0 unused cells and 100 unused wires.
+<suppressed ~3 debug messages>
+
+5.7.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.
+Optimizing module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.
+Optimizing module mlu_bang_icu_pmu_formal.
+
+5.7.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.7.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \mlu_bang_icu_pmu_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~231 debug messages>
+
+5.7.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.
+  Optimizing cells in module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.
+  Optimizing cells in module \mlu_bang_icu_pmu_formal.
+Performed a total of 0 changes.
+
+5.7.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010'.
+Finding identical cells in module `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100'.
+Finding identical cells in module `\mlu_bang_icu_pmu_formal'.
+Removed a total of 0 cells.
+
+5.7.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010..
+Finding unused cells or wires in module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100..
+Finding unused cells or wires in module \mlu_bang_icu_pmu_formal..
+
+5.7.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.
+Optimizing module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.
+Optimizing module mlu_bang_icu_pmu_formal.
+
+5.7.14. Finished fast OPT passes. (There is nothing left to do.)
+
+5.8. Executing WREDUCE pass (reducing word size of cells).
+Removed top 5 bits (of 6) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:62$1278 ($eq).
+Removed top 4 bits (of 6) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:63$1279 ($eq).
+Removed top 4 bits (of 6) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:64$1280 ($eq).
+Converting cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:107$1300 ($neg) from signed to unsigned.
+Removed top 1 bits (of 4) from port A of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:107$1300 ($neg).
+Converting cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:107$1306 ($neg) from signed to unsigned.
+Removed top 1 bits (of 4) from port A of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:107$1306 ($neg).
+Removed top 2 bits (of 3) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:129$1313 ($eq).
+Removed top 2 bits (of 3) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:116$1346 ($eq).
+Removed top 1 bits (of 3) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:117$1348 ($eq).
+Removed top 2 bits (of 3) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:162$1354 ($eq).
+Removed top 2 bits (of 3) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:116$1359 ($eq).
+Removed top 1 bits (of 3) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:117$1361 ($eq).
+Removed top 2 bits (of 3) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:162$1398 ($eq).
+Removed top 31 bits (of 32) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$add$rtl/mlu_bang_icu.sv:233$1459 ($add).
+Removed top 31 bits (of 32) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$add$rtl/mlu_bang_icu.sv:233$1460 ($add).
+Removed top 31 bits (of 32) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$add$rtl/mlu_bang_icu.sv:233$1461 ($add).
+Removed top 31 bits (of 32) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$add$rtl/mlu_bang_icu.sv:233$1462 ($add).
+Removed top 31 bits (of 32) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$add$rtl/mlu_bang_icu.sv:237$1463 ($add).
+Removed top 2 bits (of 3) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:266$1524 ($eq).
+Removed top 1 bits (of 3) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:266$1530 ($eq).
+Removed top 1 bits (of 3) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:266$1536 ($eq).
+Removed top 2 bits (of 3) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:266$1554 ($eq).
+Removed top 1 bits (of 3) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:266$1560 ($eq).
+Removed top 1 bits (of 3) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$eq$rtl/mlu_bang_icu.sv:266$1566 ($eq).
+Converting cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:274$1596 ($neg) from signed to unsigned.
+Removed top 1 bits (of 2) from port A of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:274$1596 ($neg).
+Removed top 30 bits (of 32) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$mul$rtl/mlu_bang_icu.sv:275$1603 ($mul).
+Removed top 29 bits (of 32) from port Y of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$mul$rtl/mlu_bang_icu.sv:275$1603 ($mul).
+Removed top 29 bits (of 33) from port A of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:275$1604 ($neg).
+Converting cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:275$1604 ($neg) from signed to unsigned.
+Removed top 1 bits (of 4) from port A of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:275$1604 ($neg).
+Removed top 28 bits (of 32) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$mul$rtl/mlu_bang_icu.sv:276$1611 ($mul).
+Removed top 27 bits (of 32) from port Y of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$mul$rtl/mlu_bang_icu.sv:276$1611 ($mul).
+Removed top 27 bits (of 33) from port A of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:276$1612 ($neg).
+Converting cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:276$1612 ($neg) from signed to unsigned.
+Removed top 1 bits (of 6) from port A of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:276$1612 ($neg).
+Removed top 27 bits (of 32) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$mul$rtl/mlu_bang_icu.sv:279$1635 ($mul).
+Removed top 26 bits (of 32) from port Y of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$mul$rtl/mlu_bang_icu.sv:279$1635 ($mul).
+Removed top 26 bits (of 33) from port A of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:279$1636 ($neg).
+Converting cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:279$1636 ($neg) from signed to unsigned.
+Removed top 1 bits (of 7) from port A of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:279$1636 ($neg).
+Removed top 29 bits (of 32) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$mul$rtl/mlu_bang_icu.sv:282$1658 ($mul).
+Removed top 28 bits (of 32) from port Y of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$mul$rtl/mlu_bang_icu.sv:282$1658 ($mul).
+Removed top 28 bits (of 33) from port A of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:282$1659 ($neg).
+Converting cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:282$1659 ($neg) from signed to unsigned.
+Removed top 1 bits (of 5) from port A of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$neg$rtl/mlu_bang_icu.sv:282$1659 ($neg).
+Removed top 31 bits (of 32) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$add$rtl/mlu_bang_icu.sv:294$1668 ($add).
+Removed top 31 bits (of 32) from mux cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$procmux$1845 ($mux).
+Removed top 1 bits (of 3) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$procmux$2014_CMP0 ($eq).
+Removed top 1 bits (of 3) from port B of cell $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$procmux$2015_CMP0 ($eq).
+Removed top 31 bits (of 32) from wire $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$1\done_cnt_comb[31:0].
+Removed top 29 bits (of 32) from wire $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$mul$rtl/mlu_bang_icu.sv:275$1603_Y.
+Removed top 27 bits (of 32) from wire $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$mul$rtl/mlu_bang_icu.sv:276$1611_Y.
+Removed top 26 bits (of 32) from wire $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$mul$rtl/mlu_bang_icu.sv:279$1635_Y.
+Removed top 28 bits (of 32) from wire $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$mul$rtl/mlu_bang_icu.sv:282$1658_Y.
+Removed top 1 bits (of 2) from wire $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$or$rtl/mlu_bang_icu.sv:274$1602_Y.
+Removed top 1 bits (of 6) from wire $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$or$rtl/mlu_bang_icu.sv:275$1610_Y.
+Removed top 1 bits (of 6) from wire $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$or$rtl/mlu_bang_icu.sv:278$1634_Y.
+Removed top 1 bits (of 2) from wire $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$or$rtl/mlu_bang_icu.sv:281$1657_Y.
+Removed top 1 bits (of 6) from wire $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$shift$rtl/mlu_bang_icu.sv:275$1609_Y.
+Removed top 1 bits (of 6) from wire $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.$shift$rtl/mlu_bang_icu.sv:278$1633_Y.
+Removed top 1 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$ge$rtl/mlu_pmu_clock_gate.sv:57$1181 ($ge).
+Removed top 1 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$ge$rtl/mlu_pmu_clock_gate.sv:57$1183 ($ge).
+Removed top 1 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$ge$rtl/mlu_pmu_clock_gate.sv:57$1185 ($ge).
+Removed top 1 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$ge$rtl/mlu_pmu_clock_gate.sv:57$1187 ($ge).
+Removed top 1 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$ge$rtl/mlu_pmu_clock_gate.sv:57$1189 ($ge).
+Removed top 31 bits (of 32) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$add$rtl/mlu_pmu_clock_gate.sv:85$1204 ($add).
+Removed top 31 bits (of 32) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$add$rtl/mlu_pmu_clock_gate.sv:85$1206 ($add).
+Removed top 31 bits (of 32) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$add$rtl/mlu_pmu_clock_gate.sv:85$1208 ($add).
+Removed top 31 bits (of 32) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$add$rtl/mlu_pmu_clock_gate.sv:85$1210 ($add).
+Removed top 31 bits (of 32) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$add$rtl/mlu_pmu_clock_gate.sv:92$1214 ($add).
+Removed top 31 bits (of 32) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$add$rtl/mlu_pmu_clock_gate.sv:92$1216 ($add).
+Removed top 8 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$add$rtl/mlu_pmu_clock_gate.sv:120$1227 ($add).
+Removed top 8 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$add$rtl/mlu_pmu_clock_gate.sv:120$1230 ($add).
+Removed top 8 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$add$rtl/mlu_pmu_clock_gate.sv:120$1233 ($add).
+Removed top 8 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$add$rtl/mlu_pmu_clock_gate.sv:120$1236 ($add).
+Removed top 8 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$add$rtl/mlu_pmu_clock_gate.sv:120$1239 ($add).
+Removed top 8 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$add$rtl/mlu_pmu_clock_gate.sv:132$1241 ($add).
+Removed top 1 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$ge$rtl/mlu_pmu_clock_gate.sv:137$1245 ($ge).
+Removed top 8 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$add$rtl/mlu_pmu_clock_gate.sv:132$1247 ($add).
+Removed top 1 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$ge$rtl/mlu_pmu_clock_gate.sv:137$1251 ($ge).
+Removed top 8 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$add$rtl/mlu_pmu_clock_gate.sv:132$1253 ($add).
+Removed top 1 bits (of 9) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$ge$rtl/mlu_pmu_clock_gate.sv:137$1257 ($ge).
+Removed top 31 bits (of 32) from port B of cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$add$rtl/mlu_pmu_clock_gate.sv:146$1258 ($add).
+Removed top 31 bits (of 32) from mux cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$procmux$2132 ($mux).
+Removed top 31 bits (of 32) from mux cell $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$procmux$2147 ($mux).
+Removed top 31 bits (of 32) from wire $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$1\gated_eng_inc[31:0].
+Removed top 31 bits (of 32) from wire $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.$1\sleep_mem_inc[31:0].
+Removed top 4 bits (of 6) from port B of cell mlu_bang_icu_pmu_formal.$eq$formal/mlu_bang_icu_pmu_formal.sv:96$1113 ($eq).
+Removed top 28 bits (of 32) from port B of cell mlu_bang_icu_pmu_formal.$mul$formal/mlu_bang_icu_pmu_formal.sv:126$1120 ($mul).
+Removed top 25 bits (of 32) from port Y of cell mlu_bang_icu_pmu_formal.$mul$formal/mlu_bang_icu_pmu_formal.sv:126$1120 ($mul).
+Removed top 24 bits (of 32) from port B of cell mlu_bang_icu_pmu_formal.$shiftx$formal/mlu_bang_icu_pmu_formal.sv:126$1121 ($shiftx).
+Removed top 2 bits (of 3) from port B of cell mlu_bang_icu_pmu_formal.$eq$formal/mlu_bang_icu_pmu_formal.sv:130$1129 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu_pmu_formal.$eq$formal/mlu_bang_icu_pmu_formal.sv:131$1131 ($eq).
+Removed top 20 bits (of 22) from port A of cell mlu_bang_icu_pmu_formal.$eq$formal/mlu_bang_icu_pmu_formal.sv:149$1143 ($eq).
+Removed top 5 bits (of 6) from port B of cell mlu_bang_icu_pmu_formal.$eq$formal/mlu_bang_icu_pmu_formal.sv:159$1151 ($eq).
+Removed top 4 bits (of 6) from port B of cell mlu_bang_icu_pmu_formal.$eq$formal/mlu_bang_icu_pmu_formal.sv:160$1152 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu_pmu_formal.$procmux$1737_CMP0 ($eq).
+Removed top 1 bits (of 3) from port B of cell mlu_bang_icu_pmu_formal.$procmux$1738_CMP0 ($eq).
+Removed top 25 bits (of 32) from wire mlu_bang_icu_pmu_formal.$mul$formal/mlu_bang_icu_pmu_formal.sv:126$1120_Y.
+
+5.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010..
+Finding unused cells or wires in module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100..
+Finding unused cells or wires in module \mlu_bang_icu_pmu_formal..
+Removed 0 unused cells and 14 unused wires.
+<suppressed ~3 debug messages>
+
+5.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+5.11. Executing OPT pass (performing simple optimizations).
+
+5.11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.
+Optimizing module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.
+Optimizing module mlu_bang_icu_pmu_formal.
+
+5.11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010'.
+Finding identical cells in module `$paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100'.
+Finding identical cells in module `\mlu_bang_icu_pmu_formal'.
+Removed a total of 0 cells.
+
+5.11.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010..
+Finding unused cells or wires in module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100..
+Finding unused cells or wires in module \mlu_bang_icu_pmu_formal..
+
+5.11.4. Finished fast OPT passes.
+
+5.12. Printing statistics.
+
+=== $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      298 wires
+     2377 wire bits
+       55 public wires
+      789 public wire bits
+       19 ports
+      401 port bits
+      278 cells
+        7   $add
+       13   $adff
+       11   $and
+       50   $eq
+       69   $logic_and
+       12   $logic_not
+       12   $logic_or
+        2   $lt
+        4   $mul
+       57   $mux
+        7   $neg
+        6   $not
+       10   $or
+        2   $pmux
+        1   $reduce_or
+       15   $shift
+
+=== $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      111 wires
+     1036 wire bits
+       23 public wires
+      296 public wire bits
+       14 ports
+      134 port bits
+      118 cells
+       17   $add
+        8   $adff
+       11   $ge
+        2   $logic_not
+       12   $logic_or
+        8   $lt
+       56   $mux
+        1   $not
+        1   $or
+        2   $reduce_or
+
+=== mlu_bang_icu_pmu_formal ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      104 wires
+      981 wire bits
+       36 public wires
+      811 public wire bits
+       12 ports
+      196 port bits
+       88 cells
+        5   $adff
+       13   $check
+       12   $eq
+        8   $logic_and
+        7   $logic_not
+       12   $logic_or
+        1   $mul
+       24   $mux
+        1   $pmux
+        1   $reduce_bool
+        1   $reduce_or
+        3   $shiftx
+        2 submodules
+        1   $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010
+        1   $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+      484 mlu_bang_icu_pmu_formal
+      278 $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010
+      118 $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100
+
+        +----------Count including submodules.
+        | 
+      513 wires
+     4394 wire bits
+      114 public wires
+     1896 public wire bits
+       45 ports
+      731 port bits
+        - memories
+        - memory bits
+        - processes
+      484 cells
+       24   $add
+       26   $adff
+       11   $and
+       13   $check
+       62   $eq
+       11   $ge
+       77   $logic_and
+       21   $logic_not
+       36   $logic_or
+       10   $lt
+        5   $mul
+      137   $mux
+        7   $neg
+        7   $not
+       11   $or
+        3   $pmux
+        1   $reduce_bool
+        4   $reduce_or
+       15   $shift
+        3   $shiftx
+        2 submodules
+        1   $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010
+        1   $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100
+
+5.13. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010...
+Checking module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100...
+Checking module mlu_bang_icu_pmu_formal...
+Found and reported 0 problems.
+
+6. Executing FLATTEN pass (flatten design).
+Deleting now unused module $paramod\mlu_bang_icu\SCOREBOARD_SLOTS=s32'00000000000000000000000000000010.
+Deleting now unused module $paramod\mlu_pmu_clock_gate\DEFAULT_IDLE_THRESH=8'00000100.
+<suppressed ~2 debug messages>
+
+7. Executing ASYNC2SYNC pass.
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_icu.$procdff$2283 ($adff): ARST=\u_icu.rst_ni, D=$flatten\u_icu.$0$lookahead\sb_wram_reg_q$1472[11:0]$1494, Q=\u_icu.sb_wram_reg_q
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_icu.$procdff$2278 ($adff): ARST=\u_icu.rst_ni, D=$flatten\u_icu.$0$lookahead\sb_uses_wram_q$1471[1:0]$1493, Q=\u_icu.sb_uses_wram_q
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_icu.$procdff$2273 ($adff): ARST=\u_icu.rst_ni, D=$flatten\u_icu.$0$lookahead\sb_dst_reg_q$1470[43:0]$1492, Q=\u_icu.sb_dst_reg_q
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_icu.$procdff$2268 ($adff): ARST=\u_icu.rst_ni, D=$flatten\u_icu.$0$lookahead\sb_src_reg_q$1469[43:0]$1491, Q=\u_icu.sb_src_reg_q
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_icu.$procdff$2263 ($adff): ARST=\u_icu.rst_ni, D=$flatten\u_icu.$0$lookahead\sb_dst_space_q$1468[5:0]$1490, Q=\u_icu.sb_dst_space_q
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_icu.$procdff$2258 ($adff): ARST=\u_icu.rst_ni, D=$flatten\u_icu.$0$lookahead\sb_src_space_q$1467[5:0]$1489, Q=\u_icu.sb_src_space_q
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_icu.$procdff$2253 ($adff): ARST=\u_icu.rst_ni, D=$flatten\u_icu.$0$lookahead\sb_tag_q$1466[15:0]$1488, Q=\u_icu.sb_tag_q
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_icu.$procdff$2248 ($adff): ARST=\u_icu.rst_ni, D=$flatten\u_icu.$0$lookahead\sb_q_idx_q$1465[5:0]$1487, Q=\u_icu.sb_q_idx_q
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_icu.$procdff$2243 ($adff): ARST=\u_icu.rst_ni, D=$flatten\u_icu.$0$lookahead\sb_valid_q$1464[1:0]$1486, Q=\u_icu.sb_valid_q
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_icu.$procdff$2238 ($adff): ARST=\u_icu.rst_ni, D=$flatten\u_icu.$0\hazard_stall_cnt_o[31:0], Q=\u_icu.hazard_stall_cnt_o
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_icu.$procdff$2233 ($adff): ARST=\u_icu.rst_ni, D=$flatten\u_icu.$0\inst_retired_cnt_o[31:0], Q=\u_icu.inst_retired_cnt_o
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_icu.$procdff$2228 ($adff): ARST=\u_icu.rst_ni, D=$flatten\u_icu.$0\idle_threshold_o[7:0], Q=\u_icu.idle_threshold_o
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_icu.$procdff$2223 ($adff): ARST=\u_icu.rst_ni, D=$flatten\u_icu.$0\pwr_gate_cfg_valid_o[0:0], Q=\u_icu.pwr_gate_cfg_valid_o
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_pmu.$procdff$2434 ($adff): ARST=\u_pmu.rst_ni, D=$flatten\u_pmu.$0\sram_dslp_q[2:0], Q=\u_pmu.sram_dslp_q
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_pmu.$procdff$2429 ($adff): ARST=\u_pmu.rst_ni, D=$flatten\u_pmu.$0\sram_slp_q[2:0], Q=\u_pmu.sram_slp_q
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_pmu.$procdff$2424 ($adff): ARST=\u_pmu.rst_ni, D=$flatten\u_pmu.$0\mem_idle_cnt_q[26:0], Q=\u_pmu.mem_idle_cnt_q
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_pmu.$procdff$2419 ($adff): ARST=\u_pmu.rst_ni, D=$flatten\u_pmu.$0\eng_idle_cnt_q[44:0], Q=\u_pmu.eng_idle_cnt_q
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_pmu.$procdff$2414 ($adff): ARST=\u_pmu.rst_ni, D=$flatten\u_pmu.$0\idle_thresh_q[7:0], Q=\u_pmu.idle_thresh_q
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_pmu.$procdff$2409 ($adff): ARST=\u_pmu.rst_ni, D=$flatten\u_pmu.$0\sram_sleep_cycles_o[31:0], Q=\u_pmu.sram_sleep_cycles_o
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_pmu.$procdff$2404 ($adff): ARST=\u_pmu.rst_ni, D=$flatten\u_pmu.$0\gated_saved_cycles_o[31:0], Q=\u_pmu.gated_saved_cycles_o
+Replacing mlu_bang_icu_pmu_formal.$flatten\u_pmu.$procdff$2399 ($adff): ARST=\u_pmu.rst_ni, D=$flatten\u_pmu.$0\active_mac_cycles_o[31:0], Q=\u_pmu.active_mac_cycles_o
+Replacing mlu_bang_icu_pmu_formal.$procdff$2198 ($adff): ARST=\rst_ni, D=$0\ref_valid_q[0:0], Q=\ref_valid_q
+Replacing mlu_bang_icu_pmu_formal.$procdff$2203 ($adff): ARST=\rst_ni, D=$0\ref_q_idx_q[2:0], Q=\ref_q_idx_q
+Replacing mlu_bang_icu_pmu_formal.$procdff$2208 ($adff): ARST=\rst_ni, D=$0\ref_tag_q[7:0], Q=\ref_tag_q
+Replacing mlu_bang_icu_pmu_formal.$procdff$2213 ($adff): ARST=\rst_ni, D=$0\ref_dst_space_q[2:0], Q=\ref_dst_space_q
+Replacing mlu_bang_icu_pmu_formal.$procdff$2218 ($adff): ARST=\rst_ni, D=$0\ref_dst_reg_q[21:0], Q=\ref_dst_reg_q
+
+8. Executing OPT pass (performing simple optimizations).
+
+8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu_pmu_formal.
+<suppressed ~63 debug messages>
+
+8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu_pmu_formal'.
+<suppressed ~87 debug messages>
+Removed a total of 29 cells.
+
+8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_bang_icu_pmu_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~194 debug messages>
+
+8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_bang_icu_pmu_formal.
+    Consolidated identical input bits for $mux cell $flatten\u_pmu.$ternary$rtl/mlu_pmu_clock_gate.sv:50$1177:
+      Old ports: A={ \u_pmu.idle_thresh_q 1'0 }, B=9'000000100, Y=\u_pmu.deep_thresh_w
+      New ports: A=\u_pmu.idle_thresh_q, B=8'00000010, Y=\u_pmu.deep_thresh_w [8:1]
+      New connections: \u_pmu.deep_thresh_w [0] = 1'0
+  Optimizing cells in module \mlu_bang_icu_pmu_formal.
+Performed a total of 1 changes.
+
+8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu_pmu_formal'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+8.6. Executing OPT_SHARE pass.
+
+8.7. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $flatten\u_pmu.$procdff$2434 ($sdff) from module mlu_bang_icu_pmu_formal (D = $flatten\u_pmu.$procmux$2065_Y, Q = $auto$async2sync.cc:234:execute$2491 [0], rval = 1'0).
+Adding SRST signal on $flatten\u_pmu.$procdff$2434 ($sdff) from module mlu_bang_icu_pmu_formal (D = $flatten\u_pmu.$procmux$2044_Y, Q = $auto$async2sync.cc:234:execute$2491 [1], rval = 1'0).
+Adding SRST signal on $flatten\u_pmu.$procdff$2434 ($sdff) from module mlu_bang_icu_pmu_formal (D = $flatten\u_pmu.$procmux$2036_Y, Q = $auto$async2sync.cc:234:execute$2491 [2], rval = 1'0).
+Adding SRST signal on $flatten\u_pmu.$procdff$2429 ($sdff) from module mlu_bang_icu_pmu_formal (D = $flatten\u_pmu.$procmux$2070_Y, Q = $auto$async2sync.cc:234:execute$2493 [0], rval = 1'0).
+Adding SRST signal on $flatten\u_pmu.$procdff$2429 ($sdff) from module mlu_bang_icu_pmu_formal (D = $flatten\u_pmu.$procmux$2049_Y, Q = $auto$async2sync.cc:234:execute$2493 [1], rval = 1'0).
+Adding SRST signal on $flatten\u_pmu.$procdff$2429 ($sdff) from module mlu_bang_icu_pmu_formal (D = $flatten\u_pmu.$procmux$2108_Y, Q = $auto$async2sync.cc:234:execute$2493 [2], rval = 1'0).
+Adding SRST signal on $flatten\u_pmu.$procdff$2424 ($sdff) from module mlu_bang_icu_pmu_formal (D = $flatten\u_pmu.$procmux$2078_Y, Q = $auto$async2sync.cc:234:execute$2495 [8:0], rval = 9'000000000).
+Adding SRST signal on $flatten\u_pmu.$procdff$2424 ($sdff) from module mlu_bang_icu_pmu_formal (D = $flatten\u_pmu.$procmux$2057_Y, Q = $auto$async2sync.cc:234:execute$2495 [17:9], rval = 9'000000000).
+Adding SRST signal on $flatten\u_pmu.$procdff$2424 ($sdff) from module mlu_bang_icu_pmu_formal (D = $flatten\u_pmu.$procmux$2103_Y, Q = $auto$async2sync.cc:234:execute$2495 [26:18], rval = 9'000000000).
+Adding SRST signal on $flatten\u_pmu.$procdff$2419 ($sdff) from module mlu_bang_icu_pmu_formal (D = $flatten\u_pmu.$procmux$2116_Y, Q = $auto$async2sync.cc:234:execute$2497 [44:36], rval = 9'000000000).
+Adding SRST signal on $flatten\u_pmu.$procdff$2419 ($sdff) from module mlu_bang_icu_pmu_formal (D = $flatten\u_pmu.$procmux$2083_Y, Q = $auto$async2sync.cc:234:execute$2497 [35:27], rval = 9'000000000).
+Adding SRST signal on $flatten\u_pmu.$procdff$2419 ($sdff) from module mlu_bang_icu_pmu_formal (D = $flatten\u_pmu.$procmux$2088_Y, Q = $auto$async2sync.cc:234:execute$2497 [26:18], rval = 9'000000000).
+Adding SRST signal on $flatten\u_pmu.$procdff$2419 ($sdff) from module mlu_bang_icu_pmu_formal (D = $flatten\u_pmu.$procmux$2093_Y, Q = $auto$async2sync.cc:234:execute$2497 [17:9], rval = 9'000000000).
+Adding SRST signal on $flatten\u_pmu.$procdff$2419 ($sdff) from module mlu_bang_icu_pmu_formal (D = $flatten\u_pmu.$procmux$2098_Y, Q = $auto$async2sync.cc:234:execute$2497 [8:0], rval = 9'000000000).
+Adding SRST signal on $procdff$2198 ($sdff) from module mlu_bang_icu_pmu_formal (D = $procmux$1728_Y, Q = $auto$async2sync.cc:234:execute$2507, rval = 1'0).
+
+8.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu_pmu_formal..
+Removed 147 unused cells and 168 unused wires.
+<suppressed ~153 debug messages>
+
+8.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu_pmu_formal.
+<suppressed ~92 debug messages>
+
+8.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+8.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_bang_icu_pmu_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~115 debug messages>
+
+8.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_bang_icu_pmu_formal.
+Performed a total of 0 changes.
+
+8.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu_pmu_formal'.
+<suppressed ~15 debug messages>
+Removed a total of 5 cells.
+
+8.14. Executing OPT_SHARE pass.
+
+8.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu_pmu_formal..
+Removed 0 unused cells and 5 unused wires.
+<suppressed ~1 debug messages>
+
+8.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu_pmu_formal.
+
+8.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+8.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_bang_icu_pmu_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~115 debug messages>
+
+8.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_bang_icu_pmu_formal.
+Performed a total of 0 changes.
+
+8.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_bang_icu_pmu_formal'.
+Removed a total of 0 cells.
+
+8.22. Executing OPT_SHARE pass.
+
+8.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_bang_icu_pmu_formal..
+
+8.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_bang_icu_pmu_formal.
+
+8.26. Finished fast OPT passes. (There is nothing left to do.)
+
+9. Executing SAT pass (solving SAT problems in the circuit).
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Imported 376 cells to SAT database.
+Import constraint from assume cell: \rst_ni when 1'1.
+Final init constraint equation: { $auto$async2sync.cc:234:execute$2515 $auto$async2sync.cc:234:execute$2513 $auto$async2sync.cc:234:execute$2511 $auto$async2sync.cc:234:execute$2509 $auto$async2sync.cc:234:execute$2499 $auto$async2sync.cc:234:execute$2465 $auto$async2sync.cc:234:execute$2467 $auto$async2sync.cc:234:execute$2469 $auto$async2sync.cc:234:execute$2471 $auto$async2sync.cc:234:execute$2473 $auto$async2sync.cc:234:execute$2475 $auto$async2sync.cc:234:execute$2477 $auto$async2sync.cc:234:execute$2479 $auto$async2sync.cc:234:execute$2481 $auto$async2sync.cc:234:execute$2487 $auto$async2sync.cc:234:execute$2489 $auto$async2sync.cc:234:execute$2507 $auto$async2sync.cc:234:execute$2497 [8:0] $auto$async2sync.cc:234:execute$2497 [17:9] $auto$async2sync.cc:234:execute$2497 [26:18] $auto$async2sync.cc:234:execute$2497 [35:27] $auto$async2sync.cc:234:execute$2497 [44:36] } = 237'000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:146$1139_Y when \ref_valid_q.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:150$1145_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:161$1154_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \eng_clk_en_o [0] when $assert$formal/mlu_bang_icu_pmu_formal.sv:169$1162_EN.
+Import proof for assert: \eng_clk_en_o [1] when $assert$formal/mlu_bang_icu_pmu_formal.sv:170$1165_EN.
+Import proof for assert: \eng_clk_en_o [2] when $assert$formal/mlu_bang_icu_pmu_formal.sv:171$1168_EN.
+Import proof for assert: \eng_clk_en_o [3] when $assert$formal/mlu_bang_icu_pmu_formal.sv:172$1171_EN.
+Import proof for assert: \eng_clk_en_o [4] when $assert$formal/mlu_bang_icu_pmu_formal.sv:173$1174_EN.
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Imported 376 cells to SAT database.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:146$1139_Y when \ref_valid_q.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:150$1145_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:161$1154_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \eng_clk_en_o [0] when $assert$formal/mlu_bang_icu_pmu_formal.sv:169$1162_EN.
+Import proof for assert: \eng_clk_en_o [1] when $assert$formal/mlu_bang_icu_pmu_formal.sv:170$1165_EN.
+Import proof for assert: \eng_clk_en_o [2] when $assert$formal/mlu_bang_icu_pmu_formal.sv:171$1168_EN.
+Import proof for assert: \eng_clk_en_o [3] when $assert$formal/mlu_bang_icu_pmu_formal.sv:172$1171_EN.
+Import proof for assert: \eng_clk_en_o [4] when $assert$formal/mlu_bang_icu_pmu_formal.sv:173$1174_EN.
+
+Setting up time step 3:
+Final constraint equation: { } = { }
+Imported 376 cells to SAT database.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:146$1139_Y when \ref_valid_q.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:150$1145_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:161$1154_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \eng_clk_en_o [0] when $assert$formal/mlu_bang_icu_pmu_formal.sv:169$1162_EN.
+Import proof for assert: \eng_clk_en_o [1] when $assert$formal/mlu_bang_icu_pmu_formal.sv:170$1165_EN.
+Import proof for assert: \eng_clk_en_o [2] when $assert$formal/mlu_bang_icu_pmu_formal.sv:171$1168_EN.
+Import proof for assert: \eng_clk_en_o [3] when $assert$formal/mlu_bang_icu_pmu_formal.sv:172$1171_EN.
+Import proof for assert: \eng_clk_en_o [4] when $assert$formal/mlu_bang_icu_pmu_formal.sv:173$1174_EN.
+
+Setting up time step 4:
+Final constraint equation: { } = { }
+Imported 376 cells to SAT database.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:146$1139_Y when \ref_valid_q.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:150$1145_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:161$1154_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \eng_clk_en_o [0] when $assert$formal/mlu_bang_icu_pmu_formal.sv:169$1162_EN.
+Import proof for assert: \eng_clk_en_o [1] when $assert$formal/mlu_bang_icu_pmu_formal.sv:170$1165_EN.
+Import proof for assert: \eng_clk_en_o [2] when $assert$formal/mlu_bang_icu_pmu_formal.sv:171$1168_EN.
+Import proof for assert: \eng_clk_en_o [3] when $assert$formal/mlu_bang_icu_pmu_formal.sv:172$1171_EN.
+Import proof for assert: \eng_clk_en_o [4] when $assert$formal/mlu_bang_icu_pmu_formal.sv:173$1174_EN.
+
+Setting up time step 5:
+Final constraint equation: { } = { }
+Imported 376 cells to SAT database.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:146$1139_Y when \ref_valid_q.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:150$1145_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:161$1154_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \eng_clk_en_o [0] when $assert$formal/mlu_bang_icu_pmu_formal.sv:169$1162_EN.
+Import proof for assert: \eng_clk_en_o [1] when $assert$formal/mlu_bang_icu_pmu_formal.sv:170$1165_EN.
+Import proof for assert: \eng_clk_en_o [2] when $assert$formal/mlu_bang_icu_pmu_formal.sv:171$1168_EN.
+Import proof for assert: \eng_clk_en_o [3] when $assert$formal/mlu_bang_icu_pmu_formal.sv:172$1171_EN.
+Import proof for assert: \eng_clk_en_o [4] when $assert$formal/mlu_bang_icu_pmu_formal.sv:173$1174_EN.
+
+Setting up time step 6:
+Final constraint equation: { } = { }
+Imported 376 cells to SAT database.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:146$1139_Y when \ref_valid_q.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:150$1145_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:161$1154_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \eng_clk_en_o [0] when $assert$formal/mlu_bang_icu_pmu_formal.sv:169$1162_EN.
+Import proof for assert: \eng_clk_en_o [1] when $assert$formal/mlu_bang_icu_pmu_formal.sv:170$1165_EN.
+Import proof for assert: \eng_clk_en_o [2] when $assert$formal/mlu_bang_icu_pmu_formal.sv:171$1168_EN.
+Import proof for assert: \eng_clk_en_o [3] when $assert$formal/mlu_bang_icu_pmu_formal.sv:172$1171_EN.
+Import proof for assert: \eng_clk_en_o [4] when $assert$formal/mlu_bang_icu_pmu_formal.sv:173$1174_EN.
+
+Setting up time step 7:
+Final constraint equation: { } = { }
+Imported 376 cells to SAT database.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:146$1139_Y when \ref_valid_q.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:150$1145_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:161$1154_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \eng_clk_en_o [0] when $assert$formal/mlu_bang_icu_pmu_formal.sv:169$1162_EN.
+Import proof for assert: \eng_clk_en_o [1] when $assert$formal/mlu_bang_icu_pmu_formal.sv:170$1165_EN.
+Import proof for assert: \eng_clk_en_o [2] when $assert$formal/mlu_bang_icu_pmu_formal.sv:171$1168_EN.
+Import proof for assert: \eng_clk_en_o [3] when $assert$formal/mlu_bang_icu_pmu_formal.sv:172$1171_EN.
+Import proof for assert: \eng_clk_en_o [4] when $assert$formal/mlu_bang_icu_pmu_formal.sv:173$1174_EN.
+
+Setting up time step 8:
+Final constraint equation: { } = { }
+Imported 376 cells to SAT database.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:146$1139_Y when \ref_valid_q.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:150$1145_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:161$1154_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \eng_clk_en_o [0] when $assert$formal/mlu_bang_icu_pmu_formal.sv:169$1162_EN.
+Import proof for assert: \eng_clk_en_o [1] when $assert$formal/mlu_bang_icu_pmu_formal.sv:170$1165_EN.
+Import proof for assert: \eng_clk_en_o [2] when $assert$formal/mlu_bang_icu_pmu_formal.sv:171$1168_EN.
+Import proof for assert: \eng_clk_en_o [3] when $assert$formal/mlu_bang_icu_pmu_formal.sv:172$1171_EN.
+Import proof for assert: \eng_clk_en_o [4] when $assert$formal/mlu_bang_icu_pmu_formal.sv:173$1174_EN.
+
+Setting up time step 9:
+Final constraint equation: { } = { }
+Imported 376 cells to SAT database.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:146$1139_Y when \ref_valid_q.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:150$1145_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:161$1154_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \eng_clk_en_o [0] when $assert$formal/mlu_bang_icu_pmu_formal.sv:169$1162_EN.
+Import proof for assert: \eng_clk_en_o [1] when $assert$formal/mlu_bang_icu_pmu_formal.sv:170$1165_EN.
+Import proof for assert: \eng_clk_en_o [2] when $assert$formal/mlu_bang_icu_pmu_formal.sv:171$1168_EN.
+Import proof for assert: \eng_clk_en_o [3] when $assert$formal/mlu_bang_icu_pmu_formal.sv:172$1171_EN.
+Import proof for assert: \eng_clk_en_o [4] when $assert$formal/mlu_bang_icu_pmu_formal.sv:173$1174_EN.
+
+Setting up time step 10:
+Final constraint equation: { } = { }
+Imported 376 cells to SAT database.
+Import constraint from assume cell: \rst_ni when 1'1.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:146$1139_Y when \ref_valid_q.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:150$1145_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:152$1147_EN.
+Import proof for assert: $eq$formal/mlu_bang_icu_pmu_formal.sv:150$1146_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:161$1154_EN.
+Import proof for assert: $flatten\u_icu.$logic_not$rtl/mlu_bang_icu.sv:225$1454_Y when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \hazard_stall_o when $assert$formal/mlu_bang_icu_pmu_formal.sv:163$1158_EN.
+Import proof for assert: \eng_clk_en_o [0] when $assert$formal/mlu_bang_icu_pmu_formal.sv:169$1162_EN.
+Import proof for assert: \eng_clk_en_o [1] when $assert$formal/mlu_bang_icu_pmu_formal.sv:170$1165_EN.
+Import proof for assert: \eng_clk_en_o [2] when $assert$formal/mlu_bang_icu_pmu_formal.sv:171$1168_EN.
+Import proof for assert: \eng_clk_en_o [3] when $assert$formal/mlu_bang_icu_pmu_formal.sv:172$1171_EN.
+Import proof for assert: \eng_clk_en_o [4] when $assert$formal/mlu_bang_icu_pmu_formal.sv:173$1174_EN.
+Import show expression: \clk_i
+Import show expression: \cluster_sync_ack_i
+Import show expression: \eng_cmd_ready_i
+Import show expression: \eng_done_tag_i
+Import show expression: \eng_done_valid_i
+Import show expression: \inst_i
+Import show expression: \inst_valid_i
+Import show expression: \mem_active_i
+Import show expression: \rst_ni
+Import show expression: \eng_clk_en_o
+Import show expression: \eng_cmd_valid_o
+Import show expression: \hazard_stall_o
+
+Solving problem with 141996 variables and 386063 clauses..
+SAT proof finished - no model found: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+
+End of script. Logfile hash: c427aadbe3, CPU: user 4.47s system 0.11s, MEM: 138.03 MB peak
+Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+Time spent: 95% 1x sat (4 sec), 1% 5x read_verilog (0 sec), ...

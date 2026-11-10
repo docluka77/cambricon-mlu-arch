@@ -1,0 +1,513 @@
+{
+  "hsiao_secded_72x64": {
+    "status": "PASS",
+    "single_bit_tested": 288,
+    "double_bit_pairs_tested": 2556,
+    "vectors": [
+      {
+        "data_hex": "0x0000000000000000",
+        "codeword_72b_hex": "0x000000000000000000"
+      },
+      {
+        "data_hex": "0xFFFFFFFFFFFFFFFF",
+        "codeword_72b_hex": "0xD8FFFFFFFFFFFFFFFF"
+      },
+      {
+        "data_hex": "0xCAFEBABE12345678",
+        "codeword_72b_hex": "0x0ECAFEBABE12345678"
+      },
+      {
+        "data_hex": "0xA5A5F0F00F0F5A5A",
+        "codeword_72b_hex": "0x00A5A5F0F00F0F5A5A"
+      }
+    ]
+  },
+  "inst_and_noc": {
+    "inst_count": 25,
+    "inst_vectors": [
+      {
+        "opcode": "OP_NOP",
+        "opcode_hex": "0x00",
+        "inst_128b_hex": "0x0000100A000100000002000001000040"
+      },
+      {
+        "opcode": "OP_SYNC_IPU",
+        "opcode_hex": "0x01",
+        "inst_128b_hex": "0x0414A10B000100400002004001010041"
+      },
+      {
+        "opcode": "OP_SYNC_CLUSTER",
+        "opcode_hex": "0x02",
+        "inst_128b_hex": "0x0829320C000100800002008001020042"
+      },
+      {
+        "opcode": "OP_PWR_GATE_CFG",
+        "opcode_hex": "0x03",
+        "inst_128b_hex": "0x0C3DC30D000100C0000200C001030043"
+      },
+      {
+        "opcode": "OP_BANG_MATMUL",
+        "opcode_hex": "0x10",
+        "inst_128b_hex": "0x40C2540E000101000002010001040044"
+      },
+      {
+        "opcode": "OP_BANG_CONV2D",
+        "opcode_hex": "0x11",
+        "inst_128b_hex": "0x44D6E50F000101400002014001050045"
+      },
+      {
+        "opcode": "OP_BANG_SPARSE_MM",
+        "opcode_hex": "0x12",
+        "inst_128b_hex": "0x48EB7610000101800002018001060046"
+      },
+      {
+        "opcode": "OP_BANG_QUANT_MM",
+        "opcode_hex": "0x13",
+        "inst_128b_hex": "0x4CFF8711000101C0000201C001070047"
+      },
+      {
+        "opcode": "OP_BANG_VADD",
+        "opcode_hex": "0x20",
+        "inst_128b_hex": "0x81001812000102000002020001080048"
+      },
+      {
+        "opcode": "OP_BANG_VMUL",
+        "opcode_hex": "0x21",
+        "inst_128b_hex": "0x8514A913000102400002024001090049"
+      },
+      {
+        "opcode": "OP_BANG_SOFTMAX",
+        "opcode_hex": "0x22",
+        "inst_128b_hex": "0x89293A140001028000020280010A004A"
+      },
+      {
+        "opcode": "OP_BANG_ROPE",
+        "opcode_hex": "0x23",
+        "inst_128b_hex": "0x8D3DCB15000102C0000202C0010B004B"
+      },
+      {
+        "opcode": "OP_BANG_RMSNORM",
+        "opcode_hex": "0x24",
+        "inst_128b_hex": "0x91425C160001030000020300010C004C"
+      },
+      {
+        "opcode": "OP_BANG_SWIGLU",
+        "opcode_hex": "0x25",
+        "inst_128b_hex": "0x9556ED170001034000020340010D004D"
+      },
+      {
+        "opcode": "OP_BANG_QUANT_STAT",
+        "opcode_hex": "0x26",
+        "inst_128b_hex": "0x996B7E180001038000020380010E004E"
+      },
+      {
+        "opcode": "OP_BANG_MEMCPY_1D",
+        "opcode_hex": "0x30",
+        "inst_128b_hex": "0xC1FF8F19000103C0000203C0010F004F"
+      },
+      {
+        "opcode": "OP_BANG_MEMCPY_2D",
+        "opcode_hex": "0x31",
+        "inst_128b_hex": "0xC580101A000104000002040001100050"
+      },
+      {
+        "opcode": "OP_BANG_GATHER",
+        "opcode_hex": "0x32",
+        "inst_128b_hex": "0xC994A11B000104400002044001110051"
+      },
+      {
+        "opcode": "OP_BANG_SCATTER",
+        "opcode_hex": "0x33",
+        "inst_128b_hex": "0xCDA9321C000104800002048001120052"
+      },
+      {
+        "opcode": "OP_BANG_DECOMP_DMA",
+        "opcode_hex": "0x34",
+        "inst_128b_hex": "0xD1BDC31D000104C0000204C001130053"
+      },
+      {
+        "opcode": "OP_BANG_TRANSPOSE",
+        "opcode_hex": "0x35",
+        "inst_128b_hex": "0xD5C2541E000105000002050001140054"
+      },
+      {
+        "opcode": "OP_MPU_BCAST_SRAM",
+        "opcode_hex": "0x38",
+        "inst_128b_hex": "0xE256E51F000105400002054001150055"
+      },
+      {
+        "opcode": "OP_MPU_ALLREDUCE",
+        "opcode_hex": "0x39",
+        "inst_128b_hex": "0xE66B7620000105800002058001160056"
+      },
+      {
+        "opcode": "OP_LLM_KV_PACK",
+        "opcode_hex": "0x3A",
+        "inst_128b_hex": "0xEAFF8721000105C0000205C001170057"
+      },
+      {
+        "opcode": "OP_LLM_SPEC_VERIFY",
+        "opcode_hex": "0x3B",
+        "inst_128b_hex": "0xEE801822000106000002060001180058"
+      }
+    ],
+    "sample_flit_128b_hex": "0x27739BE4800040000123456789ABCDEF",
+    "crc16_hex": "0x9BE4"
+  },
+  "bang_isa_24_opcodes": {
+    "opcode_count": 25,
+    "total_cycles": 226,
+    "op_results": {
+      "OP_NOP": {
+        "opcode": 0,
+        "tag_id": 1,
+        "cycles": 1,
+        "mmio_pwr_cfg": 0
+      },
+      "OP_SYNC_IPU": {
+        "opcode": 1,
+        "tag_id": 2,
+        "cycles": 3,
+        "mmio_pwr_cfg": 0
+      },
+      "OP_SYNC_CLUSTER": {
+        "opcode": 2,
+        "tag_id": 3,
+        "cycles": 3,
+        "mmio_pwr_cfg": 0
+      },
+      "OP_PWR_GATE_CFG": {
+        "opcode": 3,
+        "tag_id": 4,
+        "cycles": 2,
+        "mmio_pwr_cfg": 983072
+      },
+      "OP_BANG_MATMUL": {
+        "PREC_INT4": {
+          "sum": 11611.0,
+          "cycles": 6,
+          "row0": [
+            45.0,
+            45.0,
+            45.0,
+            48.0
+          ]
+        },
+        "PREC_INT8": {
+          "sum": 17768.0,
+          "cycles": 8,
+          "row0": [
+            45.0,
+            45.0,
+            45.0,
+            50.0
+          ]
+        },
+        "PREC_FP8_E4M3": {
+          "sum": 17684.0,
+          "cycles": 8,
+          "row0": [
+            42.09375,
+            42.625,
+            46.40625,
+            46.5
+          ]
+        },
+        "PREC_FP8_E5M2": {
+          "sum": 17789.5,
+          "cycles": 8,
+          "row0": [
+            42.03125,
+            42.1875,
+            43.21875,
+            46.75
+          ]
+        },
+        "PREC_FP16": {
+          "sum": 17572.0,
+          "cycles": 12,
+          "row0": [
+            43.125,
+            44.25,
+            45.375,
+            46.5
+          ]
+        },
+        "PREC_BF16": {
+          "sum": 17572.0,
+          "cycles": 12,
+          "row0": [
+            43.125,
+            44.25,
+            45.375,
+            46.5
+          ]
+        },
+        "PREC_TF32": {
+          "sum": 17572.0,
+          "cycles": 12,
+          "row0": [
+            43.125,
+            44.25,
+            45.375,
+            46.5
+          ]
+        },
+        "PREC_FP32": {
+          "sum": 17572.0,
+          "cycles": 12,
+          "row0": [
+            43.125,
+            44.25,
+            45.375,
+            46.5
+          ]
+        }
+      },
+      "OP_BANG_CONV2D": {
+        "shape": [
+          2,
+          3,
+          3
+        ],
+        "val0": 1.0,
+        "cycles": 15
+      },
+      "OP_BANG_SPARSE_MM": {
+        "nnz_2of4": 32,
+        "cycles_2of4": 6,
+        "cycles_blk4x4": 6,
+        "sum_2of4": 11126.0,
+        "sum_blk4x4": 8754.0
+      },
+      "OP_BANG_QUANT_MM": {
+        "acc_i32": [
+          [
+            -1,
+            13
+          ],
+          [
+            47,
+            -8
+          ]
+        ],
+        "dequant": [
+          [
+            -0.0010000000474974513,
+            0.013000000268220901
+          ],
+          [
+            0.04699999839067459,
+            -0.00800000037997961
+          ]
+        ],
+        "cycles": 7
+      },
+      "OP_BANG_VADD": [
+        1.5,
+        2.0,
+        2.0,
+        2.5,
+        1.5,
+        1.0,
+        4.25,
+        2.0
+      ],
+      "OP_BANG_VMUL": [
+        0.5,
+        -8.0,
+        -5.25,
+        1.0,
+        -4.5,
+        -2.0,
+        1.0,
+        -1.25
+      ],
+      "OP_BANG_SOFTMAX": [
+        0.027065,
+        0.001347,
+        0.329721,
+        0.016416,
+        0.002222,
+        0.073571,
+        0.543619,
+        0.006039
+      ],
+      "OP_BANG_ROPE": [
+        1.0,
+        -2.0,
+        -0.5,
+        3.5,
+        -2.482051,
+        -0.299038,
+        3.714102,
+        1.566987
+      ],
+      "OP_BANG_RMSNORM": [
+        0.447213,
+        -0.894426,
+        1.565246,
+        0.223607,
+        -0.67082,
+        0.894426,
+        1.788853,
+        -0.223607
+      ],
+      "OP_BANG_SWIGLU": [
+        0.365529,
+        -0.953623,
+        -5.096111,
+        0.622459,
+        -0.820915,
+        -1.761594,
+        0.982014,
+        -0.471926
+      ],
+      "OP_BANG_QUANT_STAT": {
+        "min": -2.0,
+        "max": 4.0,
+        "absmax": 4.0,
+        "scale": 0.031496062992125984,
+        "zero_point": -32.0
+      },
+      "OP_BANG_MEMCPY_1D": [
+        1.0,
+        -2.0,
+        3.5,
+        0.5,
+        -1.5,
+        2.0,
+        4.0,
+        -0.5
+      ],
+      "OP_BANG_MEMCPY_2D": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          4,
+          5,
+          6
+        ]
+      ],
+      "OP_BANG_GATHER": [
+        -0.5,
+        1.0,
+        0.5,
+        2.0
+      ],
+      "OP_BANG_SCATTER": [
+        0.0,
+        0.0,
+        9.0,
+        0.0,
+        0.0,
+        0.0,
+        8.0,
+        0.0
+      ],
+      "OP_BANG_DECOMP_DMA": [
+        0,
+        11,
+        0,
+        0,
+        22,
+        0,
+        33,
+        0
+      ],
+      "OP_BANG_TRANSPOSE": [
+        [
+          0,
+          4,
+          8
+        ],
+        [
+          1,
+          5,
+          9
+        ],
+        [
+          2,
+          6,
+          10
+        ],
+        [
+          3,
+          7,
+          11
+        ]
+      ],
+      "OP_MPU_BCAST_SRAM": {
+        "0": [
+          10,
+          20,
+          30,
+          40
+        ],
+        "1": [
+          10,
+          20,
+          30,
+          40
+        ],
+        "2": [
+          10,
+          20,
+          30,
+          40
+        ],
+        "3": [
+          10,
+          20,
+          30,
+          40
+        ]
+      },
+      "OP_MPU_ALLREDUCE": [
+        4.5,
+        6.0,
+        6.0,
+        7.5,
+        4.5,
+        3.0,
+        12.75,
+        6.0
+      ],
+      "OP_LLM_KV_PACK": {
+        "q_int4": [
+          2,
+          -3,
+          6,
+          1,
+          -3,
+          3,
+          7,
+          -1
+        ],
+        "scale": 0.571429,
+        "deq": [
+          1.14286,
+          -1.71429,
+          3.42857,
+          0.57143,
+          -1.71429,
+          1.71429,
+          4.0,
+          -0.57143
+        ]
+      },
+      "OP_LLM_SPEC_VERIFY": {
+        "accepted_len": 2,
+        "accepted_flags": [
+          true,
+          true,
+          false,
+          false
+        ]
+      }
+    }
+  }
+}

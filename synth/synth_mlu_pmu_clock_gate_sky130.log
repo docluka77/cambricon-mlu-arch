@@ -1,0 +1,1189 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+
+-- Running command `
+        read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip rtl/mlu_pmu_clock_gate.sv;
+        chformal -remove;
+        synth -top mlu_pmu_clock_gate  -noabc;
+        dfflibmap -liberty /nfs/share/home/chenpei/hyr/dac2027_llm_dsa_marathon/synth/lib/sky130_fd_sc_hd__tt_025C_1v80.lib;
+        abc -fast -liberty /nfs/share/home/chenpei/hyr/dac2027_llm_dsa_marathon/synth/lib/sky130_fd_sc_hd__tt_025C_1v80.lib;
+        stat -liberty /nfs/share/home/chenpei/hyr/dac2027_llm_dsa_marathon/synth/lib/sky130_fd_sc_hd__tt_025C_1v80.lib;
+        write_verilog -noattr synth/mlu_pmu_clock_gate_sky130_netlist.v
+    ' --
+
+1. Executing Verilog-2005 frontend: rtl/mlu_pmu_clock_gate.sv
+Parsing SystemVerilog input from `rtl/mlu_pmu_clock_gate.sv' to AST representation.
+verilog frontend filename rtl/mlu_pmu_clock_gate.sv
+Generating RTLIL representation for module `\mlu_pmu_clock_gate'.
+Successfully finished Verilog frontend.
+
+2. Executing SYNTH pass.
+
+2.1. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1.1. Analyzing design hierarchy..
+Top module:  \mlu_pmu_clock_gate
+
+2.1.2. Analyzing design hierarchy..
+Top module:  \mlu_pmu_clock_gate
+Removed 0 unused modules.
+
+2.2. Executing PROC pass (convert processes to netlists).
+
+2.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+2.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 12 switch rules as full_case in process $proc$rtl/mlu_pmu_clock_gate.sv:100$52 in module mlu_pmu_clock_gate.
+Marked 8 switch rules as full_case in process $proc$rtl/mlu_pmu_clock_gate.sv:81$33 in module mlu_pmu_clock_gate.
+Marked 10 switch rules as full_case in process $proc$rtl/mlu_pmu_clock_gate.sv:53$13 in module mlu_pmu_clock_gate.
+Removed a total of 0 dead cases.
+
+2.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 12 assignments to connections.
+
+2.2.4. Executing PROC_INIT pass (extract init attributes).
+
+2.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_ni in `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:100$52'.
+
+2.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~42 debug messages>
+
+2.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:100$52'.
+     1/20: $0\sram_dslp_q[2:0] [2]
+     2/20: $0\sram_dslp_q[2:0] [1]
+     3/20: $0\sram_slp_q[2:0] [1]
+     4/20: $0\mem_idle_cnt_q[26:0] [17:9]
+     5/20: $0\sram_dslp_q[2:0] [0]
+     6/20: $0\sram_slp_q[2:0] [0]
+     7/20: $0\mem_idle_cnt_q[26:0] [8:0]
+     8/20: $0\eng_idle_cnt_q[44:0] [35:27]
+     9/20: $0\eng_idle_cnt_q[44:0] [26:18]
+    10/20: $0\eng_idle_cnt_q[44:0] [17:9]
+    11/20: $0\eng_idle_cnt_q[44:0] [8:0]
+    12/20: $0\gated_saved_cycles_o[31:0]
+    13/20: $1$fordecl_block$9.m[31:0]$57
+    14/20: $1$fordecl_block$7.e[31:0]$56
+    15/20: $0\mem_idle_cnt_q[26:0] [26:18]
+    16/20: $0\sram_slp_q[2:0] [2]
+    17/20: $0\eng_idle_cnt_q[44:0] [44:36]
+    18/20: $0\sram_sleep_cycles_o[31:0]
+    19/20: $0\idle_thresh_q[7:0]
+    20/20: $0\active_mac_cycles_o[31:0]
+Creating decoders for process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:81$33'.
+     1/8: $3\sleep_mem_inc[31:0]
+     2/8: $2\sleep_mem_inc[31:0]
+     3/8: $1\sleep_mem_inc[31:0]
+     4/8: $5\gated_eng_inc[31:0]
+     5/8: $4\gated_eng_inc[31:0]
+     6/8: $3\gated_eng_inc[31:0]
+     7/8: $2\gated_eng_inc[31:0]
+     8/8: $1\gated_eng_inc[31:0]
+Creating decoders for process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:53$13'.
+     1/10: $10\eng_clk_en_o[4:4]
+     2/10: $9\eng_clk_en_o[4:4]
+     3/10: $8\eng_clk_en_o[3:3]
+     4/10: $7\eng_clk_en_o[3:3]
+     5/10: $6\eng_clk_en_o[2:2]
+     6/10: $5\eng_clk_en_o[2:2]
+     7/10: $4\eng_clk_en_o[1:1]
+     8/10: $3\eng_clk_en_o[1:1]
+     9/10: $2\eng_clk_en_o[0:0]
+    10/10: $1\eng_clk_en_o[0:0]
+
+2.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\mlu_pmu_clock_gate.\gated_eng_inc' from process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:81$33'.
+No latch inferred for signal `\mlu_pmu_clock_gate.\sleep_mem_inc' from process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:81$33'.
+No latch inferred for signal `\mlu_pmu_clock_gate.$fordecl_block$3.e' from process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:81$33'.
+No latch inferred for signal `\mlu_pmu_clock_gate.$fordecl_block$5.m' from process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:81$33'.
+No latch inferred for signal `\mlu_pmu_clock_gate.\eng_clk_en_o' from process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:53$13'.
+No latch inferred for signal `\mlu_pmu_clock_gate.$fordecl_block$1.e' from process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:53$13'.
+
+2.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\mlu_pmu_clock_gate.\active_mac_cycles_o' using process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:100$52'.
+  created $adff cell `$procdff$261' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_pmu_clock_gate.\gated_saved_cycles_o' using process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:100$52'.
+  created $adff cell `$procdff$266' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_pmu_clock_gate.\sram_sleep_cycles_o' using process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:100$52'.
+  created $adff cell `$procdff$271' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_pmu_clock_gate.\idle_thresh_q' using process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:100$52'.
+  created $adff cell `$procdff$276' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_pmu_clock_gate.\eng_idle_cnt_q' using process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:100$52'.
+  created $adff cell `$procdff$281' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_pmu_clock_gate.\mem_idle_cnt_q' using process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:100$52'.
+  created $adff cell `$procdff$286' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_pmu_clock_gate.\sram_slp_q' using process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:100$52'.
+  created $adff cell `$procdff$291' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_pmu_clock_gate.\sram_dslp_q' using process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:100$52'.
+  created $adff cell `$procdff$296' with positive edge clock and positive level reset.
+Creating register for signal `\mlu_pmu_clock_gate.$fordecl_block$7.e' using process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:100$52'.
+  created $dff cell `$procdff$303' with positive edge clock.
+Creating register for signal `\mlu_pmu_clock_gate.$fordecl_block$9.m' using process `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:100$52'.
+  created $dff cell `$procdff$310' with positive edge clock.
+
+2.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+2.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 24 empty switches in `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:100$52'.
+Removing empty process `mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:100$52'.
+Found and cleaned up 8 empty switches in `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:81$33'.
+Removing empty process `mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:81$33'.
+Found and cleaned up 10 empty switches in `\mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:53$13'.
+Removing empty process `mlu_pmu_clock_gate.$proc$rtl/mlu_pmu_clock_gate.sv:53$13'.
+Cleaned up 42 empty switches.
+
+2.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+<suppressed ~29 debug messages>
+
+2.3. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+
+2.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+Removed 20 unused cells and 152 unused wires.
+<suppressed ~21 debug messages>
+
+2.5. Executing CHECK pass (checking for obvious problems).
+Checking module mlu_pmu_clock_gate...
+Found and reported 0 problems.
+
+2.6. Executing OPT pass (performing simple optimizations).
+
+2.6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+
+2.6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+<suppressed ~33 debug messages>
+Removed a total of 11 cells.
+
+2.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_pmu_clock_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$216.
+    dead port 1/2 on $mux $procmux$225.
+    dead port 1/2 on $mux $procmux$234.
+    dead port 1/2 on $mux $procmux$243.
+    dead port 1/2 on $mux $procmux$252.
+Removed 5 multiplexer ports.
+<suppressed ~91 debug messages>
+
+2.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_pmu_clock_gate.
+Performed a total of 0 changes.
+
+2.6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+Removed a total of 0 cells.
+
+2.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+Removed 0 unused cells and 16 unused wires.
+<suppressed ~1 debug messages>
+
+2.6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+
+2.6.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.6.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_pmu_clock_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~86 debug messages>
+
+2.6.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_pmu_clock_gate.
+Performed a total of 0 changes.
+
+2.6.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+Removed a total of 0 cells.
+
+2.6.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.6.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+
+2.6.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+
+2.6.16. Finished fast OPT passes. (There is nothing left to do.)
+
+2.7. Executing FSM pass (extract and optimize FSM).
+
+2.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+2.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+2.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+2.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+
+2.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+2.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+2.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+2.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+2.8. Executing OPT pass (performing simple optimizations).
+
+2.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+
+2.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+Removed a total of 0 cells.
+
+2.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_pmu_clock_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~86 debug messages>
+
+2.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_pmu_clock_gate.
+Performed a total of 0 changes.
+
+2.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+Removed a total of 0 cells.
+
+2.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$296 ($adff) from module mlu_pmu_clock_gate (D = $0\sram_dslp_q[2:0] [0], Q = \sram_dslp_q [0]).
+Adding EN signal on $procdff$296 ($adff) from module mlu_pmu_clock_gate (D = $0\sram_dslp_q[2:0] [1], Q = \sram_dslp_q [1]).
+Adding EN signal on $procdff$296 ($adff) from module mlu_pmu_clock_gate (D = $0\sram_dslp_q[2:0] [2], Q = \sram_dslp_q [2]).
+Adding EN signal on $procdff$291 ($adff) from module mlu_pmu_clock_gate (D = $0\sram_slp_q[2:0] [0], Q = \sram_slp_q [0]).
+Adding EN signal on $procdff$291 ($adff) from module mlu_pmu_clock_gate (D = $0\sram_slp_q[2:0] [1], Q = \sram_slp_q [1]).
+Adding EN signal on $procdff$291 ($adff) from module mlu_pmu_clock_gate (D = $0\sram_slp_q[2:0] [2], Q = \sram_slp_q [2]).
+Adding EN signal on $procdff$286 ($adff) from module mlu_pmu_clock_gate (D = $0\mem_idle_cnt_q[26:0] [8:0], Q = \mem_idle_cnt_q [8:0]).
+Adding EN signal on $procdff$286 ($adff) from module mlu_pmu_clock_gate (D = $0\mem_idle_cnt_q[26:0] [17:9], Q = \mem_idle_cnt_q [17:9]).
+Adding EN signal on $procdff$286 ($adff) from module mlu_pmu_clock_gate (D = $0\mem_idle_cnt_q[26:0] [26:18], Q = \mem_idle_cnt_q [26:18]).
+Adding EN signal on $procdff$281 ($adff) from module mlu_pmu_clock_gate (D = $0\eng_idle_cnt_q[44:0] [8:0], Q = \eng_idle_cnt_q [8:0]).
+Adding EN signal on $procdff$281 ($adff) from module mlu_pmu_clock_gate (D = $0\eng_idle_cnt_q[44:0] [17:9], Q = \eng_idle_cnt_q [17:9]).
+Adding EN signal on $procdff$281 ($adff) from module mlu_pmu_clock_gate (D = $0\eng_idle_cnt_q[44:0] [26:18], Q = \eng_idle_cnt_q [26:18]).
+Adding EN signal on $procdff$281 ($adff) from module mlu_pmu_clock_gate (D = $0\eng_idle_cnt_q[44:0] [35:27], Q = \eng_idle_cnt_q [35:27]).
+Adding EN signal on $procdff$281 ($adff) from module mlu_pmu_clock_gate (D = $0\eng_idle_cnt_q[44:0] [44:36], Q = \eng_idle_cnt_q [44:36]).
+Adding EN signal on $procdff$276 ($adff) from module mlu_pmu_clock_gate (D = $ternary$rtl/mlu_pmu_clock_gate.sv:112$59_Y, Q = \idle_thresh_q).
+Adding EN signal on $procdff$261 ($adff) from module mlu_pmu_clock_gate (D = $add$rtl/mlu_pmu_clock_gate.sv:146$93_Y, Q = \active_mac_cycles_o).
+
+2.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+Removed 2 unused cells and 2 unused wires.
+<suppressed ~3 debug messages>
+
+2.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+<suppressed ~14 debug messages>
+
+2.8.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.8.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_pmu_clock_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~83 debug messages>
+
+2.8.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_pmu_clock_gate.
+Performed a total of 0 changes.
+
+2.8.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+2.8.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.8.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+2.8.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+
+2.8.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.8.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_pmu_clock_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~83 debug messages>
+
+2.8.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_pmu_clock_gate.
+Performed a total of 0 changes.
+
+2.8.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+Removed a total of 0 cells.
+
+2.8.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.8.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+
+2.8.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+
+2.8.23. Finished fast OPT passes. (There is nothing left to do.)
+
+2.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 9) from port B of cell mlu_pmu_clock_gate.$ge$rtl/mlu_pmu_clock_gate.sv:57$16 ($ge).
+Removed top 1 bits (of 9) from port B of cell mlu_pmu_clock_gate.$ge$rtl/mlu_pmu_clock_gate.sv:57$18 ($ge).
+Removed top 1 bits (of 9) from port B of cell mlu_pmu_clock_gate.$ge$rtl/mlu_pmu_clock_gate.sv:57$20 ($ge).
+Removed top 1 bits (of 9) from port B of cell mlu_pmu_clock_gate.$ge$rtl/mlu_pmu_clock_gate.sv:57$22 ($ge).
+Removed top 1 bits (of 9) from port B of cell mlu_pmu_clock_gate.$ge$rtl/mlu_pmu_clock_gate.sv:57$24 ($ge).
+Removed top 31 bits (of 32) from port B of cell mlu_pmu_clock_gate.$add$rtl/mlu_pmu_clock_gate.sv:85$39 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_pmu_clock_gate.$add$rtl/mlu_pmu_clock_gate.sv:85$41 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_pmu_clock_gate.$add$rtl/mlu_pmu_clock_gate.sv:85$43 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_pmu_clock_gate.$add$rtl/mlu_pmu_clock_gate.sv:85$45 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_pmu_clock_gate.$add$rtl/mlu_pmu_clock_gate.sv:92$49 ($add).
+Removed top 31 bits (of 32) from port B of cell mlu_pmu_clock_gate.$add$rtl/mlu_pmu_clock_gate.sv:92$51 ($add).
+Removed top 8 bits (of 9) from port B of cell mlu_pmu_clock_gate.$add$rtl/mlu_pmu_clock_gate.sv:120$62 ($add).
+Removed top 8 bits (of 9) from port B of cell mlu_pmu_clock_gate.$add$rtl/mlu_pmu_clock_gate.sv:120$65 ($add).
+Removed top 8 bits (of 9) from port B of cell mlu_pmu_clock_gate.$add$rtl/mlu_pmu_clock_gate.sv:120$68 ($add).
+Removed top 8 bits (of 9) from port B of cell mlu_pmu_clock_gate.$add$rtl/mlu_pmu_clock_gate.sv:120$71 ($add).
+Removed top 8 bits (of 9) from port B of cell mlu_pmu_clock_gate.$add$rtl/mlu_pmu_clock_gate.sv:120$74 ($add).
+Removed top 8 bits (of 9) from port B of cell mlu_pmu_clock_gate.$add$rtl/mlu_pmu_clock_gate.sv:132$76 ($add).
+Removed top 1 bits (of 9) from port B of cell mlu_pmu_clock_gate.$ge$rtl/mlu_pmu_clock_gate.sv:137$80 ($ge).
+Removed top 8 bits (of 9) from port B of cell mlu_pmu_clock_gate.$add$rtl/mlu_pmu_clock_gate.sv:132$82 ($add).
+Removed top 1 bits (of 9) from port B of cell mlu_pmu_clock_gate.$ge$rtl/mlu_pmu_clock_gate.sv:137$86 ($ge).
+Removed top 8 bits (of 9) from port B of cell mlu_pmu_clock_gate.$add$rtl/mlu_pmu_clock_gate.sv:132$88 ($add).
+Removed top 1 bits (of 9) from port B of cell mlu_pmu_clock_gate.$ge$rtl/mlu_pmu_clock_gate.sv:137$92 ($ge).
+Removed top 31 bits (of 32) from port B of cell mlu_pmu_clock_gate.$add$rtl/mlu_pmu_clock_gate.sv:146$93 ($add).
+Removed top 31 bits (of 32) from mux cell mlu_pmu_clock_gate.$procmux$195 ($mux).
+Removed top 31 bits (of 32) from mux cell mlu_pmu_clock_gate.$procmux$210 ($mux).
+Removed top 31 bits (of 32) from wire mlu_pmu_clock_gate.$1\gated_eng_inc[31:0].
+Removed top 31 bits (of 32) from wire mlu_pmu_clock_gate.$1\sleep_mem_inc[31:0].
+
+2.10. Executing PEEPOPT pass (run peephole optimizers).
+
+2.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+2.12. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module mlu_pmu_clock_gate:
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:120$62 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:120$65 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:120$68 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:120$71 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:120$74 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:132$76 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:132$82 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:132$88 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:146$93 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:148$94 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:149$95 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:85$39 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:85$41 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:85$43 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:85$45 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:92$49 ($add).
+  creating $macc model for $add$rtl/mlu_pmu_clock_gate.sv:92$51 ($add).
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:92$51.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:92$49.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:85$45.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:85$43.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:85$41.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:85$39.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:149$95.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:148$94.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:146$93.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:132$88.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:132$82.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:132$76.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:120$74.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:120$71.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:120$68.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:120$65.
+  creating $alu model for $macc $add$rtl/mlu_pmu_clock_gate.sv:120$62.
+  creating $alu model for $ge$rtl/mlu_pmu_clock_gate.sv:134$78 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_pmu_clock_gate.sv:134$84 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_pmu_clock_gate.sv:134$90 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_pmu_clock_gate.sv:137$80 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_pmu_clock_gate.sv:137$86 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_pmu_clock_gate.sv:137$92 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_pmu_clock_gate.sv:57$16 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_pmu_clock_gate.sv:57$18 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_pmu_clock_gate.sv:57$20 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_pmu_clock_gate.sv:57$22 ($ge): new $alu
+  creating $alu model for $ge$rtl/mlu_pmu_clock_gate.sv:57$24 ($ge): new $alu
+  creating $alu model for $lt$rtl/mlu_pmu_clock_gate.sv:119$61 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_pmu_clock_gate.sv:119$64 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_pmu_clock_gate.sv:119$67 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_pmu_clock_gate.sv:119$70 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_pmu_clock_gate.sv:119$73 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_pmu_clock_gate.sv:131$75 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_pmu_clock_gate.sv:131$81 ($lt): new $alu
+  creating $alu model for $lt$rtl/mlu_pmu_clock_gate.sv:131$87 ($lt): new $alu
+  creating $alu cell for $lt$rtl/mlu_pmu_clock_gate.sv:131$87: $auto$alumacc.cc:512:replace_alu$376
+  creating $alu cell for $lt$rtl/mlu_pmu_clock_gate.sv:131$81: $auto$alumacc.cc:512:replace_alu$381
+  creating $alu cell for $lt$rtl/mlu_pmu_clock_gate.sv:131$75: $auto$alumacc.cc:512:replace_alu$386
+  creating $alu cell for $lt$rtl/mlu_pmu_clock_gate.sv:119$73: $auto$alumacc.cc:512:replace_alu$391
+  creating $alu cell for $lt$rtl/mlu_pmu_clock_gate.sv:119$70: $auto$alumacc.cc:512:replace_alu$396
+  creating $alu cell for $lt$rtl/mlu_pmu_clock_gate.sv:119$67: $auto$alumacc.cc:512:replace_alu$401
+  creating $alu cell for $lt$rtl/mlu_pmu_clock_gate.sv:119$64: $auto$alumacc.cc:512:replace_alu$406
+  creating $alu cell for $lt$rtl/mlu_pmu_clock_gate.sv:119$61: $auto$alumacc.cc:512:replace_alu$411
+  creating $alu cell for $ge$rtl/mlu_pmu_clock_gate.sv:57$24: $auto$alumacc.cc:512:replace_alu$416
+  creating $alu cell for $ge$rtl/mlu_pmu_clock_gate.sv:57$22: $auto$alumacc.cc:512:replace_alu$429
+  creating $alu cell for $ge$rtl/mlu_pmu_clock_gate.sv:57$20: $auto$alumacc.cc:512:replace_alu$442
+  creating $alu cell for $ge$rtl/mlu_pmu_clock_gate.sv:57$18: $auto$alumacc.cc:512:replace_alu$455
+  creating $alu cell for $ge$rtl/mlu_pmu_clock_gate.sv:57$16: $auto$alumacc.cc:512:replace_alu$468
+  creating $alu cell for $ge$rtl/mlu_pmu_clock_gate.sv:137$92: $auto$alumacc.cc:512:replace_alu$481
+  creating $alu cell for $ge$rtl/mlu_pmu_clock_gate.sv:137$86: $auto$alumacc.cc:512:replace_alu$494
+  creating $alu cell for $ge$rtl/mlu_pmu_clock_gate.sv:137$80: $auto$alumacc.cc:512:replace_alu$507
+  creating $alu cell for $ge$rtl/mlu_pmu_clock_gate.sv:134$90: $auto$alumacc.cc:512:replace_alu$520
+  creating $alu cell for $ge$rtl/mlu_pmu_clock_gate.sv:134$84: $auto$alumacc.cc:512:replace_alu$533
+  creating $alu cell for $ge$rtl/mlu_pmu_clock_gate.sv:134$78: $auto$alumacc.cc:512:replace_alu$546
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:120$62: $auto$alumacc.cc:512:replace_alu$559
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:120$65: $auto$alumacc.cc:512:replace_alu$562
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:120$68: $auto$alumacc.cc:512:replace_alu$565
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:120$71: $auto$alumacc.cc:512:replace_alu$568
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:120$74: $auto$alumacc.cc:512:replace_alu$571
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:132$76: $auto$alumacc.cc:512:replace_alu$574
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:132$82: $auto$alumacc.cc:512:replace_alu$577
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:132$88: $auto$alumacc.cc:512:replace_alu$580
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:146$93: $auto$alumacc.cc:512:replace_alu$583
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:148$94: $auto$alumacc.cc:512:replace_alu$586
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:149$95: $auto$alumacc.cc:512:replace_alu$589
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:85$39: $auto$alumacc.cc:512:replace_alu$592
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:85$41: $auto$alumacc.cc:512:replace_alu$595
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:85$43: $auto$alumacc.cc:512:replace_alu$598
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:85$45: $auto$alumacc.cc:512:replace_alu$601
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:92$49: $auto$alumacc.cc:512:replace_alu$604
+  creating $alu cell for $add$rtl/mlu_pmu_clock_gate.sv:92$51: $auto$alumacc.cc:512:replace_alu$607
+  created 36 $alu and 0 $macc cells.
+
+2.13. Executing SHARE pass (SAT-based resource sharing).
+
+2.14. Executing OPT pass (performing simple optimizations).
+
+2.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+<suppressed ~8 debug messages>
+
+2.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+Removed a total of 0 cells.
+
+2.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_pmu_clock_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~83 debug messages>
+
+2.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_pmu_clock_gate.
+Performed a total of 0 changes.
+
+2.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+Removed a total of 0 cells.
+
+2.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+Removed 0 unused cells and 19 unused wires.
+<suppressed ~1 debug messages>
+
+2.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+
+2.14.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.14.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_pmu_clock_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~83 debug messages>
+
+2.14.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_pmu_clock_gate.
+Performed a total of 0 changes.
+
+2.14.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+Removed a total of 0 cells.
+
+2.14.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.14.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+
+2.14.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+
+2.14.16. Finished fast OPT passes. (There is nothing left to do.)
+
+2.15. Executing MEMORY pass.
+
+2.15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+2.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+2.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+2.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+2.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+2.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+
+2.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+2.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+2.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+
+2.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+2.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+
+2.17. Executing OPT pass (performing simple optimizations).
+
+2.17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+<suppressed ~282 debug messages>
+
+2.17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+Removed a total of 0 cells.
+
+2.17.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+Removed 8 unused cells and 86 unused wires.
+<suppressed ~9 debug messages>
+
+2.17.5. Finished fast OPT passes.
+
+2.18. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+2.19. Executing OPT pass (performing simple optimizations).
+
+2.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+<suppressed ~3 debug messages>
+
+2.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+Removed a total of 0 cells.
+
+2.19.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_pmu_clock_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~44 debug messages>
+
+2.19.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_pmu_clock_gate.
+    Consolidated identical input bits for $mux cell $procmux$192:
+      Old ports: A={ 31'0000000000000000000000000000000 $1\sleep_mem_inc[31:0] }, B={ 30'000000000000000000000000000000 $add$rtl/mlu_pmu_clock_gate.sv:92$49_Y [1:0] }, Y=$2\sleep_mem_inc[31:0]
+      New ports: A={ 1'0 $1\sleep_mem_inc[31:0] }, B=$add$rtl/mlu_pmu_clock_gate.sv:92$49_Y [1:0], Y=$2\sleep_mem_inc[31:0] [1:0]
+      New connections: $2\sleep_mem_inc[31:0] [31:2] = 30'000000000000000000000000000000
+    Consolidated identical input bits for $mux cell $procmux$207:
+      Old ports: A={ 30'000000000000000000000000000000 $add$rtl/mlu_pmu_clock_gate.sv:85$39_Y [1:0] }, B={ 31'0000000000000000000000000000000 $1\gated_eng_inc[31:0] }, Y=$2\gated_eng_inc[31:0]
+      New ports: A=$add$rtl/mlu_pmu_clock_gate.sv:85$39_Y [1:0], B={ 1'0 $1\gated_eng_inc[31:0] }, Y=$2\gated_eng_inc[31:0] [1:0]
+      New connections: $2\gated_eng_inc[31:0] [31:2] = 30'000000000000000000000000000000
+    Consolidated identical input bits for $mux cell $ternary$rtl/mlu_pmu_clock_gate.sv:50$12:
+      Old ports: A={ \idle_thresh_q 1'0 }, B=9'000000100, Y=\deep_thresh_w
+      New ports: A=\idle_thresh_q, B=8'00000010, Y=\deep_thresh_w [8:1]
+      New connections: \deep_thresh_w [0] = 1'0
+  Optimizing cells in module \mlu_pmu_clock_gate.
+Performed a total of 3 changes.
+
+2.19.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+Removed a total of 0 cells.
+
+2.19.6. Executing OPT_SHARE pass.
+
+2.19.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.19.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+
+2.19.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+<suppressed ~237 debug messages>
+
+2.19.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.19.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_pmu_clock_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~44 debug messages>
+
+2.19.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_pmu_clock_gate.
+    Consolidated identical input bits for $mux cell $procmux$189:
+      Old ports: A={ 30'000000000000000000000000000000 $2\sleep_mem_inc[31:0] [1:0] }, B=$add$rtl/mlu_pmu_clock_gate.sv:92$51_Y, Y=\sleep_mem_inc
+      New ports: A={ 1'0 $2\sleep_mem_inc[31:0] [1:0] }, B=$add$rtl/mlu_pmu_clock_gate.sv:92$51_Y [2:0], Y=\sleep_mem_inc [2:0]
+      New connections: \sleep_mem_inc [31:3] = 29'00000000000000000000000000000
+    Consolidated identical input bits for $mux cell $procmux$204:
+      Old ports: A=$add$rtl/mlu_pmu_clock_gate.sv:85$41_Y, B={ 30'000000000000000000000000000000 $2\gated_eng_inc[31:0] [1:0] }, Y=$3\gated_eng_inc[31:0]
+      New ports: A=$add$rtl/mlu_pmu_clock_gate.sv:85$41_Y [2:0], B={ 1'0 $2\gated_eng_inc[31:0] [1:0] }, Y=$3\gated_eng_inc[31:0] [2:0]
+      New connections: $3\gated_eng_inc[31:0] [31:3] = 29'00000000000000000000000000000
+  Optimizing cells in module \mlu_pmu_clock_gate.
+Performed a total of 2 changes.
+
+2.19.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+Removed a total of 0 cells.
+
+2.19.14. Executing OPT_SHARE pass.
+
+2.19.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.19.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+Removed 0 unused cells and 61 unused wires.
+<suppressed ~1 debug messages>
+
+2.19.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+<suppressed ~113 debug messages>
+
+2.19.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.19.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_pmu_clock_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~44 debug messages>
+
+2.19.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_pmu_clock_gate.
+    Consolidated identical input bits for $mux cell $procmux$201:
+      Old ports: A=$add$rtl/mlu_pmu_clock_gate.sv:85$43_Y, B={ 29'00000000000000000000000000000 $3\gated_eng_inc[31:0] [2:0] }, Y=$4\gated_eng_inc[31:0]
+      New ports: A=$add$rtl/mlu_pmu_clock_gate.sv:85$43_Y [3:0], B={ 1'0 $3\gated_eng_inc[31:0] [2:0] }, Y=$4\gated_eng_inc[31:0] [3:0]
+      New connections: $4\gated_eng_inc[31:0] [31:4] = 28'0000000000000000000000000000
+  Optimizing cells in module \mlu_pmu_clock_gate.
+Performed a total of 1 changes.
+
+2.19.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+Removed a total of 0 cells.
+
+2.19.22. Executing OPT_SHARE pass.
+
+2.19.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.19.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+Removed 0 unused cells and 28 unused wires.
+<suppressed ~1 debug messages>
+
+2.19.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+<suppressed ~109 debug messages>
+
+2.19.26. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.19.27. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_pmu_clock_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~44 debug messages>
+
+2.19.28. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_pmu_clock_gate.
+    Consolidated identical input bits for $mux cell $procmux$198:
+      Old ports: A=$add$rtl/mlu_pmu_clock_gate.sv:85$45_Y, B={ 28'0000000000000000000000000000 $4\gated_eng_inc[31:0] [3:0] }, Y=\gated_eng_inc
+      New ports: A=$add$rtl/mlu_pmu_clock_gate.sv:85$45_Y [4:0], B={ 1'0 $4\gated_eng_inc[31:0] [3:0] }, Y=\gated_eng_inc [4:0]
+      New connections: \gated_eng_inc [31:5] = 27'000000000000000000000000000
+  Optimizing cells in module \mlu_pmu_clock_gate.
+Performed a total of 1 changes.
+
+2.19.29. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+Removed a total of 0 cells.
+
+2.19.30. Executing OPT_SHARE pass.
+
+2.19.31. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.19.32. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+Removed 0 unused cells and 27 unused wires.
+<suppressed ~1 debug messages>
+
+2.19.33. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+
+2.19.34. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.19.35. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_pmu_clock_gate..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~44 debug messages>
+
+2.19.36. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_pmu_clock_gate.
+Performed a total of 0 changes.
+
+2.19.37. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+Removed a total of 0 cells.
+
+2.19.38. Executing OPT_SHARE pass.
+
+2.19.39. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.19.40. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+
+2.19.41. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+
+2.19.42. Finished fast OPT passes. (There is nothing left to do.)
+
+2.20. Executing TECHMAP pass (map to technology primitives).
+
+2.20.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+verilog frontend filename /usr/local/bin/../share/yosys/techmap.v
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `\$connect'.
+Generating RTLIL representation for module `\$input_port'.
+Successfully finished Verilog frontend.
+
+2.20.2. Continuing TECHMAP pass.
+Using template $paramod$b18e16801adf491a64caa0542270798e5d4ac6b6\_90_alu for cells of type $alu.
+Using template $paramod$740b056ede97228d3eae64ea2fdc81f0a33e0fe7\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $not.
+Using template $paramod$78e969f2586efcf3a5b0b0440bcca0db83d5cca2\_90_alu for cells of type $alu.
+Using template $paramod$7e708ae28ab761f11d0fb59d3ffc72f6a4baf5d9\_90_alu for cells of type $alu.
+Using template $paramod$fbc7873bff55778c0b3173955b7e4bce1d9d6834\_90_alu for cells of type $alu.
+Using template $paramod$6a42b6fefed750f8a1c58eab59479d960557103c\_90_alu for cells of type $alu.
+Using template $paramod$53700bbee849b2010ad0b60a61ccd204a10e24ca\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $reduce_and.
+Using template $paramod$a1bc51c02ce12ac21eb18988e83292af48ed7d72\_90_alu for cells of type $alu.
+Using template $paramod$cd54e322aa4265ca236096fe4bb634aaec4e39b4\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $adffe.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $logic_or.
+Using extmapper simplemap for cells of type $adff.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000100 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000100 for cells of type $lcu.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000101 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000101 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000011 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000011 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000010 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000010 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000100000 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000001001 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000001001 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000001000 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000001000 for cells of type $lcu.
+Using extmapper simplemap for cells of type $and.
+No more expansions possible.
+<suppressed ~2998 debug messages>
+
+2.21. Executing OPT pass (performing simple optimizations).
+
+2.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_pmu_clock_gate.
+<suppressed ~2691 debug messages>
+
+2.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_pmu_clock_gate'.
+<suppressed ~405 debug messages>
+Removed a total of 135 cells.
+
+2.21.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.21.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_pmu_clock_gate..
+Removed 402 unused cells and 2136 unused wires.
+<suppressed ~403 debug messages>
+
+2.21.5. Finished fast OPT passes.
+
+2.22. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `mlu_pmu_clock_gate'. Setting top module to mlu_pmu_clock_gate.
+
+2.22.1. Analyzing design hierarchy..
+Top module:  \mlu_pmu_clock_gate
+
+2.22.2. Analyzing design hierarchy..
+Top module:  \mlu_pmu_clock_gate
+Removed 0 unused modules.
+
+2.23. Printing statistics.
+
+=== mlu_pmu_clock_gate ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      543 wires
+     1830 wire bits
+       23 public wires
+      296 public wire bits
+       14 ports
+      134 port bits
+     1404 cells
+      593   $_AND_
+      117   $_DFFE_PN0P_
+        1   $_DFFE_PN1P_
+       64   $_DFF_PN0_
+      113   $_MUX_
+       79   $_NOT_
+      177   $_OR_
+      260   $_XOR_
+
+2.24. Executing CHECK pass (checking for obvious problems).
+Checking module mlu_pmu_clock_gate...
+Found and reported 0 problems.
+
+3. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell sky130_fd_sc_hd__dfxtp_1 (noninv, pins=3, area=20.02) is a direct match for cell type $_DFF_P_.
+  cell sky130_fd_sc_hd__dfrtn_1 (noninv, pins=4, area=25.02) is a direct match for cell type $_DFF_NN0_.
+  cell sky130_fd_sc_hd__dfrtp_1 (noninv, pins=4, area=25.02) is a direct match for cell type $_DFF_PN0_.
+  cell sky130_fd_sc_hd__dfstp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN1_.
+  cell sky130_fd_sc_hd__edfxtp_1 (noninv, pins=4, area=30.03) is a direct match for cell type $_DFFE_PP_.
+  cell sky130_fd_sc_hd__dfbbn_1 (noninv, pins=6, area=32.53) is a direct match for cell type $_DFFSR_NNN_.
+  cell sky130_fd_sc_hd__dfbbp_1 (noninv, pins=6, area=32.53) is a direct match for cell type $_DFFSR_PNN_.
+  final dff cell mappings:
+    unmapped dff cell: $_DFF_N_
+    \sky130_fd_sc_hd__dfxtp_1 _DFF_P_ (.CLK( C), .D( D), .Q( Q));
+    \sky130_fd_sc_hd__dfrtn_1 _DFF_NN0_ (.CLK_N( C), .D( D), .Q( Q), .RESET_B( R));
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    \sky130_fd_sc_hd__dfrtp_1 _DFF_PN0_ (.CLK( C), .D( D), .Q( Q), .RESET_B( R));
+    \sky130_fd_sc_hd__dfstp_2 _DFF_PN1_ (.CLK( C), .D( D), .Q( Q), .SET_B( R));
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    unmapped dff cell: $_DFFE_NN_
+    unmapped dff cell: $_DFFE_NP_
+    unmapped dff cell: $_DFFE_PN_
+    \sky130_fd_sc_hd__edfxtp_1 _DFFE_PP_ (.CLK( C), .D( D), .DE( E), .Q( Q));
+    \sky130_fd_sc_hd__dfbbn_1 _DFFSR_NNN_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    \sky130_fd_sc_hd__dfbbp_1 _DFFSR_PNN_ (.CLK( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+3.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+<suppressed ~24 debug messages>
+Mapping DFF cells in module `\mlu_pmu_clock_gate':
+  mapped 181 $_DFF_PN0_ cells to \sky130_fd_sc_hd__dfrtp_1 cells.
+  mapped 1 $_DFF_PN1_ cells to \sky130_fd_sc_hd__dfstp_2 cells.
+
+4. Executing ABC pass (technology mapping using ABC).
+
+4.1. Extracting gate netlist of module `\mlu_pmu_clock_gate' to `<abc-temp-dir>/input.blif'..
+
+4.1.1. Executed ABC.
+Extracted 1340 gates and 1546 wires to a netlist network with 204 inputs and 190 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Dec 15 2025 17:24:15)
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_lib -w /nfs/share/home/chenpei/hyr/dac2027_llm_dsa_marathon/synth/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.09 sec
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_12" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_3" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_6" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_8" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__diode_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_8".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__edfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__edfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_0".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_8".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_8".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_bleeder_1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_12" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_3" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_6" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_8" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__lpflow_inputisolatch_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfsbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_4".
+ABC: Library "sky130_fd_sc_hd__tt_025C_1v80" from "/nfs/share/home/chenpei/hyr/dac2027_llm_dsa_marathon/synth/lib/sky130_fd_sc_hd__tt_025C_1v80.lib" has 334 cells (94 skipped: 63 seq; 13 tri-state; 18 no func; 0 dont_use; 0 with 2 outputs; 0 with 3+ outputs).  Time =     0.13 sec
+ABC: Memory =   19.81 MB. Time =     0.13 sec
+ABC: Warning: Detected 9 multi-output cells (for example, "sky130_fd_sc_hd__fa_1").
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: 
+
+4.1.2. Re-integrating ABC results.
+ABC RESULTS:   sky130_fd_sc_hd__a211o_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__a211oi_1 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__a21boi_0 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a21o_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a21oi_1 cells:       48
+ABC RESULTS:   sky130_fd_sc_hd__a221oi_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__a22oi_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a2bb2oi_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a31o_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a31oi_1 cells:       11
+ABC RESULTS:   sky130_fd_sc_hd__a41oi_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__and2_2 cells:       14
+ABC RESULTS:   sky130_fd_sc_hd__clkinv_1 cells:      188
+ABC RESULTS:   sky130_fd_sc_hd__maj3_1 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__nand2_1 cells:      169
+ABC RESULTS:   sky130_fd_sc_hd__nand3_1 cells:      111
+ABC RESULTS:   sky130_fd_sc_hd__nand3b_1 cells:       12
+ABC RESULTS:   sky130_fd_sc_hd__nand4_1 cells:       35
+ABC RESULTS:   sky130_fd_sc_hd__nor2_1 cells:      195
+ABC RESULTS:   sky130_fd_sc_hd__nor3_1 cells:       32
+ABC RESULTS:   sky130_fd_sc_hd__nor3b_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nor4_1 cells:       43
+ABC RESULTS:   sky130_fd_sc_hd__o2111a_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o2111ai_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o211a_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o211ai_1 cells:       14
+ABC RESULTS:   sky130_fd_sc_hd__o21a_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o21ai_0 cells:      186
+ABC RESULTS:   sky130_fd_sc_hd__o21bai_1 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__o221a_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o22a_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o22ai_1 cells:       17
+ABC RESULTS:   sky130_fd_sc_hd__o2bb2ai_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o311ai_0 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o31ai_1 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__or2b_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__xnor2_1 cells:       35
+ABC RESULTS:   sky130_fd_sc_hd__xor2_1 cells:      134
+ABC RESULTS:        internal signals:     1152
+ABC RESULTS:           input signals:      204
+ABC RESULTS:          output signals:      190
+Removing temp directory.
+Removing global temp directory.
+
+5. Printing statistics.
+
+=== mlu_pmu_clock_gate ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     2161        - wires
+     3448        - wire bits
+       23        - public wires
+      296        - public wire bits
+       14        - ports
+      134        - port bits
+     1478 1.14E+04 cells
+        3   30.029   sky130_fd_sc_hd__a211o_2
+        6   45.043   sky130_fd_sc_hd__a211oi_1
+        1    7.507   sky130_fd_sc_hd__a21boi_0
+        1    8.758   sky130_fd_sc_hd__a21o_2
+       48   240.23   sky130_fd_sc_hd__a21oi_1
+        3   26.275   sky130_fd_sc_hd__a221oi_1
+        1    7.507   sky130_fd_sc_hd__a22oi_1
+        1    8.758   sky130_fd_sc_hd__a2bb2oi_1
+        1    8.758   sky130_fd_sc_hd__a31o_2
+       11   68.816   sky130_fd_sc_hd__a31oi_1
+        3   26.275   sky130_fd_sc_hd__a41oi_1
+       14  105.101   sky130_fd_sc_hd__and2_2
+      188  705.677   sky130_fd_sc_hd__clkinv_1
+      181 4.53E+03   sky130_fd_sc_hd__dfrtp_1
+        1   26.275   sky130_fd_sc_hd__dfstp_2
+        5   50.048   sky130_fd_sc_hd__maj3_1
+      169  634.358   sky130_fd_sc_hd__nand2_1
+      111  555.533   sky130_fd_sc_hd__nand3_1
+       12   90.086   sky130_fd_sc_hd__nand3b_1
+       35   218.96   sky130_fd_sc_hd__nand4_1
+      195  731.952   sky130_fd_sc_hd__nor2_1
+       32  160.154   sky130_fd_sc_hd__nor3_1
+        1    7.507   sky130_fd_sc_hd__nor3b_1
+       43  269.008   sky130_fd_sc_hd__nor4_1
+        2   22.522   sky130_fd_sc_hd__o2111a_1
+        1    8.758   sky130_fd_sc_hd__o2111ai_1
+        2   20.019   sky130_fd_sc_hd__o211a_1
+       14  105.101   sky130_fd_sc_hd__o211ai_1
+        2   15.014   sky130_fd_sc_hd__o21a_1
+      186  930.893   sky130_fd_sc_hd__o21ai_0
+        6   45.043   sky130_fd_sc_hd__o21bai_1
+        1   11.261   sky130_fd_sc_hd__o221a_2
+        1    10.01   sky130_fd_sc_hd__o22a_2
+       17  106.352   sky130_fd_sc_hd__o22ai_1
+        2   17.517   sky130_fd_sc_hd__o2bb2ai_1
+        3   26.275   sky130_fd_sc_hd__o311ai_0
+        5   37.536   sky130_fd_sc_hd__o31ai_1
+        1    8.758   sky130_fd_sc_hd__or2b_2
+       35  306.544   sky130_fd_sc_hd__xnor2_1
+      134 1.17E+03   sky130_fd_sc_hd__xor2_1
+
+   Chip area for module '\mlu_pmu_clock_gate': 11407.190400
+     of which used for sequential elements: 4555.619200 (39.94%)
+
+6. Executing Verilog backend.
+
+6.1. Executing BMUXMAP pass.
+
+6.2. Executing DEMUXMAP pass.
+Dumping module `\mlu_pmu_clock_gate'.
+
+End of script. Logfile hash: 0ff4e87bca, CPU: user 0.50s system 0.03s, MEM: 50.10 MB peak
+Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+Time spent: 44% 1x abc (0 sec), 8% 34x opt_expr (0 sec), ...

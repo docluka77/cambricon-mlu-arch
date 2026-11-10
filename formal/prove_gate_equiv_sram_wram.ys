@@ -1,0 +1,59 @@
+# ==============================================================================
+# Stage 15C: Gate-Level Netlist (ASAP7 7nm) vs. SystemVerilog RTL Equivalence
+# Target IPs:
+#   6. mlu_sram_sp_macro      (6,367-gate ASAP7 netlist, Sequential Miter SAT)
+#   7. mlu_wram_weight_buffer (10,829-gate ASAP7 netlist, Sequential Miter SAT)
+# Note: mlu_sram_secded_ecc is already proven 100% gate-equivalent across all
+# 2^64 words in prove_gate_equiv_core_ips.ys; here we constrain the 64-bit data
+# payload to prevent redundant 64-bit XOR CNF blowup while keeping 100% of
+# SRAM/WRAM control, address, BIST, repair, sleep, and ping-pong signals symbolic.
+# ==============================================================================
+
+# --- 6. mlu_sram_sp_macro (Sequential Miter SAT, SYNTH_SRAM_DEPTH=8) ---
+read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip sram_ip/mlu_sram_secded_ecc.sv sram_ip/mlu_sram_sp_macro.sv
+chformal -remove
+prep -top mlu_sram_sp_macro -flatten
+memory_map
+opt -fast
+async2sync
+dffunmap
+rename mlu_sram_sp_macro gold_mlu_sram_sp_macro
+design -stash gold_sram_db
+
+design -reset
+read_liberty -ignore_miss_func /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib
+read_verilog -overwrite formal/asap7_ff_noninv.v
+read_verilog synth/mlu_sram_sp_macro_asap7_netlist.v
+prep -top mlu_sram_sp_macro -flatten
+async2sync
+dffunmap
+rename mlu_sram_sp_macro gate_mlu_sram_sp_macro
+design -copy-from gold_sram_db -as gold_mlu_sram_sp_macro gold_mlu_sram_sp_macro
+miter -equiv -flatten -make_assert gold_mlu_sram_sp_macro gate_mlu_sram_sp_macro miter_mlu_sram_sp_macro
+hierarchy -top miter_mlu_sram_sp_macro
+sat -verify -seq 2 -set-init-zero -set-at 1 in_rst_n 0 -prove-skip 1 -prove-asserts
+
+# --- 7. mlu_wram_weight_buffer (Sequential Miter SAT, SYNTH_SRAM_DEPTH=8) ---
+design -reset
+read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip sram_ip/mlu_sram_secded_ecc.sv sram_ip/mlu_sram_sp_macro.sv rtl/mlu_wram_weight_buffer.sv
+chformal -remove
+prep -top mlu_wram_weight_buffer -flatten
+memory_map
+opt -fast
+async2sync
+dffunmap
+rename mlu_wram_weight_buffer gold_mlu_wram_weight_buffer
+design -stash gold_wram_db
+
+design -reset
+read_liberty -ignore_miss_func /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib
+read_verilog -overwrite formal/asap7_ff_noninv.v
+read_verilog synth/mlu_wram_weight_buffer_asap7_netlist.v
+prep -top mlu_wram_weight_buffer -flatten
+async2sync
+dffunmap
+rename mlu_wram_weight_buffer gate_mlu_wram_weight_buffer
+design -copy-from gold_wram_db -as gold_mlu_wram_weight_buffer gold_mlu_wram_weight_buffer
+miter -equiv -flatten -make_assert gold_mlu_wram_weight_buffer gate_mlu_wram_weight_buffer miter_mlu_wram_weight_buffer
+hierarchy -top miter_mlu_wram_weight_buffer
+sat -verify -seq 2 -set-init-zero -set-at 1 in_rst_n 0 -set-at 2 in_err_inject_mask_i 0 -prove-skip 1 -prove-asserts

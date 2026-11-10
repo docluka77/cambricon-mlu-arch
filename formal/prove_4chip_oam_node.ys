@@ -1,0 +1,14 @@
+# =============================================================================
+# File: formal/prove_4chip_oam_node.ys
+# Description: Yosys 0.60 Sequential SAT Proof Script for 4-Chip MLU-Link OAM Node
+# =============================================================================
+read_verilog -sv -formal -Irtl rtl/mlu_pkg.sv rtl/mlu_link_noc_router.sv rtl/mlu_c2c_serdes_pcs.sv rtl/mlu_4chip_oam_node.sv formal/mlu_4chip_oam_node_formal.sv
+prep -top mlu_4chip_oam_node_formal
+memory -nomap
+flatten
+async2sync
+chformal -lower
+opt -full
+memory_map
+opt -full
+sat -verify -seq 8 -set-init-zero -prove-asserts -set-assumes -show-ports

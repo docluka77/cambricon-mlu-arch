@@ -1,0 +1,10 @@
+# =============================================================================
+# File: formal/prove_sram_ecc.ys
+# Description: Yosys 0.60 Unbounded SAT Proof Script for (72,64) Hsiao SECDED ECC
+# =============================================================================
+read_verilog -sv -formal -Irtl -Isram_ip rtl/mlu_pkg.sv sram_ip/mlu_sram_secded_ecc.sv formal/mlu_sram_secded_ecc_formal.sv
+prep -top mlu_sram_secded_ecc_formal
+flatten
+chformal -lower
+opt -full
+sat -verify -prove-asserts -set-assumes -show-ports

@@ -1,0 +1,885 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+
+-- Executing script file `formal/prove_sram_ecc.ys' --
+
+1. Executing Verilog-2005 frontend: rtl/mlu_pkg.sv
+Parsing formal SystemVerilog input from `rtl/mlu_pkg.sv' to AST representation.
+verilog frontend filename rtl/mlu_pkg.sv
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: sram_ip/mlu_sram_secded_ecc.sv
+Parsing formal SystemVerilog input from `sram_ip/mlu_sram_secded_ecc.sv' to AST representation.
+verilog frontend filename sram_ip/mlu_sram_secded_ecc.sv
+Generating RTLIL representation for module `\mlu_sram_secded_ecc'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: formal/mlu_sram_secded_ecc_formal.sv
+Parsing formal SystemVerilog input from `formal/mlu_sram_secded_ecc_formal.sv' to AST representation.
+verilog frontend filename formal/mlu_sram_secded_ecc_formal.sv
+Generating RTLIL representation for module `\mlu_sram_secded_ecc_formal'.
+Successfully finished Verilog frontend.
+
+4. Executing PREP pass.
+
+4.1. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1.1. Analyzing design hierarchy..
+Top module:  \mlu_sram_secded_ecc_formal
+Used module:     \mlu_sram_secded_ecc
+Parameter \DATA_W = 64
+Parameter \ECC_W = 72
+
+4.1.2. Executing AST frontend in derive mode using pre-parsed AST for module `\mlu_sram_secded_ecc'.
+Parameter \DATA_W = 64
+Parameter \ECC_W = 72
+Generating RTLIL representation for module `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc'.
+
+4.1.3. Analyzing design hierarchy..
+Top module:  \mlu_sram_secded_ecc_formal
+Used module:     $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc
+
+4.1.4. Analyzing design hierarchy..
+Top module:  \mlu_sram_secded_ecc_formal
+Used module:     $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc
+Removing unused module `\mlu_sram_secded_ecc'.
+Removed 1 unused modules.
+Module mlu_sram_secded_ecc_formal directly or indirectly contains formal properties -> setting "keep" attribute.
+
+4.2. Executing PROC pass (convert processes to netlists).
+
+4.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$formal/mlu_sram_secded_ecc_formal.sv:34$553 in module mlu_sram_secded_ecc_formal.
+Marked 65 switch rules as full_case in process $proc$sram_ip/mlu_sram_secded_ecc.sv:94$603 in module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.
+Removed a total of 0 dead cases.
+
+4.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 3 redundant assignments.
+Promoted 18 assignments to connections.
+
+4.2.4. Executing PROC_INIT pass (extract init attributes).
+
+4.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+4.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~70 debug messages>
+
+4.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\mlu_sram_secded_ecc_formal.$proc$formal/mlu_sram_secded_ecc_formal.sv:58$555'.
+     1/12: $assert$formal/mlu_sram_secded_ecc_formal.sv:86$586_EN
+     2/12: $assert$formal/mlu_sram_secded_ecc_formal.sv:85$584_EN
+     3/12: $assert$formal/mlu_sram_secded_ecc_formal.sv:84$583_EN
+     4/12: $assert$formal/mlu_sram_secded_ecc_formal.sv:79$580_EN
+     5/12: $assert$formal/mlu_sram_secded_ecc_formal.sv:78$578_EN
+     6/12: $assert$formal/mlu_sram_secded_ecc_formal.sv:77$577_EN
+     7/12: $assert$formal/mlu_sram_secded_ecc_formal.sv:76$575_EN
+     8/12: $assert$formal/mlu_sram_secded_ecc_formal.sv:71$572_EN
+     9/12: $assert$formal/mlu_sram_secded_ecc_formal.sv:70$570_EN
+    10/12: $assert$formal/mlu_sram_secded_ecc_formal.sv:69$568_EN
+    11/12: $assert$formal/mlu_sram_secded_ecc_formal.sv:68$566_EN
+    12/12: $assume$formal/mlu_sram_secded_ecc_formal.sv:63$563_EN
+Creating decoders for process `\mlu_sram_secded_ecc_formal.$proc$formal/mlu_sram_secded_ecc_formal.sv:34$553'.
+     1/1: $1\err_mask[71:0]
+Creating decoders for process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$1001'.
+Creating decoders for process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$868'.
+Creating decoders for process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$735'.
+Creating decoders for process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:94$603'.
+     1/129: $1\data_o[63:0] [63]
+     2/129: $64\data_o[62:62]
+     3/129: $63\data_o[61:61]
+     4/129: $62\data_o[60:60]
+     5/129: $61\data_o[59:59]
+     6/129: $60\data_o[58:58]
+     7/129: $59\data_o[57:57]
+     8/129: $58\data_o[56:56]
+     9/129: $57\data_o[55:55]
+    10/129: $56\data_o[54:54]
+    11/129: $55\data_o[53:53]
+    12/129: $54\data_o[52:52]
+    13/129: $53\data_o[51:51]
+    14/129: $52\data_o[50:50]
+    15/129: $51\data_o[49:49]
+    16/129: $50\data_o[48:48]
+    17/129: $49\data_o[47:47]
+    18/129: $48\data_o[46:46]
+    19/129: $47\data_o[45:45]
+    20/129: $46\data_o[44:44]
+    21/129: $45\data_o[43:43]
+    22/129: $44\data_o[42:42]
+    23/129: $43\data_o[41:41]
+    24/129: $42\data_o[40:40]
+    25/129: $41\data_o[39:39]
+    26/129: $40\data_o[38:38]
+    27/129: $39\data_o[37:37]
+    28/129: $38\data_o[36:36]
+    29/129: $37\data_o[35:35]
+    30/129: $36\data_o[34:34]
+    31/129: $35\data_o[33:33]
+    32/129: $34\data_o[32:32]
+    33/129: $33\data_o[31:31]
+    34/129: $32\data_o[30:30]
+    35/129: $31\data_o[29:29]
+    36/129: $30\data_o[28:28]
+    37/129: $29\data_o[27:27]
+    38/129: $28\data_o[26:26]
+    39/129: $27\data_o[25:25]
+    40/129: $26\data_o[24:24]
+    41/129: $25\data_o[23:23]
+    42/129: $24\data_o[22:22]
+    43/129: $23\data_o[21:21]
+    44/129: $22\data_o[20:20]
+    45/129: $21\data_o[19:19]
+    46/129: $20\data_o[18:18]
+    47/129: $19\data_o[17:17]
+    48/129: $18\data_o[16:16]
+    49/129: $17\data_o[15:15]
+    50/129: $16\data_o[14:14]
+    51/129: $15\data_o[13:13]
+    52/129: $14\data_o[12:12]
+    53/129: $13\data_o[11:11]
+    54/129: $12\data_o[10:10]
+    55/129: $11\data_o[9:9]
+    56/129: $10\data_o[8:8]
+    57/129: $9\data_o[7:7]
+    58/129: $8\data_o[6:6]
+    59/129: $7\data_o[5:5]
+    60/129: $6\data_o[4:4]
+    61/129: $5\data_o[3:3]
+    62/129: $4\data_o[2:2]
+    63/129: $3\data_o[1:1]
+    64/129: $2\data_o[0:0]
+    65/129: $1$fordecl_block$3.b[31:0]$605
+    66/129: $1\data_o[63:0] [62]
+    67/129: $1\data_o[63:0] [61]
+    68/129: $1\data_o[63:0] [60]
+    69/129: $1\data_o[63:0] [59]
+    70/129: $1\data_o[63:0] [58]
+    71/129: $1\data_o[63:0] [57]
+    72/129: $1\data_o[63:0] [56]
+    73/129: $1\data_o[63:0] [55]
+    74/129: $1\data_o[63:0] [54]
+    75/129: $1\data_o[63:0] [53]
+    76/129: $1\data_o[63:0] [52]
+    77/129: $1\data_o[63:0] [51]
+    78/129: $1\data_o[63:0] [50]
+    79/129: $1\data_o[63:0] [49]
+    80/129: $1\data_o[63:0] [48]
+    81/129: $1\data_o[63:0] [47]
+    82/129: $1\data_o[63:0] [46]
+    83/129: $1\data_o[63:0] [45]
+    84/129: $1\data_o[63:0] [44]
+    85/129: $1\data_o[63:0] [43]
+    86/129: $1\data_o[63:0] [42]
+    87/129: $1\data_o[63:0] [41]
+    88/129: $1\data_o[63:0] [40]
+    89/129: $1\data_o[63:0] [39]
+    90/129: $1\data_o[63:0] [38]
+    91/129: $1\data_o[63:0] [37]
+    92/129: $1\data_o[63:0] [36]
+    93/129: $1\data_o[63:0] [35]
+    94/129: $1\data_o[63:0] [34]
+    95/129: $1\data_o[63:0] [33]
+    96/129: $1\data_o[63:0] [32]
+    97/129: $1\data_o[63:0] [31]
+    98/129: $1\data_o[63:0] [30]
+    99/129: $1\data_o[63:0] [29]
+   100/129: $1\data_o[63:0] [28]
+   101/129: $1\data_o[63:0] [27]
+   102/129: $1\data_o[63:0] [26]
+   103/129: $1\data_o[63:0] [25]
+   104/129: $1\data_o[63:0] [24]
+   105/129: $1\data_o[63:0] [23]
+   106/129: $1\data_o[63:0] [22]
+   107/129: $1\data_o[63:0] [21]
+   108/129: $1\data_o[63:0] [20]
+   109/129: $1\data_o[63:0] [19]
+   110/129: $1\data_o[63:0] [18]
+   111/129: $1\data_o[63:0] [17]
+   112/129: $1\data_o[63:0] [16]
+   113/129: $1\data_o[63:0] [15]
+   114/129: $1\data_o[63:0] [14]
+   115/129: $1\data_o[63:0] [13]
+   116/129: $1\data_o[63:0] [12]
+   117/129: $1\data_o[63:0] [11]
+   118/129: $1\data_o[63:0] [10]
+   119/129: $1\data_o[63:0] [9]
+   120/129: $1\data_o[63:0] [8]
+   121/129: $1\data_o[63:0] [7]
+   122/129: $1\data_o[63:0] [6]
+   123/129: $1\data_o[63:0] [5]
+   124/129: $1\data_o[63:0] [4]
+   125/129: $1\data_o[63:0] [3]
+   126/129: $1\data_o[63:0] [2]
+   127/129: $1\data_o[63:0] [1]
+   128/129: $1\data_o[63:0] [0]
+   129/129: $65\data_o[63:63]
+
+4.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\mlu_sram_secded_ecc_formal.\err_mask' from process `\mlu_sram_secded_ecc_formal.$proc$formal/mlu_sram_secded_ecc_formal.sv:34$553'.
+No latch inferred for signal `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:79$590.$result' from process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$1001'.
+No latch inferred for signal `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:79$593.$result' from process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$1001'.
+No latch inferred for signal `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:79$593.d' from process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$1001'.
+No latch inferred for signal `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:79$593.$fordecl_block$1.b' from process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$1001'.
+No latch inferred for signal `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:78$589.$result' from process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$868'.
+No latch inferred for signal `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:78$592.$result' from process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$868'.
+No latch inferred for signal `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:78$592.d' from process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$868'.
+No latch inferred for signal `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:78$592.$fordecl_block$1.b' from process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$868'.
+No latch inferred for signal `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:59$588.$result' from process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$735'.
+No latch inferred for signal `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:59$591.$result' from process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$735'.
+No latch inferred for signal `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:59$591.d' from process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$735'.
+No latch inferred for signal `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:59$591.$fordecl_block$1.b' from process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$735'.
+No latch inferred for signal `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.\data_o' from process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:94$603'.
+No latch inferred for signal `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$fordecl_block$3.b' from process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:94$603'.
+
+4.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+4.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 4 empty switches in `\mlu_sram_secded_ecc_formal.$proc$formal/mlu_sram_secded_ecc_formal.sv:58$555'.
+Removing empty process `mlu_sram_secded_ecc_formal.$proc$formal/mlu_sram_secded_ecc_formal.sv:58$555'.
+Found and cleaned up 1 empty switch in `\mlu_sram_secded_ecc_formal.$proc$formal/mlu_sram_secded_ecc_formal.sv:34$553'.
+Removing empty process `mlu_sram_secded_ecc_formal.$proc$formal/mlu_sram_secded_ecc_formal.sv:34$553'.
+Removing empty process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$1001'.
+Removing empty process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$868'.
+Removing empty process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$735'.
+Found and cleaned up 65 empty switches in `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:94$603'.
+Removing empty process `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:94$603'.
+Cleaned up 70 empty switches.
+
+4.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc_formal.
+<suppressed ~4 debug messages>
+Optimizing module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.
+<suppressed ~196 debug messages>
+
+4.3. Executing FUTURE pass.
+
+4.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc_formal.
+Optimizing module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.
+
+4.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc_formal..
+Finding unused cells or wires in module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc..
+Removed 1 unused cells and 584 unused wires.
+<suppressed ~3 debug messages>
+
+4.6. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc...
+Checking module mlu_sram_secded_ecc_formal...
+Found and reported 0 problems.
+
+4.7. Executing OPT pass (performing simple optimizations).
+
+4.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.
+Optimizing module mlu_sram_secded_ecc_formal.
+
+4.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc'.
+Finding identical cells in module `\mlu_sram_secded_ecc_formal'.
+<suppressed ~21 debug messages>
+Removed a total of 7 cells.
+
+4.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$1169.
+    dead port 2/2 on $mux $procmux$1175.
+    dead port 2/2 on $mux $procmux$1181.
+    dead port 2/2 on $mux $procmux$1187.
+    dead port 2/2 on $mux $procmux$1193.
+    dead port 2/2 on $mux $procmux$1199.
+    dead port 2/2 on $mux $procmux$1205.
+    dead port 2/2 on $mux $procmux$1211.
+    dead port 2/2 on $mux $procmux$1217.
+    dead port 2/2 on $mux $procmux$1223.
+    dead port 2/2 on $mux $procmux$1229.
+    dead port 2/2 on $mux $procmux$1235.
+    dead port 2/2 on $mux $procmux$1241.
+    dead port 2/2 on $mux $procmux$1247.
+    dead port 2/2 on $mux $procmux$1253.
+    dead port 2/2 on $mux $procmux$1259.
+    dead port 2/2 on $mux $procmux$1265.
+    dead port 2/2 on $mux $procmux$1271.
+    dead port 2/2 on $mux $procmux$1277.
+    dead port 2/2 on $mux $procmux$1283.
+    dead port 2/2 on $mux $procmux$1289.
+    dead port 2/2 on $mux $procmux$1295.
+    dead port 2/2 on $mux $procmux$1301.
+    dead port 2/2 on $mux $procmux$1307.
+    dead port 2/2 on $mux $procmux$1313.
+    dead port 2/2 on $mux $procmux$1319.
+    dead port 2/2 on $mux $procmux$1325.
+    dead port 2/2 on $mux $procmux$1331.
+    dead port 2/2 on $mux $procmux$1337.
+    dead port 2/2 on $mux $procmux$1343.
+    dead port 2/2 on $mux $procmux$1349.
+    dead port 2/2 on $mux $procmux$1355.
+    dead port 2/2 on $mux $procmux$1361.
+    dead port 2/2 on $mux $procmux$1367.
+    dead port 2/2 on $mux $procmux$1373.
+    dead port 2/2 on $mux $procmux$1379.
+    dead port 2/2 on $mux $procmux$1385.
+    dead port 2/2 on $mux $procmux$1391.
+    dead port 2/2 on $mux $procmux$1397.
+    dead port 2/2 on $mux $procmux$1403.
+    dead port 2/2 on $mux $procmux$1409.
+    dead port 2/2 on $mux $procmux$1415.
+    dead port 2/2 on $mux $procmux$1421.
+    dead port 2/2 on $mux $procmux$1427.
+    dead port 2/2 on $mux $procmux$1433.
+    dead port 2/2 on $mux $procmux$1439.
+    dead port 2/2 on $mux $procmux$1445.
+    dead port 2/2 on $mux $procmux$1451.
+    dead port 2/2 on $mux $procmux$1457.
+    dead port 2/2 on $mux $procmux$1463.
+    dead port 2/2 on $mux $procmux$1469.
+    dead port 2/2 on $mux $procmux$1475.
+    dead port 2/2 on $mux $procmux$1481.
+    dead port 2/2 on $mux $procmux$1487.
+    dead port 2/2 on $mux $procmux$1493.
+    dead port 2/2 on $mux $procmux$1499.
+    dead port 2/2 on $mux $procmux$1505.
+    dead port 2/2 on $mux $procmux$1511.
+    dead port 2/2 on $mux $procmux$1517.
+    dead port 2/2 on $mux $procmux$1523.
+    dead port 2/2 on $mux $procmux$1529.
+    dead port 2/2 on $mux $procmux$1535.
+    dead port 2/2 on $mux $procmux$1541.
+    dead port 2/2 on $mux $procmux$1739.
+Running muxtree optimizer on module \mlu_sram_secded_ecc_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 64 multiplexer ports.
+<suppressed ~282 debug messages>
+
+4.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.
+  Optimizing cells in module \mlu_sram_secded_ecc_formal.
+Performed a total of 0 changes.
+
+4.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc'.
+Finding identical cells in module `\mlu_sram_secded_ecc_formal'.
+<suppressed ~27 debug messages>
+Removed a total of 9 cells.
+
+4.7.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc..
+Finding unused cells or wires in module \mlu_sram_secded_ecc_formal..
+Removed 0 unused cells and 80 unused wires.
+<suppressed ~2 debug messages>
+
+4.7.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.
+Optimizing module mlu_sram_secded_ecc_formal.
+
+4.7.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.7.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \mlu_sram_secded_ecc_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~200 debug messages>
+
+4.7.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.
+  Optimizing cells in module \mlu_sram_secded_ecc_formal.
+Performed a total of 0 changes.
+
+4.7.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc'.
+Finding identical cells in module `\mlu_sram_secded_ecc_formal'.
+Removed a total of 0 cells.
+
+4.7.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc..
+Finding unused cells or wires in module \mlu_sram_secded_ecc_formal..
+
+4.7.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.
+Optimizing module mlu_sram_secded_ecc_formal.
+
+4.7.14. Finished fast OPT passes. (There is nothing left to do.)
+
+4.8. Executing WREDUCE pass (reducing word size of cells).
+Removed top 8 bits (of 72) from port Y of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:75$594 ($xor).
+Removed top 8 bits (of 72) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:75$594 ($xor).
+Removed top 8 bits (of 72) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:75$594 ($xor).
+Removed top 5 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$606 ($eq).
+Removed top 4 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$608 ($eq).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$610 ($eq).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$612 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$614 ($eq).
+Removed top 4 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$618 ($eq).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$620 ($eq).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$622 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$624 ($eq).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$628 ($eq).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$630 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$632 ($eq).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$636 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$638 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$642 ($eq).
+Removed top 4 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$648 ($eq).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$650 ($eq).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$652 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$654 ($eq).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$658 ($eq).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$660 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$662 ($eq).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$666 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$668 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$672 ($eq).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$678 ($eq).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$680 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$682 ($eq).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$686 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$688 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$692 ($eq).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$698 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$700 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$704 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$710 ($eq).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$728 ($eq).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$730 ($eq).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$732 ($eq).
+Removed top 5 bits (of 8) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$743 ($xor).
+Removed top 4 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$743 ($xor).
+Removed top 4 bits (of 8) from port Y of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$743 ($xor).
+Removed top 4 bits (of 8) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$745 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$745 ($xor).
+Removed top 3 bits (of 8) from port Y of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$745 ($xor).
+Removed top 3 bits (of 8) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$747 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$747 ($xor).
+Removed top 2 bits (of 8) from port Y of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$747 ($xor).
+Removed top 2 bits (of 8) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$749 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$749 ($xor).
+Removed top 1 bits (of 8) from port Y of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$749 ($xor).
+Removed top 1 bits (of 8) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$751 ($xor).
+Removed top 4 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$753 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$755 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$757 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$759 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$763 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$765 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$767 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$771 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$773 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$777 ($xor).
+Removed top 4 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$783 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$785 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$787 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$789 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$793 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$795 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$797 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$801 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$803 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$807 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$813 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$815 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$817 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$821 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$823 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$827 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$833 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$835 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$839 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$845 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$863 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$865 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$867 ($xor).
+Removed top 5 bits (of 8) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$876 ($xor).
+Removed top 4 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$876 ($xor).
+Removed top 4 bits (of 8) from port Y of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$876 ($xor).
+Removed top 4 bits (of 8) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$878 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$878 ($xor).
+Removed top 3 bits (of 8) from port Y of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$878 ($xor).
+Removed top 3 bits (of 8) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$880 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$880 ($xor).
+Removed top 2 bits (of 8) from port Y of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$880 ($xor).
+Removed top 2 bits (of 8) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$882 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$882 ($xor).
+Removed top 1 bits (of 8) from port Y of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$882 ($xor).
+Removed top 1 bits (of 8) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$884 ($xor).
+Removed top 4 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$886 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$888 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$890 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$892 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$896 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$898 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$900 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$904 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$906 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$910 ($xor).
+Removed top 4 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$916 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$918 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$920 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$922 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$926 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$928 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$930 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$934 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$936 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$940 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$946 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$948 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$950 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$954 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$956 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$960 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$966 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$968 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$972 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$978 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$996 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$998 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1000 ($xor).
+Removed top 5 bits (of 8) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1009 ($xor).
+Removed top 4 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1009 ($xor).
+Removed top 4 bits (of 8) from port Y of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1009 ($xor).
+Removed top 4 bits (of 8) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1011 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1011 ($xor).
+Removed top 3 bits (of 8) from port Y of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1011 ($xor).
+Removed top 3 bits (of 8) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1013 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1013 ($xor).
+Removed top 2 bits (of 8) from port Y of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1013 ($xor).
+Removed top 2 bits (of 8) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1015 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1015 ($xor).
+Removed top 1 bits (of 8) from port Y of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1015 ($xor).
+Removed top 1 bits (of 8) from port A of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1017 ($xor).
+Removed top 4 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1019 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1021 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1023 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1025 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1029 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1031 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1033 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1037 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1039 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1043 ($xor).
+Removed top 4 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1049 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1051 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1053 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1055 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1059 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1061 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1063 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1067 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1069 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1073 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1079 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1081 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1083 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1087 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1089 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1093 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1099 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1101 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1105 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1111 ($xor).
+Removed top 3 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1129 ($xor).
+Removed top 2 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1131 ($xor).
+Removed top 1 bits (of 8) from port B of cell $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1133 ($xor).
+Removed top 4 bits (of 8) from wire $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1009_Y.
+Removed top 3 bits (of 8) from wire $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1011_Y.
+Removed top 2 bits (of 8) from wire $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1013_Y.
+Removed top 1 bits (of 8) from wire $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$1015_Y.
+Removed top 4 bits (of 8) from wire $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$743_Y.
+Removed top 3 bits (of 8) from wire $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$745_Y.
+Removed top 2 bits (of 8) from wire $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$747_Y.
+Removed top 1 bits (of 8) from wire $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$749_Y.
+Removed top 4 bits (of 8) from wire $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$876_Y.
+Removed top 3 bits (of 8) from wire $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$878_Y.
+Removed top 2 bits (of 8) from wire $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$880_Y.
+Removed top 1 bits (of 8) from wire $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$882_Y.
+Removed top 3 bits (of 8) from wire $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$998_Y.
+Removed top 71 bits (of 72) from port A of cell mlu_sram_secded_ecc_formal.$shl$formal/mlu_sram_secded_ecc_formal.sv:31$551 ($shl).
+Removed top 71 bits (of 72) from port A of cell mlu_sram_secded_ecc_formal.$shl$formal/mlu_sram_secded_ecc_formal.sv:32$552 ($shl).
+Removed top 1 bits (of 2) from port B of cell mlu_sram_secded_ecc_formal.$eq$formal/mlu_sram_secded_ecc_formal.sv:75$574 ($eq).
+
+4.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc..
+Finding unused cells or wires in module \mlu_sram_secded_ecc_formal..
+Removed 0 unused cells and 14 unused wires.
+<suppressed ~2 debug messages>
+
+4.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+4.11. Executing OPT pass (performing simple optimizations).
+
+4.11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.
+Optimizing module mlu_sram_secded_ecc_formal.
+
+4.11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc'.
+Finding identical cells in module `\mlu_sram_secded_ecc_formal'.
+Removed a total of 0 cells.
+
+4.11.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc..
+Finding unused cells or wires in module \mlu_sram_secded_ecc_formal..
+
+4.11.4. Finished fast OPT passes.
+
+4.12. Printing statistics.
+
+=== $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      402 wires
+     2422 wire bits
+       23 public wires
+      741 public wire bits
+        8 ports
+      354 port bits
+      454 cells
+        2   $and
+       64   $eq
+      128   $mux
+       65   $not
+        1   $reduce_or
+        1   $reduce_xor
+      193   $xor
+
+=== mlu_sram_secded_ecc_formal ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       28 wires
+      529 wire bits
+       12 public wires
+      442 public wire bits
+        9 ports
+      226 port bits
+       34 cells
+       15   $check
+        3   $eq
+        1   $le
+        4   $logic_not
+        2   $lt
+        3   $mux
+        1   $ne
+        1   $or
+        1   $pmux
+        1   $reduce_bool
+        2   $shl
+        1 submodules
+        1   $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+      488 mlu_sram_secded_ecc_formal
+      454 $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc
+
+        +----------Count including submodules.
+        | 
+      430 wires
+     2951 wire bits
+       35 public wires
+     1183 public wire bits
+       17 ports
+      580 port bits
+        - memories
+        - memory bits
+        - processes
+      488 cells
+        2   $and
+       15   $check
+       67   $eq
+        1   $le
+        4   $logic_not
+        2   $lt
+      131   $mux
+        1   $ne
+       65   $not
+        1   $or
+        1   $pmux
+        1   $reduce_bool
+        1   $reduce_or
+        1   $reduce_xor
+        2   $shl
+      193   $xor
+        1 submodules
+        1   $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc
+
+4.13. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc...
+Checking module mlu_sram_secded_ecc_formal...
+Found and reported 0 problems.
+
+5. Executing FLATTEN pass (flatten design).
+Deleting now unused module $paramod$247c9d00ccd76355f1adb2b56166c8f20ce08504\mlu_sram_secded_ecc.
+<suppressed ~1 debug messages>
+
+6. Executing OPT pass (performing simple optimizations).
+
+6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc_formal.
+<suppressed ~1011 debug messages>
+
+6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_secded_ecc_formal'.
+<suppressed ~195 debug messages>
+Removed a total of 65 cells.
+
+6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_sram_secded_ecc_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~194 debug messages>
+
+6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_sram_secded_ecc_formal.
+Performed a total of 0 changes.
+
+6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_secded_ecc_formal'.
+Removed a total of 0 cells.
+
+6.6. Executing OPT_SHARE pass.
+
+6.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc_formal..
+Removed 21 unused cells and 486 unused wires.
+<suppressed ~22 debug messages>
+
+6.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc_formal.
+<suppressed ~6 debug messages>
+
+6.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_sram_secded_ecc_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~194 debug messages>
+
+6.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_sram_secded_ecc_formal.
+Performed a total of 0 changes.
+
+6.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_secded_ecc_formal'.
+Removed a total of 0 cells.
+
+6.14. Executing OPT_SHARE pass.
+
+6.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc_formal..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+6.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc_formal.
+
+6.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_sram_secded_ecc_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~194 debug messages>
+
+6.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_sram_secded_ecc_formal.
+Performed a total of 0 changes.
+
+6.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_secded_ecc_formal'.
+Removed a total of 0 cells.
+
+6.22. Executing OPT_SHARE pass.
+
+6.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc_formal..
+
+6.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc_formal.
+
+6.26. Finished fast OPT passes. (There is nothing left to do.)
+
+7. Executing SAT pass (solving SAT problems in the circuit).
+
+Setting up SAT problem:
+Final constraint equation: { } = { }
+Imported 421 cells to SAT database.
+Import constraint from assume cell: $le$formal/mlu_sram_secded_ecc_formal.sv:59$557_Y when 1'1.
+Import constraint from assume cell: $lt$formal/mlu_sram_secded_ecc_formal.sv:60$559_Y when 1'1.
+Import constraint from assume cell: $lt$formal/mlu_sram_secded_ecc_formal.sv:61$561_Y when 1'1.
+Import constraint from assume cell: $ne$formal/mlu_sram_secded_ecc_formal.sv:63$564_Y when $assert$formal/mlu_sram_secded_ecc_formal.sv:84$583_EN.
+Import proof for assert: $eq$formal/mlu_sram_secded_ecc_formal.sv:68$567_Y when $assert$formal/mlu_sram_secded_ecc_formal.sv:68$566_EN.
+Import proof for assert: $logic_not$formal/mlu_sram_secded_ecc_formal.sv:69$569_Y when $assert$formal/mlu_sram_secded_ecc_formal.sv:68$566_EN.
+Import proof for assert: $logic_not$formal/mlu_sram_secded_ecc_formal.sv:70$571_Y when $assert$formal/mlu_sram_secded_ecc_formal.sv:68$566_EN.
+Import proof for assert: $eq$formal/mlu_sram_secded_ecc_formal.sv:71$573_Y when $assert$formal/mlu_sram_secded_ecc_formal.sv:68$566_EN.
+Import proof for assert: $eq$formal/mlu_sram_secded_ecc_formal.sv:68$567_Y when $assert$formal/mlu_sram_secded_ecc_formal.sv:76$575_EN.
+Import proof for assert: \sec_err_o when $assert$formal/mlu_sram_secded_ecc_formal.sv:76$575_EN.
+Import proof for assert: $logic_not$formal/mlu_sram_secded_ecc_formal.sv:70$571_Y when $assert$formal/mlu_sram_secded_ecc_formal.sv:76$575_EN.
+Import proof for assert: $ne$formal/mlu_sram_secded_ecc_formal.sv:79$581_Y when $assert$formal/mlu_sram_secded_ecc_formal.sv:76$575_EN.
+Import proof for assert: \ded_err_o when $assert$formal/mlu_sram_secded_ecc_formal.sv:84$583_EN.
+Import proof for assert: $logic_not$formal/mlu_sram_secded_ecc_formal.sv:69$569_Y when $assert$formal/mlu_sram_secded_ecc_formal.sv:84$583_EN.
+Import proof for assert: $ne$formal/mlu_sram_secded_ecc_formal.sv:79$581_Y when $assert$formal/mlu_sram_secded_ecc_formal.sv:84$583_EN.
+Import show expression: \data_i
+Import show expression: \err_bit0_i
+Import show expression: \err_bit1_i
+Import show expression: \err_mode_i
+Import show expression: \codeword_o
+Import show expression: \data_o
+Import show expression: \ded_err_o
+Import show expression: \sec_err_o
+Import show expression: \syndrome_o
+
+Solving problem with 7608 variables and 21006 clauses..
+SAT proof finished - no model found: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+
+End of script. Logfile hash: e8bbe00166, CPU: user 1.14s system 0.01s, MEM: 29.14 MB peak
+Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+Time spent: 69% 1x sat (0 sec), 6% 10x opt_expr (0 sec), ...

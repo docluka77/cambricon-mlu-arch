@@ -1,0 +1,1000 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+
+-- Running command `
+        read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip sram_ip/mlu_sram_secded_ecc.sv;
+        chformal -remove;
+        synth -top mlu_sram_secded_ecc  -noabc;
+        dfflibmap -liberty /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib;
+        abc -fast -liberty /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib;
+        stat -liberty /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib;
+        write_verilog -noattr synth/mlu_sram_secded_ecc_asap7_netlist.v
+    ' --
+
+1. Executing Verilog-2005 frontend: sram_ip/mlu_sram_secded_ecc.sv
+Parsing SystemVerilog input from `sram_ip/mlu_sram_secded_ecc.sv' to AST representation.
+verilog frontend filename sram_ip/mlu_sram_secded_ecc.sv
+Generating RTLIL representation for module `\mlu_sram_secded_ecc'.
+Successfully finished Verilog frontend.
+
+2. Executing SYNTH pass.
+
+2.1. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1.1. Analyzing design hierarchy..
+Top module:  \mlu_sram_secded_ecc
+
+2.1.2. Analyzing design hierarchy..
+Top module:  \mlu_sram_secded_ecc
+Removed 0 unused modules.
+
+2.2. Executing PROC pass (convert processes to netlists).
+
+2.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+2.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 65 switch rules as full_case in process $proc$sram_ip/mlu_sram_secded_ecc.sv:94$20 in module mlu_sram_secded_ecc.
+Removed a total of 0 dead cases.
+
+2.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 14 assignments to connections.
+
+2.2.4. Executing PROC_INIT pass (extract init attributes).
+
+2.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+2.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~65 debug messages>
+
+2.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$418'.
+Creating decoders for process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$285'.
+Creating decoders for process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$152'.
+Creating decoders for process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:94$20'.
+     1/129: $1\data_o[63:0] [63]
+     2/129: $64\data_o[62:62]
+     3/129: $63\data_o[61:61]
+     4/129: $62\data_o[60:60]
+     5/129: $61\data_o[59:59]
+     6/129: $60\data_o[58:58]
+     7/129: $59\data_o[57:57]
+     8/129: $58\data_o[56:56]
+     9/129: $57\data_o[55:55]
+    10/129: $56\data_o[54:54]
+    11/129: $55\data_o[53:53]
+    12/129: $54\data_o[52:52]
+    13/129: $53\data_o[51:51]
+    14/129: $52\data_o[50:50]
+    15/129: $51\data_o[49:49]
+    16/129: $50\data_o[48:48]
+    17/129: $49\data_o[47:47]
+    18/129: $48\data_o[46:46]
+    19/129: $47\data_o[45:45]
+    20/129: $46\data_o[44:44]
+    21/129: $45\data_o[43:43]
+    22/129: $44\data_o[42:42]
+    23/129: $43\data_o[41:41]
+    24/129: $42\data_o[40:40]
+    25/129: $41\data_o[39:39]
+    26/129: $40\data_o[38:38]
+    27/129: $39\data_o[37:37]
+    28/129: $38\data_o[36:36]
+    29/129: $37\data_o[35:35]
+    30/129: $36\data_o[34:34]
+    31/129: $35\data_o[33:33]
+    32/129: $34\data_o[32:32]
+    33/129: $33\data_o[31:31]
+    34/129: $32\data_o[30:30]
+    35/129: $31\data_o[29:29]
+    36/129: $30\data_o[28:28]
+    37/129: $29\data_o[27:27]
+    38/129: $28\data_o[26:26]
+    39/129: $27\data_o[25:25]
+    40/129: $26\data_o[24:24]
+    41/129: $25\data_o[23:23]
+    42/129: $24\data_o[22:22]
+    43/129: $23\data_o[21:21]
+    44/129: $22\data_o[20:20]
+    45/129: $21\data_o[19:19]
+    46/129: $20\data_o[18:18]
+    47/129: $19\data_o[17:17]
+    48/129: $18\data_o[16:16]
+    49/129: $17\data_o[15:15]
+    50/129: $16\data_o[14:14]
+    51/129: $15\data_o[13:13]
+    52/129: $14\data_o[12:12]
+    53/129: $13\data_o[11:11]
+    54/129: $12\data_o[10:10]
+    55/129: $11\data_o[9:9]
+    56/129: $10\data_o[8:8]
+    57/129: $9\data_o[7:7]
+    58/129: $8\data_o[6:6]
+    59/129: $7\data_o[5:5]
+    60/129: $6\data_o[4:4]
+    61/129: $5\data_o[3:3]
+    62/129: $4\data_o[2:2]
+    63/129: $3\data_o[1:1]
+    64/129: $2\data_o[0:0]
+    65/129: $1$fordecl_block$3.b[31:0]$22
+    66/129: $1\data_o[63:0] [62]
+    67/129: $1\data_o[63:0] [61]
+    68/129: $1\data_o[63:0] [60]
+    69/129: $1\data_o[63:0] [59]
+    70/129: $1\data_o[63:0] [58]
+    71/129: $1\data_o[63:0] [57]
+    72/129: $1\data_o[63:0] [56]
+    73/129: $1\data_o[63:0] [55]
+    74/129: $1\data_o[63:0] [54]
+    75/129: $1\data_o[63:0] [53]
+    76/129: $1\data_o[63:0] [52]
+    77/129: $1\data_o[63:0] [51]
+    78/129: $1\data_o[63:0] [50]
+    79/129: $1\data_o[63:0] [49]
+    80/129: $1\data_o[63:0] [48]
+    81/129: $1\data_o[63:0] [47]
+    82/129: $1\data_o[63:0] [46]
+    83/129: $1\data_o[63:0] [45]
+    84/129: $1\data_o[63:0] [44]
+    85/129: $1\data_o[63:0] [43]
+    86/129: $1\data_o[63:0] [42]
+    87/129: $1\data_o[63:0] [41]
+    88/129: $1\data_o[63:0] [40]
+    89/129: $1\data_o[63:0] [39]
+    90/129: $1\data_o[63:0] [38]
+    91/129: $1\data_o[63:0] [37]
+    92/129: $1\data_o[63:0] [36]
+    93/129: $1\data_o[63:0] [35]
+    94/129: $1\data_o[63:0] [34]
+    95/129: $1\data_o[63:0] [33]
+    96/129: $1\data_o[63:0] [32]
+    97/129: $1\data_o[63:0] [31]
+    98/129: $1\data_o[63:0] [30]
+    99/129: $1\data_o[63:0] [29]
+   100/129: $1\data_o[63:0] [28]
+   101/129: $1\data_o[63:0] [27]
+   102/129: $1\data_o[63:0] [26]
+   103/129: $1\data_o[63:0] [25]
+   104/129: $1\data_o[63:0] [24]
+   105/129: $1\data_o[63:0] [23]
+   106/129: $1\data_o[63:0] [22]
+   107/129: $1\data_o[63:0] [21]
+   108/129: $1\data_o[63:0] [20]
+   109/129: $1\data_o[63:0] [19]
+   110/129: $1\data_o[63:0] [18]
+   111/129: $1\data_o[63:0] [17]
+   112/129: $1\data_o[63:0] [16]
+   113/129: $1\data_o[63:0] [15]
+   114/129: $1\data_o[63:0] [14]
+   115/129: $1\data_o[63:0] [13]
+   116/129: $1\data_o[63:0] [12]
+   117/129: $1\data_o[63:0] [11]
+   118/129: $1\data_o[63:0] [10]
+   119/129: $1\data_o[63:0] [9]
+   120/129: $1\data_o[63:0] [8]
+   121/129: $1\data_o[63:0] [7]
+   122/129: $1\data_o[63:0] [6]
+   123/129: $1\data_o[63:0] [5]
+   124/129: $1\data_o[63:0] [4]
+   125/129: $1\data_o[63:0] [3]
+   126/129: $1\data_o[63:0] [2]
+   127/129: $1\data_o[63:0] [1]
+   128/129: $1\data_o[63:0] [0]
+   129/129: $65\data_o[63:63]
+
+2.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:79$7.$result' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$418'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:79$10.$result' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$418'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:79$10.d' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$418'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:79$10.$fordecl_block$1.b' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$418'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:78$6.$result' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$285'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:78$9.$result' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$285'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:78$9.d' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$285'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:78$9.$fordecl_block$1.b' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$285'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:59$5.$result' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$152'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:59$8.$result' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$152'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:59$8.d' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$152'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\calc_hsiao_parity$func$sram_ip/mlu_sram_secded_ecc.sv:59$8.$fordecl_block$1.b' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$152'.
+No latch inferred for signal `\mlu_sram_secded_ecc.\data_o' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:94$20'.
+No latch inferred for signal `\mlu_sram_secded_ecc.$fordecl_block$3.b' from process `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:94$20'.
+
+2.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+2.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+2.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:79$418'.
+Removing empty process `mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:78$285'.
+Removing empty process `mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:59$152'.
+Found and cleaned up 65 empty switches in `\mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:94$20'.
+Removing empty process `mlu_sram_secded_ecc.$proc$sram_ip/mlu_sram_secded_ecc.sv:94$20'.
+Cleaned up 65 empty switches.
+
+2.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc.
+<suppressed ~196 debug messages>
+
+2.3. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc.
+
+2.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+Removed 1 unused cells and 552 unused wires.
+<suppressed ~2 debug messages>
+
+2.5. Executing CHECK pass (checking for obvious problems).
+Checking module mlu_sram_secded_ecc...
+Found and reported 0 problems.
+
+2.6. Executing OPT pass (performing simple optimizations).
+
+2.6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc.
+
+2.6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+Removed a total of 0 cells.
+
+2.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_sram_secded_ecc..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$1128.
+    dead port 2/2 on $mux $procmux$558.
+    dead port 2/2 on $mux $procmux$564.
+    dead port 2/2 on $mux $procmux$570.
+    dead port 2/2 on $mux $procmux$576.
+    dead port 2/2 on $mux $procmux$582.
+    dead port 2/2 on $mux $procmux$588.
+    dead port 2/2 on $mux $procmux$594.
+    dead port 2/2 on $mux $procmux$600.
+    dead port 2/2 on $mux $procmux$606.
+    dead port 2/2 on $mux $procmux$612.
+    dead port 2/2 on $mux $procmux$618.
+    dead port 2/2 on $mux $procmux$624.
+    dead port 2/2 on $mux $procmux$630.
+    dead port 2/2 on $mux $procmux$636.
+    dead port 2/2 on $mux $procmux$642.
+    dead port 2/2 on $mux $procmux$648.
+    dead port 2/2 on $mux $procmux$654.
+    dead port 2/2 on $mux $procmux$660.
+    dead port 2/2 on $mux $procmux$666.
+    dead port 2/2 on $mux $procmux$672.
+    dead port 2/2 on $mux $procmux$678.
+    dead port 2/2 on $mux $procmux$684.
+    dead port 2/2 on $mux $procmux$690.
+    dead port 2/2 on $mux $procmux$696.
+    dead port 2/2 on $mux $procmux$702.
+    dead port 2/2 on $mux $procmux$708.
+    dead port 2/2 on $mux $procmux$714.
+    dead port 2/2 on $mux $procmux$720.
+    dead port 2/2 on $mux $procmux$726.
+    dead port 2/2 on $mux $procmux$732.
+    dead port 2/2 on $mux $procmux$738.
+    dead port 2/2 on $mux $procmux$744.
+    dead port 2/2 on $mux $procmux$750.
+    dead port 2/2 on $mux $procmux$756.
+    dead port 2/2 on $mux $procmux$762.
+    dead port 2/2 on $mux $procmux$768.
+    dead port 2/2 on $mux $procmux$774.
+    dead port 2/2 on $mux $procmux$780.
+    dead port 2/2 on $mux $procmux$786.
+    dead port 2/2 on $mux $procmux$792.
+    dead port 2/2 on $mux $procmux$798.
+    dead port 2/2 on $mux $procmux$804.
+    dead port 2/2 on $mux $procmux$810.
+    dead port 2/2 on $mux $procmux$816.
+    dead port 2/2 on $mux $procmux$822.
+    dead port 2/2 on $mux $procmux$828.
+    dead port 2/2 on $mux $procmux$834.
+    dead port 2/2 on $mux $procmux$840.
+    dead port 2/2 on $mux $procmux$846.
+    dead port 2/2 on $mux $procmux$852.
+    dead port 2/2 on $mux $procmux$858.
+    dead port 2/2 on $mux $procmux$864.
+    dead port 2/2 on $mux $procmux$870.
+    dead port 2/2 on $mux $procmux$876.
+    dead port 2/2 on $mux $procmux$882.
+    dead port 2/2 on $mux $procmux$888.
+    dead port 2/2 on $mux $procmux$894.
+    dead port 2/2 on $mux $procmux$900.
+    dead port 2/2 on $mux $procmux$906.
+    dead port 2/2 on $mux $procmux$912.
+    dead port 2/2 on $mux $procmux$918.
+    dead port 2/2 on $mux $procmux$924.
+    dead port 2/2 on $mux $procmux$930.
+Removed 64 multiplexer ports.
+<suppressed ~256 debug messages>
+
+2.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_sram_secded_ecc.
+Performed a total of 0 changes.
+
+2.6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+Removed a total of 0 cells.
+
+2.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+Removed 0 unused cells and 64 unused wires.
+<suppressed ~1 debug messages>
+
+2.6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc.
+
+2.6.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.6.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_sram_secded_ecc..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~192 debug messages>
+
+2.6.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_sram_secded_ecc.
+Performed a total of 0 changes.
+
+2.6.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+Removed a total of 0 cells.
+
+2.6.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.6.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+
+2.6.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc.
+
+2.6.16. Finished fast OPT passes. (There is nothing left to do.)
+
+2.7. Executing FSM pass (extract and optimize FSM).
+
+2.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+2.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+2.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+2.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+
+2.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+2.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+2.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+2.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+2.8. Executing OPT pass (performing simple optimizations).
+
+2.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc.
+
+2.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+Removed a total of 0 cells.
+
+2.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_sram_secded_ecc..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~192 debug messages>
+
+2.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_sram_secded_ecc.
+Performed a total of 0 changes.
+
+2.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+Removed a total of 0 cells.
+
+2.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+
+2.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc.
+
+2.8.9. Finished fast OPT passes. (There is nothing left to do.)
+
+2.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 8 bits (of 72) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:75$11 ($xor).
+Removed top 8 bits (of 72) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:75$11 ($xor).
+Removed top 8 bits (of 72) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:75$11 ($xor).
+Removed top 5 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$23 ($eq).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$25 ($eq).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$27 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$29 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$31 ($eq).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$35 ($eq).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$37 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$39 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$41 ($eq).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$45 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$47 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$49 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$53 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$55 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$59 ($eq).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$65 ($eq).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$67 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$69 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$71 ($eq).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$75 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$77 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$79 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$83 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$85 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$89 ($eq).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$95 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$97 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$99 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$103 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$105 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$109 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$115 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$117 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$121 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$127 ($eq).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$145 ($eq).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$147 ($eq).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$eq$sram_ip/mlu_sram_secded_ecc.sv:98$149 ($eq).
+Removed top 5 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$160 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$160 ($xor).
+Removed top 4 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$160 ($xor).
+Removed top 4 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$162 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$162 ($xor).
+Removed top 3 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$162 ($xor).
+Removed top 3 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$164 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$164 ($xor).
+Removed top 2 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$164 ($xor).
+Removed top 2 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$166 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$166 ($xor).
+Removed top 1 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$166 ($xor).
+Removed top 1 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$168 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$170 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$172 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$174 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$176 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$180 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$182 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$184 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$188 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$190 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$194 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$200 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$202 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$204 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$206 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$210 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$212 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$214 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$218 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$220 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$224 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$230 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$232 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$234 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$238 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$240 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$244 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$250 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$252 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$256 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$262 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$280 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$282 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$284 ($xor).
+Removed top 5 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$293 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$293 ($xor).
+Removed top 4 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$293 ($xor).
+Removed top 4 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$295 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$295 ($xor).
+Removed top 3 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$295 ($xor).
+Removed top 3 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$297 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$297 ($xor).
+Removed top 2 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$297 ($xor).
+Removed top 2 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$299 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$299 ($xor).
+Removed top 1 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$299 ($xor).
+Removed top 1 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$301 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$303 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$305 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$307 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$309 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$313 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$315 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$317 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$321 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$323 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$327 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$333 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$335 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$337 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$339 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$343 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$345 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$347 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$351 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$353 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$357 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$363 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$365 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$367 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$371 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$373 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$377 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$383 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$385 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$389 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$395 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$413 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$415 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$417 ($xor).
+Removed top 5 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$426 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$426 ($xor).
+Removed top 4 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$426 ($xor).
+Removed top 4 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$428 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$428 ($xor).
+Removed top 3 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$428 ($xor).
+Removed top 3 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$430 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$430 ($xor).
+Removed top 2 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$430 ($xor).
+Removed top 2 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$432 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$432 ($xor).
+Removed top 1 bits (of 8) from port Y of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$432 ($xor).
+Removed top 1 bits (of 8) from port A of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$434 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$436 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$438 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$440 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$442 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$446 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$448 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$450 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$454 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$456 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$460 ($xor).
+Removed top 4 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$466 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$468 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$470 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$472 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$476 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$478 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$480 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$484 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$486 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$490 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$496 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$498 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$500 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$504 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$506 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$510 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$516 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$518 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$522 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$528 ($xor).
+Removed top 3 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$546 ($xor).
+Removed top 2 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$548 ($xor).
+Removed top 1 bits (of 8) from port B of cell mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$550 ($xor).
+Removed top 4 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$160_Y.
+Removed top 3 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$162_Y.
+Removed top 2 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$164_Y.
+Removed top 1 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$166_Y.
+Removed top 4 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$293_Y.
+Removed top 3 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$295_Y.
+Removed top 2 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$297_Y.
+Removed top 1 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$299_Y.
+Removed top 4 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$426_Y.
+Removed top 3 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$428_Y.
+Removed top 2 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$430_Y.
+Removed top 1 bits (of 8) from wire mlu_sram_secded_ecc.$xor$sram_ip/mlu_sram_secded_ecc.sv:50$432_Y.
+
+2.10. Executing PEEPOPT pass (run peephole optimizers).
+
+2.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+Removed 0 unused cells and 13 unused wires.
+<suppressed ~2 debug messages>
+
+2.12. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module mlu_sram_secded_ecc:
+  created 0 $alu and 0 $macc cells.
+
+2.13. Executing SHARE pass (SAT-based resource sharing).
+
+2.14. Executing OPT pass (performing simple optimizations).
+
+2.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc.
+
+2.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+Removed a total of 0 cells.
+
+2.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_sram_secded_ecc..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~192 debug messages>
+
+2.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_sram_secded_ecc.
+Performed a total of 0 changes.
+
+2.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+Removed a total of 0 cells.
+
+2.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+
+2.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc.
+
+2.14.9. Finished fast OPT passes. (There is nothing left to do.)
+
+2.15. Executing MEMORY pass.
+
+2.15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+2.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+2.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+2.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+2.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+2.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+
+2.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+2.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+2.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+
+2.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+2.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+
+2.17. Executing OPT pass (performing simple optimizations).
+
+2.17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc.
+<suppressed ~1001 debug messages>
+
+2.17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+Removed a total of 0 cells.
+
+2.17.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+Removed 0 unused cells and 391 unused wires.
+<suppressed ~1 debug messages>
+
+2.17.5. Finished fast OPT passes.
+
+2.18. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+2.19. Executing OPT pass (performing simple optimizations).
+
+2.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc.
+
+2.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+Removed a total of 0 cells.
+
+2.19.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mlu_sram_secded_ecc..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~192 debug messages>
+
+2.19.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mlu_sram_secded_ecc.
+Performed a total of 0 changes.
+
+2.19.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+Removed a total of 0 cells.
+
+2.19.6. Executing OPT_SHARE pass.
+
+2.19.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.19.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+
+2.19.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc.
+
+2.19.10. Finished fast OPT passes. (There is nothing left to do.)
+
+2.20. Executing TECHMAP pass (map to technology primitives).
+
+2.20.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+verilog frontend filename /usr/local/bin/../share/yosys/techmap.v
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `\$connect'.
+Generating RTLIL representation for module `\$input_port'.
+Successfully finished Verilog frontend.
+
+2.20.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $reduce_xor.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $mux.
+No more expansions possible.
+<suppressed ~531 debug messages>
+
+2.21. Executing OPT pass (performing simple optimizations).
+
+2.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mlu_sram_secded_ecc.
+<suppressed ~576 debug messages>
+
+2.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mlu_sram_secded_ecc'.
+<suppressed ~1626 debug messages>
+Removed a total of 542 cells.
+
+2.21.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.21.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mlu_sram_secded_ecc..
+Removed 64 unused cells and 484 unused wires.
+<suppressed ~65 debug messages>
+
+2.21.5. Finished fast OPT passes.
+
+2.22. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `mlu_sram_secded_ecc'. Setting top module to mlu_sram_secded_ecc.
+
+2.22.1. Analyzing design hierarchy..
+Top module:  \mlu_sram_secded_ecc
+
+2.22.2. Analyzing design hierarchy..
+Top module:  \mlu_sram_secded_ecc
+Removed 0 unused modules.
+
+2.23. Printing statistics.
+
+=== mlu_sram_secded_ecc ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      451 wires
+     1624 wire bits
+       22 public wires
+      733 public wire bits
+        8 ports
+      354 port bits
+      996 cells
+        2   $_AND_
+      128   $_MUX_
+       73   $_NOT_
+      113   $_OR_
+      680   $_XOR_
+
+2.24. Executing CHECK pass (checking for obvious problems).
+Checking module mlu_sram_secded_ecc...
+Found and reported 0 problems.
+
+3. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell DFFLQNx1_ASAP7_75t_R (inv, pins=3, area=0.29) is a direct match for cell type $_DFF_N_.
+  cell DFFHQNx1_ASAP7_75t_R (inv, pins=3, area=0.29) is a direct match for cell type $_DFF_P_.
+  cell DFFASRHQNx1_ASAP7_75t_R (inv, pins=5, area=0.38) is a direct match for cell type $_DFFSR_PNN_.
+  final dff cell mappings:
+    \DFFLQNx1_ASAP7_75t_R _DFF_N_ (.CLK( C), .D( D), .QN(~Q));
+    \DFFHQNx1_ASAP7_75t_R _DFF_P_ (.CLK( C), .D( D), .QN(~Q));
+    unmapped dff cell: $_DFF_NN0_
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    unmapped dff cell: $_DFF_PN0_
+    unmapped dff cell: $_DFF_PN1_
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    unmapped dff cell: $_DFFE_NN_
+    unmapped dff cell: $_DFFE_NP_
+    unmapped dff cell: $_DFFE_PN_
+    unmapped dff cell: $_DFFE_PP_
+    unmapped dff cell: $_DFFSR_NNN_
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    \DFFASRHQNx1_ASAP7_75t_R _DFFSR_PNN_ (.CLK( C), .D( D), .QN(~Q), .RESETN( R), .SETN( S));
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+3.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+<suppressed ~8 debug messages>
+Mapping DFF cells in module `\mlu_sram_secded_ecc':
+
+4. Executing ABC pass (technology mapping using ABC).
+
+4.1. Extracting gate netlist of module `\mlu_sram_secded_ecc' to `<abc-temp-dir>/input.blif'..
+
+4.1.1. Executed ABC.
+Extracted 996 gates and 1204 wires to a netlist network with 208 inputs and 82 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Dec 15 2025 17:24:15)
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_lib -w /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.31 sec
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFASRHQNx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFHQNx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFHQNx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFHQNx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFHQx4_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFLQNx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFLQNx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFLQNx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFLQx4_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DHLx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DHLx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DHLx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLLx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLLx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLLx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx1_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx2_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx2p67DC_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx3_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx4DC_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx4_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx5_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx5p33DC_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx6p67DC_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ICGx8DC_ASAP7_75t_R" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFHx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFHx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFHx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFHx4_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFLx1_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFLx2_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFLx3_ASAP7_75t_R".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFLx4_ASAP7_75t_R".
+ABC: Library "asap7_rvt_ff" from "/nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib" has 169 cells (33 skipped: 23 seq; 0 tri-state; 10 no func; 0 dont_use; 0 with 2 outputs; 0 with 3+ outputs).  Time =     0.42 sec
+ABC: Memory =   82.23 MB. Time =     0.42 sec
+ABC: Warning: Detected 2 multi-output cells (for example, "FAx1_ASAP7_75t_R").
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: 
+
+4.1.2. Re-integrating ABC results.
+ABC RESULTS:   A2O1A1Ixp33_ASAP7_75t_R cells:       64
+ABC RESULTS:   AOI211xp5_ASAP7_75t_R cells:       30
+ABC RESULTS:   AOI21xp33_ASAP7_75t_R cells:      548
+ABC RESULTS:   AOI31xp33_ASAP7_75t_R cells:        8
+ABC RESULTS:   INVx1_ASAP7_75t_R cells:      335
+ABC RESULTS:   NAND2xp33_ASAP7_75t_R cells:       73
+ABC RESULTS:   NAND3xp33_ASAP7_75t_R cells:      488
+ABC RESULTS:   NAND4xp25_ASAP7_75t_R cells:        4
+ABC RESULTS:   NOR2xp33_ASAP7_75t_R cells:      114
+ABC RESULTS:   NOR3xp33_ASAP7_75t_R cells:      483
+ABC RESULTS:   NOR4xp25_ASAP7_75t_R cells:        5
+ABC RESULTS:   NOR5xp2_ASAP7_75t_R cells:       60
+ABC RESULTS:   OAI211xp5_ASAP7_75t_R cells:       30
+ABC RESULTS:   OAI21xp33_ASAP7_75t_R cells:      487
+ABC RESULTS:   OAI22xp33_ASAP7_75t_R cells:        4
+ABC RESULTS:   OR3x1_ASAP7_75t_R cells:        8
+ABC RESULTS:   XNOR2x2_ASAP7_75t_R cells:      143
+ABC RESULTS:   XOR2x2_ASAP7_75t_R cells:       22
+ABC RESULTS:        internal signals:      914
+ABC RESULTS:           input signals:      208
+ABC RESULTS:          output signals:       82
+Removing temp directory.
+Removing global temp directory.
+
+5. Printing statistics.
+
+=== mlu_sram_secded_ecc ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     3565        - wires
+     4738        - wire bits
+       22        - public wires
+      733        - public wire bits
+        8        - ports
+      354        - port bits
+     2906  217.767 cells
+       64    5.599   A2O1A1Ixp33_ASAP7_75t_R
+       30    2.624   AOI211xp5_ASAP7_75t_R
+      548   39.949   AOI21xp33_ASAP7_75t_R
+        8      0.7   AOI31xp33_ASAP7_75t_R
+      335   14.653   INVx1_ASAP7_75t_R
+       73    4.257   NAND2xp33_ASAP7_75t_R
+      488   35.575   NAND3xp33_ASAP7_75t_R
+        4     0.35   NAND4xp25_ASAP7_75t_R
+      114    6.648   NOR2xp33_ASAP7_75t_R
+      483   35.211   NOR3xp33_ASAP7_75t_R
+        5    0.437   NOR4xp25_ASAP7_75t_R
+       60    6.124   NOR5xp2_ASAP7_75t_R
+       30    2.624   OAI211xp5_ASAP7_75t_R
+      487   35.502   OAI21xp33_ASAP7_75t_R
+        4     0.35   OAI22xp33_ASAP7_75t_R
+        8      0.7   OR3x1_ASAP7_75t_R
+      143   22.934   XNOR2x2_ASAP7_75t_R
+       22    3.528   XOR2x2_ASAP7_75t_R
+
+   Chip area for module '\mlu_sram_secded_ecc': 217.766880
+     of which used for sequential elements: 0.000000 (0.00%)
+
+6. Executing Verilog backend.
+
+6.1. Executing BMUXMAP pass.
+
+6.2. Executing DEMUXMAP pass.
+Dumping module `\mlu_sram_secded_ecc'.
+
+End of script. Logfile hash: 0323bb753f, CPU: user 0.84s system 0.11s, MEM: 141.06 MB peak
+Yosys 0.60 (git sha1 5bafeb77d, g++ 11.4.0-1ubuntu1~22.04.2 -fPIC -O3)
+Time spent: 44% 1x abc (0 sec), 17% 1x dfflibmap (0 sec), ...

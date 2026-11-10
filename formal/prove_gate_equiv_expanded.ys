@@ -1,0 +1,133 @@
+# ==============================================================================
+# Stage 15D: Gate-Level Netlist (ASAP7 7nm) vs. SystemVerilog RTL Equivalence
+# Expanded Target IPs (Modules 8 to 12):
+#   8.  mlu_cambricon_llm_flash_kv (ASAP7 netlist, Sequential Miter SAT -seq 2)
+#   9.  mlu_nram_banked_scratchpad (ASAP7 netlist, Sequential Miter SAT -seq 2)
+#   10. mlu_mpu_shared_sram        (ASAP7 netlist, Sequential Miter SAT -seq 2)
+#   11. mlu_mpu_core               (ASAP7 netlist, Sequential Miter SAT -seq 2)
+#   12. mlu_link_noc_router        (ASAP7 netlist, Sequential Miter SAT -seq 2)
+# ==============================================================================
+
+# --- 8. mlu_cambricon_llm_flash_kv (Sequential Miter SAT, -seq 2) ---
+read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip rtl/mlu_cambricon_llm_flash_kv.sv
+chformal -remove
+prep -top mlu_cambricon_llm_flash_kv -flatten
+memory_map
+opt -fast
+async2sync
+dffunmap
+rename mlu_cambricon_llm_flash_kv gold_mlu_cambricon_llm_flash_kv
+design -stash gold_flash_kv_db
+
+design -reset
+read_liberty -ignore_miss_func /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib
+read_verilog -overwrite formal/asap7_ff_noninv.v
+read_verilog synth/mlu_cambricon_llm_flash_kv_asap7_netlist.v
+prep -top mlu_cambricon_llm_flash_kv -flatten
+async2sync
+dffunmap
+rename mlu_cambricon_llm_flash_kv gate_mlu_cambricon_llm_flash_kv
+design -copy-from gold_flash_kv_db -as gold_mlu_cambricon_llm_flash_kv gold_mlu_cambricon_llm_flash_kv
+miter -equiv -flatten -make_assert gold_mlu_cambricon_llm_flash_kv gate_mlu_cambricon_llm_flash_kv miter_mlu_cambricon_llm_flash_kv
+hierarchy -top miter_mlu_cambricon_llm_flash_kv
+sat -verify -seq 2 -set-init-zero -set-at 1 in_rst_ni 0 -prove-skip 1 -prove-asserts
+
+# --- 9. mlu_nram_banked_scratchpad (Sequential Miter SAT, SYNTH_SRAM_DEPTH=8, -seq 2) ---
+design -reset
+read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip sram_ip/mlu_sram_secded_ecc.sv sram_ip/mlu_sram_sp_macro.sv rtl/mlu_nram_banked_scratchpad.sv
+chformal -remove
+prep -top mlu_nram_banked_scratchpad -flatten
+memory_map
+opt -fast
+async2sync
+dffunmap
+rename mlu_nram_banked_scratchpad gold_mlu_nram_banked_scratchpad
+design -stash gold_nram_db
+
+design -reset
+read_liberty -ignore_miss_func /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib
+read_verilog -overwrite formal/asap7_ff_noninv.v
+read_verilog synth/mlu_nram_banked_scratchpad_asap7_netlist.v
+prep -top mlu_nram_banked_scratchpad -flatten
+async2sync
+dffunmap
+rename mlu_nram_banked_scratchpad gate_mlu_nram_banked_scratchpad
+design -copy-from gold_nram_db -as gold_mlu_nram_banked_scratchpad gold_mlu_nram_banked_scratchpad
+miter -equiv -flatten -make_assert gold_mlu_nram_banked_scratchpad gate_mlu_nram_banked_scratchpad miter_mlu_nram_banked_scratchpad
+hierarchy -top miter_mlu_nram_banked_scratchpad
+sat -verify -seq 2 -set-init-zero -set-at 1 in_rst_n 0 -set-at 2 in_err_inject_mask_i 0 -prove-skip 1 -prove-asserts
+
+# --- 10. mlu_mpu_shared_sram (Sequential Miter SAT, SYNTH_SRAM_DEPTH=8, -seq 2) ---
+design -reset
+read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip sram_ip/mlu_sram_secded_ecc.sv sram_ip/mlu_sram_sp_macro.sv rtl/mlu_mpu_shared_sram.sv
+chformal -remove
+prep -top mlu_mpu_shared_sram -flatten
+memory_map
+opt -fast
+async2sync
+dffunmap
+rename mlu_mpu_shared_sram gold_mlu_mpu_shared_sram
+design -stash gold_mpu_sram_db
+
+design -reset
+read_liberty -ignore_miss_func /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib
+read_verilog -overwrite formal/asap7_ff_noninv.v
+read_verilog synth/mlu_mpu_shared_sram_asap7_netlist.v
+prep -top mlu_mpu_shared_sram -flatten
+async2sync
+dffunmap
+rename mlu_mpu_shared_sram gate_mlu_mpu_shared_sram
+design -copy-from gold_mpu_sram_db -as gold_mlu_mpu_shared_sram gold_mlu_mpu_shared_sram
+miter -equiv -flatten -make_assert gold_mlu_mpu_shared_sram gate_mlu_mpu_shared_sram miter_mlu_mpu_shared_sram
+hierarchy -top miter_mlu_mpu_shared_sram
+sat -verify -seq 2 -set-init-zero -set-at 1 in_rst_n 0 -set-at 2 in_err_inject_mask_i 0 -prove-skip 1 -prove-asserts
+
+# --- 11. mlu_mpu_core (Sequential Miter SAT, SYNTH_SRAM_DEPTH=8, -seq 2) ---
+design -reset
+read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip sram_ip/mlu_sram_secded_ecc.sv sram_ip/mlu_sram_sp_macro.sv rtl/mlu_mpu_shared_sram.sv rtl/mlu_mpu_core.sv
+chformal -remove
+prep -top mlu_mpu_core -flatten
+memory_map
+opt -fast
+async2sync
+dffunmap
+rename mlu_mpu_core gold_mlu_mpu_core
+design -stash gold_mpu_core_db
+
+design -reset
+read_liberty -ignore_miss_func /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib
+read_verilog -overwrite formal/asap7_ff_noninv.v
+read_verilog synth/mlu_mpu_core_asap7_netlist.v
+prep -top mlu_mpu_core -flatten
+async2sync
+dffunmap
+rename mlu_mpu_core gate_mlu_mpu_core
+design -copy-from gold_mpu_core_db -as gold_mlu_mpu_core gold_mlu_mpu_core
+miter -equiv -flatten -make_assert gold_mlu_mpu_core gate_mlu_mpu_core miter_mlu_mpu_core
+hierarchy -top miter_mlu_mpu_core
+sat -verify -seq 2 -set-init-zero -set-at 1 in_rst_ni 0 -set-at 2 in_err_inject_mask_i 0 -prove-skip 1 -prove-asserts
+
+# --- 12. mlu_link_noc_router (Sequential Miter SAT, -seq 2) ---
+design -reset
+read_verilog -sv -DSYNTH_SRAM_DEPTH=8 -Irtl -Isram_ip rtl/mlu_link_noc_router.sv
+chformal -remove
+prep -top mlu_link_noc_router -flatten
+memory_map
+opt -fast
+async2sync
+dffunmap
+rename mlu_link_noc_router gold_mlu_link_noc_router
+design -stash gold_noc_router_db
+
+design -reset
+read_liberty -ignore_miss_func /nfs/share/home/chenpei/hyr/latentcore_mla_dsa_20261103/synth/asap7_rvt_ff.lib
+read_verilog -overwrite formal/asap7_ff_noninv.v
+read_verilog synth/mlu_link_noc_router_asap7_netlist.v
+prep -top mlu_link_noc_router -flatten
+async2sync
+dffunmap
+rename mlu_link_noc_router gate_mlu_link_noc_router
+design -copy-from gold_noc_router_db -as gold_mlu_link_noc_router gold_mlu_link_noc_router
+miter -equiv -flatten -make_assert gold_mlu_link_noc_router gate_mlu_link_noc_router miter_mlu_link_noc_router
+hierarchy -top miter_mlu_link_noc_router
+sat -verify -seq 2 -set-init-zero -set-at 1 in_rst_n 0 -prove-skip 1 -prove-asserts

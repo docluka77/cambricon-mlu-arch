@@ -1,0 +1,221 @@
+{
+  "lint": {
+    "mlu_sram_secded_ecc": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_sram_sp_macro": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_nram_banked_scratchpad": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_wram_weight_buffer": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_mpu_shared_sram": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_bang_icu": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_pmu_clock_gate": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_tfu_fractal_mac": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_vfu_sfu_pipe": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_mfu_dma_engine": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_link_noc_router": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_c2c_serdes_pcs": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_cambricon_llm_flash_kv": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_ipu_core": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_mpu_core": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_mtp_cluster": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_chip_top": {
+      "exit_code": 0,
+      "clean": true
+    },
+    "mlu_4chip_oam_node": {
+      "exit_code": 0,
+      "clean": true
+    }
+  },
+  "uvm": {
+    "uvm_sram_nram_wram": {
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "coverage_bytes": 11609970,
+      "pass": true
+    },
+    "uvm_bang_icu_pmu": {
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "coverage_bytes": 8137864,
+      "pass": true
+    },
+    "uvm_tfu_sparse_quant": {
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "coverage_bytes": 8563499,
+      "pass": true
+    },
+    "uvm_vfu_llm_ops": {
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "coverage_bytes": 8594050,
+      "pass": true
+    },
+    "uvm_mfu_dma_decomp": {
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "coverage_bytes": 7977680,
+      "pass": true
+    },
+    "uvm_mlu_link_noc": {
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "coverage_bytes": 8090390,
+      "pass": true
+    },
+    "uvm_mtp_cluster": {
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "coverage_bytes": 25915813,
+      "pass": true
+    },
+    "uvm_mlu_chip_top": {
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "coverage_bytes": 27880781,
+      "pass": true
+    },
+    "uvm_4chip_allreduce": {
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "coverage_bytes": 9377738,
+      "pass": true
+    },
+    "uvm_cambricon_llm_kv": {
+      "uvm_error": 0,
+      "uvm_fatal": 0,
+      "coverage_bytes": 8578019,
+      "pass": true
+    }
+  },
+  "formal": {
+    "formal/formal_sram_ecc.log": {
+      "success_count": 1,
+      "pass": true
+    },
+    "formal/formal_sram_macro.log": {
+      "success_count": 1,
+      "pass": true
+    },
+    "formal/formal_nram_wram_mpu.log": {
+      "success_count": 1,
+      "pass": true
+    },
+    "formal/formal_bang_icu_pmu.log": {
+      "success_count": 1,
+      "pass": true
+    },
+    "formal/formal_tfu.log": {
+      "success_count": 3,
+      "pass": true
+    },
+    "formal/formal_vfu.log": {
+      "success_count": 3,
+      "pass": true
+    },
+    "formal/formal_mfu_dma.log": {
+      "success_count": 1,
+      "pass": true
+    },
+    "formal/formal_mlu_link.log": {
+      "success_count": 1,
+      "pass": true
+    },
+    "formal/formal_4chip_oam_node.log": {
+      "success_count": 1,
+      "pass": true
+    },
+    "formal/formal_cambricon_llm_kv.log": {
+      "success_count": 1,
+      "pass": true
+    },
+    "formal/gate_equiv_core_ips.log": {
+      "success_count": 3,
+      "pass": true
+    },
+    "formal/gate_equiv_icu_pcs.log": {
+      "success_count": 2,
+      "pass": true
+    },
+    "formal/gate_equiv_sram_wram.log": {
+      "success_count": 2,
+      "pass": true
+    },
+    "formal/gate_equiv_expanded.log": {
+      "success_count": 5,
+      "pass": true
+    }
+  },
+  "mutation": {
+    "total": 20,
+    "killed": 20,
+    "pass": true
+  },
+  "soak": {
+    "pass": true
+  },
+  "synth": {
+    "asap7_count": 18,
+    "sky130_count": 18,
+    "asap7_logs": 18,
+    "sky130_logs": 18,
+    "pass": true
+  },
+  "coverage_closure": {
+    "merged_dat_bytes": 60088555,
+    "pass": true
+  },
+  "literature_patent_parity": {
+    "academic_papers_verified": 10,
+    "cn_patents_verified": 6,
+    "cross_doc_discrepancies": 0,
+    "pass": true
+  }
+}
