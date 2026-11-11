@@ -15,27 +15,27 @@
  000560   logic         cmd_valid_i;
  000561   logic         cmd_ready_o;
 ~000280   logic [127:0] cmd_inst_i;
- 000563   logic [127:0] vec_a_i;
- 000512   logic [127:0] vec_b_i;
- 000505   logic [127:0] cos_sin_lut_i;
+ 000494   logic [127:0] vec_a_i;
+ 000428   logic [127:0] vec_b_i;
+ 000423   logic [127:0] cos_sin_lut_i;
         
- 000575   logic [127:0] vec_out_o;
+ 000565   logic [127:0] vec_out_o;
  000560   logic         vec_out_valid_o;
-~000034   logic [31:0]  softmax_sum_o;
-~000021   logic [15:0]  softmax_max_o;
-~000024   logic [15:0]  absmax_o;
-~000022   logic [15:0]  min_val_o;
-~000023   logic [15:0]  max_val_o;
-~000029   logic [15:0]  dyn_scale_o;
+~000031   logic [31:0]  softmax_sum_o;
+~000019   logic [15:0]  softmax_max_o;
+~000022   logic [15:0]  absmax_o;
+~000021   logic [15:0]  min_val_o;
+~000022   logic [15:0]  max_val_o;
+~000025   logic [15:0]  dyn_scale_o;
  000560   logic         vfu_busy_o;
  000560   logic         done_valid_o;
 ~000280   logic [7:0]   done_tag_o;
         
           // Latched command context at issue time for monitor correlation
 ~000280   logic [127:0] mon_cmd_inst;
- 000563   logic [127:0] mon_vec_a;
- 000512   logic [127:0] mon_vec_b;
- 000505   logic [127:0] mon_cos_sin_lut;
+ 000494   logic [127:0] mon_vec_a;
+ 000428   logic [127:0] mon_vec_b;
+ 000423   logic [127:0] mon_cos_sin_lut;
         endinterface : mlu_vfu_if
         
         module mlu_vfu_dut_wrap (mlu_vfu_if bus);

@@ -18,20 +18,20 @@
           // Upstream NoC TX Interface
 ~000705   input  logic         tx_valid_i,
 ~000041   output logic         tx_ready_o,
-~001907   input  logic [127:0] tx_flit_i,
+~001908   input  logic [127:0] tx_flit_i,
         
           // High-Speed C2C SerDes TX Link
 ~000705   output logic         link_tx_valid_o,
-~001931   output logic [127:0] link_tx_flit_o,
+~001928   output logic [127:0] link_tx_flit_o,
         
           // High-Speed C2C SerDes RX Link & Fault Injection
 ~000705   input  logic         link_rx_valid_i,
-~001931   input  logic [127:0] link_rx_flit_i,
+~001928   input  logic [127:0] link_rx_flit_i,
 ~000048   input  logic         err_inject_crc_i,
         
           // Downstream NoC RX Interface
 ~000739   output logic         rx_valid_o,
-~001994   output logic [127:0] rx_flit_o,
+~001989   output logic [127:0] rx_flit_o,
         
           // Link-Layer ACK / NACK Handshake Outputs
 ~000739   output logic         ack_valid_o,
@@ -44,8 +44,8 @@
 ~000945   input  logic [4:0]   replay_seq_i,
         
           // Link Reliability & RAS Telemetry Counters
-~000020   output logic [31:0]  crc_err_cnt_o,
-~000020   output logic [31:0]  retransmit_cnt_o
+~000021   output logic [31:0]  crc_err_cnt_o,
+~000021   output logic [31:0]  retransmit_cnt_o
         );
         
           localparam int unsigned BUF_IDX_W = $clog2(REPLAY_DEPTH);
@@ -73,7 +73,7 @@
           logic [127:0]           replay_buf_q [0:REPLAY_DEPTH-1];
         
 ~000945   mlu_pkg::mlu_noc_flit_t tx_flit_formed;
-~000832   logic [15:0]            tx_crc16;
+~000829   logic [15:0]            tx_crc16;
 ~000945   logic [BUF_IDX_W-1:0]   tx_buf_wr_idx;
 ~000020   logic [BUF_IDX_W-1:0]   replay_rd_idx;
         
@@ -87,12 +87,12 @@
  004556     tx_crc16                    = calc_crc16_ccitt({tx_flit_formed[127:112], tx_flit_formed[95:0]});
  004556     tx_flit_formed.crc16_or_cmd = tx_crc16;
         
-~000160     if (replay_active_q) begin
-~000160       link_tx_valid_o = 1'b1;
-~000160       link_tx_flit_o  = replay_buf_q[replay_rd_idx];
-~002880     end else if (tx_valid_i && tx_ready_o) begin
-~002880       link_tx_valid_o = 1'b1;
-~002880       link_tx_flit_o  = tx_flit_formed;
+~000164     if (replay_active_q) begin
+~000164       link_tx_valid_o = 1'b1;
+~000164       link_tx_flit_o  = replay_buf_q[replay_rd_idx];
+~002876     end else if (tx_valid_i && tx_ready_o) begin
+~002876       link_tx_valid_o = 1'b1;
+~002876       link_tx_flit_o  = tx_flit_formed;
  002633     end else begin
  002633       link_tx_valid_o = 1'b0;
  002633       link_tx_flit_o  = '0;
@@ -103,9 +103,9 @@
           // 3. RX Framing, CRC-16-CCITT Verification & Sequence Continuity Check
           // ---------------------------------------------------------------------------
 ~000945   logic [4:0]             rx_exp_seq_q;
-~001931   logic [127:0]           rx_flit_corrupted;
+~001928   logic [127:0]           rx_flit_corrupted;
 ~000944   mlu_pkg::mlu_noc_flit_t rx_flit_s;
-~000834   logic [15:0]            rx_calc_crc16;
+~000835   logic [15:0]            rx_calc_crc16;
 ~000739   logic                   rx_crc_ok;
 ~000684   logic                   rx_seq_ok;
         
@@ -125,14 +125,14 @@
  005708     nack_seq_o   = rx_exp_seq_q;
         
 ~003040     if (link_rx_valid_i) begin
-~002880       if (rx_crc_ok && rx_seq_ok) begin
-~002880         rx_valid_o  = 1'b1;
-~002880         rx_flit_o   = rx_flit_s;
-~002880         ack_valid_o = 1'b1;
-~002880         ack_seq_o   = rx_exp_seq_q;
-~000160       end else begin
-~000160         nack_valid_o = 1'b1;
-~000160         nack_seq_o   = rx_exp_seq_q;
+~002876       if (rx_crc_ok && rx_seq_ok) begin
+~002876         rx_valid_o  = 1'b1;
+~002876         rx_flit_o   = rx_flit_s;
+~002876         ack_valid_o = 1'b1;
+~002876         ack_seq_o   = rx_exp_seq_q;
+~000164       end else begin
+~000164         nack_valid_o = 1'b1;
+~000164         nack_seq_o   = rx_exp_seq_q;
               end
             end
           end
@@ -159,12 +159,12 @@
               end
         
               // Go-Back-N Replay State Machine
-~000040       if (replay_active_q) begin
-~000040         retransmit_cnt_o <= retransmit_cnt_o + 32'd1;
+~000041       if (replay_active_q) begin
+~000041         retransmit_cnt_o <= retransmit_cnt_o + 32'd1;
 ~000040         if ((replay_curr_seq_q + 5'd1) == tx_seq_q) begin
 ~000040           replay_active_q <= 1'b0;
-%000000         end else begin
-%000000           replay_curr_seq_q <= replay_curr_seq_q + 5'd1;
+%000001         end else begin
+%000001           replay_curr_seq_q <= replay_curr_seq_q + 5'd1;
                 end
 ~004456       end else if (replay_trigger_i) begin
 ~000040         replay_active_q   <= 1'b1;
@@ -175,8 +175,8 @@
 ~002601       if (link_rx_valid_i) begin
 ~001889         if (rx_crc_ok && rx_seq_ok) begin
 ~001889           rx_exp_seq_q <= rx_exp_seq_q + 5'd1;
-~000040         end else begin
-~000040           crc_err_cnt_o <= crc_err_cnt_o + 32'd1;
+~000041         end else begin
+~000041           crc_err_cnt_o <= crc_err_cnt_o + 32'd1;
                 end
               end
             end

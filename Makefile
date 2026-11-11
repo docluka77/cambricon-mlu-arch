@@ -20,9 +20,9 @@ UVM_SUITES := \
 	uvm_4chip_allreduce \
 	uvm_cambricon_llm_kv
 
-.PHONY: all help lint golden uvm formal gate-equiv mutate soak synth parity audit clean
+.PHONY: all help lint golden uvm formal gate-equiv gls mutate soak benchmarks synth parity audit clean
 
-all: lint golden parity audit
+all: lint golden benchmarks parity audit
 
 help:
 	@echo "================================================================================"
@@ -33,11 +33,13 @@ help:
 	@echo "  make uvm         - Run all 10 Accellera IEEE 1800.2-2020 UVM verification suites"
 	@echo "  make formal      - Run all 10 Yosys 0.60 SAT/BMC RTL formal verification suites"
 	@echo "  make gate-equiv  - Run 12-module ASAP7 7nm gate-level vs. RTL equivalence miters"
+	@echo "  make gls         - Run 5,000-cycle post-synthesis ASAP7 7nm Gate-Level Simulation"
 	@echo "  make mutate      - Run 20-mutant adversarial formal/UVM mutation testing suite"
 	@echo "  make soak        - Run 500,000-cycle full-chip randomized BANG ISA soak stress test"
+	@echo "  make benchmarks  - Run cycle-accurate RTL AI workloads & full-chip TOPS/W simulator"
 	@echo "  make synth       - Run Yosys 0.60 dual-foundry (ASAP7 7nm + Sky130) ASIC synthesis"
 	@echo "  make parity      - Run energy/PPA & 10-paper / 6-patent / 5-MLU parity verifier"
-	@echo "  make audit       - Run end-to-end 20-stage master regression & consistency audit"
+	@echo "  make audit       - Run end-to-end 24-stage master regression & consistency audit"
 	@echo "  make clean       - Remove simulation build directories (obj_dir*)"
 	@echo "================================================================================"
 
@@ -71,6 +73,10 @@ gate-equiv:
 	@echo "[GATE-EQUIV] Proving 12-module ASAP7 7nm Gate-Level Netlist vs. RTL Equivalence..."
 	@bash formal/run_stage15_gate_equiv.sh
 
+gls:
+	@echo "[GLS] Running 5,000-cycle post-synthesis ASAP7 7nm Gate-Level Netlist Simulation..."
+	@bash uvm_tb/gls_asap7_sim/run_gls_asap7.sh
+
 mutate:
 	@echo "[MUTATION] Running 20-mutant adversarial formal & UVM fault-injection suite..."
 	@$(PYTHON) formal/mutation_testing/run_20_mutants.py
@@ -78,6 +84,13 @@ mutate:
 soak:
 	@echo "[SOAK] Running 500,000-cycle full-chip randomized stress test..."
 	@cd uvm_tb/uvm_soak_500k && bash run_soak_500k.sh
+
+benchmarks:
+	@echo "[BENCHMARKS] Running cycle-accurate RTL AI workloads & full-chip TOPS/W simulator..."
+	@if command -v $(VERILATOR) >/dev/null 2>&1 || [ -x "/nfs/share/home/chenpei/verisegue_agent_v0/agent_v26/runs/uvm_gate0_20261104_221700/toolchain/verilator-5.054/bin/verilator" ]; then \
+		bash benchmarks/rtl_Verilator_bench/run_rtl_workloads.sh; \
+	fi
+	@$(PYTHON) benchmarks/run_cambricon_workload_benchmarks.py
 
 synth:
 	@echo "[SYNTH] Running dual-foundry (ASAP7 7nm + SkyWater 130nm) ASIC synthesis (36 netlists)..."

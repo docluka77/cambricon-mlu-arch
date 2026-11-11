@@ -202,10 +202,13 @@ package mlu_4chip_allreduce_uvm_pkg;
           rsp_item.act_done        = vif.allreduce_done;
         end else begin
           logic [3:0] dst_enc;
-          dst_enc = req.use_diagonal ? {2'b10, req.dst_chip} : {2'b00, req.dst_chip};
+          bit         use_c2c_west;
+          use_c2c_west = (req.dst_chip == 2'((req.src_chip + 2'd1) & 2'd3)) && req.txn_id[1];
+          dst_enc = req.use_diagonal ? {2'b10, req.dst_chip} :
+                    (use_c2c_west    ? {2'b11, req.dst_chip} : {2'b00, req.dst_chip});
           @(posedge vif.clk);
           vif.chip_tx_valid                <= (4'b0001 << req.src_chip);
-          vif.chip_tx_flit[req.src_chip]   <= {2'b00, 1'b0, {2'b00, req.src_chip}, dst_enc,
+          vif.chip_tx_flit[req.src_chip]   <= {2'b00, req.txn_id[0], {2'b00, req.src_chip}, dst_enc,
                                                5'd0, 16'h0000, 32'h1000_0000, req.flit_payload};
           vif.link_err_inject              <= 4'b0000;
 

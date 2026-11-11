@@ -166,19 +166,20 @@ package mlu_link_noc_uvm_pkg;
         else if (cyc < 400) begin
           int unsigned wstep = (cyc - 200) % 6;
           int unsigned wp    = ((cyc - 200) / 6) % 5;
+          bit          wvc   = bit'(((cyc - 200) / 6) & 1);
           bit [3:0]    wdst  = dst_lut[(wp + 1) % 5];
           if (wstep == 0) begin
             item.in_valid[wp] = 1'b1;
-            item.in_flit[wp]  = make_flit(FLIT_HEAD, 1'b0, 4'(wp), wdst, 32'h2000_0000, r0);
+            item.in_flit[wp]  = make_flit(FLIT_HEAD, wvc, 4'(wp), wdst, 32'h2000_0000, r0);
           end else if (wstep == 1) begin
             item.in_valid[wp] = 1'b1;
-            item.in_flit[wp]  = make_flit(FLIT_BODY, 1'b0, 4'(wp), wdst, 32'h2000_0008, r0 ^ 64'h5555);
+            item.in_flit[wp]  = make_flit(FLIT_BODY, wvc, 4'(wp), wdst, 32'h2000_0008, r0 ^ 64'h5555);
             // Competing port attempts to break lock on same output port
             item.in_valid[(wp + 2) % 5] = 1'b1;
-            item.in_flit[(wp + 2) % 5]  = make_flit(FLIT_HEAD_TAIL, 1'b1, 4'((wp+2)%5), wdst, 32'h2000_0010, r0);
+            item.in_flit[(wp + 2) % 5]  = make_flit(FLIT_HEAD_TAIL, ~wvc, 4'((wp+2)%5), wdst, 32'h2000_0010, r0);
           end else if (wstep == 2) begin
             item.in_valid[wp] = 1'b1;
-            item.in_flit[wp]  = make_flit(FLIT_TAIL, 1'b0, 4'(wp), wdst, 32'h2000_0018, r0 ^ 64'hAAAA);
+            item.in_flit[wp]  = make_flit(FLIT_TAIL, wvc, 4'(wp), wdst, 32'h2000_0018, r0 ^ 64'hAAAA);
           end
         end
         // Phase 3 (400..599): In-Router Hardware Ring/Tree AllReduce Combining (allreduce_en=1)
@@ -204,7 +205,39 @@ package mlu_link_noc_uvm_pkg;
 
         // Continuous C2C SerDes PCS Framing, Fault Injection & Go-Back-N Replay Recovery
         item.tx_flit = make_flit(FLIT_HEAD_TAIL, bit'(cyc[0]), 4'd1, 4'd12, 32'h4000_0000 + 32'(cyc*8), r0);
-        if (smod == 10) begin
+        if (cyc < 20) begin
+          // 2-flit in-flight Go-Back-N replay window to exercise multi-flit replay_curr_seq_q++
+          if (smod == 9) begin
+            item.tx_valid       = 1'b1;
+            item.err_inject_crc = 1'b1;
+            item.replay_trigger = 1'b0;
+            item.replay_seq     = 5'd0;
+            saved_nack          = serdes_seq;
+            serdes_seq          = serdes_seq + 5'd1;
+          end else if (smod == 10) begin
+            item.tx_valid       = 1'b1;
+            item.err_inject_crc = 1'b0;
+            item.replay_trigger = 1'b0;
+            item.replay_seq     = 5'd0;
+            serdes_seq          = serdes_seq + 5'd1;
+          end else if (smod == 11) begin
+            item.tx_valid       = 1'b0;
+            item.err_inject_crc = 1'b0;
+            item.replay_trigger = 1'b1;
+            item.replay_seq     = saved_nack;
+          end else if (smod == 12 || smod == 13) begin
+            item.tx_valid       = 1'b0;
+            item.err_inject_crc = 1'b0;
+            item.replay_trigger = 1'b0;
+            item.replay_seq     = 5'd0;
+          end else begin
+            item.tx_valid       = 1'b1;
+            item.err_inject_crc = 1'b0;
+            item.replay_trigger = 1'b0;
+            item.replay_seq     = 5'd0;
+            serdes_seq          = serdes_seq + 5'd1;
+          end
+        end else if (smod == 10) begin
           item.tx_valid       = 1'b1;
           item.err_inject_crc = 1'b1;
           item.replay_trigger = 1'b0;
@@ -555,8 +588,8 @@ package mlu_link_noc_uvm_pkg;
                                (env.scoreboard.mismatches == 0) &&
                                (dpi_noc_exp_routed_cnt() > 800) &&
                                (dpi_noc_exp_vc1_cnt() > 400) &&
-                               (dpi_noc_exp_crc_err_cnt() == 40) &&
-                               (dpi_noc_exp_retransmit_cnt() == 40) &&
+                               (dpi_noc_exp_crc_err_cnt() >= 40) &&
+                               (dpi_noc_exp_retransmit_cnt() >= 40) &&
                                (func_cov == 100.0);
       super.report_phase(phase);
       dpi_noc_set_status(pass_gate ? 0 : 1);

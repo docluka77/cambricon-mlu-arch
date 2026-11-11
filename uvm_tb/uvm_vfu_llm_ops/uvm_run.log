@@ -18,7 +18,7 @@ UVM_WARNING /nfs/share/home/chenpei/verisegue_agent_v0/agent_v26/runs/uvm_gate0_
 UVM_INFO @ 0: reporter [RNTST] Running test vfu_llm_ops_test...
 UVM_INFO /nfs/share/home/chenpei/verisegue_agent_v0/agent_v26/runs/uvm_gate0_20261104_221700/toolchain/uvm-core-2020.3.1/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
 UVM_WARNING /nfs/share/home/chenpei/verisegue_agent_v0/agent_v26/runs/uvm_gate0_20261104_221700/toolchain/uvm-core-2020.3.1/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
-UVM_INFO /nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon/uvm_tb/uvm_vfu_llm_ops/mlu_vfu_uvm_pkg.sv(452) @ 16850000: uvm_test_top [UVM_VFU_PASS] PASS: 560 VFU/LLM transactions verified bit-exact via DPI-C, 0 mismatches, 100.00% functional coverage
+UVM_INFO /nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon/uvm_tb/uvm_vfu_llm_ops/mlu_vfu_uvm_pkg.sv(464) @ 16850000: uvm_test_top [UVM_VFU_PASS] PASS: 560 VFU/LLM transactions verified bit-exact via DPI-C, 0 mismatches, 100.00% functional coverage
 UVM_INFO /nfs/share/home/chenpei/verisegue_agent_v0/agent_v26/runs/uvm_gate0_20261104_221700/toolchain/uvm-core-2020.3.1/src/base/uvm_report_server.svh(1009) @ 16850000: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 

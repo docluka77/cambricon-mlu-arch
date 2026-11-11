@@ -1,0 +1,51 @@
+{
+  "simulator": "Verilator 5.054 Cycle-Accurate SystemVerilog RTL",
+  "top_modules": ["mlu_chip_top", "mlu_4chip_oam_node"],
+  "total_sim_cycles": 777,
+  "kernels_passed": 4,
+  "kernels_failed": 0,
+  "kernel1_resnet50_conv_gemm": {
+    "mpu_1to4_bcast_cycles": 20,
+    "unicast_4ipu_dma_cycles": 212,
+    "int8_dense_gemm_cycles": 69,
+    "int8_sparse_2to4_gemm_cycles": 35,
+    "total_kernel_cycles": 61,
+    "tfu_active_cycles": 96,
+    "vfu_active_cycles": 2,
+    "dense_mac_ops": 8192,
+    "sparse_effective_mac_ops": 8192,
+    "retired_insts": 16,
+    "output_tensor_hex": "0x000000b900000aaf"
+  },
+  "kernel2_cambricon_q_llama_attn": {
+    "fused_onchip_quant_cycles": 35,
+    "baseline_unfused_hbm_quant_cycles": 147,
+    "tfu_active_cycles": 9,
+    "vfu_active_cycles": 10,
+    "fused_offchip_hbm_roundtrips": 0,
+    "baseline_offchip_hbm_roundtrips": 36,
+    "measured_vfu_dyn_scale_hex": "0x0002",
+    "quant_mm_out_hex": "0x0302020201010114"
+  },
+  "kernel3_cambricon_llm_decode_70b": {
+    "total_decode_step_cycles": 73,
+    "decomp_dma_cycles": 29,
+    "sparse_mm_cycles": 13,
+    "llm_kv_spec_engine_cycles": 3,
+    "accepted_draft_tokens": 4,
+    "accepted_bitmap_bin": "00001111",
+    "kv_bytes_saved_per_ipu": 16,
+    "compressed_dma_bytes_rd": 32,
+    "uncompressed_dma_bytes_wr": 64,
+    "kv_packed_int4_hex": "0x000501037f0f7f07",
+    "kv_packed_fp8_hex": "0x0203010302030102"
+  },
+  "kernel4_cambricon_m_4chip_oam_allreduce": {
+    "ring_4chip_allreduce_cycles": 19,
+    "butterfly_2hop_allreduce_cycles": 10,
+    "crc_fault_replay_allreduce_cycles": 8,
+    "crc_errors_detected": 1,
+    "gbn_retransmits_completed": 1,
+    "verified_allreduce_sum_hex": "0x2222444466668888"
+  }
+}

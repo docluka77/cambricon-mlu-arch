@@ -25,23 +25,23 @@
 ~000280   input  logic [127:0] cmd_inst_i,
         
           // 8-Lane x 16-bit (128-bit) Vector Operands & RoPE Sin/Cos Lookup Table Input
-~000563   input  logic [127:0] vec_a_i,
-~000512   input  logic [127:0] vec_b_i,
-~000505   input  logic [127:0] cos_sin_lut_i,
+~000494   input  logic [127:0] vec_a_i,
+~000428   input  logic [127:0] vec_b_i,
+~000423   input  logic [127:0] cos_sin_lut_i,
         
           // 8-Lane x 16-bit (128-bit) Vector Result & Valid Output
-~000575   output logic [127:0] vec_out_o,
+~000565   output logic [127:0] vec_out_o,
 ~000560   output logic         vec_out_valid_o,
         
           // FlashAttention Online Safe Softmax Running State Outputs
-~000034   output logic [31:0]  softmax_sum_o,
-~000021   output logic [15:0]  softmax_max_o,
+~000031   output logic [31:0]  softmax_sum_o,
+~000019   output logic [15:0]  softmax_max_o,
         
           // Cambricon-Q Dynamic Statistical Quantizer Outputs
-~000024   output logic [15:0]  absmax_o,
-~000022   output logic [15:0]  min_val_o,
-~000023   output logic [15:0]  max_val_o,
-~000029   output logic [15:0]  dyn_scale_o,
+~000022   output logic [15:0]  absmax_o,
+~000021   output logic [15:0]  min_val_o,
+~000022   output logic [15:0]  max_val_o,
+~000025   output logic [15:0]  dyn_scale_o,
         
           // Status & ICU Completion Handshake
 ~000560   output logic         vfu_busy_o,
@@ -57,10 +57,10 @@
           endfunction
         
  030544   function automatic logic signed [15:0] sat_s16(input logic signed [31:0] val);
-~002286     if (val > $signed(32'd32767)) begin
-~002286       sat_s16 = $signed(16'd32767);
+~001890     if (val > $signed(32'd32767)) begin
+~001890       sat_s16 = $signed(16'd32767);
 ~030544     end else if (val < -$signed(32'd32768)) begin
-~002295       sat_s16 = $signed(16'h8000);
+~001938       sat_s16 = $signed(16'h8000);
  030544     end else begin
  030544       sat_s16 = $signed(val[15:0]);
             end
@@ -72,7 +72,7 @@
 ~000168     if (xi == 16'h8000) begin
 ~000168       abs_s16 = 16'd32767;
  055914     end else if (xi[15]) begin
- 021813       abs_s16 = neg_xi;
+ 021939       abs_s16 = neg_xi;
  055914     end else begin
  055914       abs_s16 = xi;
             end
@@ -86,16 +86,16 @@
  016613       y = $signed(32'd256);
  002990     end else if (d32 >= -$signed(32'd256)) begin
  002990       y = $signed(32'd256) + (($signed(32'd162) * d32) >>> 8);
-~000060     end else if (d32 >= -$signed(32'd512)) begin
-~000060       y = $signed(32'd94)  + (($signed(32'd59)  * (d32 + $signed(32'd256))) >>> 8);
-~000081     end else if (d32 >= -$signed(32'd768)) begin
-~000081       y = $signed(32'd35)  + (($signed(32'd22)  * (d32 + $signed(32'd512))) >>> 8);
+~000333     end else if (d32 >= -$signed(32'd512)) begin
+~000333       y = $signed(32'd94)  + (($signed(32'd59)  * (d32 + $signed(32'd256))) >>> 8);
+~000169     end else if (d32 >= -$signed(32'd768)) begin
+~000169       y = $signed(32'd35)  + (($signed(32'd22)  * (d32 + $signed(32'd512))) >>> 8);
  000230     end else if (d32 >= -$signed(32'd1024)) begin
  000230       y = $signed(32'd13)  + (($signed(32'd8)   * (d32 + $signed(32'd768))) >>> 8);
- 012028     end else if (d32 >= -$signed(32'd1536)) begin
+ 010548     end else if (d32 >= -$signed(32'd1536)) begin
  000230       y = $signed(32'd5)   + (($signed(32'd2)   * (d32 + $signed(32'd1024))) >>> 8);
- 012028     end else begin
- 012028       y = $signed(32'd1);
+ 010548     end else begin
+ 010548       y = $signed(32'd1);
             end
  021744     pwl_exp_q88 = sat_s16((y < $signed(32'd1)) ? $signed(32'd1) :
                                   ((y > $signed(32'd256)) ? $signed(32'd256) : y));
@@ -112,10 +112,10 @@
  001280       pos_sig = $signed(32'd128) + (($signed(32'd60) * abs_g) >>> 8);
 ~000230     end else if (abs_g <= $signed(32'd512)) begin
 ~000230       pos_sig = $signed(32'd188) + (($signed(32'd38) * (abs_g - $signed(32'd256))) >>> 8);
-~001827     end else if (abs_g <= $signed(32'd1024)) begin
-~000024       pos_sig = $signed(32'd226) + (($signed(32'd25) * (abs_g - $signed(32'd512))) >>> 9);
-~001827     end else begin
-~001827       pos_sig = $signed(32'd256);
+~001587     end else if (abs_g <= $signed(32'd1024)) begin
+~000072       pos_sig = $signed(32'd226) + (($signed(32'd25) * (abs_g - $signed(32'd512))) >>> 9);
+~001587     end else begin
+~001587       pos_sig = $signed(32'd256);
             end
  002200     pwl_sigmoid_q88 = sat_s16((g32 < $signed(32'd0)) ? ($signed(32'd256) - pos_sig) : pos_sig);
           endfunction
@@ -128,28 +128,28 @@
  002416     logic [63:0] term;
  002416     logic [63:0] y1;
  002416     v_safe = (var_q88 == 32'd0) ? 32'd1 : var_q88;
-~002186     if      (v_safe < 32'd16)    y0 = 32'd1448;
-%000000     else if (v_safe < 32'd64)    y0 = 32'd724;
-%000000     else if (v_safe < 32'd128)   y0 = 32'd418;
-%000000     else if (v_safe < 32'd192)   y0 = 32'd324;
-%000000     else if (v_safe < 32'd320)   y0 = 32'd256;
-%000000     else if (v_safe < 32'd512)   y0 = 32'd202;
-%000000     else if (v_safe < 32'd768)   y0 = 32'd162;
-%000000     else if (v_safe < 32'd1280)  y0 = 32'd128;
-%000000     else if (v_safe < 32'd2560)  y0 = 32'd96;
-~000230     else if (v_safe < 32'd5120)  y0 = 32'd68;
-~001680     else if (v_safe < 32'd10240) y0 = 32'd48;
-~001680     else                         y0 = 32'd32;
+ 002186     if      (v_safe < 32'd16)    y0 = 32'd1448;
+~000021     else if (v_safe < 32'd64)    y0 = 32'd724;
+~000021     else if (v_safe < 32'd128)   y0 = 32'd418;
+~000021     else if (v_safe < 32'd192)   y0 = 32'd324;
+~000021     else if (v_safe < 32'd320)   y0 = 32'd256;
+~000021     else if (v_safe < 32'd512)   y0 = 32'd202;
+~000021     else if (v_safe < 32'd768)   y0 = 32'd162;
+~000021     else if (v_safe < 32'd1280)  y0 = 32'd128;
+~000021     else if (v_safe < 32'd2560)  y0 = 32'd96;
+ 000230     else if (v_safe < 32'd5120)  y0 = 32'd68;
+~001449     else if (v_safe < 32'd10240) y0 = 32'd48;
+~001449     else                         y0 = 32'd32;
         
  002416     v_y0_sq = ({32'd0, v_safe} * {32'd0, y0} * {32'd0, y0}) >> 16;
  002416     term    = (v_y0_sq >= 64'd760) ? 64'd8 : (64'd768 - v_y0_sq);
  002416     y1      = ({32'd0, y0} * term) >> 9;
-~001680     if (y1 == 64'd0) begin
-~001680       rsqrt_lut_nr_q88 = $signed(16'd1);
+~001428     if (y1 == 64'd0) begin
+~001428       rsqrt_lut_nr_q88 = $signed(16'd1);
 ~002416     end else if (y1 > 64'd32767) begin
 %000000       rsqrt_lut_nr_q88 = $signed(16'd32767);
-~002416     end else begin
-~002416       rsqrt_lut_nr_q88 = $signed(y1[15:0]);
+ 002416     end else begin
+ 002416       rsqrt_lut_nr_q88 = $signed(y1[15:0]);
             end
           endfunction
         
@@ -160,12 +160,12 @@
  002416     logic [31:0] sc;
  002416     sc = (prec_v == mlu_pkg::PREC_INT4) ? ({16'd0, absmax_v} / 32'd7)
                                                 : ({16'd0, absmax_v} / 32'd127);
-~002186     if (absmax_v == 16'd0 || sc == 32'd0) begin
-~002186       calc_dyn_scale = 16'd1;
-~001680     end else if (sc > 32'd65535) begin
+ 002186     if (absmax_v == 16'd0 || sc == 32'd0) begin
+ 002186       calc_dyn_scale = 16'd1;
+~001659     end else if (sc > 32'd65535) begin
 %000000       calc_dyn_scale = 16'hFFFF;
- 001680     end else begin
- 001680       calc_dyn_scale = sc[15:0];
+ 001659     end else begin
+ 001659       calc_dyn_scale = sc[15:0];
             end
           endfunction
         
@@ -183,17 +183,17 @@
 ~000040   mlu_pkg::mlu_prec_e   prec_q;
 ~000280   logic [7:0]           tag_q;
 ~000040   logic                 cont_mode_q;
-~000563   logic [127:0]         a_q;
-~000512   logic [127:0]         b_q;
-~000505   logic [127:0]         lut_q;
+~000494   logic [127:0]         a_q;
+~000428   logic [127:0]         b_q;
+~000423   logic [127:0]         lut_q;
         
-~000142   logic signed [15:0]   s1_max_q;
-~000144   logic signed [15:0]   s1_min_q;
-~000145   logic [15:0]          s1_absmax_q;
-~000143   logic [15:0]          s1_dyn_scale_q;
-~000143   logic signed [15:0]   s1_m_new_q;
-~000083   logic [31:0]          s1_l_new_q;
-~000255   logic [127:0]         s1_exp_q;
+~000127   logic signed [15:0]   s1_max_q;
+~000131   logic signed [15:0]   s1_min_q;
+~000127   logic [15:0]          s1_absmax_q;
+~000126   logic [15:0]          s1_dyn_scale_q;
+~000129   logic signed [15:0]   s1_m_new_q;
+~000079   logic [31:0]          s1_l_new_q;
+~000232   logic [127:0]         s1_exp_q;
 %000005   logic signed [15:0]   s1_rsqrt_q;
         
           assign cmd_ready_o = (state_q == VFU_IDLE);
@@ -202,18 +202,18 @@
           // ---------------------------------------------------------------------------
           // 3. Stage 1 Combinational Reductions (Max/Min/AbsMax, Softmax Exp, RMS Var)
           // ---------------------------------------------------------------------------
-~000142   logic signed [15:0] comb_max;
-~000144   logic signed [15:0] comb_min;
-~000145   logic [15:0]        comb_absmax;
-~000143   logic [15:0]        comb_dyn_scale;
-~000143   logic signed [15:0] comb_m_new;
-~000121   logic [15:0]        comb_old_exp;
-~000255   logic [127:0]       comb_exp_lane;
-~000040   logic [31:0]        comb_l_scaled;
-~000088   logic [31:0]        comb_l_new;
-~000146   logic [31:0]        comb_sq_sum;
-~000145   logic [31:0]        comb_mean_sq;
-%000004   logic signed [15:0] comb_rsqrt;
+~000127   logic signed [15:0] comb_max;
+~000131   logic signed [15:0] comb_min;
+~000127   logic [15:0]        comb_absmax;
+~000126   logic [15:0]        comb_dyn_scale;
+~000129   logic signed [15:0] comb_m_new;
+~000114   logic [15:0]        comb_old_exp;
+~000232   logic [127:0]       comb_exp_lane;
+~000038   logic [31:0]        comb_l_scaled;
+~000083   logic [31:0]        comb_l_new;
+~000126   logic [31:0]        comb_sq_sum;
+~000127   logic [31:0]        comb_mean_sq;
+%000005   logic signed [15:0] comb_rsqrt;
         
  002416   always_comb begin
  002416     comb_max       = $signed(a_q[15:0]);
@@ -337,7 +337,7 @@
           // ---------------------------------------------------------------------------
           // 5. Sequential Pipeline Control & Output Register Stage
           // ---------------------------------------------------------------------------
-~000656   logic [127:0] s2_vec_res;
+~000637   logic [127:0] s2_vec_res;
           assign s2_vec_res = calc_s2_vec(op_q, prec_q, a_q, b_q, lut_q, s1_exp_q,
                                           s1_l_new_q, s1_rsqrt_q, s1_dyn_scale_q);
         

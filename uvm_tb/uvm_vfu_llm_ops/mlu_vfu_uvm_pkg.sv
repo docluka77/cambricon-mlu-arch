@@ -112,13 +112,25 @@ package mlu_vfu_uvm_pkg;
         item.prec      = ((t / 7) % 2 == 0) ? PREC_INT8 : PREC_INT4;
         item.cont_mode = (item.opcode == OP_BANG_SOFTMAX) ? bit'((t / 7) % 2) : 1'b0;
 
-        // Directed corner cases for first 70 transactions, then constrained-random
+        // Directed corner cases for first 126 transactions, then constrained-random
         if (t < 14) begin
           // Saturation & boundary test vectors
           item.vec_a       = {16'h7FFF, 16'h8000, 16'h0100, 16'hFF00, 16'h0200, 16'hFE00, 16'h0000, 16'h0080};
           item.vec_b       = {16'h7FFF, 16'h8000, 16'h0100, 16'h0100, 16'h0180, 16'h0180, 16'h0000, 16'h0100};
           item.cos_sin_lut = {16'h0080, 16'h00DD, 16'h00DD, 16'h0080, 16'hFF00, 16'h0000, 16'h0000, 16'h0100};
-        end else if (t < 70) begin
+        end else if (t < 98) begin
+          // Sweep all 12 Q8.8 variance buckets of rsqrt_lut_nr_q88:
+          // v_safe = ((x*x) >> 8) + 1 across [<16, <64, <128, <192, <320, <512, <768, <1280, <2560, <5120, <10240, >=10240]
+          logic [15:0] rms_lut_x[12] = '{
+            16'd16,  16'd96,  16'd160, 16'd200, 16'd256,  16'd320,
+            16'd400, 16'd512, 16'd700, 16'd1024, 16'd1400, 16'd2048
+          };
+          logic [15:0] vx = rms_lut_x[(t - 14) / 7];
+          logic [15:0] nx = ~vx + 16'd1;
+          item.vec_a       = {vx, nx, vx, nx, vx, nx, vx, nx};
+          item.vec_b       = {16'h0100, 16'h0120, 16'h00E0, 16'h0140, 16'h00C0, 16'h0100, 16'h0080, 16'h0200};
+          item.cos_sin_lut = {16'h00B5, 16'h00B5, 16'h0080, 16'h00DD, 16'h00DD, 16'h0080, 16'h0100, 16'h0000};
+        end else if (t < 154) begin
           // Sweep variance & PWL exp/sigmoid segments across Q8.8 scales
           int unsigned scale_sh = (t / 7) % 8;
           item.vec_a       = {(r0 << scale_sh), (r1 >> scale_sh)};

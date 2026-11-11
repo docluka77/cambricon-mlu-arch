@@ -93,14 +93,24 @@
  000300         req.flash_base_page = 32'h0010_0000 + (i * 32'h10);
  000300         req.flash_ecc_clean = (i % 29 != 0);
  000150         if (i < 150) begin
+                  // Sweep all 13 span_u priority buckets (shift_amt = 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
+ 000150           int span_max_lut[13] = '{
+ 000150             20000, 20000, 10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20, 10
+                  };
+ 000150           int span_min_lut[13] = '{
+ 000150             -20000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                  };
  000150           req.opcode = OP_LLM_KV_PACK;
  000150           req.prec   = (i % 2 == 0) ? PREC_INT4 : PREC_FP8_E4M3;
  001200           for (int k = 0; k < 8; k++) begin
- 001040             if (i < 20) begin
-                      // Small dynamic range (lossless INT4 test)
- 000160               req.kv_fp16_in[k*16 +: 16] = 16'(signed'(16'sd100 + k * 2 - (i % 5)));
- 001040             end else begin
- 001040               req.kv_fp16_in[k*16 +: 16] = 16'((i * 257 + k * 1999) ^ 16'h5A3C);
+ 000784             if (i < 52) begin
+ 000416               int b_idx = (i / 2) % 13;
+ 000416               int min_v = span_min_lut[b_idx];
+ 000416               int max_v = span_max_lut[b_idx];
+ 000416               int lane_v = min_v + ((max_v - min_v) * k) / 7;
+ 000416               req.kv_fp16_in[k*16 +: 16] = 16'(signed'(lane_v));
+ 000784             end else begin
+ 000784               req.kv_fp16_in[k*16 +: 16] = 16'((i * 257 + k * 1999) ^ 16'h5A3C);
                     end
                   end
  000150           req.draft_prob    = 128'd0;

@@ -73,7 +73,7 @@
           logic [NUM_CHIPS-1:0][4:0][127:0] rtr_out_flit;
         
 ~000026   logic [NUM_CHIPS-1:0][31:0]       rtr_routed_cnt;
-%000000   logic [NUM_CHIPS-1:0][31:0]       rtr_vc1_cnt;
+~000013   logic [NUM_CHIPS-1:0][31:0]       rtr_vc1_cnt;
         
  000184   logic [NUM_CHIPS-1:0]             pcs_tx_valid;
 ~000010   logic [NUM_CHIPS-1:0]             pcs_tx_ready;
@@ -239,12 +239,12 @@
  003417     for (int c = 0; c < 3; c++) begin
  003417       rtr_out_ready[c][1] = pcs_tx_ready[c];
  003417       rtr_out_ready[c][4] = pcs_tx_ready[c];
- 000057       if (rtr_out_valid[c][1]) begin
- 000057         pcs_tx_valid[c] = 1'b1;
- 000057         pcs_tx_flit[c]  = rtr_out_flit[c][1];
-%000000       end else if (rtr_out_valid[c][4]) begin
-%000000         pcs_tx_valid[c] = 1'b1;
-%000000         pcs_tx_flit[c]  = {rtr_out_flit[c][4][127:121], 2'b00, rtr_out_flit[c][4][118:0]};
+ 000042       if (rtr_out_valid[c][1]) begin
+ 000042         pcs_tx_valid[c] = 1'b1;
+ 000042         pcs_tx_flit[c]  = rtr_out_flit[c][1];
+ 000015       end else if (rtr_out_valid[c][4]) begin
+ 000015         pcs_tx_valid[c] = 1'b1;
+ 000015         pcs_tx_flit[c]  = {rtr_out_flit[c][4][127:121], 2'b00, rtr_out_flit[c][4][118:0]};
  001968       end else if (ar_busy_q) begin
  001392         pcs_tx_valid[c] = 1'b1;
  001392         pcs_tx_flit[c]  = {2'b00, 1'b1, 4'(c), 4'((c + 1) & 3), 5'd0, 16'h0039, AR_MAGIC_ADDR, 60'd0, ar_pipe_q[c][3:0]};
@@ -256,12 +256,12 @@
         
  001139     rtr_out_ready[3][1] = 1'b1;
  001139     rtr_out_ready[3][4] = pcs_tx_ready[3];
-%000008     if (rtr_out_valid[3][2] && (rtr_out_flit[3][2][120:117] == 4'd0)) begin
-%000008       pcs_tx_valid[3] = 1'b1;
-%000008       pcs_tx_flit[3]  = rtr_out_flit[3][2];
-%000000     end else if (rtr_out_valid[3][4]) begin
-%000000       pcs_tx_valid[3] = 1'b1;
-%000000       pcs_tx_flit[3]  = {rtr_out_flit[3][4][127:121], 2'b00, rtr_out_flit[3][4][118:0]};
+%000004     if (rtr_out_valid[3][2] && (rtr_out_flit[3][2][120:117] == 4'd0)) begin
+%000004       pcs_tx_valid[3] = 1'b1;
+%000004       pcs_tx_flit[3]  = rtr_out_flit[3][2];
+%000004     end else if (rtr_out_valid[3][4]) begin
+%000004       pcs_tx_valid[3] = 1'b1;
+%000004       pcs_tx_flit[3]  = {rtr_out_flit[3][4][127:121], 2'b00, rtr_out_flit[3][4][118:0]};
  000667     end else if (ar_busy_q) begin
  000464       pcs_tx_valid[3] = 1'b1;
  000464       pcs_tx_flit[3]  = {2'b00, 1'b1, 4'd3, 4'd0, 5'd0, 16'h0039, AR_MAGIC_ADDR, 60'd0, ar_pipe_q[3][3:0]};

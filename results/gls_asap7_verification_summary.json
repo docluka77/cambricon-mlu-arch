@@ -1,0 +1,108 @@
+{
+  "stage": "Stage 22 — Post-Synthesis ASAP7 7nm Gate-Level Netlist Simulation (GLS) & Toggle Activity Verification",
+  "simulator": "Verilator 5.054 (Lockstep RTL vs. ASAP7 7nm Gate-Level Standard-Cell Netlists) + Yosys 0.60 SAT Equivalence Miters",
+  "pdk_library": "ASAP7 7nm FinFET RVT (asap7_rvt_ff.lib, 169 combinational + 2 sequential DFF standard cells)",
+  "simulation_cycles": 5000,
+  "total_lockstep_output_checks": 39695,
+  "total_lockstep_errors": 0,
+  "toggle_activity_verification": {
+    "raw_active_toggle_bits": 765987,
+    "total_sampled_bit_cycles": 2557440,
+    "raw_active_toggle_rate": 0.299513,
+    "pmu_clock_gating_saved_cycles": 4439,
+    "pmu_active_engine_cycles": 6190,
+    "pmu_clock_gating_savings_ratio": 0.417631,
+    "effective_chip_switching_activity_alpha_gls": 0.174427,
+    "cmos_energy_model_alpha_assumed": 0.18,
+    "alpha_model_vs_gls_relative_error_pct": 3.096
+  },
+  "dynamic_gls_modules": [
+    {
+      "index": 0,
+      "module": "mlu_sram_secded_ecc",
+      "netlist": "synth/mlu_sram_secded_ecc_asap7_netlist.v",
+      "asap7_cells": 2487,
+      "lockstep_checks": 4995,
+      "lockstep_errors": 0,
+      "yosys_sat_equiv": "PASS",
+      "status": "PASS"
+    },
+    {
+      "index": 1,
+      "module": "mlu_pmu_clock_gate",
+      "netlist": "synth/mlu_pmu_clock_gate_asap7_netlist.v",
+      "asap7_cells": 1599,
+      "lockstep_checks": 4995,
+      "lockstep_errors": 0,
+      "telemetry": {"mac_cyc": 1238, "gated_cyc": 4439},
+      "yosys_sat_equiv": "PASS",
+      "status": "PASS"
+    },
+    {
+      "index": 2,
+      "module": "mlu_bang_icu",
+      "netlist": "synth/mlu_bang_icu_asap7_netlist.v",
+      "asap7_cells": 9243,
+      "lockstep_checks": 4995,
+      "lockstep_errors": 0,
+      "telemetry": {"retired": 30, "haz_stalls": 1218},
+      "yosys_sat_equiv": "PASS",
+      "status": "PASS"
+    },
+    {
+      "index": 3,
+      "module": "mlu_mfu_dma_engine",
+      "netlist": "synth/mlu_mfu_dma_engine_asap7_netlist.v",
+      "asap7_cells": 5356,
+      "lockstep_checks": 4995,
+      "lockstep_errors": 0,
+      "telemetry": {"comp_b": 4791, "uncomp_b": 7504},
+      "yosys_sat_equiv": "PASS",
+      "status": "PASS"
+    },
+    {
+      "index": 4,
+      "module": "mlu_c2c_serdes_pcs",
+      "netlist": "synth/mlu_c2c_serdes_pcs_asap7_netlist.v",
+      "asap7_cells": 7960,
+      "lockstep_checks": 4995,
+      "lockstep_errors": 0,
+      "telemetry": {"crc_err": 0, "retx": 0},
+      "yosys_sat_equiv": "PASS",
+      "status": "PASS"
+    },
+    {
+      "index": 5,
+      "module": "mlu_cambricon_llm_flash_kv",
+      "netlist": "synth/mlu_cambricon_llm_flash_kv_asap7_netlist.v",
+      "asap7_cells": 12174,
+      "lockstep_checks": 4995,
+      "lockstep_errors": 0,
+      "telemetry": {"acc_tok": 647, "kv_saved": 4992},
+      "yosys_sat_equiv": "PASS",
+      "status": "PASS"
+    },
+    {
+      "index": 6,
+      "module": "mlu_sram_sp_macro",
+      "netlist": "synth/mlu_sram_sp_macro_asap7_netlist.v",
+      "asap7_cells": 6367,
+      "lockstep_checks": 4980,
+      "lockstep_errors": 0,
+      "yosys_sat_equiv": "PASS",
+      "status": "PASS"
+    },
+    {
+      "index": 7,
+      "module": "mlu_mpu_core",
+      "netlist": "synth/mlu_mpu_core_asap7_netlist.v",
+      "asap7_cells": 4329,
+      "lockstep_checks": 4730,
+      "lockstep_errors": 0,
+      "telemetry": {"bcast": 1536, "allred": 1547},
+      "yosys_sat_equiv": "PASS",
+      "status": "PASS"
+    }
+  ],
+  "overall_pass": true
+}

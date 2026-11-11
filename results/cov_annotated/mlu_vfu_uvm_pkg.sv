@@ -86,11 +86,11 @@
 %000001       super.new(name);
             endfunction
         
- 003220     function longint unsigned next_rand64();
- 003220       prng_state ^= (prng_state << 13);
- 003220       prng_state ^= (prng_state >> 7);
- 003220       prng_state ^= (prng_state << 17);
- 003220       return prng_state;
+ 003052     function longint unsigned next_rand64();
+ 003052       prng_state ^= (prng_state << 13);
+ 003052       prng_state ^= (prng_state >> 7);
+ 003052       prng_state ^= (prng_state << 17);
+ 003052       return prng_state;
             endfunction
         
 %000001     task body();
@@ -113,22 +113,34 @@
  000560         item.prec      = ((t / 7) % 2 == 0) ? PREC_INT8 : PREC_INT4;
  000560         item.cont_mode = (item.opcode == OP_BANG_SOFTMAX) ? bit'((t / 7) % 2) : 1'b0;
         
-                // Directed corner cases for first 70 transactions, then constrained-random
+                // Directed corner cases for first 126 transactions, then constrained-random
  000014         if (t < 14) begin
                   // Saturation & boundary test vectors
  000014           item.vec_a       = {16'h7FFF, 16'h8000, 16'h0100, 16'hFF00, 16'h0200, 16'hFE00, 16'h0000, 16'h0080};
  000014           item.vec_b       = {16'h7FFF, 16'h8000, 16'h0100, 16'h0100, 16'h0180, 16'h0180, 16'h0000, 16'h0100};
  000014           item.cos_sin_lut = {16'h0080, 16'h00DD, 16'h00DD, 16'h0080, 16'hFF00, 16'h0000, 16'h0000, 16'h0100};
- 000490         end else if (t < 70) begin
+ 000084         end else if (t < 98) begin
+                  // Sweep all 12 Q8.8 variance buckets of rsqrt_lut_nr_q88:
+                  // v_safe = ((x*x) >> 8) + 1 across [<16, <64, <128, <192, <320, <512, <768, <1280, <2560, <5120, <10240, >=10240]
+ 000084           logic [15:0] rms_lut_x[12] = '{
+ 000084             16'd16,  16'd96,  16'd160, 16'd200, 16'd256,  16'd320,
+ 000084             16'd400, 16'd512, 16'd700, 16'd1024, 16'd1400, 16'd2048
+                  };
+ 000084           logic [15:0] vx = rms_lut_x[(t - 14) / 7];
+ 000084           logic [15:0] nx = ~vx + 16'd1;
+ 000084           item.vec_a       = {vx, nx, vx, nx, vx, nx, vx, nx};
+ 000084           item.vec_b       = {16'h0100, 16'h0120, 16'h00E0, 16'h0140, 16'h00C0, 16'h0100, 16'h0080, 16'h0200};
+ 000084           item.cos_sin_lut = {16'h00B5, 16'h00B5, 16'h0080, 16'h00DD, 16'h00DD, 16'h0080, 16'h0100, 16'h0000};
+ 000406         end else if (t < 154) begin
                   // Sweep variance & PWL exp/sigmoid segments across Q8.8 scales
  000056           int unsigned scale_sh = (t / 7) % 8;
  000056           item.vec_a       = {(r0 << scale_sh), (r1 >> scale_sh)};
  000056           item.vec_b       = {16'h0100, 16'h0120, 16'h00E0, 16'h0140, 16'h00C0, 16'h0100, 16'h0080, 16'h0200};
  000056           item.cos_sin_lut = {16'h00B5, 16'h00B5, 16'h0080, 16'h00DD, 16'h00DD, 16'h0080, 16'h0100, 16'h0000};
- 000490         end else begin
- 000490           item.vec_a       = {r1, r0};
- 000490           item.vec_b       = {r3, r2};
- 000490           item.cos_sin_lut = {next_rand64(), next_rand64()};
+ 000406         end else begin
+ 000406           item.vec_a       = {r1, r0};
+ 000406           item.vec_b       = {r3, r2};
+ 000406           item.cos_sin_lut = {next_rand64(), next_rand64()};
                 end
  000560         finish_item(item);
               end

@@ -203,10 +203,13 @@
  000160           rsp_item.act_done        = vif.allreduce_done;
  000080         end else begin
  000080           logic [3:0] dst_enc;
- 000080           dst_enc = req.use_diagonal ? {2'b10, req.dst_chip} : {2'b00, req.dst_chip};
+ 000080           bit         use_c2c_west;
+ 000080           use_c2c_west = (req.dst_chip == 2'((req.src_chip + 2'd1) & 2'd3)) && req.txn_id[1];
+ 000080           dst_enc = req.use_diagonal ? {2'b10, req.dst_chip} :
+                            (use_c2c_west    ? {2'b11, req.dst_chip} : {2'b00, req.dst_chip});
  000080           @(posedge vif.clk);
  000080           vif.chip_tx_valid                <= (4'b0001 << req.src_chip);
- 000080           vif.chip_tx_flit[req.src_chip]   <= {2'b00, 1'b0, {2'b00, req.src_chip}, dst_enc,
+ 000080           vif.chip_tx_flit[req.src_chip]   <= {2'b00, req.txn_id[0], {2'b00, req.src_chip}, dst_enc,
  000080                                                5'd0, 16'h0000, 32'h1000_0000, req.flit_payload};
  000080           vif.link_err_inject              <= 4'b0000;
         

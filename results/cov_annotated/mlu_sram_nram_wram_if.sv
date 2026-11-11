@@ -31,25 +31,26 @@
  000353   logic        ecc_ded_err;
         
           // 2. mlu_sram_sp_macro Signals
-%000002   logic        sp_req_en          = 1'b0;
-%000002   logic        sp_req_we          = 1'b0;
-~000096   logic [7:0]  sp_req_addr        = 8'd0;
+%000003   logic        sp_req_en          = 1'b0;
+%000003   logic        sp_req_we          = 1'b0;
+~000097   logic [7:0]  sp_req_addr        = 8'd0;
 ~000033   logic [63:0] sp_req_wdata       = 64'd0;
-~000078   logic [63:0] sp_rdata;
+%000002   logic [7:0]  sp_req_wmask       = 8'hFF;
+~000083   logic [63:0] sp_rdata;
 %000002   logic        sp_rvalid;
-%000006   logic [71:0] sp_err_mask        = 72'd0;
+~000011   logic [71:0] sp_err_mask        = 72'd0;
  000043   logic        sp_sec_err;
- 000042   logic        sp_ded_err;
- 000034   logic [7:0]  sp_syndrome;
-%000001   logic        sp_bist_en         = 1'b0;
+ 000043   logic        sp_ded_err;
+ 000062   logic [7:0]  sp_syndrome;
+%000002   logic        sp_bist_en         = 1'b0;
 %000001   logic        sp_bist_done;
-%000000   logic        sp_bist_fail;
-%000000   logic [7:0]  sp_bist_fail_addr;
+%000001   logic        sp_bist_fail;
+~000022   logic [7:0]  sp_bist_fail_addr;
 %000001   logic        sp_repair_en       = 1'b0;
 %000001   logic [7:0]  sp_repair_bad_addr = 8'h2A;
 %000001   logic [63:0] sp_repair_spare_data;
 %000001   logic        sp_scrub_en        = 1'b0;
-%000000   logic [7:0]  sp_scrub_addr;
+%000003   logic [7:0]  sp_scrub_addr;
 %000001   logic        sp_slp             = 1'b0;
 %000001   logic        sp_dslp            = 1'b0;
 %000001   logic        sp_sd              = 1'b0;
@@ -77,12 +78,12 @@
 %000001   logic         wram_dma_we     = 1'b0;
 ~000050   logic [8:0]   wram_dma_addr   = 9'd0;
 ~000050   logic [63:0]  wram_dma_wdata  = 64'd0;
-%000008   logic         wram_meta_we    = 1'b0;
-%000004   logic [31:0]  wram_meta_wdata = 32'd0;
+%000009   logic         wram_meta_we    = 1'b0;
+~000038   logic [31:0]  wram_meta_wdata = 32'd0;
 ~000038   logic         wram_tfu_rd_en  = 1'b0;
-~000071   logic [6:0]   wram_tfu_rd_addr= 7'd0;
-~000151   logic [255:0] wram_tfu_weight_vec;
-~000038   logic [31:0]  wram_tfu_meta_o;
+~000087   logic [6:0]   wram_tfu_rd_addr= 7'd0;
+~000165   logic [255:0] wram_tfu_weight_vec;
+~000053   logic [31:0]  wram_tfu_meta_o;
  000038   logic         wram_tfu_weight_valid;
 %000001   logic [1:0]   wram_err_bank   = 2'd0;
 %000001   logic [71:0]  wram_err_mask   = 72'd0;
@@ -141,7 +142,7 @@
             .req_we_i            (bus.sp_req_we),
             .req_addr_i          (bus.sp_req_addr),
             .req_wdata_i         (bus.sp_req_wdata),
-            .req_wmask_i         (8'hFF),
+            .req_wmask_i         (bus.sp_req_wmask),
             .rdata_o             (bus.sp_rdata),
             .rvalid_o            (bus.sp_rvalid),
             .err_inject_mask_i   (bus.sp_err_mask),

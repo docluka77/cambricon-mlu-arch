@@ -34,6 +34,7 @@ interface mlu_sram_nram_wram_if (input logic clk);
   logic        sp_req_we          = 1'b0;
   logic [7:0]  sp_req_addr        = 8'd0;
   logic [63:0] sp_req_wdata       = 64'd0;
+  logic [7:0]  sp_req_wmask       = 8'hFF;
   logic [63:0] sp_rdata;
   logic        sp_rvalid;
   logic [71:0] sp_err_mask        = 72'd0;
@@ -140,7 +141,7 @@ module mlu_sram_nram_wram_dut_wrap (
     .req_we_i            (bus.sp_req_we),
     .req_addr_i          (bus.sp_req_addr),
     .req_wdata_i         (bus.sp_req_wdata),
-    .req_wmask_i         (8'hFF),
+    .req_wmask_i         (bus.sp_req_wmask),
     .rdata_o             (bus.sp_rdata),
     .rvalid_o            (bus.sp_rvalid),
     .err_inject_mask_i   (bus.sp_err_mask),

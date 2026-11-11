@@ -92,12 +92,22 @@ package mlu_cambricon_llm_kv_uvm_pkg;
         req.flash_base_page = 32'h0010_0000 + (i * 32'h10);
         req.flash_ecc_clean = (i % 29 != 0);
         if (i < 150) begin
+          // Sweep all 13 span_u priority buckets (shift_amt = 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
+          int span_max_lut[13] = '{
+            20000, 20000, 10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20, 10
+          };
+          int span_min_lut[13] = '{
+            -20000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+          };
           req.opcode = OP_LLM_KV_PACK;
           req.prec   = (i % 2 == 0) ? PREC_INT4 : PREC_FP8_E4M3;
           for (int k = 0; k < 8; k++) begin
-            if (i < 20) begin
-              // Small dynamic range (lossless INT4 test)
-              req.kv_fp16_in[k*16 +: 16] = 16'(signed'(16'sd100 + k * 2 - (i % 5)));
+            if (i < 52) begin
+              int b_idx = (i / 2) % 13;
+              int min_v = span_min_lut[b_idx];
+              int max_v = span_max_lut[b_idx];
+              int lane_v = min_v + ((max_v - min_v) * k) / 7;
+              req.kv_fp16_in[k*16 +: 16] = 16'(signed'(lane_v));
             end else begin
               req.kv_fp16_in[k*16 +: 16] = 16'((i * 257 + k * 1999) ^ 16'h5A3C);
             end

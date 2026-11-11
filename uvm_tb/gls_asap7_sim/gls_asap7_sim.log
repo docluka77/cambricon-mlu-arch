@@ -1,0 +1,11 @@
+[GLS_SUMMARY] cycles=5000 total_checks=39695 total_errors=0
+[GLS_MOD] 0:mlu_sram_secded_ecc checks=4995 errs=0
+[GLS_MOD] 1:mlu_pmu_clock_gate checks=4995 errs=0 mac_cyc=1238 gated_cyc=4439
+[GLS_MOD] 2:mlu_bang_icu checks=4995 errs=0 retired=30 haz_stalls=1218
+[GLS_MOD] 3:mlu_mfu_dma_engine checks=4995 errs=0 comp_b=4791 uncomp_b=7504
+[GLS_MOD] 4:mlu_c2c_serdes_pcs checks=4995 errs=0 crc_err=0 retx=0
+[GLS_MOD] 5:mlu_cambricon_llm_flash_kv checks=4995 errs=0 acc_tok=647 kv_saved=4992
+[GLS_MOD] 6:mlu_sram_sp_macro checks=4980 errs=0 bist_done=0 bist_fail=0
+[GLS_MOD] 7:mlu_mpu_core checks=4730 errs=0 bcast=1536 allred=1547
+[GLS_TOGGLE] toggle_bits=765987 total_bit_cycs=2557440
+- uvm_tb/gls_asap7_sim/tb_gls_asap7.sv:750: Verilog $finish

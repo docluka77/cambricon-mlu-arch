@@ -19,29 +19,29 @@
  000135   logic [4:0]        in_valid_i;
  000174   logic [4:0]        in_ready_o;
           logic [4:0][127:0] in_flit_i;
- 000076   logic [4:0]        out_valid_o;
+ 000140   logic [4:0]        out_valid_o;
 %000006   logic [4:0]        out_ready_i;
           logic [4:0][127:0] out_flit_o;
-~000160   logic [31:0]       routed_flit_cnt_o;
-~000067   logic [31:0]       vc1_priority_cnt_o;
+~000146   logic [31:0]       routed_flit_cnt_o;
+~000115   logic [31:0]       vc1_priority_cnt_o;
         
           // C2C SerDes PCS Interface (Loopback Link TX -> RX)
  000041   logic             tx_valid_i;
  000041   logic             tx_ready_o;
  000811   logic [127:0]     tx_flit_i;
  000081   logic             link_tx_valid_o;
- 001045   logic [127:0]     link_tx_flit_o;
+ 001034   logic [127:0]     link_tx_flit_o;
  000040   logic             err_inject_crc_i;
  000081   logic             rx_valid_o;
- 001004   logic [127:0]     rx_flit_o;
+ 001005   logic [127:0]     rx_flit_o;
  000081   logic             ack_valid_o;
  000360   logic [4:0]       ack_seq_o;
  000040   logic             nack_valid_o;
  000360   logic [4:0]       nack_seq_o;
  000040   logic             replay_trigger_i;
-~000020   logic [4:0]       replay_seq_i;
-~000020   logic [31:0]      crc_err_cnt_o;
-~000020   logic [31:0]      retransmit_cnt_o;
+ 000040   logic [4:0]       replay_seq_i;
+~000021   logic [31:0]      crc_err_cnt_o;
+~000021   logic [31:0]      retransmit_cnt_o;
         endinterface : mlu_link_noc_if
         
         module mlu_link_noc_dut_wrap (mlu_link_noc_if bus);

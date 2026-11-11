@@ -18,7 +18,7 @@ UVM_WARNING /nfs/share/home/chenpei/verisegue_agent_v0/agent_v26/runs/uvm_gate0_
 UVM_INFO @ 0: reporter [RNTST] Running test mlu_sram_nram_wram_test...
 UVM_INFO /nfs/share/home/chenpei/verisegue_agent_v0/agent_v26/runs/uvm_gate0_20261104_221700/toolchain/uvm-core-2020.3.1/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
 UVM_WARNING /nfs/share/home/chenpei/verisegue_agent_v0/agent_v26/runs/uvm_gate0_20261104_221700/toolchain/uvm-core-2020.3.1/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
-UVM_INFO /nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon/uvm_tb/uvm_sram_nram_wram/mlu_sram_nram_wram_uvm_pkg.sv(901) @ 12030000: uvm_test_top [UVM_SRAM_PASS] SUITE 1 PASS: cycles=1200 dpi_calls=1200 sec=467 ded=466 bist=1 repair=1 swiz=50 xpose=1 wram=67 bcast=19 atomic=1 cov=100.00%
+UVM_INFO /nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon/uvm_tb/uvm_sram_nram_wram/mlu_sram_nram_wram_uvm_pkg.sv(935) @ 12030000: uvm_test_top [UVM_SRAM_PASS] SUITE 1 PASS: cycles=1200 dpi_calls=1200 sec=467 ded=466 bist=1 repair=1 swiz=50 xpose=1 wram=67 bcast=19 atomic=1 cov=100.00%
 UVM_INFO /nfs/share/home/chenpei/verisegue_agent_v0/agent_v26/runs/uvm_gate0_20261104_221700/toolchain/uvm-core-2020.3.1/src/base/uvm_report_server.svh(1009) @ 12030000: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 

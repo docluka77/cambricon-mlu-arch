@@ -43,12 +43,15 @@
             logic        sp_req_we;
             logic [7:0]  sp_req_addr;
             logic [63:0] sp_req_wdata;
+            logic [7:0]  sp_req_wmask;
             logic [71:0] sp_err_mask;
             logic        sp_bist_en;
             logic        sp_repair_en;
             logic [7:0]  sp_repair_bad_addr;
+            logic        sp_scrub_en;
             logic        sp_slp;
             logic        sp_dslp;
+            logic        sp_sd;
         
             logic [7:0]       nram_req_valid;
             logic [7:0]       nram_req_we;
@@ -174,12 +177,15 @@
  001200         item.sp_req_we          = 1'b0;
  001200         item.sp_req_addr        = 8'd0;
  001200         item.sp_req_wdata       = 64'd0;
+ 001200         item.sp_req_wmask       = 8'hFF;
  001200         item.sp_err_mask        = 72'd0;
  001200         item.sp_bist_en         = 1'b0;
  001200         item.sp_repair_en       = 1'b0;
  001200         item.sp_repair_bad_addr = 8'h2A;
+ 001200         item.sp_scrub_en        = 1'b0;
  001200         item.sp_slp             = 1'b0;
  001200         item.sp_dslp            = 1'b0;
+ 001200         item.sp_sd              = 1'b0;
         
  001200         item.nram_req_valid     = '0;
  001200         item.nram_req_we        = '0;
@@ -265,12 +271,24 @@
 %000001         end else if (cyc == 412) begin
 %000001           item.sp_repair_en       = 1'b1;
 %000001           item.sp_repair_bad_addr = 8'h2A;
-%000005         end else if (cyc >= 415 && cyc < 420) begin
-%000005           item.sp_slp  = (cyc < 417);
-%000005           item.sp_dslp = (cyc >= 417);
+%000004         end else if (cyc >= 415 && cyc < 419) begin
+%000004           item.sp_slp  = (cyc < 417);
+%000004           item.sp_dslp = (cyc >= 417);
+%000002         end else if (cyc >= 419 && cyc < 421) begin
+%000002           item.sp_sd   = 1'b1;
+ 000012         end else if (cyc >= 423 && cyc < 435) begin
+ 000012           item.sp_scrub_en = 1'b1;
+%000001         end else if (cyc == 436) begin
+%000001           item.sp_req_en    = 1'b1;
+%000001           item.sp_req_we    = 1'b1;
+%000001           item.sp_req_addr  = 8'h3F;
+%000001           item.sp_req_wdata = 64'h55AA_55AA_55AA_55AA;
+%000001           item.sp_req_wmask = 8'h0F;
                 end
                 // Phase 2 (450..649): NRAM Bank-Conflict Stress vs. XOR Swizzling + 8x8 Transpose
  000050         else if (cyc >= 450 && cyc < 500) begin
+ 000050           item.sp_bist_en  = 1'b1;
+ 000050           item.sp_err_mask = 72'd3 << ((cyc - 450) % 60);
                   // Power-of-2 stride (stride=8 words): raw bank = 0 for all 8 lanes
                   // Even cycles: swizzle_en=0 -> conflict_stall=1; Odd cycles: swizzle_en=1 -> 0 stall
  000050           item.nram_swizzle_en = cyc[0];
@@ -281,6 +299,8 @@
  000400             item.nram_req_wdata[l] = 64'hA000_0000_0000_0000 + (64'(cyc) << 8) + 64'(l);
                   end
  000050         end else if (cyc >= 500 && cyc < 550) begin
+ 000050           item.sp_bist_en  = 1'b1;
+ 000050           item.sp_err_mask = 72'd3 << ((cyc - 500) % 60);
                   // Swizzled conflict-free reads
  000050           item.nram_swizzle_en = 1'b1;
  000050           item.nram_req_valid  = 8'hFF;
@@ -295,6 +315,9 @@
 %000001             item.nram_err_bank = 3'd3;
 %000001             item.nram_err_mask = (72'd1 << 4) | (72'd1 << 29);
                   end
+ 000010         end else if (cyc >= 550 && cyc < 560) begin
+ 000010           item.sp_bist_en  = 1'b1;
+ 000010           item.sp_err_mask = 72'd3 << ((cyc - 550) % 60);
 %000001         end else if (cyc == 560) begin
                   // 8x8 2D Matrix Transpose Write to Row 2 across Banks 0..7
 %000001           item.nram_transpose_en = 1'b1;
@@ -336,6 +359,8 @@
  000068           item.wram_dma_we      = 1'b1;
  000068           item.wram_dma_addr    = {2'((cyc - 682) % 4), 7'(row)};
  000068           item.wram_dma_wdata   = 64'hB000_0000_0000_0000 | (64'(row) << 16) | 64'((cyc - 682) % 4);
+ 000068           item.wram_meta_we     = 1'b1;
+ 000068           item.wram_meta_wdata  = 32'hD0D0_0000 | 32'(row);
 %000001           if (cyc == 690) begin
 %000001             item.wram_err_bank = 2'd1;
 %000001             item.wram_err_mask = 72'd1 << 19;
@@ -343,6 +368,12 @@
 %000001             item.wram_err_bank = 2'd2;
 %000001             item.wram_err_mask = (72'd1 << 3) | (72'd1 << 41);
                   end
+ 000032         end else if (cyc >= 750 && cyc < 782) begin
+                  // Flip ping_pong_sel=0 => Buf 0 is active for 256-bit TFU read & sparse_meta_mem0 readback
+ 000032           int row = (cyc - 750) % 8;
+ 000032           item.wram_pp_sel      = 1'b0;
+ 000032           item.wram_tfu_rd_en   = 1'b1;
+ 000032           item.wram_tfu_rd_addr = 7'(row);
                 end
                 // Phase 4 (850..1049): MPU Shared SRAM 4-IPU Broadcast + Atomic AllReduce
 %000004         else if (cyc >= 850 && cyc < 854) begin
@@ -383,7 +414,7 @@
 %000001           item.mpu_ipu_addr[0] = {3'd4, 8'd3};
                 end
                 // Phase 5 (1050..1199): Constrained-Random Multi-Memory Stress
- 000413         else if (cyc >= 1050) begin
+ 000357         else if (cyc >= 1050) begin
  000150           item.nram_swizzle_en = r0[0];
  000150           item.nram_req_valid  = r0[15:8];
  000150           item.nram_req_we     = r0[23:16];
@@ -441,12 +472,15 @@
  001200         vif.sp_req_we          = item.sp_req_we;
  001200         vif.sp_req_addr        = item.sp_req_addr;
  001200         vif.sp_req_wdata       = item.sp_req_wdata;
+ 001200         vif.sp_req_wmask       = item.sp_req_wmask;
  001200         vif.sp_err_mask        = item.sp_err_mask;
  001200         vif.sp_bist_en         = item.sp_bist_en;
  001200         vif.sp_repair_en       = item.sp_repair_en;
  001200         vif.sp_repair_bad_addr = item.sp_repair_bad_addr;
+ 001200         vif.sp_scrub_en        = item.sp_scrub_en;
  001200         vif.sp_slp             = item.sp_slp;
  001200         vif.sp_dslp            = item.sp_dslp;
+ 001200         vif.sp_sd              = item.sp_sd;
         
  001200         vif.nram_req_valid     = item.nram_req_valid;
  001200         vif.nram_req_we        = item.nram_req_we;
@@ -522,11 +556,11 @@
  000150         bins st_stress   = {5};
               }
  000733       cp_sec: coverpoint sec_hit { bins b0 = {0}; bins b1 = {1}; }
- 000758       cp_ded: coverpoint ded_hit { bins b0 = {0}; bins b1 = {1}; }
+ 000684       cp_ded: coverpoint ded_hit { bins b0 = {0}; bins b1 = {1}; }
  001172       cp_bist: coverpoint bist_done { bins b0 = {0}; bins b1 = {1}; }
  001045       cp_swiz: coverpoint swizzle_en { bins b0 = {0}; bins b1 = {1}; }
  001089       cp_conf: coverpoint conflict_stall { bins b0 = {0}; bins b1 = {1}; }
- 001051       cp_wram: coverpoint wram_valid { bins b0 = {0}; bins b1 = {1}; }
+ 001019       cp_wram: coverpoint wram_valid { bins b0 = {0}; bins b1 = {1}; }
  001099       cp_bcast: coverpoint mpu_bcast { bins b0 = {0}; bins b1 = {1}; }
             endgroup
         

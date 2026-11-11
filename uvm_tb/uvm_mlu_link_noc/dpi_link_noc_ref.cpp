@@ -186,8 +186,8 @@ void dpi_noc_ref_eval_comb() {
       }
     } else {
       for (uint32_t off = 0; off < 5; off++) {
-        uint32_t sum3   = (r_rr_ptr[op] + (off & 0x7u)) & 0x7u;
-        uint32_t ip_idx = (sum3 >= 5u) ? ((sum3 - 5u) & 0x7u) : sum3;
+        uint32_t sum4   = r_rr_ptr[op] + (off & 0x7u);
+        uint32_t ip_idx = (sum4 >= 5u) ? ((sum4 - 5u) & 0x7u) : sum4;
         if (!comb_out_grant_v[op] && r_vc1_valid[ip_idx] && (r_vc1_dst_p[ip_idx] == static_cast<uint32_t>(op))) {
           comb_out_grant_v[op]    = true;
           comb_out_grant_in_p[op] = ip_idx;
@@ -197,8 +197,8 @@ void dpi_noc_ref_eval_comb() {
       }
       if (!comb_out_grant_v[op]) {
         for (uint32_t off = 0; off < 5; off++) {
-          uint32_t sum3   = (r_rr_ptr[op] + (off & 0x7u)) & 0x7u;
-          uint32_t ip_idx = (sum3 >= 5u) ? ((sum3 - 5u) & 0x7u) : sum3;
+          uint32_t sum4   = r_rr_ptr[op] + (off & 0x7u);
+          uint32_t ip_idx = (sum4 >= 5u) ? ((sum4 - 5u) & 0x7u) : sum4;
           if (!comb_out_grant_v[op] && r_vc0_valid[ip_idx] && (r_vc0_dst_p[ip_idx] == static_cast<uint32_t>(op))) {
             comb_out_grant_v[op]    = true;
             comb_out_grant_in_p[op] = ip_idx;

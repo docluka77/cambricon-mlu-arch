@@ -18,7 +18,7 @@ UVM_WARNING /nfs/share/home/chenpei/verisegue_agent_v0/agent_v26/runs/uvm_gate0_
 UVM_INFO @ 0: reporter [RNTST] Running test oam_4chip_test...
 UVM_INFO /nfs/share/home/chenpei/verisegue_agent_v0/agent_v26/runs/uvm_gate0_20261104_221700/toolchain/uvm-core-2020.3.1/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
 UVM_WARNING /nfs/share/home/chenpei/verisegue_agent_v0/agent_v26/runs/uvm_gate0_20261104_221700/toolchain/uvm-core-2020.3.1/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
-UVM_INFO /nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon/uvm_tb/uvm_4chip_allreduce/mlu_4chip_allreduce_uvm_pkg.sv(310) @ 5672500: uvm_test_top.env.sb [OAM_4CHIP_SB_SUMMARY] Suite 9 Summary: RingAR=80 ButterflyAR=80 Unicast=80 Fail=0 DPI_Calls=400 Collectives=160 RoutedFlits=182 CRCErrs=34 Retransmits=34
+UVM_INFO /nfs/share/home/chenpei/hyr/cambricon_mlu590_690_marathon/uvm_tb/uvm_4chip_allreduce/mlu_4chip_allreduce_uvm_pkg.sv(313) @ 5672500: uvm_test_top.env.sb [OAM_4CHIP_SB_SUMMARY] Suite 9 Summary: RingAR=80 ButterflyAR=80 Unicast=80 Fail=0 DPI_Calls=400 Collectives=160 RoutedFlits=182 CRCErrs=34 Retransmits=34
 UVM_INFO /nfs/share/home/chenpei/verisegue_agent_v0/agent_v26/runs/uvm_gate0_20261104_221700/toolchain/uvm-core-2020.3.1/src/base/uvm_report_server.svh(1009) @ 5672500: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 

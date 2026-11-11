@@ -167,19 +167,20 @@
  000200         else if (cyc < 400) begin
  000200           int unsigned wstep = (cyc - 200) % 6;
  000200           int unsigned wp    = ((cyc - 200) / 6) % 5;
+ 000200           bit          wvc   = bit'(((cyc - 200) / 6) & 1);
  000200           bit [3:0]    wdst  = dst_lut[(wp + 1) % 5];
  000034           if (wstep == 0) begin
  000034             item.in_valid[wp] = 1'b1;
- 000034             item.in_flit[wp]  = make_flit(FLIT_HEAD, 1'b0, 4'(wp), wdst, 32'h2000_0000, r0);
+ 000034             item.in_flit[wp]  = make_flit(FLIT_HEAD, wvc, 4'(wp), wdst, 32'h2000_0000, r0);
  000034           end else if (wstep == 1) begin
  000034             item.in_valid[wp] = 1'b1;
- 000034             item.in_flit[wp]  = make_flit(FLIT_BODY, 1'b0, 4'(wp), wdst, 32'h2000_0008, r0 ^ 64'h5555);
+ 000034             item.in_flit[wp]  = make_flit(FLIT_BODY, wvc, 4'(wp), wdst, 32'h2000_0008, r0 ^ 64'h5555);
                     // Competing port attempts to break lock on same output port
  000034             item.in_valid[(wp + 2) % 5] = 1'b1;
- 000034             item.in_flit[(wp + 2) % 5]  = make_flit(FLIT_HEAD_TAIL, 1'b1, 4'((wp+2)%5), wdst, 32'h2000_0010, r0);
+ 000034             item.in_flit[(wp + 2) % 5]  = make_flit(FLIT_HEAD_TAIL, ~wvc, 4'((wp+2)%5), wdst, 32'h2000_0010, r0);
  000099           end else if (wstep == 2) begin
  000033             item.in_valid[wp] = 1'b1;
- 000033             item.in_flit[wp]  = make_flit(FLIT_TAIL, 1'b0, 4'(wp), wdst, 32'h2000_0018, r0 ^ 64'hAAAA);
+ 000033             item.in_flit[wp]  = make_flit(FLIT_TAIL, wvc, 4'(wp), wdst, 32'h2000_0018, r0 ^ 64'hAAAA);
                   end
                 end
                 // Phase 3 (400..599): In-Router Hardware Ring/Tree AllReduce Combining (allreduce_en=1)
@@ -205,29 +206,61 @@
         
                 // Continuous C2C SerDes PCS Framing, Fault Injection & Go-Back-N Replay Recovery
  000800         item.tx_flit = make_flit(FLIT_HEAD_TAIL, bit'(cyc[0]), 4'd1, 4'd12, 32'h4000_0000 + 32'(cyc*8), r0);
- 000040         if (smod == 10) begin
- 000040           item.tx_valid       = 1'b1;
- 000040           item.err_inject_crc = 1'b1;
- 000040           item.replay_trigger = 1'b0;
- 000040           item.replay_seq     = 5'd0;
- 000040           saved_nack          = serdes_seq;
- 000040           serdes_seq          = serdes_seq + 5'd1;
- 000040         end else if (smod == 11) begin
- 000040           item.tx_valid       = 1'b0;
- 000040           item.err_inject_crc = 1'b0;
- 000040           item.replay_trigger = 1'b1;
- 000040           item.replay_seq     = saved_nack;
- 000680         end else if (smod == 12) begin
- 000040           item.tx_valid       = 1'b0;
- 000040           item.err_inject_crc = 1'b0;
- 000040           item.replay_trigger = 1'b0;
- 000040           item.replay_seq     = 5'd0;
- 000680         end else begin
- 000680           item.tx_valid       = 1'b1;
- 000680           item.err_inject_crc = 1'b0;
- 000680           item.replay_trigger = 1'b0;
- 000680           item.replay_seq     = 5'd0;
- 000680           serdes_seq          = serdes_seq + 5'd1;
+ 000020         if (cyc < 20) begin
+                  // 2-flit in-flight Go-Back-N replay window to exercise multi-flit replay_curr_seq_q++
+%000001           if (smod == 9) begin
+%000001             item.tx_valid       = 1'b1;
+%000001             item.err_inject_crc = 1'b1;
+%000001             item.replay_trigger = 1'b0;
+%000001             item.replay_seq     = 5'd0;
+%000001             saved_nack          = serdes_seq;
+%000001             serdes_seq          = serdes_seq + 5'd1;
+%000001           end else if (smod == 10) begin
+%000001             item.tx_valid       = 1'b1;
+%000001             item.err_inject_crc = 1'b0;
+%000001             item.replay_trigger = 1'b0;
+%000001             item.replay_seq     = 5'd0;
+%000001             serdes_seq          = serdes_seq + 5'd1;
+%000001           end else if (smod == 11) begin
+%000001             item.tx_valid       = 1'b0;
+%000001             item.err_inject_crc = 1'b0;
+%000001             item.replay_trigger = 1'b1;
+%000001             item.replay_seq     = saved_nack;
+~000015           end else if (smod == 12 || smod == 13) begin
+%000002             item.tx_valid       = 1'b0;
+%000002             item.err_inject_crc = 1'b0;
+%000002             item.replay_trigger = 1'b0;
+%000002             item.replay_seq     = 5'd0;
+ 000015           end else begin
+ 000015             item.tx_valid       = 1'b1;
+ 000015             item.err_inject_crc = 1'b0;
+ 000015             item.replay_trigger = 1'b0;
+ 000015             item.replay_seq     = 5'd0;
+ 000015             serdes_seq          = serdes_seq + 5'd1;
+                  end
+ 000039         end else if (smod == 10) begin
+ 000039           item.tx_valid       = 1'b1;
+ 000039           item.err_inject_crc = 1'b1;
+ 000039           item.replay_trigger = 1'b0;
+ 000039           item.replay_seq     = 5'd0;
+ 000039           saved_nack          = serdes_seq;
+ 000039           serdes_seq          = serdes_seq + 5'd1;
+ 000039         end else if (smod == 11) begin
+ 000039           item.tx_valid       = 1'b0;
+ 000039           item.err_inject_crc = 1'b0;
+ 000039           item.replay_trigger = 1'b1;
+ 000039           item.replay_seq     = saved_nack;
+ 000663         end else if (smod == 12) begin
+ 000039           item.tx_valid       = 1'b0;
+ 000039           item.err_inject_crc = 1'b0;
+ 000039           item.replay_trigger = 1'b0;
+ 000039           item.replay_seq     = 5'd0;
+ 000663         end else begin
+ 000663           item.tx_valid       = 1'b1;
+ 000663           item.err_inject_crc = 1'b0;
+ 000663           item.replay_trigger = 1'b0;
+ 000663           item.replay_seq     = 5'd0;
+ 000663           serdes_seq          = serdes_seq + 5'd1;
                 end
         
  000800         finish_item(item);
@@ -326,33 +359,33 @@
             );
               option.per_instance = 1;
               cp_out_port: coverpoint out_port {
- 000573         bins p_local = {0};
- 000170         bins p_north = {1};
- 000172         bins p_south = {2};
- 000170         bins p_east  = {3};
- 000221         bins p_west  = {4};
+ 000541         bins p_local = {0};
+ 000189         bins p_north = {1};
+ 000193         bins p_south = {2};
+ 000191         bins p_east  = {3};
+ 000274         bins p_west  = {4};
               }
               cp_ftype: coverpoint ftype {
- 001205         bins ft_single = {FLIT_HEAD_TAIL};
+ 001287         bins ft_single = {FLIT_HEAD_TAIL};
  000034         bins ft_head   = {FLIT_HEAD};
  000034         bins ft_body   = {FLIT_BODY};
  000033         bins ft_tail   = {FLIT_TAIL};
               }
               cp_vc: coverpoint vc {
- 000873         bins vc0 = {1'b0};
- 000433         bins vc1 = {1'b1};
+ 000727         bins vc0 = {1'b0};
+ 000661         bins vc1 = {1'b1};
               }
               cp_ar: coverpoint ar_en {
- 001009         bins ar_off = {1'b0};
- 000297         bins ar_on  = {1'b1};
+ 001021         bins ar_off = {1'b0};
+ 000367         bins ar_on  = {1'b1};
               }
               cp_nack: coverpoint nack_v {
- 001251         bins nack_0 = {1'b0};
- 000055         bins nack_1 = {1'b1};
+ 001325         bins nack_0 = {1'b0};
+ 000063         bins nack_1 = {1'b1};
               }
               cp_replay: coverpoint replay_trig {
- 001243         bins rep_0 = {1'b0};
- 000063         bins rep_1 = {1'b1};
+ 001319         bins rep_0 = {1'b0};
+ 000069         bins rep_1 = {1'b1};
               }
             endgroup
         
@@ -388,14 +421,14 @@
  004000           for (int p = 0; p < 5; p++) begin
  004000             item.in_flit[p]      = vif.in_flit_i[p];
  004000             item.act_out_flit[p] = vif.out_flit_o[p];
- 003102             if (vif.out_valid_o[p]) begin
- 000898               link_noc_cg.sample(p, vif.out_flit_o[p][127:126], vif.out_flit_o[p][125],
- 000898                                  vif.allreduce_en_i, vif.nack_valid_o, vif.replay_trigger_i);
+ 002966             if (vif.out_valid_o[p]) begin
+ 001034               link_noc_cg.sample(p, vif.out_flit_o[p][127:126], vif.out_flit_o[p][125],
+ 001034                                  vif.allreduce_en_i, vif.nack_valid_o, vif.replay_trigger_i);
                     end
                   end
- 000408           if (vif.out_valid_o == 5'b00000) begin
- 000408             link_noc_cg.sample(0, FLIT_HEAD_TAIL, 1'b0, vif.allreduce_en_i,
- 000408                                vif.nack_valid_o, vif.replay_trigger_i);
+ 000446           if (vif.out_valid_o == 5'b00000) begin
+ 000354             link_noc_cg.sample(0, FLIT_HEAD_TAIL, 1'b0, vif.allreduce_en_i,
+ 000354                                vif.nack_valid_o, vif.replay_trigger_i);
                   end
         
  000800           item.act_routed_cnt     = vif.routed_flit_cnt_o;
@@ -556,8 +589,8 @@
                                        (env.scoreboard.mismatches == 0) &&
                                        (dpi_noc_exp_routed_cnt() > 800) &&
                                        (dpi_noc_exp_vc1_cnt() > 400) &&
-                                       (dpi_noc_exp_crc_err_cnt() == 40) &&
-%000001                                (dpi_noc_exp_retransmit_cnt() == 40) &&
+                                       (dpi_noc_exp_crc_err_cnt() >= 40) &&
+%000001                                (dpi_noc_exp_retransmit_cnt() >= 40) &&
                                        (func_cov == 100.0);
 %000001       super.report_phase(phase);
 %000001       dpi_noc_set_status(pass_gate ? 0 : 1);

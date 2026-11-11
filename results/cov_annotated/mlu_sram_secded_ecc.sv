@@ -14,16 +14,16 @@
           parameter int unsigned ECC_W  = 72
         )(
           // Encode Path (Write to SRAM)
-~001020   input  logic [DATA_W-1:0] data_i,
-~002316   output logic [ECC_W-1:0]  codeword_o,
+~001022   input  logic [DATA_W-1:0] data_i,
+~002322   output logic [ECC_W-1:0]  codeword_o,
         
           // Decode & Error Injection Path (Read from SRAM)
-~001517   input  logic [ECC_W-1:0]  codeword_i,
-~000068   input  logic [ECC_W-1:0]  err_inject_mask_i,
-~000590   output logic [DATA_W-1:0] data_o,
-~000308   output logic [7:0]        syndrome_o,
+~001554   input  logic [ECC_W-1:0]  codeword_i,
+~000073   input  logic [ECC_W-1:0]  err_inject_mask_i,
+~000610   output logic [DATA_W-1:0] data_o,
+~000338   output logic [7:0]        syndrome_o,
 ~000399   output logic              sec_err_o,
-~000397   output logic              ded_err_o
+~000398   output logic              ded_err_o
         );
         
           // ---------------------------------------------------------------------------
@@ -56,7 +56,7 @@
           // ---------------------------------------------------------------------------
           // 2. Combinational ECC Encoder: Generate 8 Check Bits from 64-Bit Data
           // ---------------------------------------------------------------------------
- 001019   logic [7:0] enc_chk_bits;
+ 001021   logic [7:0] enc_chk_bits;
           assign enc_chk_bits = calc_hsiao_parity(data_i);
           assign codeword_o   = {enc_chk_bits, data_i};
         
@@ -64,13 +64,13 @@
           // 3. Combinational ECC Decoder: Syndrome Calculation & SECDED Classification
           //    By GF(2) linearity: H*(codeword_i ^ err) = H*codeword_i ^ H*err
           // ---------------------------------------------------------------------------
-~001517   logic [71:0] rx_codeword;
-~000595   logic [63:0] rx_data;
- 000625   logic [7:0]  rx_chk;
+~001559   logic [71:0] rx_codeword;
+~000615   logic [63:0] rx_data;
+ 000641   logic [7:0]  rx_chk;
 %000002   logic [7:0]  cw_syndrome;
-~000308   logic [7:0]  err_syndrome;
-~000308   logic [7:0]  calc_syndrome;
-~000401   logic        syn_nonzero;
+~000338   logic [7:0]  err_syndrome;
+~000338   logic [7:0]  calc_syndrome;
+~000402   logic        syn_nonzero;
 ~000399   logic        syn_odd_parity;
         
           assign rx_codeword   = codeword_i ^ err_inject_mask_i;

@@ -136,6 +136,18 @@
 %000002   logic [31:0]      mfu_comp_bytes_rd;
 %000002   logic [31:0]      mfu_uncomp_bytes_wr;
         
+          // Cambricon-LLM Flash-KV & Speculative Decoding Engine Wires
+%000000   logic [127:0]     llm_kv_dequant_out;
+%000000   logic [63:0]      llm_kv_packed_out;
+%000000   logic             llm_flash_req_valid;
+%000000   logic [31:0]      llm_flash_page_addr;
+%000000   logic [7:0]       llm_accepted_bitmap;
+%000000   logic [3:0]       llm_accepted_len;
+%000000   logic [2:0]       llm_bonus_token_idx;
+%000000   logic [31:0]      llm_total_accepted_tokens;
+%000000   logic [31:0]      llm_total_kv_bytes_saved;
+%000000   logic [31:0]      llm_flash_ecc_err_cnt;
+        
           // NRAM & WRAM Wires
 ~000012   logic [7:0]       nram_req_valid;
 ~000012   logic [7:0]       nram_req_we;
@@ -351,34 +363,60 @@
           );
         
           // ---------------------------------------------------------------------------
-          // 8. Local ENG_MPU_COL ([3]) & ENG_LLM_KV ([4]) Micro-Engine Responders
+          // 8. Local ENG_MPU_COL ([3]) Responder & Cambricon-LLM Flash-KV Engine ([4])
           // ---------------------------------------------------------------------------
-%000000   logic [7:0] col_tag_q, llm_tag_q;
+%000000   logic [7:0] col_tag_q;
         
-          assign eng_cmd_ready[3]   = ~col_busy_q;
-          assign eng_cmd_ready[4]   = ~llm_busy_q;
-          assign eng_done_valid[3]  = col_busy_q;
-          assign eng_done_tag[3]    = col_tag_q;
-          assign eng_done_valid[4]  = llm_busy_q;
-          assign eng_done_tag[4]    = llm_tag_q;
+          assign eng_cmd_ready[3]  = ~col_busy_q;
+          assign eng_done_valid[3] = col_busy_q;
+          assign eng_done_tag[3]   = col_tag_q;
+          assign llm_busy_q        = eng_done_valid[4];
         
  000603   always_ff @(posedge clk_i or negedge rst_ni) begin
 ~000600     if (!rst_ni) begin
 %000003       col_busy_q <= 1'b0;
 %000003       col_tag_q  <= 8'd0;
-%000003       llm_busy_q <= 1'b0;
-%000003       llm_tag_q  <= 8'd0;
  000600     end else begin
  000600       col_busy_q <= eng_cmd_valid[3] & eng_cmd_ready[3];
 ~000600       if (eng_cmd_valid[3] && eng_cmd_ready[3]) begin
 %000000         col_tag_q <= eng_cmd_inst[103:96];
               end
- 000600       llm_busy_q <= eng_cmd_valid[4] & eng_cmd_ready[4];
-~000600       if (eng_cmd_valid[4] && eng_cmd_ready[4]) begin
-%000000         llm_tag_q <= eng_cmd_inst[103:96];
-              end
             end
           end
+        
+          mlu_cambricon_llm_flash_kv #(
+            .KV_RING_DEPTH (16)
+          ) u_cambricon_llm_flash_kv (
+            .clk_i                   (clk_i),
+            .rst_ni                  (rst_ni),
+            .cmd_valid_i             (eng_cmd_valid[4]),
+            .cmd_ready_o             (eng_cmd_ready[4]),
+            .opcode_i                (eng_cmd_inst[127:122]),
+            .prec_i                  (eng_cmd_inst[118:116]),
+            .cmd_tag_i               (eng_cmd_inst[103:96]),
+            .kv_wr_slot_i            (eng_cmd_inst[67:64]),
+            .flash_base_page_i       (eng_cmd_inst[95:64]),
+            .kv_fp16_in_i            (vfu_vec_a),
+            .kv_rd_en_i              (1'b0),
+            .kv_rd_addr_i            (4'd0),
+            .kv_dequant_out_o        (llm_kv_dequant_out),
+            .kv_packed_out_o         (llm_kv_packed_out),
+            .flash_req_valid_o       (llm_flash_req_valid),
+            .flash_page_addr_o       (llm_flash_page_addr),
+            .flash_ecc_clean_i       (1'b1),
+            .draft_prob_i            (vfu_vec_a),
+            .target_prob_i           (vfu_vec_b),
+            .tree_mask_i             ((eng_cmd_inst[23:16] != 8'd0) ? eng_cmd_inst[23:16] : 8'hFF),
+            .accept_thresh_i         (eng_cmd_inst[15:0]),
+            .done_valid_o            (eng_done_valid[4]),
+            .done_tag_o              (eng_done_tag[4]),
+            .accepted_bitmap_o       (llm_accepted_bitmap),
+            .accepted_len_o          (llm_accepted_len),
+            .bonus_token_idx_o       (llm_bonus_token_idx),
+            .total_accepted_tokens_o (llm_total_accepted_tokens),
+            .total_kv_bytes_saved_o  (llm_total_kv_bytes_saved),
+            .flash_ecc_err_cnt_o     (llm_flash_ecc_err_cnt)
+          );
           // ---------------------------------------------------------------------------
           // 9. NRAM, WRAM, Cluster Shared SRAM, & GDRAM Data-Path Routing
           // ---------------------------------------------------------------------------
@@ -454,6 +492,14 @@
 %000002       nram_req_valid[1] = 1'b1;
 %000002       nram_req_we[1]    = 1'b1;
 %000002       nram_req_wdata[1] = vfu_vec_out[127:64];
+%000000     end else if (eng_done_valid[4]) begin
+%000000       nram_req_valid[2] = 1'b1;
+%000000       nram_req_we[2]    = 1'b1;
+%000000       nram_req_wdata[2] = llm_kv_packed_out;
+%000000       nram_req_valid[3] = 1'b1;
+%000000       nram_req_we[3]    = 1'b1;
+%000000       nram_req_wdata[3] = {llm_total_accepted_tokens[31:0], 17'd0,
+%000000                            llm_bonus_token_idx, llm_accepted_len, llm_accepted_bitmap};
 %000008     end else if (mfu_wr_req_valid && (mfu_wr_req_space == mlu_pkg::MEM_SPACE_NRAM)) begin
 %000008       nram_req_valid[mfu_wr_req_addr[5:3]] = 1'b1;
 %000008       nram_req_we[mfu_wr_req_addr[5:3]]    = 1'b1;
@@ -500,7 +546,8 @@
                               sram_sleep_cycles, vfu_softmax_sum, vfu_softmax_max, vfu_absmax,
                               vfu_min_val, vfu_max_val, mfu_comp_bytes_rd, mfu_uncomp_bytes_wr,
                               nram_req_grant, nram_resp_valid, nram_conflict_stall, nram_conflict_cnt,
-                              wram_tfu_weight_valid};
+                              wram_tfu_weight_valid, llm_kv_dequant_out, llm_flash_req_valid,
+                              llm_flash_page_addr, llm_total_kv_bytes_saved, llm_flash_ecc_err_cnt};
         
         endmodule : mlu_ipu_core
         

@@ -20,11 +20,11 @@
 ~000150   logic [7:0]        cmd_tag_i;
  000150   logic [3:0]        kv_wr_slot_i;
 ~000150   logic [31:0]       flash_base_page_i;
-~000292   logic [127:0]      kv_fp16_in_i;
+~000219   logic [127:0]      kv_fp16_in_i;
 %000001   logic              kv_rd_en_i;
  000150   logic [3:0]        kv_rd_addr_i;
- 000504   logic [127:0]      kv_dequant_out_o;
-~000057   logic [63:0]       kv_packed_out_o;
+ 000451   logic [127:0]      kv_dequant_out_o;
+~000053   logic [63:0]       kv_packed_out_o;
 %000001   logic              flash_req_valid_o;
 ~000075   logic [31:0]       flash_page_addr_o;
  000012   logic              flash_ecc_clean_i;

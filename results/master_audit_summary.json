@@ -209,13 +209,28 @@
     "pass": true
   },
   "coverage_closure": {
-    "merged_dat_bytes": 60088555,
+    "merged_dat_bytes": 63762525,
+    "unique_rtl_line_coverage_pct": 98.51,
     "pass": true
   },
   "literature_patent_parity": {
     "academic_papers_verified": 10,
     "cn_patents_verified": 6,
     "cross_doc_discrepancies": 0,
+    "pass": true
+  },
+  "gls_asap7": {
+    "cycles": 5000,
+    "lockstep_checks": 39695,
+    "lockstep_errors": 0,
+    "alpha_eff_gls": 0.174427,
+    "pass": true
+  },
+  "workload_benchmarks": {
+    "rtl_kernels_passed": true,
+    "mlu590_sustained_tops_per_w": 1.455,
+    "mlu690_sustained_tflops_per_w": 1.676,
+    "max_energy_error_pct": 1.69,
     "pass": true
   }
 }
